@@ -1,0 +1,763 @@
+==Introduction==
+
+The [[FPL:Pre-trade_messages#Quotation_and_Negotiation|quotation messages]] fall into two main sub-categories Ð those used for quoting in single instruments  
+"Single product quoting" and those used to quote on multiple instruments such as option series - "Mass quoting".
+
+Within the "single product quoting" suite of messages three business models have been identified:
+
+; Indicative quoting 
+:the predominant business model for retail quoting, where the expected response to a quote is a Ôpreviously quotedÕ order which may be accepted or rejected. In the retail model the quote may be preceded by a [[QuoteRequest]]
+; Tradeable quoting 
+: a model where the response to a quote may be an execution (rather than an order). A common model where participants are posting quotes to an exchange. [[Quote]] may be issued in response to a [[QuoteRequest]] in a Ôquote on demandÕ market
+; Restricted Tradeable quoting 
+: as per Tradeable quoting but the  response to a quote may be either an execution or an order depending on various parameters. 
+
+==Indicative Quoting Model==
+
+FIX supports an Indicative Quoting Model that is frequently used between two counterparties. 
+In the Indicative Quoting Model a party interested in a particular security issues a [[QuoteRequest]] to a 
+counterparty. The counterparty responds with an indicative [[Quote]]. The first party - assuming the quote meets their 
+requirements - can send back a [[NewOrderSingle]] ([[OrdType]] = PreviouslyQuoted). 
+The [[NewOrderSingle]] message should contain the [[QuoteID]] of the [[Quote]]. 
+The issuer of the quote does not necessarily have to execute the order - based upon market conditions or 
+characteristics contained on the [[NewOrderSingle]] Message.
+
+===Indicative Quoting Model Message Scenario===
+
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[QuoteRequest]]
+
+This is an optional first step. Counterparties may agree to provide indicative quotes in a continuous manner.
+|>>>>
+|Accepts [[Quote]] Request
+
+Creates a [[Quote]] for the product specified in the [[QuoteRequest]]
+
+|-
+|Accepts [[Quote]] - after examining market indicated in quote decides whether to place a [[NewOrderSingle]]
+|<<<<
+|Send [[Quote]] message (can be a one or two sided market). The [[QuoteReqID]] should be set to the [[QuoteReqID]] from the [[QuoteRequest]] to which this [[Quote]] is a response.
+|-
+|[[NewOrderSingle]] - should reference the [[QuoteID]] for which the New Order message in which the New Order is a response. The [[OrdType]] should be set to PreviouslyQuoted.
+|>>>>
+|Accepts the [[NewOrderSingle]] message.
+
+Should be acknowledged as New.
+
+|-
+|
+|<<<<
+|Sends [[ExecutionReport]] for New (Optional)
+|-
+|
+|<<<<
+|Sends [[ExecutionReport]] [[OrdStatus]]=Filled if the order is acceptable or
+
+Or
+
+Send [[ExecutionReport]] [[OrdStatus]]=PartiallyFilled
+
+Or
+
+Send [[ExecutionReport]] [[OrdStatus]]=Rejected
+
+|}
+
+Indicative quotes can also be sent out on an unsolicited basis. The correct response is the [[NewOrderSingle]] 
+(previously quoted) as above
+
+==Tradeable Quote Model==
+
+Beginning with FIX 4.2 support was provided for markets requiring tradeable quotes. 
+A tradeable quote market has market makers or specialist issue quotes that are kept as part of a market. 
+A tradeable quote can be directly traded against orders or other quotes (depending on market rules). 
+The market created by these quotes should be distributed using the Market Data messages. 
+When orders are entered in response to the markets created by the tradeable quotes - trades may result. 
+Trades are reported with an [[ExecutionReport]].
+
+Tradeable Quote model markets can be continuously quoted or quoted on demand or a combination of the two. 
+In continuously quoted markets - market makers or specialists are required to maintain two sided markets which 
+comply with market requirements for bid-ask spread and minimum quantity. 
+In the quote on demand market - market makers and specialists are usually required to respond to [[QuoteRequest]]s 
+(RFQs) within a market prescribed time limit with a quote which complies with exchange prescribed bid-ask spread and 
+minimum quantity.
+
+===Tradeable Quote Model - Reporting Quote Status back to Issuer===
+
+The market should provide unsolicited quote status back to the quote issuer if the state of a quote changes with the 
+exception of trades (fills) that occur against a quote. Trades (fills) are reported using the [[ExecutionReport]].
+
+NOTE: The [[Quote]] Message should not be used to report trades. Only the [[ExecutionReport]] should be used to report 
+fills against a tradeable or restricted tradeable quote.
+
+
+{|border="1"
+
+|-
+!Market maker or specialist
+!
+!Market
+|-
+|[[Quote]]
+
+Valid tradeable or restricted tradeable quote sent into market - either unsolicited or in reply to a [[QuoteRequest]] from the market.
+
+|>>>>
+|Accepts [[Quote]] and applies to the market
+|-
+|Accepts [[Quote]] and updates trading system based upon status reported by market
+|<<<<
+|Based upon market rules or the [[QuoteResponseLevel]] requested by Quote Issuer the market will send [[QuoteStatusReport]] messages back to the quote issuer to report quote status (using the [[QuoteStatus]] field).
+|-
+|
+|<<<<
+|If a trade (fill) occurs against a tradeable quote an [[ExecutionReport]] ([[ExecType]]=Fill or PartialFill) is sent to the quote issuer.
+|}
+
+===Using the [[ExecutionReport]] to report a trade on a Tradeable Quote===
+
+The [[ExecutionReport]] should be used to report trades involving a tradeable quote. 
+Because quotes are usually replaced or replenished - often times with the same [[QuoteID]] - it is not always possible, 
+nor does it necessarily make sense for markets to keep track and transmit the detailed quantity information 
+required on the quote. [[ExecutionReport]]s for trades against a tradeable quote can use the quantity fields in the 
+following manner.
+
+{|border="1"
+|-
+!Tag#
+!Field Name
+!Reqd
+!Usage in reporting trades on tradeable or restricted tradeable quotes
+|-
+|38
+|[[OrderQty]]
+|N
+|Quote quantity when the fill occurred.
+|-
+|32
+|[[LastQty]]
+|N
+|Same as for a fill against an order
+|-
+|31
+|[[LastPx]]
+|N
+|Same as for a fill against an order
+|-
+|151
+|[[LeavesQty]]
+|Y
+|Quantity remaining open in the market
+|-
+|14
+|[[CumQty]]
+|Y
+|Use 0.0 if market is unable to provide a cumulative total.
+|-
+|6
+|[[AvgPx]]
+|Y
+|Use 0.0 if market is unable to provide an average price
+|}
+
+
+===Tradeable Quote Model - Quote on Demand Message Scenario===
+
+In the quote on demand model Ð markets are not necessarily available until someone interested in the market 
+generates a request.
+
+{|border="1"
+|-
+!First Party
+!
+!Market
+!
+!Second Party (usually market maker or specialist)
+|-
+|
+|
+|
+|<<<<
+|Optional
+
+[[QuoteStatusRequest]] to subscribe for [[QuoteStatus]] for one or more instruments (some markets may chose to configure this out of band).
+|-
+|
+|
+|Tracks Subscription Requests for each party connected to market
+
+NOTE: Some markets may choose to configure subscription and dissemination of [[QuoteRequest]] out-of-band - instead of in-band.
+
+|<<<<
+
+|RFQ Request
+
+Subscribe for [[QuoteRequest]]s
+
+|-
+|
+
+[[QuoteRequest]]
+
+(Optional request for quote if no quote exists in the market)
+
+|>>>>
+|Market checks validity of [[QuoteRequest]] and then sends it to subscribed participants
+|
+
+>>>>
+
+
+|Accepts [[QuoteRequest]]
+
+Generates a quote based upon request
+
+|-
+|
+|
+|Interprets quotes and applies them to a market
+
+Interprets [[QuoteResponseLevel]] to determine if quote status should be sent back to the quote issuer using a [[QuoteStatusReport]] message with the [[QuoteStatus]] field set appropriately
+
+Valid quote that changes market should be disseminated using Market Data messages
+
+Optional [[QuoteStatusReport]]
+
+
+|<<<<
+
+
+
+
+
+
+
+
+>>>>
+
+|[[Quote]]
+
+[[Quote]] is sent that complies with market requirements.
+
+|-
+|Receives Market Data
+
+Will use Market Data to make market participation and pricing decision
+
+
+|<<<<
+|If the [[Quote]] is valid and has an impact on the market Market Data is published
+
+(NOTE: The process of subscribing for market data is omitted from this example)
+
+|>>>>
+|Receives Market Data
+
+Useful in creating subsequent quotes
+
+|-
+|Sends [[NewOrderSingle]]
+
+Receives [[ExecutionReport]] - PendingNew (optional)
+
+Received [[ExecutionReport]] - New
+
+|>>>>
+
+
+
+<<<<
+
+
+
+<<<<
+
+
+|Order is matched against other orders and quotes according to market rules.
+
+(NOTE: This can be either open-outcry based markets with or without limit book or a fully electronic market)
+
+|
+|
+|-
+|Receipt of [[ExecutionReport]] - Reporting Fill or Partial Fill
+|<<<<
+|If the order is matched against the tradeable or restricted tradeable quote resulting in a trade - [[ExecutionReport]]s are sent to the counterparties of the trade
+|>>>>
+|Receipt of Market Maker side [[ExecutionReport]] reporting Fill against the previously submitted tradeable or restricted tradeable [[Quote]]
+
+(Optionally can choose to replenish market or wait for next [[QuoteRequest]])
+
+|}
+
+
+===Tradeable Quote Model Message Scenario - Continuous markets===
+
+The Tradeable Quote Model in a continuously quoted marketed Ð requires market makers or specialist to maintain market 
+compliant two sided markets.
+
+
+{|border="1"
+
+|-
+!First Party
+!
+!Market
+!
+!Second Party (usually market maker or specialist)
+|-
+
+|Uses market data to determine market participation and pricing on orders
+|<<<<
+|Market Data is disseminated
+
+(NOTE: This may include the need to transmit expected opening prices based upon current state of the book at the opening)
+
+|>>>>
+|Uses market data to create subsequent quotes
+|-
+|
+|
+|Interprets quotes and applies them to a market
+
+Interprets [[QuoteResponse]] Level to determine if quote status should be sent back to the quote issuer using a [[QuoteStatusReport]] message with the [[QuoteStatus]] field set appropriately
+
+Market Data will be generated to report state of the book is changed by the quote
+
+Optional [[QuoteStatusReport]]
+
+|<<<<
+
+
+
+
+
+>>>>
+
+
+|[[Quote]]
+
+Market Makers / Specialist are expected to maintain two sided quotes that comply with market required bid-ask spread and minimum quantities
+
+|-
+|Receives Market Data
+
+Will use Market Data to make market participation and pricing decision
+
+|<<<<
+|If the [[Quote]] is valid and has an impact on the market Market Data is published
+
+(NOTE: The process of subscribing for market data is omitted from this example)
+
+|>>>>
+|Receives Market Data
+
+Used to create subsequent quotes
+
+|-
+
+|Sends [[NewOrderSingle]]
+
+Receives [[ExecutionReport]] - PendingNew (optional)
+
+Received [[ExecutionReport]] - New
+
+|>>>>
+
+
+
+<<<<
+
+
+
+<<<<
+
+|Order is matched against other orders and quotes according to market rules.
+
+(NOTE: This can be either open-outcry based markets with or without limit book or a fully electronic market)
+
+|
+|
+|-
+|Receipt of [[ExecutionReport]] - Reporting Fill or Partial Fill
+|<<<<
+|If the order is matched against the tradeable or restricted tradeable quote resulting in a trade - [[ExecutionReport]]s are sent to the counterparties of the trade
+|>>>>
+|Receipt of Market Maker side [[ExecutionReport]] reporting Fill against the previously submitted tradeable or restricted tradeable [[Quote]]
+
+(Optionally can choose to replenish market or wait for next [[QuoteRequest]])
+
+|-
+|
+|
+|[[Quote]] is processed as above - market data is generated - an optional [[QuoteStatusReport]]  message is generated
+|<<<<
+|Replenishes [[Quote]] - possibly changing prices and quantities
+|}
+
+
+===Tradeable Quote Model - Querying for Quote Status===
+
+Market participants may need to query the status of their current quotes. Normally a market will provide status in an 
+unsolicited manner back to the quote issuer. However, to support system or session recovery Ð 
+the [[QuoteStatusRequest]] can be used to query the current state of quotes within a market.
+
+{|border="1"
+|-
+!Market maker or specialist
+!
+!Market
+|-
+|[[QuoteStatusRequest]]
+
+Contains information on the securities for which the quote status request is being issued or the [[QuoteID]] of a previously submitted quote.
+
+|>>>>
+|Accepts [[QuoteStatusRequest]]
+|-
+|Accepts [[Quote]] and updates trading system.
+|<<<<
+|Sends [[QuoteStatusReport]] messages with the [[QuoteStatus]] field set, bid and ask prices, and quantities for each quote belonging to the request issuer that meet the criteria in the request.
+
+If there is a current quote in the market - the [[QuoteStatusReport]] in response to a [[QuoteStatusRequest]] should be sent with a [[QuoteStatus]] of "Query".
+
+The [[QuoteStatusReport]] message can also contain a [[QuoteStatus]] of  "QuoteNotFound" if no quote currently exists.
+
+|}
+
+
+==Restricted Tradeable Quote Model==
+
+The Restricted Tradeable Quote Model extends the behavior of the Tradeable Quote Model to place limits on quantity or 
+price. Orders received against the Restricted Tradeable Quote that are within limits set by the market Ð will 
+execute against the quote automatically Ð just as in the case of the Tradeable Quote Model.
+
+If the order is outside the limits specified by the market Ð the order is forwarded to the quote issuer(s) to be filled, 
+partially filled with remaining quantity cancelled, or canceled.
+
+===Restricted Tradeable Quote Model Message Scenario===
+
+The Restricted Tradeable Quote Model will automatically trade against orders within restrictions specified by the 
+market in terms of quantity or price.
+
+
+{|border="1"
+|-
+!First Party
+!
+!Market
+!
+!Second Party (usually market maker or specialist)
+|-
+|Uses market data to determine market participation and pricing on orders
+|<<<<
+|Market Data is disseminated
+
+(NOTE: This may include the need to transmit expected opening prices based upon current state of the book at the opening)
+
+|>>>>
+|Uses market data to create subsequent quotes
+|-
+|
+|
+|Interprets quotes and applies them to a market
+
+Interprets [[QuoteResponseLevel]] to determine if quote status should be sent back to the quote issuer using a [[QuoteStatusReport]] message with the [[QuoteStatus]] field set appropriately
+
+Market Data will be generated to report state of the book is changed by the quote
+
+|<<<<
+|[[Quote]]
+
+Market Makers / Specialist are expected to maintain two sided quotes that comply with market required bid-ask spread and minimum quantities
+
+|-
+|Receives Market Data
+
+Will use Market Data to make market participation and pricing decision
+
+|<<<<
+|If the [[Quote]] is valid and has an impact on the market Market Data is published
+
+(NOTE: The process of subscribing for market data is omitted from this example)
+
+|>>>>
+|Receives Market Data
+
+Used to create subsequent quotes
+
+|-
+
+|Sends [[NewOrderSingle]]
+
+Receives [[ExecutionReport]] - PendingNew (optional)
+
+Received [[ExecutionReport]] - New
+
+|>>>>
+
+
+<<<<
+
+
+<<<<
+
+|Order is matched against other orders and quotes according to market rules.
+
+(NOTE: This can be either open-outcry based markets with or without limit book or a fully electronic market)
+
+|
+|
+|-
+
+|Receipt of [[ExecutionReport]] - Reporting Fill or Partial Fill
+|<<<<
+|If the order is matched against the tradeable or restricted tradeable quote resulting in a trade - [[ExecutionReport]]s are sent to the counterparties of the trade
+|>>>>
+|Receipt of Market Maker side [[ExecutionReport]] reporting Fill against the previously submitted tradeable or restricted tradeable [[Quote]]
+
+(Optionally can choose to replenish market or wait for next [[QuoteRequest]])
+
+|-
+|
+|
+|[[Quote]] is processed as above - market data is generated - an optional quote status message is generated
+|<<<<
+|Replenishes [[Quote]] - possibly changing prices and quantities
+|-
+|Sends [[NewOrderSingle]] that is outside the restrictions specified by the market
+|>>>>
+|Order is identified as being outside automatic execution parameters.
+
+The order is sent to the quote issuer(s)
+
+|>>>>
+|Receives order and decides if the order is acceptable
+|-
+|
+|
+|
+|
+|Sends back an execution for partial quantity, full quantity, or cancels the order
+|}
+
+==Mass Quote Message Scenarios==
+
+===Unsolicited quote(s) no response requested===
+
+[[MassQuote]] is sent from first party to second party. 
+The quote has the [[QuoteResponseLevel]] set to 0 or omitted. 
+The second party does not acknowledge the quote. 
+If the quote is later hit, resulting in a trade, an [[ExecutionReport]] is sent to the first party.
+
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[MassQuote]] message
+
+Options:
+
+One or more sets of quotes
+
+Set [[QuoteResponseLevel]] is set to 0 or omitted
+
+|>>>>
+|Interprets quotes applies them to a market
+
+Interprets Response Level - provides response accordingly
+
+No response is sent
+
+|-
+|
+|<<<<
+|[[ExecutionReport]]
+
+[[Quote]] Results in Trade
+
+|}
+
+
+===Unsolicited quote(s) negative response only requested===
+
+[[MassQuote]] is sent from first party to second party. 
+The quote has the [[QuoteResponseLevel]] set to 1. 
+The second party only acknowledges the quote if there is an error. 
+If the second party encounters an error while processing the quote a [[MassQuoteAcknowledgement]] message is sent 
+with the [[QuoteRejectReason]] set to the error encountered.
+
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[MassQuote]] message
+
+Options:
+
+One or more sets of quotes
+
+Set [[QuoteResponseLevel]] to 1
+
+|>>>>
+|Interprets quotes applies them to a market
+|-
+|Interprets [[MassQuoteAcknowledgement]]
+
+If error - then send revised quote
+
+|<<<<
+|[[MassQuoteAcknowledgement]]
+
+If an error is encountered
+
+|-
+|[[MassQuote]] message
+|>>>>
+|Interprets quotes applies them to a market
+|}
+
+
+===Unsolicited quote(s) full response requested===
+
+[[MassQuote]] is sent from first party to second party. 
+The quote has the [[QuoteResponseLevel]] set to 2. The second party acknowledges each quote.
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[MassQuote]] message
+
+Options:
+
+One or more sets of quotes
+
+Set [[QuoteResponseLevel]] to 2
+
+|>>>>
+|Interprets quotes applies them to a market
+|-
+|Interpret [[MassQuoteAcknowledgement]]
+|<<<<
+|[[MassQuoteAcknowledgement]]
+|}
+
+
+===Cancel All Quotes===
+
+The First Party asks the second party to cancel all quotes.  
+Quotes with a quote status are sent in response to the cancel all quotes message ([[QuoteCancel]] with
+[[QuoteCancelType]] = 4 (CancelAllQuotes)).
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[QuoteCancel]] message
+
+[[QuoteCancelType]] = 4 (CancelAllQuotes)
+
+|>>>>
+|Interprets [[QuoteCancel]] message and cancels quotes.
+|-
+|Interpret [[MassQuoteAcknowledgement]]
+|<<<<
+|[[MassQuoteAcknowledgement]]
+|}
+
+
+==Use of other Quote Messages in Mass Quoting==
+
+Once the [[MassQuote]] message is submitted to a market and after the initial 
+[[MassQuoteAcknowledgement]] - the Quote Entries are treated as separate quotes. Report of [[QuoteStatus]] 
+should be done using the [[QuoteStatusRequest]] and [[Quote]] messages. 
+Fills are reported for each Quote Entry using the [[ExecutionReport]].
+
+===Reporting [[QuoteStatus]] back to [[MassQuote]] Issuer===
+
+Markets should report the status of quotes back to the quote issuer when the state of one of the quotes in 
+a [[MassQuote]] changes. [[QuoteStatusReport]] messages should be issued for each change in state of a quote entry. 
+The [[QuoteID]] of the original [[MassQuote]] message should be used as the [[QuoteID]] on the [[QuoteStatusReport]]. 
+It is acceptable to append the [[QuoteSetID]] and [[QuoteEntryID]] to indicate the specific quote in the 
+[[MassQuote]] message referred to in the [[QuoteStatusReport]] if this information is maintained by the market. 
+NOTE: The [[Quote]] Message should not be used to report trades. 
+Only the [[ExecutionReport]] should be used to report fills against a tradeable or restricted tradeable quote.
+
+{|border="1"
+|-
+!Market maker or specialist
+!
+!Market
+|-
+|[[MassQuote]]
+
+Valid tradeable or restricted tradeable quote sent into market - either unsolicited or in reply to a [[QuoteRequest]] from the market.
+
+|>>>>
+|Accepts  [[MassQuote]] and applies to the market
+|-
+|Accepts [[Quote]] and updates trading system based upon status reported by market
+|<<<<
+|Based upon market rules or based upon the [[QuoteResponseLevel]] requested by Quote Issuer the market will send [[MassQuoteAcknowledgement]] message back to the quote issuer to report quote status in the [[QuoteStatus]] field.
+|-
+|Updates trading system with quote status
+|<<<<
+|[[Quote]] messages are sent back unsolicited as the quote state changes. The [[QuoteEntryID]] should be used as the [[QuoteID]].
+|-
+|Updates trading system with [[ExecutionReport]]
+|<<<<
+|If a trade (fill) occurs against a tradeable or restricted tradeable quote an [[ExecutionReport]] ([[ExecType]]=Trade) is sent to the quote issuer.
+|}
+
+
+===Querying for [[MassQuote]] Status===
+
+If the issuer of a [[MassQuote]] queries the current status of the quote the market should reply with a 
+sequence of individual quote messages with status. 
+This is recommended to eliminate the need for markets to store [[QuoteSetID]]s and [[QuoteEntryID]]s 
+that were provided as part of the [[MassQuote]] message. 
+Also, as quote status is very dynamic data - sending quote status on securities as soon as it is available - 
+instead of combining it into a single message - will provide more timely information to the quote issuer. 
+The use of a [[QuoteStatusRequest]] for a [[MassQuote]] is provided as a method of recovery for market maker 
+trading systems - due to the volume of information that can be generated and the short lived nature of quote status - 
+this usage is not recommended for normal processing.
+
+{|border="1"
+|-
+!Market maker or specialist
+!
+!Market
+|-
+|[[QuoteStatusRequest]]
+
+Contains the [[QuoteID]] of a previously submitted [[MassQuote]].
+
+|>>>>
+|Accepts [[QuoteStatusRequest]]
+|-
+|Accepts [[Quote]] and updates trading system.
+|<<<<
+|Sends [[Quote]] messages with the [[QuoteStatus]] field, bid and ask prices and quantities for each quote belonging to the request issuer that meet the criteria in the request.
+
+If there is a current quote in the market - the [[Quote]] in response to a [[QuoteStatusRequest]] should be sent with a [[QuoteStatus]] of "Query".
+
+The [[Quote]] message can also contain a [[QuoteStatus]] of  "QuoteNotFound" if no quote currently exists.
+
+|}

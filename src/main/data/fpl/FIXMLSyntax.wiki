@@ -1,0 +1,2189 @@
+==FIXML Highlights==
+
+* FIXML is the XML vocabulary for creating FIX messages.
+* Uses the same FIX data dictionary and business logic.
+* Focuses primarily on the FIX Application Messages and does not provide a session layer.
+* Can be encapsulated within the FIX Session Protocol or within another protocol like, MQ Series, TIBCO, SOAP, etc.
+
+==Background==
+
+The FPL FIXML Working Group began investigating the XML format in 1998 and published a White Paper supporting an evolutionary approach to migrating the FIX Protocol to an XML format. The working group released an intial version of the FIXML DTDs on January 15th, 1999. There are currently DTDs based on FIX Protocol versions 4.1, 4.2 and 4.3. A FIXML Schema based version of FIXML was released following the release of FIX 4.4.
+
+The FIXML language is in a state of transition. It has been four years since the initial release of FIXML. XML technology has advanced considerably in those four years. FPL committed to deliver an XML Schema representation for FIXML starting with FIX 4.3. Issues confronting FIXML users in the derivatives post trade area preempted release of the FIXML Schema for FIX 4.3. Instead the effort shifted to attempts to exploit the capabilities available in XML Schema to define a version of FIXML that was optimized to reduce message size. This version of FIXML was referred to as Transport Optimized FIXML during its development. The Global Technical Committee chose to release the transport optimizations in two phases.
+
+The FIX 4.4 DTD Version was released with FIX 4.4 Eintroduced standardized abbreviations for field names and removal of container elements used to represent repeating groups and component blocks. This version has been replaced by the FIX 4.4 Schema Version and should no longer be used.
+
+The FIX 4.4 Schema Version was released as part of FIX 4.4 Errata release. The FIX 4.4 Schema Version exploits the enhanced capabilities of XML Schema to further optimize FIXML message size by introducing the use of attributes to represent fields.
+
+FIXML for FIX 5.0 is defined by an XML Schema based upon the work done for FIX 4.4.
+
+
+===FIX and FIXML Version and Comparison using [[NewOrderSingle]] Message===
+
+The following section compares the implementation of the same FIX [[NewOrderSingle]] message in FIX 4.2 
+tag=value format, FIXML 4.2 DTD version, and FIXML Schema Version.
+
+====FIX tag=value Version====
+
+The following is a FIX 4.2 [[NewOrderSingle]] message in classic tag-value pair format:
+
+:<tt>8=FIX.4.2^9=251^35=D^49=AFUNDMGR^56=ABROKER^34=2^52=20030615-01:14:49^11=12345^ 1=111111^63=0^64=20030621^21=3^110=1000^111=50000^ 55=IBM^48=459200101^22=1^54=1^60=2003061501:14:49 38=5000^40=1^44=15.75^15=USD^59=0^10=127</tt>
+
+NOTE: ^ represents the SOH separator.
+
+The message is 195 bytes in length.
+
+====FIXML 4.2 Version====
+
+The following is a roughly equivalent FIXML 4.2 DTD-based message:
+
+<pre>
+<FIXML>
+  <FIXMLMessage>
+    <Header>
+      <PossDupFlag Value="N" />
+      <PossResend Value="N" />
+      <SendingTime>20020103-12  00  01</SendingTime>
+      <Sender>
+        <CompID>AFUNDMGR</CompID>
+      </Sender>
+      <Target>
+        <CompID>ABROKER</CompID>
+      </Target>
+    </Header>
+    <ApplicationMessage>
+      <Order>
+        <ClOrdID>1968</ClOrdID>
+        <Account>4130287</Account>
+        <HandlInst Value="1" />
+        <ExDestination Value="L" />
+        <Instrument>
+          <Symbol>IBM</Symbol>
+          <SecurityID>459200101</SecurityID>
+          <SecurityIDSource Value="1" />
+        </Instrument>
+        <Side Value="2" />
+        <TransactTime>20021120-12  13  12</TransactTime>
+        <OrderQtyData>
+          <OrderQty>1000</OrderQty>
+        </OrderQtyData>
+        <OrdType Value="2" />
+        <Price>93.25</Price>
+        <Currency Value="USD" />
+      </Order>
+    </ApplicationMessage>
+  </FIXMLMessage>
+</FIXML>
+</pre>
+
+This message is 684 bytes; over three times the message size of the raw FIX tag=value message.  
+In practice, FIXML messages could be 3-5 times their FIX tag=value equivalents.
+
+====FIXML 4.4 Schema Version====
+
+The following is a [[NewOrderSingle]] message based on the FIXML 4.4 Schema.
+
+<pre>
+<FIXML>
+     <Order ClOrdID="123456"
+                    Side="2"
+                    TransactTm="2001-09-11T09:30:47-05:00"
+                    OrdTyp="2"
+                    Px="93.25"
+                    Acct="26522154">
+         <Hdr Snt="2001-09-11T09:30:47-05:00"
+                 PosDup="N"
+                 PosRsnd="N"
+                 SeqNum="521">
+             <Sndr ID="AFUNDMGR"/>
+             <Tgt ID="ABROKER"/>
+         </Hdr>
+         <Instrmt Sym="IBM"
+                    ID="459200101"
+                    IDSrc="1"/>
+         <OrdQty Qty="1000"/>
+       </Order>
+</FIXML>
+</pre>
+
+NOTE: The XML attributes in the message have been placed on separate lines to aid readability.
+
+This message is 348 bytes in length; approximately 70% larger than the raw FIX tag=value message, 
+but roughly half the size of the previous FIXML format without significant loss in readability.
+
+'''Sample Message Content'''
+
+The following table is included to help clarify the message content shown above
+
+{|border="1"
+|-
+!Tag/Attribute
+!Meaning
+|-
+|<FIXML>
+|Root element
+|-
+|
+:<Order
+::ClOrdID="123456"
+::Side="2"
+::TransactTm="2001-09-11T09:30:47-05:00"
+::OrdTyp="2"
+::Px="93.25"
+::Acct="26522154">
+|New order
+
+Client's order ID
+
+Sell order
+
+Transaction time
+
+Limit order
+
+Limit price
+
+Customer's account
+
+|-
+|
+::<Instrmt Sym="IBM"
+:::ID="459200101"
+:::IDSrc="1"/>
+
+|
+Stock symbol
+
+Stock CUSIP
+
+(ID source=CUSIP)
+
+|-
+|
+::<OrdQty Qty="1000"/>
+|Order quantity
+|-
+|
+:</Order>
+|Close of order
+|-
+|</FIXML>
+|Close root element
+|}
+
+
+===FIXML Transition to Schema===
+
+FIXML was initiated at a time when the only mechanism available to define and validate an XML syntax was the 
+Document Type Definition (DTD) originally created as part of the Standardized General Markup Language (SGML). 
+The DTD provided only minimal ability to define XML syntax.
+
+Since then, the World Wide Web Consortium (http://www.w3c.org) adopted XML Schema as a way of representing the format 
+of XML messages using XML syntax. Document Type Definitions (DTDs), which were originally part of XML, 
+have limited syntax and capabilities for defining XML syntax. XML Schema was designed to address many of the 
+deficiencies of DTDs. The FPL Global Technical Committee has received numerous requests from FIX users for an XML 
+Schema representation of the FIX Protocol and believes that a version of FIXML defined using XML Schema will provide 
+a more robust, optimized message format and provide a better environment for users implementinTg FIXML applications.
+
+The following limitations of DTDs determined much of the FIXML implementation;
+
+Meta data could not be included in the DTD - so attributes were used for meta-data.
+
+Attributes could not be "typed" so this restricted datatyping to elements. Many XML syntax's then relied heavily on elements for data, attributes for meta-data. This is the approach taken for FIXML up through the FIX 4.4 Errata 20030618 release.
+
+Since the initial release of FIXML in 1999, XML technology has advanced. The primary advancement has been in the area of standards that are used to define XML based languages. First among these is XML Schema - which has been adopted as a standard by the W3C. XML Schema addresses many of the limitations in DTDs, including:
+
+Advanced datatyping, including datatyping for attributes.
+
+Ability to include user defined meta-data in addition to standardized annotation and documentation.
+
+XML Schema is written in XML, permitting manipulation by XML tools, such as XSLT, Xpath, etc.
+
+====FIXML 4.4 Schema Version Enhancements====
+
+The Schema version introduces the following enhancements
+
+* Incorporated further transport optimizations
+** Adoption of attributes
+** Contextual Abbreviations - further reducing field names
+* Addressed component blocks built around limitations of FIX tag=value by using consistent field names across component blocks
+** [[InstrumentLeg]], [[NestedParties]], Nested2Parties, [[UnderlyingInstrument]]
+* Develop XML Schema Design Approach
+** Leverage work already done by ISO/XML and FpML
+** Design to support extensibility (customization) capabilities provided by FIX tag=value syntax
+
+===FIXML 4.4 Schema Version Design Objectives===
+
+====Design objectives for FIXML messages (instance documents)====
+
+These design objectives refer to the FIXML instance documents. Instance documents are the actual FIXML messages.
+
+* FIXML implementation shall adhere to XML technology standards as specified by the W3C.
+** FIXML implementation shall be suitable implementation for use in high volume transaction scenarios. Target applications:
+*** Order Routing
+*** Trade Reporting and Post Trade Processing
+*** Distribution of product (instrument) information
+*** Market making for lower volume applications
+** FIXML implementation shall minimize bandwidth consumption (reduced message size). The goal is to have FIXML messages be less than 1.5 X the size of an equivalent FIX tag=value message.
+** FIXML implementation shall maintain human readability of FIXML message, while still adhering to performance goals.
+** FIXML implementation shall support integration of FpML product specifications within the FIXML message in an equivalent manner to FIX 4.4 tag=value. This integration should use commonly agreed upon, de facto standard XML design patterns.
+** FIXML implementation shall support a ready translation to and from FIX tag=value messages.
+** FIXML implementation shall provide a cross-reference to ISO 15022 repository for each message, element, and component.
+** FIXML implementation shall maintain the extensibility and customization available via the FIX tag=value message format, including:
+*** Ability to add custom messages,
+*** Ability to add custom fields to messages, component blocks, and repeating groups.
+** FIXML Implementation shall provide full transport level independence.
+** FIXML Implementation shall support version identification.
+
+====Design Objectives for the Schema Document====
+
+* FIXML Schema shall be implemented using the current de facto industry best practices for XML Schema usage.
+* FIXML Schema shall be implemented in such a way as to fully support the FIXML 4.4 "Schema Version" Instance Requirements defined above.
+* FIXML Schema shall support version identification.
+* FIXML Schema shall provide meta-data sufficient to identify the FIX field name, component type, tag number, ISO 15022 repository cross-reference.
+* FIXML Schema shall be interoperable and compatible with the FpML schema.
+* The FIXML Schema shall be based upon and be compatible with the current version of XML schema: http://www.w3.org/2001/XMLSchema
+
+==FIXML Design Rules==
+
+The following design guidelines were created to meet the design objectives for the FIXML Schema and the FIXML instance documents defined above.
+
+# Use meaningful abbreviations for element and attribute names wherever possible.  Use standard abbreviations for common words (e.g., [[Price]] = Px, [[Currency]] = Ccy, etc.).
+# FIX Messages shall be implemented as XML Elements.
+# Individual, non-repeating fields shall be implemented as attributes of FIX Message elements.
+# FIX Component Blocks shall be implemented as an XML element.
+# Component blocks that were duplicated within FIX to circumvent tag=value requirements for uniqueness across fields and tag numbers, such as the [[Parties]], [[NestedParties]], [[NestedParties2]] component blocks, shall use common naming in FIXML. The datatypes for each of the ComponentTypes will provide the mapping back to FIX tag=value format.
+# Non-repeating fields belonging to a FIX component block shall be implemented as attributes.
+# Repeating groups shall be implemented as XML elements.
+# Non-repeating fields belonging to a repeating group shall be implemented as attributes.
+# Identical repeating groups that occur across FIX messages will be identified as implicit components and reused across messages.
+# Field name prefixes that were used in FIX tag=value format for uniqueness shall be removed - thus creating a contextual abbreviation.
+# FIX datatypes will be mapped to the closest XML Schema datatype whenever possible, thus making FIXML more compatible with standard XML toolsets.
+
+===FIXML Schema Root Element===
+
+The FIXML Schema root element has been expanded to include the ability to include a batch of FIXML application messages. 
+Batch capability was provided to deliver groups of messages, such as post trade confirms or position reports at the 
+end of a trading session. Single message capability is still supported. Note that the headers are optional.
+
+[[Image:FIXMLRootElement.png|900px]]
+
+====An Example FIXML Single Message====
+
+The following is a [[NewOrderSingle]] FIXML Schema message sent individually.
+
+<pre>
+<FIXML v="4.4" r="20030618" s="20040109">
+   <Order ClOrdID="123456" Side="2" TransactTm="2001-09-11T09:30:47-05:00"
+          OrdTyp="2" Px="93.25" Acct="26522154">
+      <Instrmt Sym="IBM" ID="459200101" IDSrc="1"/>
+      <OrdQty Qty="1000"/>
+   </Order>
+</FIXML>
+</pre>
+
+====An Example FIXML Batch Message====
+
+The following example shows a batch of position reports.
+
+Note that the header is provided for the entire batch of messages.
+<pre>
+<FIXML v="4.4" r="20030618" s="20031030">
+   <Batch>
+      <Hdr Snt="2001-12-17T09:30:47-05:00">
+         <Sndr ID="OCC"/>
+         <Tgt ID="Firm"/>
+      </Hdr>    
+      <PosRpt RptID="541386431" Rslt="0" BizDt="2003-09-10T00:00:00" Acct="1" AcctTyp="1" SetPx="0.00" SetPxTyp="1" 
+              PriSetPx="0.00" ReqTyp="0" Ccy="USD">
+         <Pty ID="OCC" Role="21"/>
+         <Pty ID="99999" Role="4"/>
+         <Pty ID="C" Role="38">
+            <PtySub SubID="ZZZ" SubIDTyp="2"/>
+         </Pty>
+         <Qty Typ="SOD" Long="35" Short="0"/>
+         <Qty Typ="FIN" Long="20" Short="10"/>
+         <Qty Typ="IAS" Long="10"/>
+         <Amt Typ="FMTM" Amt="0.00"/>
+         <Instrmt Sym="AOL" ID="KW" IDSrc="J" CFI="OCASPS" MMY="20031122" Mat="2003-11-22T00:00:00" Strk="47.50" 
+                  StrkCcy="USD" Mult="100"/>
+      </PosRpt>
+      <PosRpt RptID="541386536" Rslt="0" BizDt="2003-09-10T00:00:00" Acct="1" AcctTyp="1" SetPx="0.00" SetPxTyp="1" 
+              PriSetPx="0.00" ReqTyp="0" Ccy="USD">
+         <Pty ID="OCC" Role="21"/>
+         <Pty ID="99999" Role="4"/>
+         <Pty ID="C" Role="38">
+            <PtySub SubID="ZZZ" SubIDTyp="2"/>
+         </Pty>
+         <Qty Typ="SOD" Long="35" Short="0"/>
+         <Qty Typ="FIN" Long="20" Short="10"/>
+         <Qty Typ="IAS" Long="10"/>
+         <Amt Typ="FMTM" Amt="0.00"/>
+         <Instrmt Sym="AOL" ID="KW" IDSrc="J" CFI="OCASPS" MMY="20031122" Mat="2003-11-22T00:00:00" Strk="47.50" 
+                  StrkCcy="USD" Mult="100"/>
+      </PosRpt>
+      <PosRpt RptID="541386678" Rslt="0" BizDt="2003-09-10T00:00:00" Acct="1" AcctTyp="1" SetPx="0.00" SetPxTyp="1" 
+              PriSetPx="0.00" ReqTyp="0" Ccy="USD">
+         <Pty ID="OCC" Role="21"/>
+         <Pty ID="99999" Role="4"/>
+         <Pty ID="C" Role="38">
+            <PtySub SubID="ZZZ" SubIDTyp="2"/>
+         </Pty>
+         <Qty Typ="SOD" Long="35" Short="0"/>
+         <Qty Typ="FIN" Long="20" Short="10"/>
+         <Qty Typ="IAS" Long="10"/>
+         <Amt Typ="FMTM" Amt="0.00"/>
+         <Instrmt Sym="AOL" ID="KW" IDSrc="J" CFI="OCASPS" MMY="20031122" Mat="2003-11-22T00:00:00" Strk="47.50" 
+                  StrkCcy="USD" Mult="100"/>
+      </PosRpt>          
+   </Batch>
+</FIXML>
+</pre>
+
+====Version Identification====
+
+FIXML versions are identified explicitly in the schema file names and also with constant attribute values defined 
+in the fixml-component-base schema file.
+
+====FIXML Schema File Versioning====
+
+FIXML Schema employed the file naming convention developed for FpML. 
+The major and minor version numbers of the FIX version represented by the schema are appended to all 
+FIXML schema file names. This approach was taken to explicitly force users to recognize when counterparties have 
+changed their version of the schema.
+
+====FIXML Message Versioning====
+
+The FIXML root element <FIXML> contains three attributes that define the version of the message. 
+The FIXML root element is defined in the fixml-components-base schema file.
+
+{|border="1"
+|-
+!Attribute
+!Description
+!Format
+!Example
+|-
+|v
+|FIX Version
+|N.N
+|4.4
+|-
+|r
+|FIX Version release date (used to designate errata releases between FIX versions)
+|YYYYMMDD
+|20030618
+|-
+|s
+|Schema Release (used to designate schema releases between errata releases)
+|YYYYMMDD
+|20031030
+|-
+|xv
+|FIX Extension Pack number
+|EPN
+|EP79
+|-
+|xc
+|Custom functionality, support of which required billateral agreement.
+|
+|
+|}
+
+'''Example:'''
+
+<pre>
+<FIXML v=”5.0” r=”20061024” s=”20061026”> </FIXML>
+</pre>
+
+For FIX 5.0 changes have been made for versioning in order to be compatible with changes to support transport independence.
+
+{|border="1"
+|-
+!Version
+!FIXML Field
+!Abbreviation
+!FIX Tag
+!FIX Field Name
+!Discussion
+|-
+|FIX.4.4
+|Version
+|v
+|8
+|[[BeginString]]
+|Version of FIX
+|-
+|FIX.4.4
+|Release
+|r
+|
+|
+|Release date of FIX
+|-
+|FIX.4.4
+|SchemaRelease
+|s
+|
+|
+|Release date of the Schema
+|-
+|FIX.4.4
+|Extension Version
+|xv
+|
+|
+|Extension version
+|-
+|FIX.4.4
+|Extension Release
+|xr
+|
+|
+|Extension release date
+|-
+|
+|
+|
+|
+|
+|'''New fields in the standard header'''
+|-
+|FIXT.1.1
+|
+|v
+|1128
+|[[ApplVerID]]
+|Indicates application version using a service pack identifier. The [[ApplVerID]] applies to a specific message
+|-
+|FIXT.1.1
+|
+|r
+|
+|deprecated
+|can be used to provide the version release date
+|-
+|FIXT.1.1
+|
+|xv
+|1156
+|[[ApplExtID]]
+|Indicates the Extension Pack number being applied.
+|-
+|FIXT.1.1
+|
+|xc
+|1129
+|[[CstmApplVerID]]
+|Used to support bilaterally agreed custom functionality
+|-
+|FIXT.1.1
+|
+|xr
+|
+|deprecated
+|can be used to provide a release date for the extended version
+|}
+
+
+===FIXML Schema File Structure===
+
+Organization of files was driven largely by the requirement to support customization of the FIXML Schema per the requirements set forth by the FIXML Schema Working Group.
+
+The basic organization of the schema has the datatypes used by the fields maintained in a separate file. FIX fields are defined in the shared file. Components and the FIXML root element are defined in the component files. FIXML messages are defined within separate category files.
+
+[[Image:LayersFIXMLSchema.png|800px]]
+
+====Extensibility Design Pattern====
+
+Much of the design work that went into the FIXML Schema was done to permit counterparties to further refine the FIXML language either by restriction or extension.
+
+A possible scenario for restriction would be a market place  that only supports a subset of the enumerations available for OrdType (tag=39). The exchange can override the OrdType_t FIXML datatype in the fixml-shared-impl-M-N.xsd file to restrict the set of possible values to only those supported by the market place.
+
+An example ofextension would be counterparties that require an additional custom field to be added to a new message.
+
+In order to provide a uniform method in defining customizations that could be readily absorbed by counterparties an extensibility design pattern was developed that defines how the FIXML definition was partitioned and organized within separate schema files.
+
+Each level of schema file (with the exception of datatypes) provides a base definition file that defines the standard (default) FIXML language. Redefining this base file an implementation file (“impl”) is provided that by default simply references the base definition.
+
+[[Image:ExtensibilityPattern.png|border|800px]]
+
+[[Image:SchemaFileHierarchy.png|border|800px]]
+
+Subsequent levels of the schema reference the impl from the previous level – thus providing a customization entry point at the field level, component level, and message level.
+
+[[Image:CustomizableSchemaFiles.png|border|900px]]
+
+====FIXML Schema file naming conventions====
+
+FIXML file naming conventions are shown in the following illustration.
+
+All filenames begin with lowercase "fixml-"
+
+"-" is used to separate portions of the filename
+
+The type of the schema file  is identified in the second component of the file name. The datatypes file contains the basic datatypes used within FIXML. The shared files contain the definitions for FIX fields. The components file contains definitions for FIXML components (as defined in Volume 1 of the specification, additional components identified while defining the FIXML schema, and the outer elements for FIX.
+
+Files are either a base file or an implementation (impl). Base files define the standard FIXML language. Impl files are used to extend or restrict the base FIXML language.
+
+[[Image:SchemaFileNaming.png|border|700px]]
+
+Refer to the FIXML Schema File Summary section for a complete list of schema files used in FIXML as of FIX release 4.4.
+
+====Datatypes schema file====
+
+A decision was made to use native XML Schema datatypes wherever possible. Many of the XML Schema standards are based upon ISO standard datatypes. This means that the FIX representation of UTCTimestamp is different from the FIXML representation. The FIXML Schema working group felt it more important to be compatible with XML and as a result XML toolsets. The requirement for conversion between FIX tag=value datatypes and XML is left to implementors.
+
+The fixml-datatypes schema file contains definitions for the FIXML datatypes.
+
+FIX 5.0 introduces pattern datatypes that are used to appropriately support customization of enumerations and also to support types that require both enumerations and specific patterns, such as the SettlementType field. The <xs:union> element is used to combine an enumerated type with a pattern type in the fixml-fields-impl-M-N.xsd file..
+
+The following patterns have been created to support validation of user defined enumeration values and extended patterns.
+
+{|border="1"
+|-
+|Tenor
+|Pattern
+|<xs:simpleType name="Tenor">
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value="[DMWY](\d)+"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|Currently used to support the SettlementType which can be either an enumeration or a tenor pattern, such as M6 (six month).
+|-
+|Reserved100Plus
+|Pattern
+|<xs:simpleType name="Reserved100Plus">
+:<xs:restriction base="xs:integer"> 
+::<xs:minInclusive value="100"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|Used for enumerated fields that permit user defined values of 100 and greater.
+|-
+|Reserved1000Plus
+|Pattern
+|<xs:simpleType name="Reserved1000Plus">
+:<xs:restriction base="xs:integer"> 
+::<xs:minInclusive value="1000"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|Used for enumerated fields that permit user defined values of 1000 and greater.
+|-
+|Reserved4000Plus
+|Pattern
+|<xs:simpleType name="Reserved4000Plus">
+:<xs:restriction base="xs:integer"> 
+::<xs:minInclusive value="4000"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|Used for enumerated fields that permit user defined values of 4000 and great.
+|}
+
+'''Example union types from fixml-fields-impl-M-N.xsd:'''
+
+{|border="1"
+|-
+|<xs:simpleType name="SettlType_t">
+:<xs:union memberTypes="SettlType_enum_t  Tenor"/>
+</xs:simpleType>
+|The Settlement type is a union of the settlement type enumerations and the Tenor type described above
+|-
+|<xs:simpleType name="OrdRejReason_t">
+:<xs:union memberTypes="OrdRejReason_enum_t  Reserved100Plus"/>
+</xs:simpleType>
+|The [[OrdRejReason]] field is a union of the [[OrdRejReason]] enumerations and can also be extended with user defined values of 100 or greater.
+|}
+
+====Fields schema files====
+
+* Fields schema file (fixml-fields-*-M-N.xsd)
+* Fields base file (fixml-fields-base-M-N.xsd)
+
+The fixml-fields-base file contains simple type definitions for all FIX application level fields and session level fields that are used as part of the FIXML header. All fields are defined as simple types. The simple type name is derived from the full FIX field name appended with a "_t". All fields with enumerations are defined as simple types. The enumeration simple type name is derived from the full FIX field name appended with a "enum_t".
+
+
+====Field definition examples====
+
+An example of a field definition for the [[AvgPx]] (tag=6) field:
+
+<pre>
+<xs:simpleType name="AvgPx_t">
+    <xs:annotation>
+        <xs:documentation xml:lang="en">Calculated average price of all fills on this order.    
+        For Fixed Income trades AvgPx is always expressed as percent of par regardless of the PriceType 423 of 
+        LastPx 3  I e AvgPx will contain an average of percent of par values see LastParPx  669   
+        for issues traded in Yield Spread or Discount  
+        </xs:documentation>
+        <xs:appinfo xmlns:x="http://www.fixprotocol.org/fixml/metadata.xsd">
+            <xs:Xref Protocol="FIX" name="AvgPx" tag="6" datatype="Price" ComponentType="Field"/>
+            <xs:Xref Protocol="ISO_15022_XML"/>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="Price"/>
+</xs:simpleType>
+</pre>
+
+An example of an enumerated field:
+
+<pre>
+<xs:simpleType name="CommType_enum_t">
+    <xs:annotation>
+        <xs:documentation xml:lang="en">Commission type Valid values:  = per unit  implying shares  par  
+        currency  etc   2 = percentage 3 = absolute  total monetary amount  4 =   for CIV buy orders  
+        percentage waived   cash discount 5 =   for CIV buy orders  percentage waived   enhanced units 6 = 
+        points per bond or or contract   Supply ContractMultiplier  23  in the  Instrument  component block 
+        if the object security is denominated in a size other than the industry default   000 par for bonds   
+        </xs:documentation>
+        <xs:appinfo xmlns:x="http://www.fixprotocol.org/fixml/metadata.xsd">
+            <xs:Xref Protocol="FIX" name="CommType" tag="13" datatype="char" ComponentType="Field"/>
+            <xs:Xref Protocol="ISO_15022_XML"/>
+        </xs:appinfo>
+        <xs:appinfo xmlns:x="http://www.fixprotocol.org/fixml/metadata.xsd">
+            <x:EnumDoc value="1" desc="PerShare"/>
+            <x:EnumDoc value="2" desc="Percent"/>
+            <x:EnumDoc value="3" desc="Absolute"/>
+            <x:EnumDoc value="4" desc="PctWaivedCshDisc"/>
+            <x:EnumDoc value="5" desc="PctWaivedEnUnits"/>
+            <x:EnumDoc value="6" desc="PerBond"/>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="1"/>
+        <xs:enumeration value="2"/>
+        <xs:enumeration value="3"/>
+        <xs:enumeration value="4"/>
+        <xs:enumeration value="5"/>
+        <xs:enumeration value="6"/>
+    </xs:restriction>
+</xs:simpleType>
+</pre>
+
+====Fields implementation file (fixml-fields-impl-M-N.xsd)====
+
+One of the more convoluted constructs used was the need to place the field level definitions for enumerated types in the fixml-fields-impl file. As shown above, the fixml-fields-base file defines each enumerated field as a simple type named fieldname_enum_t. This enumerated type is then used to define a corresponding field type in the fixml-fields-impl schema file named fieldname_t. It is this fieldname_t type that is referenced in subsequent schema files (fixml-components and the message category schema files). This construct was required to provide a mechanism to extend enumerations. The fieldname_t can be modified in the fixml-fields-impl file to include additional enumerations. The fieldname_t can be restricted by redefining the fieldname_enum_t simple type within the fixed-shared-impl file.
+
+====Components (fixml-components-*-M-N.xsd)====
+
+Component files are used to define the reusable components that are used across FIX messages. The FIXML root element and headers are defined in the components file, as well.
+
+====Components base file (fixml-components-base-M-N.xsd)====
+
+The fixml-components-base file contains the definitions for all FIX component blocks defined in volume 1 of the FIX specification. The FIXML root element, FIXML headers, the batch element, and the abstract message type are also defined within this file.
+
+Components (and messages) are defined using element groups and attribute groups. The advantage of these groups is that you can redefine the groups (using either restriction or extension) to change the overall structure of the component (or message).
+
+These groups are defined for each component and message.
+
+{|border="1"
+|-
+|componentOrMessageNameElements
+|Contains a list of elements contained in the component.
+|-
+|componentOrMessageNameAttributes
+|Contains a list of Attributes contained in the component.
+|}
+
+The Parties Component block is shown below. Notice the overall definition pattern. 
+This pattern is followed for all component blocks and message definitions.
+
+<pre>
+<xs:group name="PartiesElementsRequired">
+    <xs:sequence/>
+</xs:group>
+<xs:group name="PartiesElementsOptional">
+    <xs:sequence>        
+    <xs:element name="PtySub" type="PtysSubGrp_Block_t" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:group>
+<xs:group name="PartiesElementsCustom">
+    <xs:sequence/>
+</xs:group>
+<xs:attributeGroup name="PartiesAttributesRequired">
+
+</xs:attributeGroup>
+<xs:attributeGroup name="PartiesAttributesOptional">
+    <xs:attribute name="ID" type="PartyID_t" use="optional"/>
+    <xs:attribute name="IDSrc" type="PartyIDSource_t" use="optional"/>
+    <xs:attribute name="Role" type="PartyRole_t" use="optional"/>
+</xs:attributeGroup>
+<xs:attributeGroup name="PartiesAttributesCustom"/>
+
+<xs:complexType name="Parties_Block_t" final="#all">
+<xs:annotation>
+    <xs:documentation xml:lang="en">**Desc**
+    </xs:documentation>
+    <xs:appinfo>
+        <fm:Xref Protocol="FIX" name="Parties" ComponentType="BlockRepeating"/>
+        <xs:Xref Protocol="ISO_15022_XML"/>
+    </xs:appinfo>
+</xs:annotation>
+    <xs:sequence>
+        <xs:group ref="PartiesElementsRequired"/>
+        <xs:group ref="PartiesElementsOptional"/>
+        <xs:group ref="PartiesElementsCustom"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="PartiesAttributesRequired"/>
+    <xs:attributeGroup ref="PartiesAttributesOptional"/>
+    <xs:attributeGroup ref="PartiesAttributesCustom"/>
+</xs:complexType>
+</pre>
+
+====Components implementation file  (fixml-components-impl-M-N.xsd)====
+
+The default version fixml-components-impl file simply redefines the components-base file. This is the file where modifications (restrictions or extensions) would be made to component blocks used in the FIX protocol.
+
+====Categories (fixml-categoryName-base-M-N.xsd)====
+
+Each message category defined within the FIX specification has its own schema file. This provides a granular level of usage for applications only requiring access to one message categoryThe message category schema files contain the component and message definitions that belong to a specific message category defined within the FIX Protocol. Examples of message categories include: Indications, Market Data, Positions, Allocation. . A complete list of the category files for FIXML is provided in the FIXML Schema File Summary section.
+
+Category messages and components are defined following the same pattern defined above for components. 
+The following defines the [[NewOrderSingle]] message from the fixml-categoryOrder-5-0.xsd:
+
+<pre>
+<xs:group name="NewOrderSingleElementsRequired">
+    <xs:sequence>        
+    <xs:element name="Instrmt" type="Instrument_Block_t" minOccurs="1" maxOccurs="1"/>
+    <xs:element name="OrdQty" type="OrderQtyData_Block_t" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+</xs:group>
+<xs:group name="NewOrderSingleElementsOptional">
+    <xs:sequence>        
+    <xs:element name="Pty" type="Parties_Block_t" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element name="Stip" type="Stipulations_Block_t" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element name="FinDetls" type="FinancingDetails_Block_t" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="SprdBnchmkCurve" type="SpreadOrBenchmarkCurveData_Block_t" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="Yield" type="YieldData_Block_t" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="Comm" type="CommissionData_Block_t" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="PegInstr" type="PegInstructions_Block_t" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="DiscInstr" type="DiscretionInstructions_Block_t" minOccurs="0" maxOccurs="1"/>
+    <xs:element name="PreAll" type="PreAllocGrp_Block_t" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element name="TrdSes" type="TrdgSesGrp_Block_t" minOccurs="0" maxOccurs="unbounded"/>
+    <xs:element name="Undl" type="UndInstrmtGrp_Block_t" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:group>
+<xs:group name="NewOrderSingleElementsCustom">
+    <xs:sequence/>
+</xs:group>
+<xs:attributeGroup name="NewOrderSingleAttributesRequired">
+    <xs:attribute name="ClOrdID" type="ClOrdID_t" use="required"/>
+    <xs:attribute name="Side" type="Side_t" use="required"/>
+    <xs:attribute name="TransactTm" type="TransactTime_t" use="required"/>
+    <xs:attribute name="OrdTyp" type="OrdType_t" use="required"/>
+
+</xs:attributeGroup>
+<xs:attributeGroup name="NewOrderSingleAttributesOptional">
+    <xs:attribute name="ScndClOrdID" type="SecondaryClOrdID_t" use="optional"/>
+    <xs:attribute name="ClOrdLinkID" type="ClOrdLinkID_t" use="optional"/>
+    <xs:attribute name="TrdOrigntnDt" type="TradeOriginationDate_t" use="optional"/>
+    <xs:attribute name="TrdDt" type="TradeDate_t" use="optional"/>
+    <xs:attribute name="Acct" type="Account_t" use="optional"/>
+    <xs:attribute name="AcctIDSrc" type="AcctIDSource_t" use="optional"/>
+    <xs:attribute name="AcctTyp" type="AccountType_t" use="optional"/>
+    <xs:attribute name="DayBkngInst" type="DayBookingInst_t" use="optional"/>
+    <xs:attribute name="BkngUnit" type="BookingUnit_t" use="optional"/>
+    <xs:attribute name="PreallocMethod" type="PreallocMethod_t" use="optional"/>
+    <xs:attribute name="AllocID" type="AllocID_t" use="optional"/>
+    <xs:attribute name="SettlTyp" type="SettlType_t" use="optional"/>
+    <xs:attribute name="SettlDt" type="SettlDate_t" use="optional"/>
+    <xs:attribute name="CshMgn" type="CashMargin_t" use="optional"/>
+    <xs:attribute name="ClrngFeeInd" type="ClearingFeeIndicator_t" use="optional"/>
+    <xs:attribute name="HandlInst" type="HandlInst_t" use="optional"/>
+    <xs:attribute name="ExecInst" type="ExecInst_t" use="optional"/>
+    <xs:attribute name="MinQty" type="MinQty_t" use="optional"/>
+    <xs:attribute name="MaxFloor" type="MaxFloor_t" use="optional"/>
+    <xs:attribute name="ExDest" type="ExDestination_t" use="optional"/>
+    <xs:attribute name="ProcCode" type="ProcessCode_t" use="optional"/>
+    <xs:attribute name="PrevClsPx" type="PrevClosePx_t" use="optional"/>
+    <xs:attribute name="LocReqd" type="LocateReqd_t" use="optional"/>
+    <xs:attribute name="QtyTyp" type="QtyType_t" use="optional"/>
+    <xs:attribute name="PxTyp" type="PriceType_t" use="optional"/>
+    <xs:attribute name="Px" type="Price_t" use="optional"/>
+    <xs:attribute name="StopPx" type="StopPx_t" use="optional"/>
+    <xs:attribute name="Ccy" type="Currency_t" use="optional"/>
+    <xs:attribute name="ComplianceID" type="ComplianceID_t" use="optional"/>
+    <xs:attribute name="SolFlag" type="SolicitedFlag_t" use="optional"/>
+    <xs:attribute name="IOIID" type="IOIID_t" use="optional"/>
+    <xs:attribute name="QID" type="QuoteID_t" use="optional"/>
+    <xs:attribute name="TmInForce" type="TimeInForce_t" use="optional"/>
+    <xs:attribute name="EfctvTm" type="EffectiveTime_t" use="optional"/>
+    <xs:attribute name="ExpireDt" type="ExpireDate_t" use="optional"/>
+    <xs:attribute name="ExpireTm" type="ExpireTime_t" use="optional"/>
+    <xs:attribute name="GTBkngInst" type="GTBookingInst_t" use="optional"/>
+    <xs:attribute name="Cpcty" type="OrderCapacity_t" use="optional"/>
+    <xs:attribute name="Rstctions" type="OrderRestrictions_t" use="optional"/>
+    <xs:attribute name="CustOrdCpcty" type="CustOrderCapacity_t" use="optional"/>
+    <xs:attribute name="ForexReq" type="ForexReq_t" use="optional"/>
+    <xs:attribute name="SettlCcy" type="SettlCurrency_t" use="optional"/>
+    <xs:attribute name="BkngTyp" type="BookingType_t" use="optional"/>
+    <xs:attribute name="Txt" type="Text_t" use="optional"/>
+    <xs:attribute name="EncTxtLen" type="EncodedTextLen_t" use="optional"/>
+    <xs:attribute name="EncTxt" type="EncodedText_t" use="optional"/>
+    <xs:attribute name="SettlDt2" type="SettlDate2_t" use="optional"/>
+    <xs:attribute name="Qty2" type="OrderQty2_t" use="optional"/>
+    <xs:attribute name="Px2" type="Price2_t" use="optional"/>
+    <xs:attribute name="PosEfct" type="PositionEffect_t" use="optional"/>
+    <xs:attribute name="CoveredOrUncovered" type="CoveredOrUncovered_t" use="optional"/>
+    <xs:attribute name="MaxShow" type="MaxShow_t" use="optional"/>
+    <xs:attribute name="TgtStrategy" type="TargetStrategy_t" use="optional"/>
+    <xs:attribute name="TgtStrategyParameters" type="TargetStrategyParameters_t" use="optional"/>
+    <xs:attribute name="ParticipationRt" type="ParticipationRate_t" use="optional"/>
+    <xs:attribute name="CxllationRights" type="CancellationRights_t" use="optional"/>
+    <xs:attribute name="MnyLaunderingStat" type="MoneyLaunderingStatus_t" use="optional"/>
+    <xs:attribute name="RegistID" type="RegistID_t" use="optional"/>
+    <xs:attribute name="Designation" type="Designation_t" use="optional"/>
+
+</xs:attributeGroup>
+<xs:attributeGroup name="NewOrderSingleAttributesCustom"/>
+
+<xs:complexType name="NewOrderSingle_message_t" final="#all">
+    <xs:complexContent>
+        <xs:extension base="Abstract_message_t">
+            <xs:sequence>
+                <xs:group ref="NewOrderSingleElementsRequired"/>
+                <xs:group ref="NewOrderSingleElementsOptional"/>
+                <xs:group ref="NewOrderSingleElementsCustom"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="NewOrderSingleAttributesRequired"/>
+            <xs:attributeGroup ref="NewOrderSingleAttributesOptional"/>
+            <xs:attributeGroup ref="NewOrderSingleAttributesCustom"/>
+
+        </xs:extension>
+    </xs:complexContent>
+</xs:complexType>
+
+<xs:element name="NewOrdSingle" type="NewOrderSingle_message_t" substitutionGroup="Message" final="#all"/>
+</pre>
+
+====Trading Life Cycle files====
+
+Convenience files are provided with the FIXML schema version that includes the message categories for each of the trade life cycles (pre-trade, trade, post-trade) used by FIX. These files are provided to make it easier for applications that require access to multiple message categories within one of the trading life cycles.
+
+'''Pretrade file (fixml-pretrade-M-N.xsd)'''
+
+Includes the pre-trade message category implementation files.
+
+'''Trade file (fixml-trade-M-N.xsd)'''
+
+Includes the trade message category implementation files.
+
+'''Post trade file (fixml-trade-M-N.xsd)'''
+
+Includes the post trade message category implementation files.
+
+'''Main (fixml-main-M-N.xsd)'''
+
+A main schema file is included that pulls in the pretrade, trade, and post trade schema files. This is provided for applications that require access to the full suite of FIX messages.
+
+===Customization===
+
+The FIXML Schema files have been organized to permit extensibility. Implementation versions of each schema file (with the exception of the datatypes file) are provided to permit users to redefine the base FIXML Schema version, as defined in the base files. This section provides guidelines for customizing the FIXML syntax. Even though a considerable amount of work has gone into making FIXML extensible, users are strongly encouraged to minimize modifications, in order to promote more consistent usage of the FIXML syntax within the industry. Obviously, the less customization, the easier it is to connect to counterparties. If customization is required, you are encouraged to communicate your requirements that are not being met by FIX to the FPL Global Technical Committee. There you may find out that there is a technique to meet your business requirement. Or, you may find that the Technical Committee has already addressed the issue for a planned future release. At a minimum you will receive coaching and assistance in how to extend FIXML in such a way as to make the new feature a part of a future version of FIX.
+
+====Defining a custom field====
+
+New fields are defined as an XML SimpleType in the fixml-shared-impl-N-N.xsd file. You are recommended to add the file to the end of the schema document. You also are strongly encouraged to include XML comments to define the reason for the field.
+
+The field should then be added to the component or message where it will be used, once the field is defined in the fixml-shared-impl schema file.
+
+If the field will be added to a component contained in fixml-components-base-N-N.xsd, you must now redefine that component in the fixml-components-impl-N-N.xsd file.
+
+Adding a field to a component or message contained in one of the message categories is done in the same way you modify the components schema file. You need to redefine the portion of the message in the implementation version of the file.
+
+You are encouraged to follow the same procedure for procuring new custom field names as is done for the FIX tag=value version of FIX. The FIX website provides a web page of custom fields and a form to submit requests for additional custom fields.
+
+====Restricting enumeration values for a FIX field====
+
+Restricting enumeration values is done by modifying the type definition in the fixml-shared-impl schema file.
+
+====Extending enumeration values for a FIX field====
+
+Extending enumeration values is done by creating a union of the original enumeration type definition with new enumeration values.
+
+====Making an optional field required====
+
+Making an optional field required is done by redefining the optional attribute group, modifying the usage of the field from "optional" to "required". This redefinition is done within the implementation file for either the components or a particular message category.
+
+====Making a required field optional====
+
+It is not possible to make a required field optional without modifying the original required element or attribute group. Making required fields optional does go against the standard base definition of FIX and should be avoided.
+
+====Adding a custom message====
+
+Custom messages are added by creating a message structure within the category to which the custom message belongs. 
+Required and optional element and attribute groups should be created for the custom message.
+
+===FIXML Schema Version Datatypes===
+
+{|border="1"
+|-
+!Type
+!BaseType
+!FIXML Implementation
+!Example
+|-
+|int
+|
+|Use builtin type: xs:integer
+|
+|-
+|Length
+|int
+|<xs:simpleType name="Length"> 
+:<xs:restriction base="xs:nonNegativeInteger"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|TagNum
+|int
+|NOT REQUIRED IN FIXML
+|
+|-
+|SeqNum
+|int
+|<xs:simpleType name="SeqNum"> 
+:<xs:restriction base="xs:positiveInteger"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|NumInGroup
+|int
+|NOT REQUIRED IN FIXML
+|
+|-
+|DayOfMonth
+|int
+|NOT REQUIRED IN FIXML
+|
+|-
+|float
+|
+|Use builtin type: xs:decimal
+|
+|-
+|Qty
+|float
+|<xs:simpleType name="Qty"> 
+:<xs:restriction base="xs:decimal"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Price
+|float
+|<xs:simpleType name="Price"> 
+:<xs:restriction base="xs:decimal"> 
+:</xs:restriction> 
+</xs:simpleType>
+|Strk="47.50"
+|-
+|PriceOffset
+|float
+|<xs:simpleType name="PriceOffset"> 
+:<xs:restriction base="xs:decimal"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Amt
+|float
+|<xs:simpleType name="Amt"> 
+:<xs:restriction base="xs:decimal"> 
+:</xs:restriction> 
+</xs:simpleType>
+|Amt="6847.00"
+|-
+|Percentage
+|float
+|<xs:simpleType name="Percentage"> 
+:<xs:restriction base="xs:decimal"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|char
+|
+|<xs:simpleType name="xs:string"> 
+:<xs:restriction base=""> 
+::<xs:pattern value=".{1}"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Boolean
+|char
+|<xs:simpleType name="Boolean"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value="[YN]{1}"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|String
+|
+|Use builtin type: xs:string
+|
+|-
+|MultipleCharValue
+|String
+|<xs:simpleType name="MultipleCharValue"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value="[A-Za-z0-9](\s[A-Za-z0-9])*"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|MultipleStringValue
+|String
+|<xs:simpleType name="MultipleStringValue"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value=".+(\s.+)*"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Country
+|String
+|<xs:simpleType name="Country"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value=".{2}"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Currency
+|String
+|<xs:simpleType name="Currency"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value=".{3}"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|StrkCcy="USD"
+|-
+|Exchange
+|String
+|<xs:simpleType name="Exchange"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value=".*"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|MonthYear
+|String
+|<xs:simpleType name="MonthYear"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value="\d{4}(0 1)\d([0-3wW]\d)?"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|MonthYear="200303",  MonthYear="20030320", MonthYear="200303w2"
+|-
+|UTCTimestamp
+|String
+|<xs:simpleType name="UTCTimestamp"> 
+:<xs:restriction base="xs:dateTime"> 
+:</xs:restriction> 
+</xs:simpleType>
+|TransactTm="2001-12-17T09:30:47-05:00"
+|-
+|UTCTimeOnly
+|String
+|<xs:simpleType name="UTCTimeOnly"> 
+:<xs:restriction base="xs:time"> 
+:</xs:restriction> 
+</xs:simpleType>
+|MDEntryTime="13:20:00.000-05:00"
+|-
+|UTCDateOnly
+|String
+|<xs:simpleType name="UTCDateOnly"> 
+:<xs:restriction base="xs:date"> 
+:</xs:restriction> 
+</xs:simpleType>
+|MDEntryDate="2003-09-10"
+|-
+|LocalMktDate
+|String
+|<xs:simpleType name="LocalMktDate"> 
+:<xs:restriction base="xs:date"> 
+:</xs:restriction> 
+</xs:simpleType>
+|BizDate="2003-09-10"
+|-
+|TZTimeOnly
+|String
+|<xs:simpleType name="TZTimeOnly"> 
+:<xs:restriction base="xs:time"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|TZTimestamp
+|String
+|<xs:simpleType name="TZTimestamp"> 
+:<xs:restriction base="xs:dateTime"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|data
+|String
+|<xs:simpleType name="data"> 
+:<xs:restriction base="xs:string"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|XMLData
+|String
+|<xs:simpleType name="XMLData"> 
+:<xs:restriction base="xs:string"> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Language
+|String
+|<xs:simpleType name="Language"> 
+:<xs:restriction base="xs:language"> 
+:</xs:restriction> 
+</xs:simpleType>
+|en (English), es (spanish), etc.
+|-
+|Pattern
+|
+|NOT REQUIRED IN FIXML
+|
+|-
+|Tenor
+|Pattern
+|<xs:simpleType name="Tenor"> 
+:<xs:restriction base="xs:string"> 
+::<xs:pattern value="[DMWY](\d)+"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Reserved100Plus
+|Pattern
+|<xs:simpleType name="Reserved100Plus"> 
+:<xs:restriction base="xs:integer"> 
+::<xs:minInclusive value="100"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Reserved1000Plus
+|Pattern
+|<xs:simpleType name="Reserved1000Plus"> 
+:<xs:restriction base="xs:integer"> 
+::<xs:minInclusive value="1000"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|-
+|Reserved4000Plus
+|Pattern
+|<xs:simpleType name="Reserved4000Plus"> 
+:<xs:restriction base="xs:integer"> 
+::<xs:minInclusive value="4000"/> 
+:</xs:restriction> 
+</xs:simpleType>
+|
+|}
+
+===FIXML Schema File Summary===
+
+{|border="1"
+|-
+!File Name
+!Description
+|-
+
+|Fixml-datatypes-5-0-SP2.xsd
+
+
+|
+
+Defines the base data types that are to be used in other fixml schema files. These fixml base data types are based on simple types built into XML Schema.
+
+
+|-
+
+|
+
+Fixml-session-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml--base-5-0-SP2.xsd. Defines Session messages:
+
+[[Heartbeat]]
+
+[[Logon]]
+
+[[Logout]]
+
+[[Reject]]
+
+[[ResendRequest]]
+
+[[SequenceReset]]
+
+[[TestRequest]]
+
+[[XMLNonFIX]]
+
+
+|-
+
+|
+
+Fixml-indications-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines Indication messages:
+
+[[Advertisement]]
+
+[[IOI]]
+
+
+|-
+
+|
+
+Fixml-indications-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the Indication message category.
+
+
+|-
+
+|
+
+Fixml-order-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines SingleGeneralOrderHandling messages:
+
+[[DontKnowTradeDK]]
+
+[[ExecutionAcknowledgement]]
+
+[[ExecutionReport]]
+
+[[NewOrderSingle]]
+
+[[OrderCancelReject]]
+
+[[OrderCancelReplaceRequest]]
+
+[[OrderCancelRequest]]
+
+[[OrderStatusRequest]]
+
+
+|-
+
+|
+
+Fixml-order-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the SingleGeneralOrderHandling message category.
+
+
+|-
+
+|
+
+Fixml-newsevents-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines EventCommunication messages:
+
+[[Email]]
+
+[[News]]
+
+
+|-
+
+|
+
+Fixml-newsevents-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the EventCommunication message category.
+
+
+|-
+
+|
+
+Fixml-listorders-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines ProgramTrading messages:
+
+[[BidRequest]]
+
+[[BidResponse]]
+
+[[ListCancelRequest]]
+
+[[ListExecute]]
+
+[[ListStatus]]
+
+[[ListStatusRequest]]
+
+[[ListStrikePrice]]
+
+[[NewOrderList]]
+
+
+|-
+
+|
+
+Fixml-listorders-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the ProgramTrading message category.
+
+
+|-
+
+|
+
+Fixml-ordermasshandling-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines OrderMassHandling messages:
+
+[[OrderMassActionReport]]
+
+[[OrderMassActionRequest]]
+
+[[OrderMassCancelReport]]
+
+[[OrderMassCancelRequest]]
+
+[[OrderMassStatusRequest]]
+
+
+|-
+
+|
+
+Fixml-ordermasshandling-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the OrderMassHandling message category.
+
+
+|-
+
+|
+
+Fixml-allocation-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines Allocation messages:
+
+[[AllocationInstruction]]
+
+[[AllocationInstructionAck]]
+
+[[AllocationInstructionAlert]]
+
+[[AllocationReport]]
+
+[[AllocationReportAck]]
+
+
+|-
+
+|
+
+Fixml-allocation-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the Allocation message category.
+
+
+|-
+
+|
+
+Fixml-quotation-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines QuotationNegotiation messages:
+
+[[MassQuote]]
+
+[[MassQuoteAcknowledgement]]
+
+[[Quote]]
+
+[[QuoteCancel]]
+
+[[QuoteRequest]]
+
+[[QuoteRequestReject]]
+
+[[QuoteResponse]]
+
+[[QuoteStatusReport]]
+
+[[QuoteStatusRequest]]
+
+[[RFQRequest]]
+
+
+|-
+
+|
+
+Fixml-quotation-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the QuotationNegotiation message category.
+
+
+|-
+
+|
+
+Fixml-settlement-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines SettlementInstruction messages:
+
+[[SettlementInstructionRequest]]
+
+[[SettlementInstructions]]
+
+[[SettlementObligationReport]]
+
+
+|-
+
+|
+
+Fixml-settlement-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the SettlementInstruction message category.
+
+
+|-
+
+|
+
+Fixml-marketdata-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines MarketData messages:
+
+[[MarketDataIncrementalRefresh]]
+
+[[MarketDataRequest]]
+
+[[MarketDataRequestReject]]
+
+[[MarketDataSnapshotFullRefresh]]
+
+[[StreamAssignmentReport]]
+
+[[StreamAssignmentReportACK]]
+
+[[StreamAssignmentRequest]]
+
+
+|-
+
+|
+
+Fixml-marketdata-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the MarketData message category.
+
+
+|-
+
+|
+
+Fixml-components-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-fields-base-5-0-SP2.xsd. Defines Common messages:
+
+
+
+
+|-
+
+|
+
+Fixml-components-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-fields-impl-5-0-SP2.xsd.
+
+Used to customise the Common message category.
+
+
+|-
+
+|
+
+Fixml-registration-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines RegistrationInstruction messages:
+
+[[RegistrationInstructions]]
+
+[[RegistrationInstructionsResponse]]
+
+
+|-
+
+|
+
+Fixml-registration-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the RegistrationInstruction message category.
+
+
+|-
+
+|
+
+Fixml-crossorders-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines CrossOrders messages:
+
+[[CrossOrderCancelReplaceRequest]]
+
+[[CrossOrderCancelRequest]]
+
+[[NewOrderCross]]
+
+
+|-
+
+|
+
+Fixml-crossorders-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the CrossOrders message category.
+
+
+|-
+
+|
+
+Fixml-multilegorders-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines MultilegOrders messages:
+
+[[MultilegOrderCancelReplace]]
+
+[[NewOrderMultileg]]
+
+
+|-
+
+|
+
+Fixml-multilegorders-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the MultilegOrders message category.
+
+
+|-
+
+|
+
+Fixml-tradecapture-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines TradeCapture messages:
+
+[[TradeCaptureReport]]
+
+[[TradeCaptureReportAck]]
+
+[[TradeCaptureReportRequest]]
+
+[[TradeCaptureReportRequestAck]]
+
+
+|-
+
+|
+
+Fixml-tradecapture-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the TradeCapture message category.
+
+
+|-
+
+|
+
+Fixml-confirmation-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines [[Confirmation]] messages:
+
+[[Confirmation]]
+
+[[ConfirmationAck]]
+
+[[ConfirmationRequest]]
+
+
+|-
+
+|
+
+Fixml-confirmation-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the [[Confirmation]] message category.
+
+
+|-
+
+|
+
+Fixml-positions-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines PositionMaintenance messages:
+
+[[AdjustedPositionReport]]
+
+[[AssignmentReport]]
+
+[[ContraryIntentionReport]]
+
+[[PositionMaintenanceReport]]
+
+[[PositionMaintenanceRequest]]
+
+[[PositionReport]]
+
+[[RequestForPositions]]
+
+[[RequestForPositionsAck]]
+
+
+|-
+
+|
+
+Fixml-positions-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the PositionMaintenance message category.
+
+
+|-
+
+|
+
+Fixml-collateral-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines CollateralManagement messages:
+
+[[CollateralAssignment]]
+
+[[CollateralInquiry]]
+
+[[CollateralInquiryAck]]
+
+[[CollateralReport]]
+
+[[CollateralRequest]]
+
+[[CollateralResponse]]
+
+
+|-
+
+|
+
+Fixml-collateral-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the CollateralManagement message category.
+
+
+|-
+
+|
+
+Fixml-application-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines Application messages:
+
+[[ApplicationMessageReport]]
+
+[[ApplicationMessageRequest]]
+
+[[ApplicationMessageRequestAck]]
+
+
+|-
+
+|
+
+Fixml-application-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the Application message category.
+
+
+|-
+
+|
+
+Fixml-businessreject-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines BusinessReject messages:
+
+[[BusinessMessageReject]]
+
+
+|-
+
+|
+
+Fixml-businessreject-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the BusinessReject message category.
+
+
+|-
+
+|
+
+Fixml-network-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines Network messages:
+
+[[NetworkCounterpartySystemStatusRequest]]
+
+[[NetworkCounterpartySystemStatusResponse]]
+
+
+|-
+
+|
+
+Fixml-network-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the Network message category.
+
+
+|-
+
+|
+
+Fixml-usermanagement-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines UserManagement messages:
+
+[[UserNotification]]
+
+[[UserRequest]]
+
+[[UserResponse]]
+
+
+|-
+
+|
+
+Fixml-usermanagement-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the UserManagement message category.
+
+
+|-
+
+|
+
+Fixml-fields-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml--base-5-0-SP2.xsd. Defines Fields messages:
+
+
+
+
+|-
+
+|
+
+Fixml-fields-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml--base-5-0-SP2.xsd. Defines Impl Fields messages:
+
+
+
+
+|-
+
+|
+
+Fixml-marketstructure-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines MarketStructureReferenceData messages:
+
+[[MarketDefinition]]
+
+[[MarketDefinitionRequest]]
+
+[[MarketDefinitionUpdateReport]]
+
+[[TradingSessionList]]
+
+[[TradingSessionListRequest]]
+
+[[TradingSessionListUpdateReport]]
+
+[[TradingSessionStatus]]
+
+[[TradingSessionStatusRequest]]
+
+
+|-
+
+|
+
+Fixml-marketstructure-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the MarketStructureReferenceData message category.
+
+
+|-
+
+|
+
+Fixml-securitiesreference-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines SecuritiesReferenceData messages:
+
+[[DerivativeSecurityList]]
+
+[[DerivativeSecurityListRequest]]
+
+[[DerivativeSecurityListUpdateReport]]
+
+[[SecurityDefinition]]
+
+[[SecurityDefinitionRequest]]
+
+[[SecurityDefinitionUpdateReport]]
+
+[[SecurityList]]
+
+[[SecurityListRequest]]
+
+[[SecurityListUpdateReport]]
+
+[[SecurityStatus]]
+
+[[SecurityStatusRequest]]
+
+[[SecurityTypeRequest]]
+
+[[SecurityTypes]]
+
+
+|-
+
+|
+
+Fixml-securitiesreference-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the SecuritiesReferenceData message category.
+
+
+|-
+
+|
+
+Fixml-partiesreference-base-5-0-SP2.xsd
+
+
+|
+
+Includes Fixml-components-base-5-0-SP2.xsd. Defines PartiesReferenceData messages:
+
+[[PartyDetailsListReport]]
+
+[[PartyDetailsListRequest]]
+
+
+|-
+
+|
+
+Fixml-partiesreference-impl-5-0-SP2.xsd
+
+
+|
+
+Includes FIX50-components-impl-5-0-SP2.xsd.
+
+Used to customise the PartiesReferenceData message category.
+
+
+|-
+
+|
+
+Fixml-session-base-5-0-SP2.xsd
+
+
+|
+
+Session level messages to establish and control a FIX session
+
+
+|-
+
+|
+
+Fixml-pretrade-base-5-0-SP2.xsd
+
+
+|
+
+Pre trade messages including reference data, market data, quoting, news and email, indication of interest
+
+
+|-
+
+|
+
+Fixml-trade-base-5-0-SP2.xsd
+
+
+|
+
+Order handling and execution messages
+
+
+|-
+
+|
+
+Fixml-posttrade-base-5-0-SP2.xsd
+
+
+|
+
+Post trade messages including trade reporting, allocation, collateral, confirmation, position mantemenance, registration instruction, and settlement instructions
+
+
+|-
+
+|
+
+Fixml-infrastructure-base-5-0-SP2.xsd
+
+
+|
+
+Infrastructure messages for application sequencing, business reject, network and user management
+
+
+|-
+
+|
+
+Fixml-main-5-0-SP2.xsd
+
+
+|
+
+Includes the session, pretrade, trade, posttrade and infrastructure schema files
+
+
+|}
+
+
+
+

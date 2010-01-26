@@ -1,0 +1,432 @@
+==Overview==
+
+A set of messages has been defined for the definition and dissemination of securities information traded between two 
+parties. These messages allow for the ability to define complex, multi-leg financial securities, such as options 
+strategies, futures spreads, underlying-derivative combinations, indexes, and baskets. 
+[[SecurityDefinitionRequest]] message is used to define a security to the counterparty for trading and to retrieve 
+definitions for securities available for trading with the counterparty.
+
+See [[FPL:Pre-trade messages#Securities Reference Data|Securities Reference Data]] and 
+[[FPL:Pre-trade messages#Market Structure Reference Data|Market Structure Reference Data]] message summaries.
+
+The [[SecurityDefinition]] message can also be used to query a list of securities offered by a trading party. This message is useful for obtaining lists of products that are traded on a market. Although intended to support exchange style trading - this capability should also be of use in trading between any two trading partners.
+
+Two additional messages have been added for status purposes: The [[SecurityStatus]] message and the [[TradingSessionStatus]] message. The [[SecurityStatus]] message is based upon the Trade Related message proposal from SIAC.
+
+The [[SecurityStatus]] message provides solicited or unsolicited status information on securities. An exchange can use this message to transmit change in trading state of a product. The [[SecurityStatusRequest]] message can be used to query the state of a product or to subscribe for security state changes.
+
+The [[TradingSessionStatus]] message has been added to provide status on a market. An exchange can use this to indicate status on the overall market and to provide a list of securities traded during that trading session. Two trading parties can also use this message to communicate information on two-party trading. The [[TradingSessionStatusRequest]] message is used to query the state of a product.
+
+Both the [[SecurityStatus]] message and [[TradingSessionStatus]] message include a [[SubscriptionRequestType]] field, which is used to tell the counterparty application if the requesting application wants to receive a snapshot of status or wants to subscribe for unsolicited messages as the status of the security (or trading session) changes.
+
+
+
+==Background==
+
+The motivation behind these messages was to identify a method to be able to trade derivative strategies (butterfly spread, vertical spread, calendar spread, covered write, etc.) and to provide a mechanism to define FLEX Options using the FIX protocol. Most exchange trading systems have some type of product definition service. Although the motivation for the new messages was to support the communication between trading party and exchange, it was important to make any message flexible enough to support a variety of applications, including the ability to retrieve information about securities available for trading with a counterparty. The ability to query for a list of securities is very important in an exchange environment - where the retrieval of "standing data" from the exchange is needed by many trading systems.
+
+
+
+==Definitions==
+
+*	Strategy - A group of related securities that are traded atomically at a net price. Examples:
+**	Vertical Spread
+**	Butterfly Spread
+**	Calendar Spread
+**	Covered Write
+*	Strategy Leg - One Security within a strategy
+*	Spread - combination of derivative securities whose maturity date or strike price is spread, creating a synthetic Security.
+*	Synthetic - A financial security that is the result of holding positions in multiple securities.
+*	Combination - alias for spread or strategy.
+
+
+
+==Approach==
+
+A [[SecurityDefinitionRequest]] message can be used to define and/or request a specific Security to be traded with a counterparty.
+
+
+
+The [[SecurityDefinition]] message is used to:
+
+*	Indicate acceptance of a Security defined in a previous [[SecurityDefinitionRequest]] message.
+
+*	Indicate acceptance of a Security defined in a previous [[SecurityDefinitionRequest]] message with changes to the definition and/or [[Symbol]] or [[SecurityID]].
+
+*	Reject the request for security.
+
+
+
+==Extensions to other messages==
+
+One additional field, [[MultiLegReportingType]], is to be used on the [[ExecutionReport]] to indicate if the [[ExecutionReport]] is for the multileg security itself or an individual leg of the multileg security. Absence of this field in the [[ExecutionReport]] implies that the report pertains to the entire security - not an individual leg.
+
+The agreement on how parties report multileg security execution is left to individual trading parties and is to be configured out of band. The FIX protocol will not provide a mechanism to specify how multileg execution reporting should be done.
+
+For an example:
+
+A straddle is an option strategy that consists of simultaneously buying a call option and a put option at the same 
+strike price and maturity date. 
+The straddle is defined for trading using the [[SecurityDefinitionRequest]] Message. 
+Once the straddle is defined, via receipt of the [[SecurityDefinition]] from the counterparty (in this case an 
+options exchange), a [[NewOrderSingle]] is used to submit the order to trade this newly defined multileg security. 
+If the parties agree to report multileg execution by individual legs- then an execution report will be generated for 
+each leg of the option strategy. If the parties agree to report multileg execution by multileg security only, then only 
+one [[ExecutionReport]] will be issued for the fill.
+
+Reporting by leg is required for equity options as clearing houses will only understand the individual option series legs. Reporting by legs permits the trading parties to accurately maintain positions.
+
+
+
+==Rules==
+
+*	The Security identification negotiated during the session is, by default, assumed valid only during the session. This eliminates the requirement for, but does not prevent the use, of a service to define and keep Securities persistent.
+
+*	Once a Security is defined, it will be traded as a regular Security
+
+*	Once a Security is defined, it will be traded at a single net price
+
+*	Once a Security is defined, it can be traded by FIX 4.1 compatible systems (This provides for backward compatibility and the ability to maintain Security information outside of FIX so that FIX 4.1 engines can participate).
+
+
+
+==Specifying Derivative Trading Strategies using the [[SecurityDefinition]] message==
+
+The [[SecurityDefinition]] message can be used to specify multiple legs of a derivative trading strategy. The first set of security related fields are used to name and identify the proposed strategy. This is followed by the [[NoRelatedSym]] field (146), which indicates the number of legs in the proposed security. After the [[NoRelatedSym]] field, security related fields are repeated for each leg in the proposed security.
+
+
+
+Two additional pieces are needed specify the strategy.
+
+*	[[RatioQty]] is a quantity field that indicates the ratio of the leg to other legs in the strategy.
+
+*	[[Side]] indicates if that particular leg will be bought or sold as part of the strategy.
+
+Example using [[RatioQty]] and [[Side]]:
+
+A Butterfly strategy consists of simultaneously:
+
+Buying 1 Call at Strike Price #1
+
+Selling 2 Calls at the next higher strike price (Strike Price #2)
+
+Buying 1 call at the next higher strike price (Strike Price #3)
+
+The Legs that would describe this strategy are as follows:
+
+{|border="1"
+|-
+|[[PutOrCall]]
+|[[RatioQty]]
+|[[Side]]
+|-
+|1=Call
+|1
+|1=Buy
+|-
+|1=Call
+|2
+|2=Sell
+|-
+|1=Call
+|1
+|1=Buy
+|}
+
+
+==Scenarios==
+===Scenario 1 - Typical use of [[SecurityDefinition]] message in placing an Order===
+This scenario has the first party defining a strategy order using a [[SecurityDefinition]] message.
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[SecurityDefinitionRequest]] message
+
+[[SecurityRequestType]] = 1
+
+Propose an identity for the Security or Request an identity for the Security from second party
+| >>>>
+|Interprets Security request
+|-
+|If second party accepted Security then the first party is free to use the Security in a trade
+|<<<<
+|[[SecurityDefinition]] message
+
+[[SecurityResponseType]]=0
+
+|-
+
+|[[NewOrderSingle]] message
+
+Product = Security information from the [[SecurityDefinition]] message
+
+| >>>>
+
+|Order is handled by exchange
+|-
+|
+|<<<<
+|[[ExecutionReport]]
+
+Order received
+
+(Most likely will need to add Security information to the Execution report)
+|-
+|
+|<<<<
+
+|[[ExecutionReport]]
+
+Fill Information on Order
+|}
+
+===Scenario 2 - Inquire Securities Types Available===
+This scenario has the first party requesting a list of Security types supported by the second party
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[SecurityDefinitionRequest]] message
+
+[[SecurityRequestType]] = 2
+| >>>>
+|Processes Security request
+|-
+|First party can use this to select a list of messages
+|<<<<
+|[[SecurityDefinition]] message
+
+[[SecurityResponseType]]=2
+
+[[NoRelatedSym]]=3
+
+[[UnderlyingSecurityType]]=SecurityType#1
+
+[[UnderlyingSecurityType]]=SecurityType#2
+
+[[UnderlyingSecurityType]]=SecurityType#3
+|}
+
+                                                    
+===Scenario 3 Ð Inquire Common Stocks Available for Trading with Counterparty===
+This example shows how the [[SecurityDefinitionRequest]] Message and [[SecurityDefinition]] Messages can be used to 
+return a list of common stocks available for trading with a counterparty. 
+The first party specifies  the [[SecurityRequestType]] equal to 3 and specifies the [[SecurityType]] of common stock. 
+The second party returns a list of common stocks available on its market. 
+Note: This is intended to return standing data (static data) or a list of products available for trading Ð 
+it is not intended to return an order book (see [[FPL:Pre-trade messages#Market Data|Market Data messages]] for this purpose). 
+This is most applicable but not limited, to the case when the second party is an exchange.
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[SecurityDefinitionRequest]] message
+
+In this scenario the initiator wants to obtain a list of common stock available for trading with the counterparty.
+
+[[SecurityRequestType]]=3
+
+[[SecurityType]]="CS"
+
+| >>>>
+|Processes Security request
+
+Create a list of common stocks that are available for trading.
+
+|-
+|First party can use this to select a list of messages
+|<<<<
+|[[SecurityDefinition]] message
+
+Contains list of common stocks available for trading with the second party
+
+[[SecurityResponseType]]=3
+
+[[NoRelatedSym]]=25
+
+[[UnderlyingSymbol]]="AOL"
+
+...Other fields for this security
+
+[[UnderlyingSymbol]]="GM"
+
+...Other fields for this security
+
+[[UnderlyingSymbol]]="IBM"
+
+...Other fields for this security
+
+|}
+
+===Scenario 4 - Inquire all securities traded by a trading party===
+This scenario has the first party requesting a list of Security types supported by the second party.
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[SecurityDefinitionRequest]] message
+
+[[SecurityRequestType]]=3
+
+| >>>>
+|Processes Security request
+
+Create a list of the Securities available for the specified SecurityType
+
+|-
+|First party can use this to select a list of messages
+|<<<<
+|[[SecurityDefinition]] message
+
+Contains list of Securities available for the specified the Security Types supported by second party
+
+[[SecurityResponseType]]=3
+
+[[NoRelatedSym]]=XX
+
+Security information for each security is provided for each of the XX securities.
+|}
+
+===Scenario 5 Ð Inquire Option Classes Available for Trading with Counterparty===
+This example shows how the [[SecurityDefinitionRequest]] Message and [[SecurityDefinition]] Messages can be used to 
+return a list of option classes available for trading with a counterparty. 
+The first party specifies a [[SecurityRequestType]] equal to 3 (Request List of Securities) and  the 
+[[SecurityType]] of options. The second party returns a list of option classes available on its markets. 
+Note: This is intended to return standing data (static data) or a list of products available for trading Ð 
+it is not intended to return an order book (see [[FPL:Pre-trade messages#Market Data|Market Data messages]]).
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[SecurityDefinitionRequest]] message
+
+In this scenario the initiator wants to see a list of option series for IBM that are traded by the counterparty 
+(that may be an exchange)
+
+[[SecurityRequestType]]=3
+
+[[SecurityType]]="OPT"
+
+| >>>>
+|Processes Security request
+
+Create a list of common stocks that are available for trading.
+
+|-
+|First party can use this to select a list of messages
+|<<<<
+|[[SecurityDefinition]] message
+
+Contains list of common stocks available for trading with the second party
+
+[[SecurityResponseType]]=3
+
+[[NoRelatedSym]]=25
+
+[[UnderlyingSymbol]]="AOL"
+
+[[UnderlyingSymbol]]="GM"
+
+[[UnderlyingSymbol]]="IBM"
+|}
+
+===Scenario 6 - Inquire list of option series for a class===
+This scenario has the first party requesting a list of option classes by setting the [[SecurityRequestType]] equal to 3, 
+the [[SecurityType]] to ÒOPTÓ, and a security [[Symbol]] = ÒIBMÓ. Because a [[Symbol]] is given, the second party sends back 
+a list of option series for the class specified with a [[Symbol]] or [[SecurityID]].
+
+{|border="1"
+|-
+!First Party
+!
+!Second Party
+|-
+|[[SecurityDefinitionRequest]] message
+
+[[SecurityRequestType]]=3
+
+[[SecurityType]]="OPT"
+
+[[Symbol]]="IBM"
+
+Any of the security identification fields can be populated for this query
+
+| >>>>
+|Processes Security request
+
+Because a symbol is provided the second party sends back a list of option series.
+
+|-
+|First party can use this to select a list of messages
+|<<<<
+|[[SecurityDefinition]] message
+
+Contains list of option series available for the specified the class specified in the request.
+
+[[SecurityResponseType]]=3
+
+[[NoRelatedSym]]=XX
+
+Security information for each security is provided for each of the XX securities.
+|}
+
+
+==User Defined Spreads using Security Definition Messages==
+
+User Defined Spreads (UDS) allow users to construct strategies that support their unique trading and risk needs. In an exchange-centric model, a user may request a custom-designed strategy when the pre-listed instruments offered by an exchange or counterparty are insufficient to meet these needs. If accepted by the exchange or counterparty, it will become a listed instrument.
+
+FIX currently provides support for User Defined Spreads through the [[SecurityDefinitionRequest]] and [[SecurityDefinition]] messages. These messages allow single-leg or multi-leg requests to be submitted for instrument creation, and provide confirmation of the fully elaborated instrument. Once the UDS has been established, the requestor will generally submit a subsequent Order or Request for [[Quote]] on the newly defined instrument.
+
+===Creating a User Defined Spread - Business Flow===
+
+The Business Process for User Defined Spreads is expressed by the workflow shown below. One-step and two-step processes 
+are illustrated as they represent the recommended flow in FIX 4.4 (and above). 
+The requesting party makes known its desire to define an instrument which has not been pre-listed by the Respondent - 
+usually an exchange entity - by sending in a Request for a New Strategy. 
+The Strategy will generally be a complex, multi-legged strategy or an options strategy which will provide neutral risk.
+
+Upon receiving the request, the Respondent will perform validation and either accept or reject the request. 
+If accepted, the Respondent will create a new instrument which is now considered to be "listed" [on the exchange], 
+and send back confirmation that a new instrument has been created. Generally, the Respondent will not revise the 
+requested instrument definition but will simply reject the request. The confirmation will carry all the details of the 
+new instrument. The Requestor will then submit orders and/or request for quotes on the newly established instrument 
+which will then follow the normal flow for these processes.
+
+'''Exhibit 1:  One-step process'''
+
+[[Image:UserDefinedSpreadOneStepProcess.png|900px]]
+
+'''Exhibit 2:  Two-step process'''
+                                                    
+[[Image:UserDefinedSpreadTwoStepProcess.png|900px]]
+
+===Creating a User Defined Spread - FIX Message Flow===
+
+The message flow for creation of a User Defined Spread is shown in the Exhibit below. 
+The requesting party submits a [[SecurityDefinitionRequest]] Message with the objective of defining a new instrument. 
+The requestor will submit the specifications for the new instrument as part of the [[SecurityDefinitionRequest]]. 
+The [[SecurityID]] of the strategy will not be provided as it is not yet know. 
+It is important to note that an [[Instrument]] Block need not be included on the message.  
+The [[InstrumentLeg]] block will be used to convey the legs of the strategy.
+
+The respondent will validate the [[SecurityDefinitionRequest]], create the instrument, and respond with a 
+[[SecurityDefinition]] which will carry a [[SecurityID]] or [[Symbol]] for the new instrument. The [[SecurityDefinition]] will carry all the details of the new instrument. Upon receiving the [[SecurityDefinition]], the requestor will then submit an order and/or request for quote on the newly established instrument which will then follow the normal flow for these processes.
+                                                          
+'''Exhibit 3:  FIX Message flow for User Defined Spread'''
+
+[[Image:UserDefinedSpreadMessageFlow.png|900px]]

@@ -1,0 +1,10 @@
+==FIX Messages==
+
+Messages are lists of fields and components. Each message has a message type (defined by its [[MsgType]] field).
+
+In {{SITENAME}} each message has a page which describes it.
+
+Each message page has links to subpages which show which fields appear in the message for different
+versions of FIX.
+
+All message pages belong to the {{SITENAME}} category "Message".

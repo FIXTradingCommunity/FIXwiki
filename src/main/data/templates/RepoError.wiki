@@ -1,0 +1,4 @@
+'''Error in FIX Repository:'''
+<includeonly>
+[[Category:RepoError]]
+</includeonly>

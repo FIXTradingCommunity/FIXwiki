@@ -1,0 +1,1 @@
+For more information about searching {{SITENAME}}, see [[Help:Searching|{{int:help}}]].

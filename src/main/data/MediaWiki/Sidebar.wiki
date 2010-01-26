@@ -1,0 +1,10 @@
+* navigation
+** mainpage|mainpage-description
+** FixSpec-url|FixSpec
+** recentchanges-url|recentchanges
+** randompage-url|randompage
+** FixSpecError-url|FixSpecError
+** FixRepoError-url|FixRepoError
+* SEARCH
+* TOOLBOX
+* LANGUAGES

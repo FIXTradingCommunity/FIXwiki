@@ -1,0 +1,10 @@
+==FIX Types==
+
+All FIX values have a data type.
+
+Note that all data types (with the exception of those of type "data") are mapped to ASCII strings.
+
+In {{SITENAME}} each type has a page which describes it.
+The name of the type page is constructed from the type name followed by "DataType".
+
+All type pages belong to the {{SITENAME}} category "Type".

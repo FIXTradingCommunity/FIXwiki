@@ -1,0 +1,6 @@
+ Please post comments, clarifications, examples here. Click on the edit button on the right and away you go! <br/>
+ Don't forget to refer to the [http://www.fixprotocol.org/discuss/ FPL Discussion Groups] to back up anything you write.
+ You will often find the authoritative statements on matters of FIX specification interpretation there.
+ Links from {{SITENAME}} pages to relevant discussions on the FPL site are very valuable.<br/>
+ For example if you were writing a clarification on how to specify the "quantity" of an order in FIX, you might add the
+ following relevant link, http://www.fixprotocol.org/discuss/read/f5014573, to back up your points.

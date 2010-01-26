@@ -16,7 +16,6 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -886,6 +885,10 @@ public class FixwikiGenerator {
 
     File repoDir = new File(args[0]);
     File scriptDir = new File(args[1]);
+    
+    //Create output directory if necessary.
+    scriptDir.mkdirs();
+    
     createUserPages = args.length == 3 && "createUserPages".equals(args[2]);
 
     RepoInfo repoInfo = new RepoInfo(repoDir);
@@ -904,6 +907,9 @@ public class FixwikiGenerator {
     System.out.println("<Script directory> - the directory where the Wiki page creation script and the associated");
     System.out.println("                     text files used to populate the FIX Wiki are stored.");
     System.out.println("createUserPages    - User pages are generated only if this is specified.");
+    System.out.println();
+    System.out.println("Example:");
+    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator ~/FIX/Repository ~/Temp/fixwiki createUserPages");
     System.out.println();
   }
 

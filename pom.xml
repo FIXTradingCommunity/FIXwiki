@@ -12,4 +12,7 @@
   <version>1.0</version>
   <packaging>jar</packaging>
   <name>FIXwiki</name>
+  <build>
+    <finalName>${project.artifactId}</finalName>
+  </build>
 </project>

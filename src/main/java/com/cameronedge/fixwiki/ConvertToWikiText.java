@@ -10,17 +10,13 @@ import com.cameronedge.fixrepo.RepoInfo;
 import com.cameronedge.fixrepo.Util;
 
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
 import java.io.InputStream;
-import java.io.FileInputStream;
-import java.io.StringReader;
 import java.io.InputStreamReader;
+import java.io.Writer;
 import java.nio.charset.Charset;
-import java.util.Map;
 
 /**
  * @author John Cameron
@@ -75,6 +71,8 @@ public class ConvertToWikiText {
   }
 
   private static void usage() {
+    System.out.println();
+    System.out.println("Usage:");
     System.out.println();
     System.out.println("com.cameronedge.fixwiki.ConvertToWikiText <FIX repository> <TextFile> <WikiTextFile>");
     System.out.println();

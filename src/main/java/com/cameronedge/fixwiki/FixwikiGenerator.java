@@ -900,6 +900,8 @@ public class FixwikiGenerator {
 
   private static void usage() {
     System.out.println();
+    System.out.println("Usage:");
+    System.out.println();
     System.out.println("com.cameronedge.fixwiki.FixwikiGenerator <FIX repository> <Script directory> [createUserPages]");
     System.out.println();
     System.out.println("Generates text files and a script for populating a FIX Wiki from the given FIX repository.");

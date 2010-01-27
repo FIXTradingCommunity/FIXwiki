@@ -10,15 +10,12 @@ import com.cameronedge.fixrepo.RepoInfo;
 import com.cameronedge.fixrepo.Util;
 
 import java.io.File;
-import java.io.Reader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Need to preprocess by removing leading tab, adding tab to end of each row, converting arrows into < or >
@@ -72,6 +69,8 @@ public class ConvertWordTableToWikiTable {
   }
 
   private static void usage() {
+    System.out.println();
+    System.out.println("Usage:");
     System.out.println();
     System.out.println("com.cameronedge.fixwiki.ConvertWordTableToWikiTable <FIX repository> <WordTableFile> <WikiTableFile> <nColumns>");
     System.out.println();

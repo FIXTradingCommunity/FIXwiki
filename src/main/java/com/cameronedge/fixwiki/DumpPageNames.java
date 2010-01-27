@@ -101,6 +101,8 @@ public class DumpPageNames {
 
   private static void usage() {
     System.out.println();
+    System.out.println("Usage:");
+    System.out.println();
     System.out.println("com.cameronedge.fixrepo.DumpPageNames <FIX repository> <Dump directory>");
     System.out.println();
     System.out.println("Writes FIXwiki page names generated from the given FIX repository.");

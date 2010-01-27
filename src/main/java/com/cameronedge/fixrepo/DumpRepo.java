@@ -156,6 +156,8 @@ public class DumpRepo {
 
   private static void usage() {
     System.out.println();
+    System.out.println("Usage:");
+    System.out.println();
     System.out.println("com.cameronedge.fixrepo.DumpRepo <FIX repository> <Dump directory>");
     System.out.println();
     System.out.println("Writes enhanced repo files generated from the given FIX repository.");

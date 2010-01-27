@@ -34,7 +34,7 @@ public class LinkDetector {
   private int sourceLen;
 
   /**
-   * Initialize detector with thr two soources of links. The first one take priority in case of a token appear in both.
+   * Initialize detector with the two sources of links. The first one take priority in case of a token appear in both.
    * <p/>
    * The link names are in the form of token and link. Often the two are the same.
    * If they are the same, the link is translated to:

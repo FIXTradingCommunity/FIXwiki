@@ -2,4 +2,4 @@
 
 # Run without parameters to see usage
 
-sh ./_run.sh com.cameronedge.fixwiki.FixwikiGenerator $1 $2 $3 
+sh ./_run.sh com.cameronedge.fixwiki.FixwikiGenerator $*

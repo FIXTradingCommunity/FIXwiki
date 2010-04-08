@@ -103,27 +103,27 @@ public class RepoInfo {
       String version = fixVersionInfos[i].version;
       System.out.println("Processing FIX version " + version);
 
-      String fixDirPath = repoDir.getAbsolutePath() + File.separator + version;
+      String fixDirPath = repoDir.getAbsolutePath() + File.separator + version + File.separator + "Base";
       File fixDir = new File(fixDirPath);
 
       if (fixDir.exists()) {
 
-        componentInfosByVersion[i] = parse(fixDir, "Components.xml", "Components", "ComponentName", false);
+        componentInfosByVersion[i] = parse(fixDir, "Components.xml", "Component", "Name", false);
         System.out.println("    Processed " + componentInfosByVersion[i].size() + " categories");
 
-        enumInfosByVersion[i] = parse(fixDir, "Enums.xml", "Enums", "Tag", true);
+        enumInfosByVersion[i] = parse(fixDir, "Enums.xml", "Enum", "Tag", true);
         System.out.println("    Processed " + enumInfosByVersion[i].size() + " enums");
 
-        fieldInfosByVersion[i] = parse(fixDir, "Fields.xml", "Fields", "Tag", false);
+        fieldInfosByVersion[i] = parse(fixDir, "Fields.xml", "Field", "Tag", false);
         System.out.println("    Processed " + fieldInfosByVersion[i].size() + " fields");
 
-        messageInfosByVersion[i] = parse(fixDir, "MsgType.xml", "MsgType", "MsgType", false);
+        messageInfosByVersion[i] = parse(fixDir, "Messages.xml", "Message", "MsgType", false);
         System.out.println("    Processed " + messageInfosByVersion[i].size() + " message types");
 
-        segmentInfosByVersion[i] = parse(fixDir, "MsgContents.xml", "MsgContents", "MsgID", true);
+        segmentInfosByVersion[i] = parse(fixDir, "MsgContents.xml", "MsgContent", "ComponentID", true);
         System.out.println("    Processed " + segmentInfosByVersion[i].size() + " message segments");
 
-        typeInfosByVersion[i] = parse(fixDir, "DataTypes.xml", "Datatype", "TypeName", false);
+        typeInfosByVersion[i] = parse(fixDir, "Datatypes.xml", "Datatype", "Name", false);
         System.out.println("    Processed " + (typeInfosByVersion[i] == null ? "0" : typeInfosByVersion[i].size()) + " data types");
       } else {
         System.out.println("    No repo directory found for version " + version);

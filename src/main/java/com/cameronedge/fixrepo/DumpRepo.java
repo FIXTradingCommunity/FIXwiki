@@ -23,36 +23,35 @@ public class DumpRepo {
 
   private static final String BLANKS = "                                                         ";
   private static final int INDENT_INCREMENT = 3;
-  private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-          "<dataroot>";
-  private static final String XML_FOOTER = "</dataroot>";
+  private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+  private static final String XML_FOOTER = "";
 
   private int indent;
 
   public DumpRepo(File outDir, RepoInfo repoInfo) throws IOException {
 
     //Components.xml
-    dumpXMLFile(outDir, repoInfo.getComponentInfos(), "Components", "Components");
+    dumpXMLFile(outDir, repoInfo.getComponentInfos(), "Components", "Components", "Component");
 
     //DataTypes.xml
-    dumpXMLFile(outDir, repoInfo.getTypeInfos(), "DataTypes", "Datatype");
+    dumpXMLFile(outDir, repoInfo.getTypeInfos(), "Datatypes", "Datatypes", "Datatype");
 
     //Enums.xml
-    dumpXMLFile(outDir, repoInfo.getEnumInfos(), "Enums", "Enums");
+    dumpXMLFile(outDir, repoInfo.getEnumInfos(), "Enums", "Enums", "Enum");
 
     //Fields.xml
-    dumpXMLFile(outDir, repoInfo.getFieldInfos(), "Fields", "Fields");
+    dumpXMLFile(outDir, repoInfo.getFieldInfos(), "Fields", "Fields", "Field");
 
     //MsgContents.xml
-    dumpXMLFile(outDir, repoInfo.getSegmentInfos(), "MsgContents", "MsgContents");
+    dumpXMLFile(outDir, repoInfo.getSegmentInfos(), "MsgContents", "MsgContents", "MsgContent");
 
     //MsgType.xml
-    dumpXMLFile(outDir, repoInfo.getMessageInfos(), "MsgType", "MsgType");
+    dumpXMLFile(outDir, repoInfo.getMessageInfos(), "Messages", "Messages", "Message");
 
   }
 
-  private void dumpXMLFile(File outDir, Map<String, List<Properties>> fieldInfos, String fileRoot, String baseElement)
-          throws IOException {
+  private void dumpXMLFile(File outDir, Map<String, List<Properties>> fieldInfos, String fileRoot, String xmlRoot, 
+                           String baseElement) throws IOException {
     String fname = outDir.getAbsolutePath() + File.separator + fileRoot + ".xml";
     File f = new File(fname);
     File parent = f.getParentFile();
@@ -63,6 +62,8 @@ public class DumpRepo {
     PrintWriter os = new PrintWriter(f);
 
     os.println(XML_HEADER);
+    
+    os.println("<" + xmlRoot + ">");
 
     indent = INDENT_INCREMENT;
 
@@ -81,6 +82,7 @@ public class DumpRepo {
       }
     }
 
+    os.println("</" + xmlRoot + ">");
     os.println(XML_FOOTER);
 
     os.close();

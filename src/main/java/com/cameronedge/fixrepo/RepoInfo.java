@@ -134,15 +134,6 @@ public class RepoInfo {
     Map<String, List<Properties>> extraData;
     InputStream is;
 
-    //Set overridden EnumNames now so that no attempt is made to compute these from descriptions.
-    s = "EnumName.xml";
-    is = loader.getResourceAsStream(s);
-    if (is == null) {
-      System.out.println("WARNING: Missing resource file " + s);
-    }
-    extraData = parse(is, "Enums", "Tag", true);
-    processExtraEnumNames(extraData);
-
     //Special post process for latest version. That is what users will use.
     //Checks for good data and fabricates names for enum values in new EnumName property.
     postProcessEnums();
@@ -186,7 +177,7 @@ public class RepoInfo {
       System.out.println("WARNING: Missing resource file " + s);
     }
     processGlossary(is);
-    
+
   }
 
   private void addContainsItem(int fixVersionIndex, String tagText, String containerName) {
@@ -979,43 +970,6 @@ public class RepoInfo {
           }
           if (!found) {
             throw new RuntimeException("Unknown enum of tag " + tag + " in extra enum descriptions: " + enumValue);
-          }
-        }
-      }
-    }
-  }
-
-  private void processExtraEnumNames(Map<String, List<Properties>> extraData) {
-    Map<String, List<Properties>> enumInfos = getEnumInfos();
-
-    for (List<Properties> propertiesList : extraData.values()) {
-      //Each list entry contains a tag, and enum value
-      for (Properties props : propertiesList) {
-
-        String tag = props.getProperty("Tag");
-        String enumValue = props.getProperty("Enum");
-        String enumName = props.getProperty("EnumName");
-
-        //Now add enumName in enumInfos.
-        List<Properties> currentPropList = enumInfos.get(tag);
-        if (currentPropList == null) {
-          throw new RuntimeException("Unknown tag in extra enum names: " + tag);
-        } else {
-          //Scan through current properties looking for one with matching enum value.
-          boolean found = false;
-          for (Properties currentProps : currentPropList) {
-            if (enumValue.equals(currentProps.getProperty("Enum"))) {
-              found = true;
-              //Check that we do not have duplicate names for the same enum value.
-              if (currentProps.getProperty("EnumName") != null) {
-                throw new RuntimeException("Duplicate name for enum of tag " + tag + " in extra enum names: " + enumValue);
-              }
-              currentProps.setProperty("EnumName", enumName);
-              break;
-            }
-          }
-          if (!found) {
-            throw new RuntimeException("Unknown enum of tag " + tag + " in extra enum names: " + enumValue);
           }
         }
       }

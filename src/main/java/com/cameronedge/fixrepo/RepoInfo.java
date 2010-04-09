@@ -272,7 +272,7 @@ public class RepoInfo {
     if (enumInfoList != null) {
       //Search through property list for matching value name.
       for (Properties props : enumInfoList) {
-        if (valueName.equalsIgnoreCase(props.getProperty("EnumName")) || valueName.equalsIgnoreCase(props.getProperty("Enum"))) {
+        if (valueName.equalsIgnoreCase(props.getProperty("SymbolicName")) || valueName.equalsIgnoreCase(props.getProperty("Value"))) {
           return props;
         }
       }
@@ -338,7 +338,7 @@ public class RepoInfo {
       return null;
     }
 
-    String msgID = componentInfo.get(0).getProperty("MsgID");
+    String msgID = componentInfo.get(0).getProperty("ComponentID");
 
     //Look up segment contents from msgID.
     return segmentInfos == null ? null : segmentInfos.get(msgID);
@@ -370,7 +370,7 @@ public class RepoInfo {
       return null;
     }
 
-    String msgID = messageInfo.get(0).getProperty("MsgID");
+    String msgID = messageInfo.get(0).getProperty("ComponentID");
 
     //Look up segment contents from msgID.
     return segmentInfos == null ? null : segmentInfos.get(msgID);
@@ -387,7 +387,7 @@ public class RepoInfo {
       if (messageInfo != null) {
         Properties props = messageInfo.get(0);
 
-        String msgID = props.getProperty("MsgID");
+        String msgID = props.getProperty("ComponentID");
 
         //Now look up segment info using MsgID.
         Map<String, List<Properties>> segmentInfos = segmentInfosByVersion[fixVersion];
@@ -409,7 +409,7 @@ public class RepoInfo {
       if (messageInfo != null) {
         Properties props = messageInfo.get(0);
 
-        String msgID = props.getProperty("MsgID");
+        String msgID = props.getProperty("ComponentID");
 
         //Now look up segment info using MsgID.
         Map<String, List<Properties>> segmentInfos = segmentInfosByVersion[fixVersion];
@@ -490,7 +490,7 @@ public class RepoInfo {
 
     //Check if enumValue appears in any of the tag's values.
     for (Properties props : values) {
-      if (enumValue.equals(props.getProperty("Enum"))) {
+      if (enumValue.equals(props.getProperty("Value"))) {
         return true;
       }
     }
@@ -549,14 +549,14 @@ public class RepoInfo {
 
       List<Properties> values = enumInfoEntry.getValue();
       for (Properties valueProps : values) {
-        String enumName = valueProps.getProperty("EnumName");
-        String enumValue = valueProps.getProperty("Enum");
+        String enumName = valueProps.getProperty("SymbolicName");
+        String enumValue = valueProps.getProperty("Value");
         String description = valueProps.getProperty("Description");
         if (enumName == null) {
           //Compute new EnumName property from the description attribute.
           enumName = Util.computeEnumName(description);
 
-          valueProps.setProperty("EnumName", enumName);
+          valueProps.setProperty("SymbolicName", enumName);
         }
 
         if (checkEnumName(enumName, names, tagStr, enumValue, description)) {
@@ -644,12 +644,16 @@ public class RepoInfo {
           Properties props = values.get(0);
 
           int fieldTag = Integer.parseInt(props.getProperty("Tag"));
-          String fieldName = props.getProperty("FieldName");
+          String fieldName = props.getProperty("Name");
 
           if (fieldName != null) {
-            fieldName = fieldName.replace('/', ' ');
-            fieldName = fieldName.trim();
-            props.setProperty("FieldName", fieldName);
+            String clean = fieldName.replace('/', ' ');
+            clean = clean.trim();
+            if (!fieldName.equals(clean)) {
+              System.out.println("WARNING: Bad chars in field name " + fieldName + ". Tag " + fieldTag +
+                      ". Version " + getFIXVersionString(i));
+              fieldName = clean;              
+            }
           }
 
 
@@ -832,6 +836,7 @@ public class RepoInfo {
           }
         }
       }
+      
       List<Properties> messageInfoPropList = messageInfos.get(msgType);
       Properties messageInfoProps = messageInfoPropList.get(0);
       if (fromVersion >= 0) {
@@ -962,7 +967,7 @@ public class RepoInfo {
           //Scan through current properties looking for one with matching enum value.
           boolean found = false;
           for (Properties currentProps : currentPropList) {
-            if (enumValue.equals(currentProps.getProperty("Enum"))) {
+            if (enumValue.equals(currentProps.getProperty("Value"))) {
               found = true;
               currentProps.setProperty("Description", desc); //Note non standard name in repo for description
               break;
@@ -1068,7 +1073,7 @@ public class RepoInfo {
       //Check that each key value in props1 appears in props2.
       for (Object key : props1.keySet()) {
         //Ignore Description and MsgID keys - doesn't matter if they change.
-        if (!key.equals("Description") && !key.equals("MsgID")) {
+        if (!key.equals("Description") && !key.equals("ComponentID")) {
           String val1 = props1.getProperty((String) key);
           String val2 = props2.getProperty((String) key);
           if (!val1.equals(val2)) {

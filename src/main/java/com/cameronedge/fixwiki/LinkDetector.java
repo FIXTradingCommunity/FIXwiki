@@ -7,7 +7,7 @@
 package com.cameronedge.fixwiki;
 
 import com.cameronedge.fixrepo.RepoInfo;
-import com.cameronedge.fixrepo.Util;
+import com.cameronedge.fixrepo.RepoUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +66,7 @@ public class LinkDetector {
       for (Properties props : values) {
         String enumValue = props.getProperty("Enum");
         String enumName = props.getProperty("EnumName");
-        linkNames2.put(enumName, Util.computeValueTitle(fieldName, enumValue, enumName));
+        linkNames2.put(enumName, RepoUtil.computeValueTitle(fieldName, enumValue, enumName));
       }
     } else {
       //Extract all linkable repo names into a name set which can be used by our LinkDetector.

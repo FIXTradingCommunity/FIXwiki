@@ -281,10 +281,22 @@ public class RepoInfo {
     return null;
   }
 
+  /**
+   * Returns map of field properties indexed by tag.
+   * <p>
+   * @return Map indexed by tag number (as String). Indexed entries are Lists of Properties, but each
+   *         List should only contain one Properties. That is the field properties corresponding to the field tag.
+   */
   public Map<String, List<Properties>> getFieldInfos() {
     return fieldInfosByVersion[latestFIXVersionIndex];
   }
 
+  /**
+   * Returns map of message properties indexed by msgType.
+   * <p>
+   * @return Map indexed by msgType. Indexed entries are Lists of Properties, but each List should only contain one 
+   *         Properties. That is the message properties corresponding to the msgType.
+   */
   public Map<String, List<Properties>> getMessageInfos() {
     return messageInfosByVersion[latestFIXVersionIndex];
   }
@@ -554,7 +566,7 @@ public class RepoInfo {
         String description = valueProps.getProperty("Description");
         if (enumName == null) {
           //Compute new EnumName property from the description attribute.
-          enumName = Util.computeEnumName(description);
+          enumName = RepoUtil.computeEnumName(description);
 
           valueProps.setProperty("SymbolicName", enumName);
         }

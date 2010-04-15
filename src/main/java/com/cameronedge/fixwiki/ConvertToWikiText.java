@@ -7,7 +7,6 @@
 package com.cameronedge.fixwiki;
 
 import com.cameronedge.fixrepo.RepoInfo;
-import com.cameronedge.fixrepo.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +16,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Writer;
 import java.nio.charset.Charset;
+
+import static com.cameronedge.fixwiki.FixwikiUtil.formatDescription;
 
 /**
  * @author John Cameron
@@ -40,7 +41,7 @@ public class ConvertToWikiText {
     reader.close();
 
     //Format the read text into wikiText.
-    String wikiText = Util.formatDescription(sbuf.toString(), linkDetector);
+    String wikiText = formatDescription(sbuf.toString(), linkDetector);
 
     //Write wikiText to output.
     Writer wikiWriter = new FileWriter(wikiFile);

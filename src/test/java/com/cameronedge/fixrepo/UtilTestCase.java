@@ -6,17 +6,20 @@
 
 package com.cameronedge.fixrepo;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.Writer;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 
+import static com.cameronedge.fixwiki.FixwikiUtil.formatDescription;
+import static com.cameronedge.fixwiki.FixwikiUtil.writeWikiTable;
+import static org.junit.Assert.assertEquals;
+
 /**
- * Util test case.
+ * FixwikiUtil test case.
  *
  * @author John Cameron
  */
@@ -53,10 +56,10 @@ public class UtilTestCase {
     "Executing Trader	Customer Account\n" + 
     "Clearing Account";
 
-    List<String[]> parsedTable = Util.parseMSWordTable(pastedTable, 3);
+    List<String[]> parsedTable = RepoUtil.parseMSWordTable(pastedTable, 3);
     
     Writer writer = new StringWriter();
-    Util.writeWikiTable(writer, parsedTable, null);
+    writeWikiTable(writer, parsedTable, null);
 
     System.out.println(writer);
     
@@ -68,13 +71,13 @@ public class UtilTestCase {
   @Test
   public void testFormatDescription() {
 
-    String s = Util.formatDescription("*I was > than I'd thought but < than I'd wished\nPigs bum", null);
+    String s = formatDescription("*I was > than I'd thought but < than I'd wished\nPigs bum", null);
     System.out.println(s);
 
-    s = Util.formatDescription(":I was > than I'd thought but < than I'd wished\n Pigs bum", null);
+    s = formatDescription(":I was > than I'd thought but < than I'd wished\n Pigs bum", null);
     System.out.println(s);
 
-    s = Util.formatDescription(" I was > than I'd thought but < than I'd wished\n*Pigs bum\n Dogs bum", null);
+    s = formatDescription(" I was > than I'd thought but < than I'd wished\n*Pigs bum\n Dogs bum", null);
     System.out.println(s);
 
   }

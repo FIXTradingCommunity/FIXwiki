@@ -7,7 +7,7 @@
 package com.cameronedge.fixwiki;
 
 import com.cameronedge.fixrepo.RepoInfo;
-import com.cameronedge.fixrepo.Util;
+import com.cameronedge.fixrepo.RepoUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,7 +73,7 @@ public class DumpPageNames {
 
           //Create value subpages from field name and enum name and enum value.
           String userTitle = fieldName + "/" + enumValue + " " + enumName;
-          String fplTitle = Util.computeFPLTitle(userTitle);
+          String fplTitle = RepoUtil.computeFPLTitle(userTitle);
 
           pw.println(userTitle);
           pw.println(fplTitle);

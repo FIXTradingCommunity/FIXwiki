@@ -63,7 +63,7 @@ public class FixRepoHandler extends DefaultHandler {
       }
 
       //Clean up values.
-      String clean = Util.cleanText(value);
+      String clean = RepoUtil.cleanText(value);
 
       Object old = currentProps.setProperty(key, clean);
       if (old != null) {

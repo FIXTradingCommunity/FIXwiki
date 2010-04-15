@@ -8,7 +8,6 @@ package com.cameronedge.fixrepo;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.io.StreamTokenizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +33,12 @@ public class GlossaryProcessor {
         System.out.println("WARNING: Long value " + entry.valueName );  
       }
       
-      entry.valueName = Util.computeEnumName(entry.valueName);
+      entry.valueName = RepoUtil.computeEnumName(entry.valueName);
 
 //      System.out.println("Value: " + entry.valueName);
       
       String s = copyUntil(glossaryReader, '\t');  
-      entry.description = Util.cleanText(s);
+      entry.description = RepoUtil.cleanText(s);
 
 //      System.out.println("Desc: " + entry.description);
 

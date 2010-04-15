@@ -6,7 +6,7 @@
 package com.cameronedge.fixwiki;
 
 import com.cameronedge.fixrepo.RepoInfo;
-import com.cameronedge.fixrepo.Util;
+import com.cameronedge.fixrepo.RepoUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
+import static com.cameronedge.fixwiki.FixwikiUtil.formatDescription;
 
 /**
  * Generates basic FIXwiki pages from FIX repository.
@@ -280,7 +282,7 @@ public class FixwikiGenerator {
 
         //Field page
         String userTitle = fieldName;
-        String fplTitle = Util.computeFPLTitle(userTitle);
+        String fplTitle = RepoUtil.computeFPLTitle(userTitle);
 
         //Create file from field name.
         String relName = titleToName(fplTitle) + ".fld";
@@ -353,7 +355,7 @@ public class FixwikiGenerator {
       String messageName = getCleanProperty(props, "MessageName");
 
       String userTitle = messageName;
-      String fplTitle = Util.computeFPLTitle(messageName);
+      String fplTitle = RepoUtil.computeFPLTitle(messageName);
 
       //Message page
       //Create file from message name.
@@ -427,7 +429,7 @@ public class FixwikiGenerator {
             } else {
               userTitle += repoInfo.getFIXVersionString(fromVersion) + "-" + repoInfo.getFIXVersionSuffix(toVersion);
             }
-            fplTitle = Util.computeFPLTitle(userTitle);
+            fplTitle = RepoUtil.computeFPLTitle(userTitle);
             relName = titleToName(fplTitle) + ".msg";
             fname = scriptDir.getAbsolutePath() + File.separator + relName;
 
@@ -448,7 +450,7 @@ public class FixwikiGenerator {
       //Create + subpage from any lingering fromVersion
       if (fromVersion >= 0) {
         userTitle = messageName + "/" + repoInfo.getFIXVersionString(fromVersion) + "+";
-        fplTitle = Util.computeFPLTitle(userTitle);
+        fplTitle = RepoUtil.computeFPLTitle(userTitle);
         relName = titleToName(fplTitle) + ".msg";
         fname = scriptDir.getAbsolutePath() + File.separator + relName;
 
@@ -477,7 +479,7 @@ public class FixwikiGenerator {
 
       //Component page
       String userTitle = componentName;
-      String fplTitle = Util.computeFPLTitle(userTitle);
+      String fplTitle = RepoUtil.computeFPLTitle(userTitle);
 
       //Create file from component name.
       String relName = titleToName(fplTitle) + ".cmp";
@@ -550,7 +552,7 @@ public class FixwikiGenerator {
             } else {
               userTitle += repoInfo.getFIXVersionString(fromVersion) + "-" + repoInfo.getFIXVersionSuffix(toVersion);
             }
-            fplTitle = Util.computeFPLTitle(userTitle);
+            fplTitle = RepoUtil.computeFPLTitle(userTitle);
             relName = titleToName(fplTitle) + ".cmp";
             fname = scriptDir.getAbsolutePath() + File.separator + relName;
 
@@ -571,7 +573,7 @@ public class FixwikiGenerator {
       //Create + subpage from any lingering fromVersion
       if (fromVersion >= 0) {
         userTitle = componentName + "/" + repoInfo.getFIXVersionString(fromVersion) + "+";
-        fplTitle = Util.computeFPLTitle(userTitle);
+        fplTitle = RepoUtil.computeFPLTitle(userTitle);
         relName = titleToName(fplTitle) + ".cmp";
         fname = scriptDir.getAbsolutePath() + File.separator + relName;
 
@@ -618,8 +620,8 @@ public class FixwikiGenerator {
           String enumName = props.getProperty("EnumName");
 
           //Create value subpages from field name and enum name and enum value.
-          String userTitle = Util.computeValueTitle(fieldName, enumValue, enumName);
-          String fplTitle = Util.computeFPLTitle(userTitle);
+          String userTitle = RepoUtil.computeValueTitle(fieldName, enumValue, enumName);
+          String fplTitle = RepoUtil.computeFPLTitle(userTitle);
 
           //Write FPL version of the page.
           //Create file from title.
@@ -669,7 +671,7 @@ public class FixwikiGenerator {
       String typeName = getCleanProperty(props, "TypeName");
 
       String userTitle = typeName + "DataType";
-      String fplTitle = Util.computeFPLTitle(userTitle);
+      String fplTitle = RepoUtil.computeFPLTitle(userTitle);
 
       //Type page
       //Create file from type name with DataType suffix so that it does not clash with Field names (eg Price).
@@ -844,7 +846,7 @@ public class FixwikiGenerator {
       fw.print("|| " + (reqd.equals("1") ? "x" : "") + " ");
 
       String description = props.getProperty("Description");
-      fw.print("|| " + (description == null ? "" : Util.formatDescription(description, linkDetector)) + " ");
+      fw.print("|| " + (description == null ? "" : formatDescription(description, linkDetector)) + " ");
 
     }
 
@@ -872,7 +874,7 @@ public class FixwikiGenerator {
     value = value.replace('|', ' ');
     if ("Description".equals(key) || "Desc".equals(key)) {
       key = "Desc";
-      value = Util.formatDescription(value, linkDetector);
+      value = formatDescription(value, linkDetector);
     }
     fw.println("| " + key + "=" + value);
   }

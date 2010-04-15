@@ -7,7 +7,7 @@
 package com.cameronedge.fixwiki;
 
 import com.cameronedge.fixrepo.RepoInfo;
-import com.cameronedge.fixrepo.Util;
+import com.cameronedge.fixrepo.RepoUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.List;
+
+import static com.cameronedge.fixwiki.FixwikiUtil.writeWikiTable;
 
 /**
  * Need to preprocess by removing leading tab, adding tab to end of each row, converting arrows into < or >
@@ -39,10 +41,10 @@ public class ConvertWordTableToWikiTable {
     } while (nRead > 0);
     reader.close();
 
-    List<String[]> table = Util.parseMSWordTable(sbuf.toString(), nColumns);
+    List<String[]> table = RepoUtil.parseMSWordTable(sbuf.toString(), nColumns);
 
     PrintWriter wikiWriter = new PrintWriter(wikiFile);
-    Util.writeWikiTable(wikiWriter, table, linkDetector);    
+    writeWikiTable(wikiWriter, table, linkDetector);    
     wikiWriter.close();
   }
 

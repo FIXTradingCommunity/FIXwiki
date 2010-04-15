@@ -1,8 +1,8 @@
 package com.cameronedge.fixwiki;
 
-import static org.junit.Assert.*;
-import org.junit.*;
-import com.cameronedge.fixrepo.Util;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * FixwikiGenerator test case.

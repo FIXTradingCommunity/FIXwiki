@@ -1,3 +1,5 @@
+<!--TODO BaseType should be link to BaseTypeDataType.-->
+
 ===FIX Data Type {{{TypeName}}}===
 
 {| border="1"

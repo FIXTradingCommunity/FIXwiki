@@ -23,6 +23,8 @@ $wgRightsText = "FIXwiki copyrights";
 $wgRightsPage = "FIXwiki:Copyrights";
 $wgEmailConfirmToEdit = true;
 
+$wgFileExtensions[] = 'txt'; //Used for FIXnames.txt file
+
 $wgNamespacesWithSubpages[NS_MAIN] = true;
 $wgNamespacesWithSubpages[NS_TALK] = true;
 $wgNamespacesWithSubpages[NS_CATEGORY] = true;

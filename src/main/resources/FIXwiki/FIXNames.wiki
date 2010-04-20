@@ -1,0 +1,55 @@
+==Spell checking FIX documentation==
+
+Often we turn off spell checking when we are writing FIX documentation because of the large number of spelling "errors" 
+triggered by FIX names for things like messages and fields.
+For example, the standard FIX message name "ExecutionReport" will normally be reported as a spelling error. 
+You can usually add words manually to a custom dictionary one at a time as you encounter them but this is tedious and you may mistakenly add non standard names - for example "ExecutionRpt".
+
+However, most text editors (including Microsoft Word) do allow you to import a whole file of new words into a 
+custom dictionary. 
+
+The file [[Media:FIXNames.txt|FIXNames.txt]] has been generated directly from the 
+[http://www.fixprotocol.org/repository FPL FIX repository]. 
+It contains all the standard FIX names (message names, field names etc) in a single file suitable for 
+importing into a custom dictionary. 
+
+As an example, the following section describes how to use this file to create a FIX custom dictionary for Microsoft Word.
+
+==Instructions for importing FIXNames.txt into a Microsoft Word custom dictionary==
+
+# Download the FIX names file - [[Media:FIXNames.txt|Click here to download FIXNames.txt]]
+# Create a custom dictionary and import FIXNames.txt into it (search for Create Dictionary in Microsoft Word's 
+help for instructions on how to do this for your particular version of Word)
+
+==FIX Specification==
+
+The ultimate FIX documentation, of course, is the FIX specification itself. It would benefit greatly from being 
+spell checked.
+
+Over the years, the FIX specification has accumulated numerous typing errors as well as references to non existent, 
+obsolete or non standard FIX names.
+
+For example, the execution report message is sometimes referred to as "ExecutionRpt", sometimes as "Execution Report", 
+sometimes it is just misspelled altogether. The standard name for this message in the FIX repository is 
+"ExecutionReport". All references in the specification should be corrected to use this.
+
+Spell checking the spec will have the following advantages:
+
+* It will immediately pick up numerous errors
+* The spec will become clearer for the reader - there can be no confusion about what FIX artifact is being referred to
+* Forced use of standard FIX names will facilitate automated detection of hyperlinks - useful in tools such as 
+FIXwiki and FIXimate. 
+The spec itself could be processed to increase the use of hyperlinks within itself - eg click directly to a message 
+definition from wherever that message is referred to.
+* It will significantly reduce the chance of new errors being introduced into the specification in future
+
+==Contents of FIXNames.txt==
+
+The file contains all standard FIX names (as defined by the FIX Repository) which are three or more characters long.
+
+This includes names for the following FIX artifacts:
+* Messages
+* Fields
+* Components
+* Enumerated values
+* Data types

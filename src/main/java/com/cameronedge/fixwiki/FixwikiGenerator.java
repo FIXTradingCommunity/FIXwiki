@@ -144,6 +144,8 @@ public class FixwikiGenerator {
 
   private void generateConstantPages(File scriptDir, PrintWriter script) throws IOException {
     addResourceImportToScript(scriptDir, script, "MediaWiki/Disclaimers.wiki", "MediaWiki:Disclaimers");
+    addResourceImportToScript(scriptDir, script, "MediaWiki/FixNames-desc.wiki", "MediaWiki:FixNames-desc");
+    addResourceImportToScript(scriptDir, script, "MediaWiki/FixNames-url.wiki", "MediaWiki:FixNames-url");
     addResourceImportToScript(scriptDir, script, "MediaWiki/FixRepoError.wiki", "MediaWiki:FixRepoError");
     addResourceImportToScript(scriptDir, script, "MediaWiki/FixRepoError-url.wiki", "MediaWiki:FixRepoError-url");
     addResourceImportToScript(scriptDir, script, "MediaWiki/FixSpec.wiki", "MediaWiki:FixSpec");

@@ -5,6 +5,7 @@
 ** randompage-url|randompage
 ** FixSpecError-url|FixSpecError
 ** FixRepoError-url|FixRepoError
+** FixNames-url|FixNames-desc
 * SEARCH
 * TOOLBOX
 * LANGUAGES

@@ -1,4 +1,4 @@
-package com.cameronedge.fixwiki;
+ package com.cameronedge.fixwiki;
 
 import org.junit.Test;
 

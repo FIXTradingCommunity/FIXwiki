@@ -1,0 +1,5 @@
+Anything that you add to {{SITENAME}} is subject to [http://wikimediafoundation.org/wiki/Terms_of_Use WikiMedia Foundation's Terms of Use].
+
+Content of {{SITENAME}} taken from the FIX Specification is subject to [http://www.fixprotocol.org/copyright.shtml FIX Protocol's copyrights].
+
+Any other content and the design and implementation of {{SITENAME}} is Copyright (c) 2009 [http://cameronedge.com Cameron Edge Pty Ltd]. All rights reserved.

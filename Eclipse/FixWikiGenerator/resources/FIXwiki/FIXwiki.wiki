@@ -1,0 +1,34 @@
+{{SITENAME}} is a [http://en.wikipedia.org/wiki/Wiki wiki] containing data from the 
+[http://fixprotocol.org FIX specification].
+There is a {{SITENAME}} page for each FIX message, component, field, value or type.
+
+In addition to definitions taken from the specification, each page also has an area for user comments,
+clarifications, corrections, examples or suggestions.
+Please contribute.
+
+{{SITENAME}} was created by John Cameron of [http://cameronedge.com/ Cameron Edge] for the benefit of the FIX community.
+It is completely free.
+
+==Quick Start==
+
+[[Special:UserLogin|Log in]] then type one of the following into the search box on the left:
+:* a FIX message or component name (eg Confirmation or Parties)
+:* a FIX field name (eg Quantity)
+:* a FIX tag number (eg 54)
+
+or if you just want to browse, click on one of the following links:
+
+:* [[:Category:Message | FIX Messages]]
+:* [[:Category:Component | FIX Components]]
+:* [[:Category:Field | FIX Fields]]
+:* [[:Category:Value | FIX Values]]
+:* [[:Category:Type | FIX Types]]
+
+Click on the Cameron Edge logo at the top left at any time to return to this main page.
+
+==More Detail==
+[[{{SITENAME}}:Use |Using {{SITENAME}}]].
+
+[[{{SITENAME}}:Structure |Structure of {{SITENAME}}]].
+
+[[{{SITENAME}}:About | About {{SITENAME}}]].

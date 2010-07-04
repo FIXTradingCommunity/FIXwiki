@@ -1,0 +1,58 @@
+==Namespaces==
+
+{{SITENAME}} is in two parts:
+* The part containing data from the FIX specification
+* The part contributed by users
+
+All FIX specification data is located in the FPL [http://www.mediawiki.org/wiki/Help:Namespaces namespace]. Access to that namespace is restricted to read only. This is because the content of pages in this namespace is generated automatically directly from the [http://fixprotocol.org FIX specification]. It can only change when the specification itself is changed.
+
+User contributions are made in the main (blank) namespace. Anyone who registers with {{SITENAME}} can read and modify pages in this area.
+(A confirmed valid email address is required in order to make changes).
+
+Each FIX related page in the {{SITENAME}} main namespace consists of the read only FIX specification part (included from the FPL namespace)
+followed by the user contributed part which can be freely edited by any registered user.
+
+==Categories==
+
+[http://www.mediawiki.org/wiki/Help:Categories Categories] are also used to impose structure on {{SITENAME}}.
+
+There are three different types of category.
+
+===FIX entity categories===
+
+There are categories for each type of FIX entity (messages, components, fields, types and values):
+; [[:Category:Message]]
+: All pages about FIX messages are in the Message category
+; [[:Category:Component]]
+: All pages about FIX components are in the Component category
+; [[:Category:Field]]
+: All pages about FIX fields are in the Field category
+; [[:Category:Type]]
+: All pages about FIX data types are in the Type category
+; [[:Category:Value]]
+: All pages about FIX special enumerated values are in the Value category
+
+See the special pages associated with these categories for more information. (Click on the links in the above list).
+
+===FIX version categories===
+
+There is a category for each FIX version.
+For example, [[:Category:FIX.4.0]].
+
+Pages relating to particular FIX versions are in the corresponding FIX version category.
+
+===FIX message categories===
+
+There is a category for each FIX message or component.
+Each page about a FIX field (or component) will belong to the message or component categories of all messages or components that it appears in.
+
+This allows {{SITENAME}} to automatically keep track of which fields appear in which messages and components. Similarly it can keep track of which components appear in other components or messages.
+
+==Subpages==
+
+Pages for FIX messages and components have [http://www.mediawiki.org/wiki/Help:Subpages subpages] which show their different contents according to FIX version.
+For example, the subpage [[Reject/FIX.4.0-4.1]] shows the contents of the FIX reject message in FIX versions 4.0 through 4.1.
+
+Pages for FIX fields which have enumerated values have a subpage for each possible value. So each {{SITENAME}} value page is a subpage of the page of its associated field.
+For example, the subpage [[Side/4 SellPlus]] has details on the "SellPlus" value (4) of the FIX Side field.
+See [[:Category:Value]] for more information on value subpages.

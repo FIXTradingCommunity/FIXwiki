@@ -1,0 +1,7 @@
+This contains all {{SITENAME}} pages that have been flagged as being associated with an error in the FIX Repository.
+
+Repository errors are flagged by contributing a description of the nature of the error to the most relevant 
+{{SITENAME}} page.
+
+The description should start with <nowiki>{{RepoError}}</nowiki>. 
+This will include a standard heading into the text and also mark the page as belonging to the RepoError category.

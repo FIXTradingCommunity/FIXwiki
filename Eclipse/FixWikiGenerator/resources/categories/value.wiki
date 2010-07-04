@@ -1,0 +1,15 @@
+==FIX Values==
+
+Every field in a message has a value. Every field value has a data type.
+In addition, some fields can only take a restricted set of special field values.
+
+Fields with a restricted set of special values are said to have "enumerated" values.
+
+In {{SITENAME}} each special field value has a page which describes it.
+The name of the value page is constructed from the field name, special value and value name as follows:
+
+<code>
+  FieldName/Value ValueName
+</code>
+
+All value pages belong to the {{SITENAME}} category "Value".

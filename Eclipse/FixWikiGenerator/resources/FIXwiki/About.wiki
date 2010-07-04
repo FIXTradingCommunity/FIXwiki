@@ -1,0 +1,5 @@
+{{SITENAME}} was created by John Cameron of [http://www.cameronedge.com Cameron Edge].
+
+The FIX content of {{SITENAME}} was automatically generated from the [http://www.fixprotocol.org/repository FIX Repository] as well as from additional data taken directly from the [http://www.fixprotocol.org/specifications/ FIX Specification] documents themselves.
+
+{{SITENAME}} is implemented using [http://mediawiki.org/ MediaWiki], which is the same Wiki software used by [http://wikipedia.org Wikipedia].

@@ -1,7 +1,0 @@
-This contains all {{SITENAME}} pages that have been flagged as being associated with an error in the FIX Specification.
-
-Specification errors are flagged by contributing a description of the nature of the error to the most relevant 
-{{SITENAME}} page.
-
-The description should start with <nowiki>{{SpecError}}</nowiki>. 
-This will include a standard heading into the text and also mark the page as belonging to the SpecError category.

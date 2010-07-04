@@ -1,5 +1,0 @@
-===Content of Component [[{{{Name}}}]]===
-
-{| border="1"
-! TagText !! FieldName or ComponentName !! Required !! Description
-

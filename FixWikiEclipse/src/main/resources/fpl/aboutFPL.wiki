@@ -1,0 +1,14 @@
+FIX Protocol Limited (FPL) (http://www.fixprotocol.org) oversees and manages the development of the FIX Protocol specification and encourages its use throughout the industry.  FPL is open to due paying members representing business and technology professionals interested in guiding the growth and adoption of the FIX Protocol that work for: Buy-side Firms, Sell-side Firms, Exchanges, ECNs/ATSs, Utilities, Vendors, and Other Associations.  For more information about membership please visit  http://www.fixprotocol.org/join/.
+
+FIX Protocol Limited is represented by the following high-level organization structure:
+* Global Steering Committee comprised of the FPL Committee Chairs
+* Global Technical and Global Education & Marketing comprised of Product/Region Committee Representatives
+
+For a current list of FPL Member firms, visit:
+http://www.fixprotocol.org/members/
+
+For a current list of active FPL Working Groups, visit:
+http://www.fixprotocol.org/working_groups/
+
+Links to Product and Regional Committees' web pages are at:
+http://www.fixprotocol.org/committees/

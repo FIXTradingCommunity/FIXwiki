@@ -1,0 +1,24 @@
+===FIX Message {{{MessageName}}} (MsgType={{{MsgType}}})===
+
+{| border="1"
+! MsgType !! FIX Specification !! First introduced !! Deprecated
+|-
+|| [[MsgType/{{{MsgType}}} {{{MessageName}}} | MsgType={{{MsgType}}}]] || {{{Volume}}}: {{{Section}}} messages - {{{Category}}} || {{{FromVersion}}} || {{{Deprecated|}}}
+|}
+
+{{{Desc|}}}
+
+{{#ifexist: FPL:{{{MessageName}}} Notes
+|{{FPL:{{{MessageName}}} Notes}}
+}}
+
+====Message Contents By FIX Version====
+
+{{#tag:splist
+|  parent={{{MessageName}}}
+|  kidsonly=yes
+}}
+
+
+
+<includeonly>[[Category:Message]]</includeonly>

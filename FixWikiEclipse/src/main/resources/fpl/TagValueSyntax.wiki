@@ -1,0 +1,202 @@
+==Introduction==
+
+The following section summarizes general specifications for constructing FIX messages in "Tag=Value" syntax.
+
+==Message Format==
+
+The general format of a FIX message is a standard header followed by the message body fields and terminated with a 
+standard trailer.
+
+Each message is constructed of a stream of  <tag>=<value> fields with a field delimiter between fields in the stream.  
+Tags are of data type [[TagNumDataType|TagNum]].  All tags must have a value specified.  
+Optional fields without values should simply not be specified in the FIX message.  
+A [[Reject]] message is the appropriate response to a tag with no value.
+
+Except where noted, fields within a message can be defined in any sequence 
+(Relative position of a field within a message is inconsequential.) The exceptions to this rule are:
+
+#General message format is composed of the standard header followed by the body followed by the standard trailer.
+#The first three fields in the standard header are [[BeginString]] (tag #8) followed by [[BodyLength]] (tag #9) followed by [[MsgType]] (tag #35).
+#The last field in the standard trailer is the [[CheckSum]] (tag #10).
+#Fields within repeating data groups must be specified in the order that the fields are specified in the message definition within the FIX specification document.  The NoXXX field where XXX is the field being counted specifies the number of repeating group instances that must immediately precede the repeating group contents.
+#A tag number (field) should only appear in a message once. If it appears more than once in the message it should be considered an error with the specification document. The error should be pointed out to the FIX Global Technical Committee.
+
+In addition, certain fields of the data type [[MultipleCharValueDataType|MultipleCharValue]] can contain multiple 
+individual values separated by a space within the "value" portion of that field followed by a single "SOH" 
+character (e.g. "18=2 9 C<SOH>" represents 3 individual values: '2', '9', and 'C').  
+Fields of the data type [[MultipleStringValueDataType|MultipleStringValue]] can contain multiple values that consists 
+of string values separated by a space within the "value" portion of that field followed by a single "SOH" character 
+(e.g. "277=AA I AJ<SOH>" represents 3 values: 'AA', 'I', 'AJ').
+
+It is also possible for a field to be contained in both the clear text portion and the encrypted data sections of the 
+same message.  This is normally used for validation and verification.  
+For example, sending the [[SenderCompID]] in the encrypted data section can be used as a rudimentary validation technique.  In the cases where the clear text data differs from the encrypted data, the encrypted data should be considered more reliable. (A security warning should be generated).
+
+==Field Delimiter==
+
+All fields (including those of data type [[DataDataType|Data]] e.g. [[SecureData]], [[RawData]], 
+[[Signature]], [[XmlData]], etc.) in a FIX message are terminated by a delimiter character.  
+The non-printing, ASCII "SOH" (#001, hex:  0x01, referred to in this document as <SOH>), is used for field termination. 
+Messages are delimited by the "SOH" character following the [[CheckSum]] field. 
+All messages begin with the "8=FIX.x.y<SOH>" string and terminate with "10=nnn<SOH>".
+
+There shall be no embedded delimiter characters within fields except for data type [[DataDataType|Data]].
+
+==Repeating Groups==
+
+It is permissible for fields to be repeated within a repeating group 
+(e.g. "384=2<SOH>372=6<SOH>385=R<SOH>372=7<SOH>385=R<SOH>" represents a repeating group with two repeating instances 
+"delimited" by tag 372 (first field in the repeating group.)).
+
+* If the repeating group is used, the first field of the repeating group is required.  This allows implementations of the protocol to use the first field as a "delimiter" indicating a new repeating group entry. The first field listed after the NoXXX, then becomes conditionally required if the NoXXX field is greater than zero.
+* The NoXXX field (for example: [[NoTradingSessions]], [[NoAllocs]]) which specifies the number of repeating group instances occurs once for a repeating group and must immediately precede the repeating group contents.
+* The NoXXX field is required if one of the fields in the repeating group is required. If all members of a repeating group are optional, then the NoXXX field should also be optional.
+* If a repeating group field is listed as required, then it must appear in every repeated instance of that repeating group.
+* For optional repeating group, there is no requirement to specify NoXXX=0 (e.g. [[NoPartyIDs]]=0) when there is no data to send.  The absence of the repeating group means the same thing.
+* Sending NoXXX=0 (e.g. [[NoPartyIDs]]=0) for optional repeating group is valid but not recommended.
+* Recipients should be able to accept NoXXX=0, but Recipients should not require this.
+* Senders should never send NoXXX=0.
+* For repeating groups that are marked as required, sending NoXXX=0 is not FIX compliant.
+* Repeating groups are designated within the message definition via indentation and the ">" symbol.
+* The ordering of repeating group instances must be preserved and processed in the order provided by the message sender.
+
+Some repeating groups are nested within another repeating group (potentially more than one level of nesting).
+
+* Nested repeating groups are designated within the message definition via indentation and the ">" symbol followed by another ">" symbol.
+* If a nested repeating group is used, then the outer repeating group must be specified
+
+===Example of a repeating group===
+
+This is the part of a message containing a repeating group.
+
+{|border="1"
+|-
+|215
+|
+|[[NoRoutingIDs]]
+|N
+|Required if any [[RoutingType]] and [[RoutingID]]s are specified.  Indicates the number within repeating group.
+|-
+|>
+|216
+|[[RoutingType]]
+|N
+|Indicates type of [[RoutingID]].  Required if [[NoRoutingIDs]] is > 0.
+|-
+|>
+|217
+|[[RoutingID]]
+|N
+|Identifies routing destination. Required if [[NoRoutingIDs]] is > 0.
+|}
+
+===Example of nested repeating group===
+
+Portion of [[NewOrderList]] message showing a nested repeating group for allocations for each order. 
+Note the [[NoAllocs]] repeating group is nested within the [[NoOrders]] repeating group and as such each instance of 
+the orders repeating group may contain a repeating group of allocations. 
+
+{|border="1"
+|-
+|73||||||[[NoOrders]]||Y||Number of orders in this message (number of repeating groups to follow)
+|-
+|>||11||||[[ClOrdID]]||Y||Must be first field in the repeating group
+|-
+|>||526||||[[SecondaryClOrdID]]||N||
+|-
+|>|||etc|||||||
+|-
+|>||78||||[[NoAllocs]]||N||Indicates number of pre-trade allocation accounts to follow.
+|-
+|>||>||79||[[AllocAccount]]||N||Required if [[NoAllocs]] > 0.  Must be the first field in the repeating group.
+|-
+|>||>||467||[[IndividualAllocID]]||N||
+|-
+|>||>||etc||||||
+|-
+|>||63||||[[SettlmntTyp]]||N||
+|-
+|>||64||||[[FutSettDate]]||N||
+|-
+|>|||etc|||||||
+|}
+
+
+==User Defined Fields==
+
+In order to provide maximum flexibility for its users, the FIX protocol accommodates User Defined Fields.  
+These fields are intended to be implemented between consenting trading partners and should be used with caution to 
+avoid conflicts, which will arise as multiple parties begin implementation of the protocol.  
+It is suggested that if trading partners find that particular User Defined Fields add value, they should be 
+recommended to the FIX Global Technical Committee for inclusion in a future FIX version.
+
+The tag numbers 5000 to 9999 have been reserved for use with user defined fields, which are used as part of 
+inter-firm communcation.  These tags can be registered/reserved via the FIX website.
+
+The tag numbers greater than or equal to 10000 have been reserved for internal use (within a single firm) and do not 
+need to be registered/reserved via the FIX website.
+
+
+==Usage of Encoded Fields For non-ASCII Language Support==
+
+The examples below illustrates how the [[MessageEncoding]] (347) field is used in conjunction with the various 
+available encoded fields in FIX.
+
+Example 1 - Specify the ASCII/English value as [[Issuer]] plus Japanese character set as [[EncodedIssuer]]
+
+{|border="1"
+|-
+|||...Other standard header fields||
+|-
+|347||[[MessageEncoding]]||Shift_JIS
+|-
+|||...Other standard header fields||
+|-
+|||...Other message body fields||
+|-
+|106||[[Issuer]]||HITACHI
+|-
+|348||[[EncodedIssuerLen]]||10
+|-
+|349||[[EncodedIssuer]]||"HITACHI" in Japanese characters encoded as 10 bytes of Shift_JIS
+|-
+|||...Other message body fields||
+|}
+
+
+Example 2 - Specify the ASCII/English value as [[Issuer]] plus Japanese character set as [[EncodedIssuer]].
+Specify the ASCII/English value as [[Text]] plus Japanese character set as [[EncodedText]].
+
+{|border="1"
+|-
+|||...Other standard header fields||
+|-
+|347||[[MessageEncoding]]||Shift_JIS
+|-
+|||...Other standard header fields||
+|-
+|||...Other message body fields||
+|-
+|106||[[Issuer]]||HITACHI
+|-
+|348||[[EncodedIssuerLen]]||10
+|-
+|349||[[EncodedIssuer]]||"HITACHI" in Japanese characters encoded as 10 bytes of Shift_JIS
+|-
+|||...Other message body fields||
+|-
+|58||[[Text]]||This is a test
+|-
+|356||[[EncodedTextLen]]||17
+|-
+|357||[[EncodedText]]||"This is a test" in Japanese characters encoded as 17 bytes of Shift_JIS
+|-
+|||...Other message body fields||
+|}
+
+
+===Precautions when using UNICODE===
+
+There is the possibility that an SOH may be included in the character data when using UNICODE encoding. 
+To avoid parsing problems, a FIX engine should use the EncodedXXXLen value to extract the proper number of bytes.
+

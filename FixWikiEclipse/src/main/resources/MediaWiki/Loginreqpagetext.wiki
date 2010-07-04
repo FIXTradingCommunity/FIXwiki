@@ -1,0 +1,8 @@
+Sorry, but you must $1 to view other pages.
+
+Requiring a log in provides some basic protection against vandals.
+It also allows better tracking of the use of {{SITENAME}}.
+
+[[Special:UserLogin/signup|Registering for a log in account]] is quick and easy.
+Any data entered by you when registering for a log in account (eg your email address) is treated as strictly 
+confidential, for internal {{SITENAME}} use only.

@@ -1,0 +1,15 @@
+See [http://www.mediawiki.org/wiki/Help:Search MediaWiki's standard search help].
+
+By default, only user contributions are searched (ie the main or blank namespace). 
+If you want to search other areas - for example the FPL namespace which contains content from the FIX specification - 
+you can specify that by selecting your desired namespaces in the [[Special:Search|Search page]] that displays in 
+response to your initial search request.
+
+Alternately you can prefix your entered search text with the namespace you want to search. 
+For example, enter "fpl:cross" and press the Search button to look for all references to the word "cross" in the 
+FIX specification content (FPL namespace).
+Or enter "all:cross" to find references to "cross" in any namespace.
+
+(Note that FPL namespace pages do not display directly since they are intended only for inclusion in the main namespace 
+pages. To view FPL page content just follow the displayed link to the corresponding main namespace page.
+It includes the contents of its FPL counterpart.)

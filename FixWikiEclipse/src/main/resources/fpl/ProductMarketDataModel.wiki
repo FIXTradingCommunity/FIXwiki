@@ -1,0 +1,114 @@
+==Overview==
+
+This section relates to the Pre-trade [[FPL:Pre-trade messages#Market Structure Reference Data|Market Structure]] and 
+[[FPL:Pre-trade messages#Securities_Reference_Data|Securities Reference Data]] groups of messages. 
+
+A marketplace may group trading into separate markets ("exchanges"). Such grouping is frequent when various asset classes are traded in one and the same market place, e.g. Stock, Fixed Income, Options and Futures. Another type of segmentation occurs when one exchange covers multiple domiciles. The various markets may have different members (or trading participants) but are served by separate trading systems.
+
+Within a market, various market segments (or product groups) could be devised to cover specific market needs. One market segment could, for example, be specialized for a wholesale market, another for retail. Separate market segments could be used for liquid stock using continuous auto-execution facilities, while another segment uses recurring call auctions to best fit less liquid instruments. Market segments could also represent trading venues as in the case an exchange offers both a floor and electronic trading.
+
+Each market segment covers a number of instruments (or order books) and could have a distinct trading schedule and 
+specific trading rules. It should be noted that Instruments and others are not created as an effect of the 
+[[MarketDefinition]] message. Instrument creation or definition is done via the [[SecurityDefinition]] message.
+
+A variety of facts can be associated with a Market Segment:
+
+*	The identifier for the market for which the segment applies
+
+*	A description or free text name of the market segment
+
+*	A reference to a higher level market segment (enabling a hierarchy of segments)
+
+*	A list of instruments traded at the segment. It is proposed that this list is relayed using the [[SecurityList]] message or multiple [[SecurityDefinition]] messages.
+
+*	The trading schedule for the market segment. It is proposed that the Trading Session List message is used to relay the schedule.
+
+*	Default trading rules applying to all instruments unless overridden at the trading session or individual security level:
+**	Trading currency
+**	Price Type used for standard quoting and trading
+**	Tick rules. Although many markets use a single tick size, other markets supports so-called "tick size tables" where the tick increases with the size of the price. With "tick size tables" penny price increments may be used for security traded in smaller unit prices, while nickel, for example, increments are used for higher unit prices.
+**	Lot sizes. Although many markets use a single lot size, some markets support integrated books with a separation of odd and round lot orders. In some cases additional lot sizes are also used, for example, for block trades.
+
+As trading sessions in most cases are defined per market segment, trading sessions often need to be qualified by the market segment and sometimes by the exchange/market.  Note the same [[TradingSessionID]] can apply to many Market Segments.  For example, an "Opening" trading session may apply to all market segments, so when a Trading Session Status is relayed the [[TradingSessionID]] needs to be qualified by the [[MarketID]] and [[MarketSegmentID]]. In Orders, however, specifying the [[TradingSessionID]] when the Order should expire does not need qualification of [[MarketID]] or [[MarketSegmentID]] as the context is normally implied by the security being traded.
+
+The diagrams below depicts the data model used in the [[SecurityDefinition]], [[DerivativeSecurityList]], 
+[[SecurityList]] and [[MarketDefinition]] message sets.
+
+
+
+===Figure 1: Security and Trading Session rules components===
+
+[[Image:ProductMarketDataModelFig1.png|900px]]
+
+===Figure 2:  Security Definition===
+
+[[Image:ProductMarketDataModelFig2.png|900px]]
+
+===Figure 3:  Market Definition===
+
+[[Image:ProductMarketDataModelFig3.png|900px]]
+
+==Message Flow Scenarios==
+
+The Market Definition message is associated with a list of trading sessions (and subsessions) applicable for the 
+segment - the list is published using the [[TradingSessionList]] message. 
+It is foreseen that the message will be relayed every trading day, or at least when trading sessions are changed. 
+The user of the message has the ability to relay either Trading Sessions only - or, if applicable, Trading SubSessions. 
+Depending on characteristics of the market, the various Time fields apply or not.
+
+A user can obtain the securities traded at a Market and/or Market Segment through the use of the 
+[[SecurityList]] or [[SecurityDefinition]] messages. 
+A market can choose to push the [[SecurityList]] message out as part of a master file feed or provide 
+queries/subscriptions capabilities through the [[SecurityListRequest]] and related messages.
+
+
+===Market Structure based Trading Reference data===
+
+Users access the market structure either through query/subscription messages 
+(such as the [[MarketDefinitionRequest]]) or via separate download or feed provided by the marketplace. 
+An example sequence of messages is:
+
+*	A [[MarketDefinition]] message for each Market
+**	A [[MarketDefinition]] message for each segment per the Market
+***	A [[TradingSessionList]] message for each Market Segment, listing the applicable trading sessions and subsessions
+***	A [[SecurityList]] message for each Market Segment, listing the applicable securities
+***	(A [[SecurityTypes]] message for each Market Segment, listing the applicable security types)
+
+The download typically occurs at start of day, week or other relevant period subject to bilateral agreement. 
+In between downloads, real time updates can be provided through the associated Update Report messages.
+
+The marketplace may continuously relay status information either subscription based or as a part of a market data feed:
+
+*	[[SecurityStatus]] / [[SecurityStatusRequest]]. If securities are traded in multiple markets or segments, the status needs to be qualified by Market / Market segement
+
+*	[[TradingSessionStatus]] / [[TradingSessionStatusRequest]]. If there are multiple markets / market segments, the Trading Session status needs to be qualified by the applicable Market and Market Segment to make sense
+
+Further, other messages may also be filtered per Market and Market Segment:
+
+*	[[SecurityTypes]] / [[SecurityTypeRequest]]
+
+===="Start of day" download====
+
+The diagram depicts how start of day (or other periodicity) market structure trading reference data can be relayed.
+
+'''Figure 4:  Start-of-day flow'''
+
+[[Image:ProductMarketDataModelFig4.png|500px]]
+
+Note that whether a request is needed, what filtering parameters are applicable, what messages are returned and what 
+fields are included are all bilaterally agreed. 
+A marketplace may also choose to make the information available by other means as e.g. a down-loadable file.
+
+The same message flow applies to a situation after the "Start of Day" where reference data has to be obtained anew.
+
+===="Intra-day" updates====
+
+The following diagram depicts how intra-day real time updates of the market structure trading reference data can be relayed.
+
+'''Figure 5:  Intra-day flow'''
+
+[[Image:ProductMarketDataModelFig5.png|500px]]
+
+
+
+

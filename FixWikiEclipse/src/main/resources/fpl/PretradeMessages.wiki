@@ -1,0 +1,300 @@
+Pre-trade messaging is characterized as messages which are typically communicated prior to the placement of an order.  
+
+==Pre-trade Component Blocks==
+
+This section lists component blocks commonly used by pre-trade messages. 
+Messages may also reference [[FPL:Common Components|Common Components]], which are components used by messages in any 
+context.
+
+'''Common Pre-Trade Components:'''
+
+[[BaseTradingRules]],
+[[ExecInstRules]], 
+[[LegBenchmarkCurveData]], 
+[[LotTypeRules]], 
+[[MarketDataFeedTypes]], 
+[[MatchRules]], 
+[[OrdTypeRules]], 
+[[PriceLimits]], 
+[[RoutingGrp]], 
+[[TickRules]], 
+[[TimeInForceRules]], 
+[[TradingSessionRules]]
+
+FIX pre-trade messaging can be categorized into the following sections.
+
+==Indication==
+'''Components:'''
+[[InstrmtLegIOIGrp]], [[IOIQualGrp]]
+
+'''Messages:''' 
+[[Advertisement]], [[IOI|IOI (Indication Of Interest)]]
+
+==Event Communications==
+'''Components:'''
+[[LinesOfTextGrp]], 
+[[NewsRefGrp]]
+
+'''Messages:'''
+[[Email]],
+[[News]]
+
+==Quotation and Negotiation==
+The quotation messages fall into two main sub-categories – those used for quoting in single instruments  
+"Single product quoting" and those used to quote on multiple instruments such as option series - "Mass quoting".
+
+See [[FPL:Quoting Models|Quoting Models]] for more details.
+
+Within the "single product quoting" suite of messages three business models have been identified:
+
+; Indicative quoting 
+:the predominant business model for retail quoting, where the expected response to a quote is a ‘previously quoted’ order which may be accepted or rejected. In the retail model the quote may be preceded by a [[QuoteRequest]]
+; Tradeable quoting 
+: a model where the response to a quote may be an execution (rather than an order). A common model where participants are posting quotes to an exchange. [[Quote]] may be issued in response to a [[QuoteRequest]] in a ‘quote on demand’ market
+; Restricted Tradeable quoting 
+: as per Tradeable quoting but the  response to a quote may be either an execution or an order depending on various parameters. 
+
+The Negotiation (a.k.a. counter quoting) dialog is also supported.  The Negotiation dialog may begin with either an indicative quote or a tradeable quote.  For specific usage guidance for Fixed Income and Exchange/Marketplace negotiation and counter quotes using the quotation messages, see [[PRODUCT: FIXED INCOME]] and [[USER GROUP: EXCHANGES AND MARKETS]] respectively.
+
+The common thread linking the models is the use of the [[Quote]] message.
+
+'''Components:'''
+ 
+[[LegQuotGrp]],
+[[LegQuotStatGrp]],
+[[QuotCxlEntriesGrp]],
+[[QuotEntryAckGrp]],
+[[QuotEntryGrp]],
+[[QuotQualGrp]],
+[[QuotReqGrp]],
+[[QuotReqLegsGrp]],
+[[QuotReqRjctGrp]],
+[[QuotSetAckGrp]],
+[[QuotSetGrp]],
+[[RFQReqGrp]]
+
+'''Messages:'''
+
+[[MassQuote]],
+[[MassQuoteAcknowledgement]],
+[[Quote]],
+[[QuoteCancel]],
+[[QuoteRequest]],
+[[QuoteResponse]],
+[[QuoteRequestReject]],
+[[QuoteStatusRequest]],
+[[QuoteStatusReport]],
+[[RFQRequest]]
+
+
+==Market Data==
+'''Components:'''
+
+[[InstrmtMDReqGrp]], [[MDFullGrp]], [[MDIncGrp]], [[MDReqGrp]], [[MDRjctGrp]], [[SecSizesGrp]], [[StatsIndGrp]], [[StrmAsgnReqGrp]], [[StrmAsgnRptGrp]], [[StrmAsgnReqInstrmtGrp]], [[StrmAsgnRptInstrmtGrp]]
+
+'''Messages:'''
+ 
+[[MarketDataIncrementalRefresh]], [[MarketDataRequest]], [[MarketDataRequestReject]], [[MarketDataSnapshotFullRefresh]],  [[StreamAssignmentReport]], [[StreamAssignmentReportACK]], [[StreamAssignmentRequest]],
+
+==Market Structure Reference Data==
+
+See [[FPL:Product Reference and Market Structure Data Model|Product Reference and Market Structure Data Model]].
+
+'''Components:'''
+
+[[TrdSessLstGrp]]
+
+'''Messages:'''
+ 
+[[MarketDefinition]], 
+[[MarketDefinitionRequest]], 
+[[MarketDefinitionUpdateReport]], 
+[[TradingSessionList]], 
+[[TradingSessionListRequest]], 
+[[TradingSessionListUpdateReport]],
+[[TradingSessionStatus]], 
+[[TradingSessionStatusRequest]]
+
+See also [[FPL:Security Definition, Security Status, and Trading Session Message Scenarios|Security Definition, Security Status, and Trading Session Message Scenarios]].
+
+==Securities Reference Data==
+
+See [[FPL:Product Reference and Market Structure Data Model|Product Reference and Market Structure Data Model]].
+
+'''Components:'''
+
+[[DerivativeEventsGrp]], 
+[[DerivativeInstrument]], 
+[[DerivativeInstrumentAttribute]], 
+[[DerivativeInstrumentParties]],
+[[DerivativeInstrumentPartySubIDsGrp]], 
+[[DerivativeSecurityAltIDGrp]], 
+[[DerivativeSecurityDefinition]], 
+[[DerivativeSecurityXML]], 
+[[InstrmtLegSecListGrp]], 
+[[MarketSegmentGrp]], 
+[[MaturityRules]], 
+[[NestedInstrumentAttribute]], 
+[[RelSymDerivSecGrp]], 
+[[RelSymDerivSecUpdGrp]], 
+[[SecListGrp]], 
+[[SecLstUpdRelSymGrp]], 
+[[SecLstUpdRelSymsLegGrp]], 
+[[SecondaryPriceLimits]], 
+[[SecTypesGrp]], 
+[[SecurityTradingRules]], 
+[[StrikeRules]], 
+[[TradingSessionRulesGrp]] 
+
+'''Messages:'''
+
+[[DerivativeSecurityList]], 
+[[DerivativeSecurityListRequest]], 
+[[DerivativeSecurityListUpdateReport]], 
+[[SecurityDefinition]], 
+[[SecurityDefinitionRequest]], 
+[[SecurityDefinitionUpdateReport]], 
+[[SecurityList]], 
+[[SecurityListRequest]], 
+[[SecurityListUpdateReport]], 
+[[SecurityStatus]],
+[[SecurityStatusRequest]], 
+[[SecurityTypeRequest]], 
+[[SecurityTypes]] 
+
+See also [[FPL:Security Definition, Security Status, and Trading Session Message Scenarios|Security Definition, Security Status, and Trading Session Message Scenarios]].
+
+==Parties Reference Data==
+The Parties Reference Data message set provides support for the dissemination of party and related party reference information and party risk limit reference information from a master file/source to interested parties or systems that need this information.  The primary use of this information is for interested parties or systems to enforce trading and clearing relationships and risk limits.
+
+See [[FPL:Parties Reference Data|Parties Reference Data]] for more details.
+
+'''Parties Reference Data Components:'''
+
+[[AltPtysSubGrp]], 
+[[ContextParties]], 
+[[ContextPtysSubGrp]], 
+[[PartyAltIDs]], 
+[[PartyDetail]], 
+[[PartyListGrp]], 
+[[PartyListResponseTypeGrp]], 
+[[PartyRelationships]], 
+[[RelatedAltPtysSubGrp]], 
+[[RelatedContextParties]], 
+[[RelatedContextPtysSubGrp]], 
+[[RelatedPartyAltIDs]], 
+[[RelatedPartyDetail]], 
+[[RelatedPartyGrp]], 
+[[RelatedPtysSubGrp]], 
+[[RelationshipRiskInstrumentScope]], 
+[[RelationshipRiskLimits]], 
+[[RelationshipRiskSecAltIDGrp]], 
+[[RelationshipRiskWarningLevels]],
+[[RequestedPartyRoleGrp]], 
+[[RiskInstrumentScope]], 
+[[RiskLimits]], 
+[[RiskSecAltIDGrp]], 
+[[RiskWarningLevels]]
+
+'''Messages:'''
+ 
+[[PartyDetailsListReport]],
+[[PartyDetailsListRequest]] 
+
+==Pre-Trade Message Targeting/Routing==
+
+Three fields, [[NoRoutingIDs]], [[RoutingType]], and [[RoutingID]] have been added to support list processing on third party networks.    Vendor "indication of interest" systems generally have list management capabilities.    These capabilities include blocking and targeting.   To mirror the functionality of the vendor indication systems both blocking and targeting were supported.
+
+===Targeting===
+
+Targeting relates to the message that contains a list of targeted firms or targeted vendor maintained list identifiers to receive the indication.    Generally, most vendor "indication of interest" systems maintain list identifiers that contain firm identifiers for their broker connections.  For example, a broker has a list called "JapanList" that contains three institutions JapaneseFirm1, JapaneseFirm2, and JapaneseFirm3.  The three firm identifiers are created by the vendor.
+
+Targeting allows for the definition of the universe of firms to receive the indication of interest.   A indication of interest message without the targeting identifiers (either firm or list) is assumed to be sent to the whole list of indication receiving firms managed by the vendor (i.e. every institution connected to the broker).
+
+Specific targeting can be accomplished through the combination of firm identifiers and list identifiers.  For example, a broker needs to send an indication of interest to a vendor maintained list of U.K. based clients called "UKList" and two U.S. based firms.     The targeting section of the indication of interest would look as follows:
+
+215=3^216=1^217=USFirm1^216=1^217=USFirm2^216=2^217=UKList^
+
+Note: The ^ character represents the SOH delimiter.
+
+'''Tag Explanation'''
+
+{|border="1"
+|-
+|215=3
+|Three pairs of routing types and IDs to be processed
+|-
+|216=1
+|Target ID to follow
+|-
+|217=USFirm1
+|Target ID named USFirm1
+|-
+|216=1
+|Target ID to follow
+|-
+|217=USFirm2
+|Target ID named USFirm2
+|-
+|216=2
+|Target list to follow
+|-
+|217=UKList
+|Target list named UKList
+|}
+
+The vendor would assemble the destination list based on the two firm identifiers and the one list identifier.
+
+===Blocking===
+
+An indication with blocking contains a list of firm identifiers or vendor maintained list identifiers that will be excluded from the targeted list of indication receiving firms managed by the vendor.  Using the blocking fields without targeting fields implies that indication of interest is being blocked from the whole universe of institutions available to the broker (i.e. everyone on the vendor's system but these firms).
+
+Many "indication of interest" systems have sophisticated list handling mechanisms that need to be replicated.   Blocking is not always performed from the whole universe of firms on the system (i.e. ALL).
+
+Using a combination of targeting and blocking fields can allow for sophisticated list management capabilities.  For example, let's assume that the broker intends to send an indication of interest to the universe defined by the broker's UKList and two U.S. based firms.   However, the broker needs to exclude one UK based firm from the UKList.    The targeting and blocking section would appear as follows:
+
+215=4^216=2^217=UKList^216=1^217=USFirm1^216=1^217=USFirm2^216=3^217=UKFirm1^
+
+Note: The ^ character represents the SOH delimiter.
+
+'''Tag Explanation'''
+
+{|border="1"
+|-
+|215=4
+|Four pairs of routing types and IDs to be processed
+|-
+|216=2
+|Target list to follow
+|-
+|217=UKList
+|Target list named UKList
+|-
+|216=1
+|Target firm to follow
+|-
+|217=USFirm1
+|Target firm named USFirm1
+|-
+|216=1
+|Target firm to follow
+|-
+|217=USFirm2
+|Target firm named USFirm2
+|-
+|216=3
+|Blocked firm to follow
+|-
+|217=UKFirm1
+|UKFirm1 is blocked from receiving [[IOI]]
+|}
+
+The vendor would assemble the targets based on the supplied UKList and two firm identifiers (USFirm1 and USFirm2) and then remove UKFirm1 from the combined list.
+
+===Other Issues===
+
+It is expected that every indication of interest message will have a unique [[IOIid]] for the FIX session for the trading day.
+
+For canceling and replacing, the vendor system would cancel or replace every destination that has been identified on the previous indication of interest by the [[IOIid]].     Blocking and targeting information would not be required on the canceled or replaced indication of interest.
+
+The use of vendor based firm identifiers requires periodic updates to the brokers to ensure proper blocking and targeting.    It is expected that vendors will provide file base transfers of firm identifiers and company names until a more automated solution becomes available.

@@ -1,0 +1,4 @@
+===Message Content of [[{{{Name}}} | {{{Name}}} (MsgType={{{MsgType}}})]]===
+
+{| border="1"
+! TagText !! FieldName or ComponentName !! Required !! Description

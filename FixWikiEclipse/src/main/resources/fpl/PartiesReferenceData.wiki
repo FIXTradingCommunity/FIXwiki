@@ -1,0 +1,585 @@
+==Introduction==
+
+The [[FPL:Pre-trade messages#Parties Reference Data | Parties Reference Data message set]] provides support for the dissemination of party and related party reference information and party risk limit reference information from a master file/source to interested parties or systems that need this information.  The primary use of this information is for interested parties or systems to enforce trading and clearing relationships and risk limits.
+The party and related party reference information provides information for a particular party that may include:
+* account owner and associated information
+* primary account identifier and alternate identifiers
+* risk limits
+* parties related to the account - e.g. parent company, clearing firm for the account, trader of the account
+The party risk limit reference information provides their risk limit information between the disseminator of the information and the recipient.
+The diagram below represents how the party and risk limit information will be provided in order to enforce trading and clearing relationships. 
+
+# The Trading Platform will have a set of Traders permissioned to trade on the platform
+# Each Trader will have a set of product entitlements that specify which products can be traded
+# Each Trader will have a set of Customer Accounts for which they are a permissioned to trade
+# Each Customer Account will have a set of risk limits which daily trading activity cannot exceed. 
+# Each relationship between a Trader and a Customer Account may have an optional set of risk limits that differ from the risk limits established on the Customer Account.
+# Each Customer Account will have a single parent Trading Firm through which clearing services are offered
+# Each Trading Firm will have a set of risk limits which daily trading activity cannot exceed.
+# Each Trading Firm has a relationship with a Clearing Firm which provides a clearing guarantee for all trading activity.
+# Each Clearing Firm provides clearing services for one or more Trading Firms and their accounts. Risk limits may be applied for the platform.
+# Clearing Firm can be implied from the Trading Firm relationship
+
+
+==Party Reference Structure==
+
+[[Image:PartyReferenceStructure.png|Party Reference Structure]]
+
+
+
+[Note that product based trading entitlements are currently not supported.  This will be a future enhancement.]
+
+Based on the Account Reference Structure described above, the diagrams below illustrates the physical message structure for the new [[PartyDetailsListReport]] message and [[RelatedPartyGrp]] component.
+
+==[[PartyDetailsListReport]] Message Structure==
+
+[[Image:PartyDetailsListReportMessageStructure.png]]
+
+==[[RelatedPartyGrp]] Component Structure==
+
+[[Image:RelatedPartyComponentStructure.png]]
+
+
+The diagrams above illustrate the structure that will be provided to the trading platform. The structure allows for each Party List Group to have the following:
+# A set of primary party information describing the party in the list ([[PartyListGrp]])
+# A set of alternate party identifiers for each Party ([[PartyAltIDs]])
+# A set of secondary information for each Party (Party Sub Type Block)
+# A set of parent parties to which the primary party is subordinate (Parent Party Block) Ð note that each Parent Party will have its own Party List Group
+# A set of product entitlements that pertains to the Party (Product Entitlement Grp) (future consideration)
+# A set of risk limits that pertains to the primary Party (Risk Control Grp)
+
+==Normal Message Flow==
+[[Image:PartiesReferenceDataNormalMessageFlow.png]]
+
+==Usage of Parties Reference Data Messages==
+
+===Expressing Party Relationships and Querying for Party Relationships===
+
+Party relationships, as indicated in the response, can either be inferred based on [[PartyRole]], or made explicit. For example, if [[PartyRole]] is Executing Firm(1) and [[RelatedPartyRole]] is Customer Account(24), it is inferred that the executing firm trades for the customer account. This relationship can also be made explicit by using the [[PartyRelationships]] component block, specifying [[PartyRelationship]] as TradesFor(3).
+Relationships between parties are modeled as a web or mesh. [[PartyRelationship]] can indicate that an entity of a specific [[PartyRole]] is also an entity of different [[PartyRole]], e.g. an Executing Firm with one ID is also a Clearing Firm with another ID.
+With the exception of IsAlso, [[PartyRelationship]] is specified as a list of reciprocal relationships. This enables a relationship to be conveyed regardless of which party is specified in [[PartyID]] and which is specified in [[RelatedPartyID]]. See [[PartyRelationship]] for the list of reciprocal party relationships.
+
+If Executing Firm A "TradesFor" Customer Account B, then Customer Account B TradesThrough Executing Firm A. If Executing Firm A were specified in [[PartyID]], and Customer Account B were specified in [[RelatedPartyID]], then [[PartyRelationship]] would be TradesFor(3). Alternately, if Customer Account B were specified in [[PartyID]], and Executing Firm A were specified in [[RelatedPartyID]], then [[PartyRelationship]] would be TradesThrough(4).
+Examples illustrating each odd numbered [[PartyRelationship]] type, with several possible [[PartyRole]] and [[RelatedPartyRole]] values, are given in the table below. Only odd numbered [[PartyRelationship]] values are illustrated because the even numbered cases can be obtained by swapping [[PartyRole]] and [[RelatedPartyRole]]. This list is not exclusive, but rather illustrative of some relations that can be modeled.
+
+{|border="1"
+|-
+![[PartyRelationship]]
+!Applicable [[PartyRole]]
+!Applicable [[RelatedPartyRole]]
+|-
+
+|1 - [[PartyRelationship/1 ClearsFor|ClearsFor]]
+|[[PartyRole/4 ClearingFirm|ClearingFirm]]
+
+[[PartyRole/79 PrimeBroker|PrimeBroker]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/60 IntroducingBroker|IntroducingBroker]]
+
+[[PartyRole/81 BrokerClearingID|BrokerClearingID]]
+
+|-
+|3 - [[PartyRelationship/3 TradesFor|TradesFor]]
+|[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+
+|5 - [[PartyRelationship/5 Sponsors|Sponsors]]
+|[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+|[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+|-
+|7 - [[PartyRelationship/7 ProvidesGuaranteeFor|ProvidesGuaranteeFor]]
+|[[PartyRole/21 ClearingOrganization|ClearingOrganization]]
+|[[PartyRole/4 ClearingFirm|ClearingFirm]]
+
+[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/5 InvestorID|InvestorID]]
+
+[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+|9 - [[PartyRelationship/9 MemberOf|MemberOf]]
+|[[PartyRole/4 ClearingFirm|ClearingFirm]]
+
+[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/79 PrimeBroker|PrimeBroker]]
+
+[[PartyRole/66 MarketMaker|MarketMaker]]
+
+|[[PartyRole/21 ClearingOrganization|ClearingOrganization]]
+
+[[PartyRole/22 Exchange|Exchange]]
+
+[[PartyRole/65 RegulatedMarket|RegulatedMarket]]
+
+|-
+|11 - [[PartyRelationship/11 ProvidesMarketplaceFor|ProvidesMarketplaceFor]]
+|[[PartyRole/22 Exchange|Exchange]]
+
+[[PartyRole/63 SystematicInternaliser|SystematicInternaliser]]
+
+[[PartyRole/64 MultilateralTradingFacility|MultilateralTradingFacility]]
+
+[[PartyRole/65 RegulatedMarket|RegulatedMarket]]
+
+|[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+
+[[PartyRole/5 InvestorID|InvestorID]]
+
+[[PartyRole/79 PrimeBroker|PrimeBroker]]
+
+[[PartyRole/66 MarketMaker|MarketMaker]]
+
+|-
+|13 - [[PartyRelationship/13 CarriesPositionsFor|CarriesPositionsFor]]
+|[[PartyRole/38 PositionAccount|PositionAccount]]
+|[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+|15 - [[PartyRelationship/15 EntersTradesFor|EntersTradesFor]]
+|[[PartyRole/7 EnteringFirm|EnteringFirm]]
+
+[[PartyRole/36 EnteringTrader|EnteringTrader]]
+
+|[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+|-
+|17 - [[PartyRelationship/17 ProvidesQuotesTo|ProvidesQuotesTo]]
+|[[PartyRole/66 MarketMaker|MarketMaker]]
+|[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+
+[[PartyRole/22 Exchange|Exchange]]
+
+|-
+|19 - [[PartyRelationship/19 InvestsFor|InvestsFor]]
+|[[PartyRole/5 InvestorID|InvestorID]]
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+|21 - [[PartyRelationship/21 BrokersTradesFor|BrokersTradesFor]]
+|[[PartyRole/60 IntroducingBroker|IntroducingBroker]]
+
+[[PartyRole/81 BrokerClearingID|BrokerClearingID]]
+
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+
+|23 - [[PartyRelationship/23 ProvidesTradingServicesFor|ProvidesTradingServicesFor]]
+|[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/79 PrimeBroker|PrimeBroker]]
+
+|[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+|-
+|25 - [[PartyRelationship/25 ApprovesOf|ApprovesOf]]
+|[[PartyRole/4 ClearingFirm|ClearingFirm]]
+|[[PartyRole/60 IntroducingBroker|IntroducingBroker]]
+
+[[PartyRole/81 BrokerClearingID|BrokerClearingID]]
+
+|-
+|27 - [[PartyRelationship/27 ParentFirmFor|ParentFirmFor]]
+|Any role applicable for the parent firm
+|Any role applicable for the subsidiary
+|-
+|29 - [[PartyRelationship/29 RegulatoryOwnerOf|RegulatoryOwnerOf]]
+|[[PartyRole/4 ClearingFirm|ClearingFirm]]
+
+[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/38 PositionAccount|PositionAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+|31 - [[PartyRelationship/31 Controls|Controls]]
+|[[PartyRole/4 ClearingFirm|ClearingFirm]]
+
+[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+[[PartyRole/12 ExecutingTrader|ExecutingTrader]]
+
+[[PartyRole/5 InvestorID|InvestorID]]
+
+[[PartyRole/49 AssetManager|AssetManager]]
+
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/38 PositionAccount|PositionAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+|33 - [[PartyRelationship/33 LegalOwnerOf|LegalOwnerOf]]
+|[[PartyRole/5 InvestorID|InvestorID]]
+
+[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|-
+|35 - [[PartyRelationship/35 BeneficialOwnerOf|BeneficialOwnerOf]]
+|[[PartyRole/5 InvestorID|InvestorID]]
+
+[[PartyRole/1 ExecutingFirm|ExecutingFirm]]
+
+|[[PartyRole/24 CustomerAccount|CustomerAccount]]
+
+[[PartyRole/83 ClearingAccount|ClearingAccount]]
+
+|}
+
+
+Multiple [[PartyRelationship]] values can be specified if multiple types of relationships exist between two parties. For example, a Clearing Firm might both ClearsFor and "Approves of" an Introducing Broker.
+
+Parties can also have one or more parties specified to clarify the context in which the original party is used. An example might be a Clearing Firm that is a member of multiple Clearing Organizations and has a different ID assigned by each Clearing Organization. When referencing the ID assigned by just one Clearing Organization, the Clearing Firm is the party, and that specific Clearing Organization is the [[ContextPartyID]].
+
+[[PartyRelationship]] matches parties that participate as the PartyID in the relationship specified.  For example, a query with PartyRelationship = TradesFor(3) may return all Excuting Firms that trade for various Customer Accounts.  Whether they are paired with their related party (e.g. the Customer Account) or not depends upon the [[PartyListResponseType]]. Should [[PartyListResponseType]] = 0 or 2, then both the Executing Firms and the Customer Accounts are returned.  (Note that the party order can be reversed and the relationship expressed as TradesThrough(4) as described above.)  If neither 0 nor 2 are specified, then just the Executing Firms are returned.
+
+Specifying more than one of these criteria further limits the results set.  For example, requests including one or more [[PartyID]] and one or more [[PartyRelationship]] restrict the query to those parties who are in the specified relationship(s) with the party or parties specified. In the example above, a query with [[PartyID]] = Executing Firm A and [[PartyRelationship]] = TradesFor(3), then Customer Account B is selected.  If [[PartyListResponseType]] = 0 or 2, then a response including both Executing Firm A and Customer Account B would be returned.  In the response, if [[PartyID]] = Executing Firm A and [[RelatedPartyID]] = Customer Account B, [[PartyRelationship]] = TradesFor (3) would be sent. Another valid response would be [[PartyID]] = Customer Account B, [[RelatedPartyID]] = Executing Firm A, with [[PartyRelationship]] = TradesThrough (4).Alternately, if the [[PartyDetailsListRequest]] specified [[PartyListResponseType]] = 1, then a record with [[PartyID]] = Customer Account B would be sent in response with no related parties or party relationships specified.
+
+===Expressing Risk Limits===
+Certain party details, e.g. risk limits, are conveyed in both the [[PartyDetail]] and [[RelatedPartyDetail]] 
+component blocks.  Such information in the [[PartyDetail]] component block refers to the [[PartyID]] identified therein.  
+However, such information in the [[RelatedPartyDetail]] component block may refer only to the relationship between 
+the [[PartyID]] and the [[RelatedPartyID]], and is not a property of the [[RelatedPartyID]] itself.  
+For example, if [[PartyID]] = Customer Account A and [[RiskLimitAmount]] = 10000000, then Customer Account A has a 
+$10MM risk limit.  If [[RelatedPartyID]]=Executing Trader B and [[RelationshipRiskLimitAmount]]=2000000, then 
+Executing Trader B has a $2MM risk limit while trading for Customer Account A.  This limit is valid in 
+Customer Account A only;  Executing Trader B may have a different risk limit in other accounts, and a 
+different combined risk limit among all accounts that Executing Trader B trades for.  
+The [[RelatedPartyDetail]] component block will explicitly indicate if information refers to the relationship and 
+not the related party.
+
+Multiple risk limits may apply to a given entity or relationship.  For example, a customer account may have a 
+$10MM risk limit, a $7MM risk limit on index futures, and a $7MM risk limit on agricultural futures.  
+When multiple risk limits are specified, then all relevant limits must be satisfied or a trade cannot occur.  
+For example, purchasing $8MM in pork bellies is allowed by the customer account limit, is unaffected by the index 
+futures limit, and is prohibited by the agricultural futures limit; therefore, the trade is not allowed.  
+But a trader can buy $6MM pork bellies.  If the trader then attempts to buy an additional $6MM S&P500 index futures, 
+the action would be allowed under the index futures limit, and would be unaffected by the agricultural futures limit, 
+but the overall account limit of $10MM would be exceeded.  The trader could only purchase at most $4MM in S&P500 
+futures while still satisfying all risk limits.
+
+When a risk limit applies only to specific instruments, the [[RiskInstrumentScope]] and 
+[[RelationshipRiskInstrumentScope]] component blocks  define the instrument or instruments in question.  
+The [[RiskInstrumentOperator]] and [[RelationshipRiskInstrumentOperator]] determine whether the matching 
+instruments are to be included or excluded in the risk limit.  All fields in the component block are optional. Any 
+absent field will match all instruments.  Specifying a value in a field will restrict the risk limit to instruments 
+with matching values.  Lists of instruments, or complex matching criteria, can be specified for a single risk limit.  
+When multiple include and exclude operations are specified, all of the rules are applied in order.  
+For example, Include Futures, Exclude Agricultural Futures, Include Corn would:
+
+1.	Build a result set consisting of all futures
+
+2.	Remove all agricultural futures (including corn) from the result set
+
+3.	Add corn back into the result set
+
+S&P500 futures would be part of the risk limit (as they were added in #1 and not removed by #2.)  
+Pork bellies would not be part of the risk limit (as they were added in #1 and removed in #2.)  
+Corn would be part of the risk limit (even though #2 removes it, #3 adds it back in again.)
+
+[[RiskInstrumentMultiplier]] and [[RelationshipRiskInstrumentMultiplier]] allow different instruments to contribute to 
+risk limits proportionally.  Two examples where this may be used are FX and Treasuries.
+
+For example, a risk limit of $100MM may be set for spot FX, but 3 month FX carries more risk and has a limit of $50MM.  
+This could be modeled as a single $100MM risk limit, with 2 instrument types (spot and 3 month) where the 3 month 
+instruments have a [[RiskInstrumentMultiplier]] of 2.0.  Trading $30MM of 3 month FX would then consume $60MM of the 
+risk limit due to the multiplier of 2.0, so only $40MM of spot FX could then be traded.
+
+Or, a risk limit of $100MM may be set for 30 year Treasuries, but 10 year Treasuries carry less risk so $200MM of these 
+may be allowed.  In this example, the limit is $100MM, and both 30 year and 10 year Treasuries are listed, 
+with the 10 year Treasuries having a [[RiskInstrumentMultiplier]] of 0.5.  So if a trader buys $40MM of 30 year 
+Treasuries, then $60MM of the risk limit remains.  Since 10 year Treasuries carry a [[RiskInstrumentMultiplier]] of 0.5, 
+then $120MM of 10 year Treasuries may be purchased.
+
+===Examples===
+The following are examples of unsolicited [[PartyDetailsListReport]] message.  
+The standard header and trailer has been omitted for clarity, and the text names of the FIX fields are used.
+====Trader Party List Example====
+Valid Trader ID's representing account owners have been defined in this list. 
+A trader is linked to one or more customer accounts in the Customer Account Party List. 
+It will be necessary for the trading platform to link an operator to a specific trader id.
+
+<pre>
+PartyDetailsListReportID = 1
+NoPartyList = 4
+> PartyID = 1234567890          // Investor ID
+> PartyIDSource = D             // Proprietary / Custom code
+> PartyRole = 5                 // Investor ID
+> NoPartySubIDs = 2
+> > PartySubID = GOGOL AND ASSOCIATES
+> > PartySubIDType = 5          // Full legal name of firm
+> > PartySubID = GOGOL
+> > PartySubIDType = 1          // Firm
+> PartyID = 2345678901          // Investor ID
+> PartyIDSource = D             // Proprietary / Custom code
+> PartyRole = 5                 // Investor ID
+> NoPartySubIDs = 2
+> > PartySubID = PAULSON INVESTMENTS
+> > PartySubIDType = 5          // Full legal name of firm
+> > PartySubID = PAULSON
+> > PartySubIDType = 1          // Firm
+> PartyID = 3456789012          // Investor ID
+> PartyIDSource = D             // Proprietary / Custom code
+> PartyRole = 5                 // Investor ID
+> NoPartySubIDs = 2
+> > PartySubID = BERNANKE TRADING
+> > PartySubIDType = 5          // Full legal name of firm
+> > PartySubID = BERNANKE
+> > PartySubIDType = 1          // Firm
+> PartyID = 346894              // Investor ID
+> PartyIDSource = D             // Proprietary / Custom code
+> PartyRole = 5                 // Investor ID
+> NoPartySubIDs = 2
+> > PartySubID = HELBERG, LESLIE
+> > PartySubIDType = 5          // Full legal name of firm
+> > PartySubID = HELBERG
+> > PartySubIDType = 1          // Firm
+</pre>
+
+====Customer Account Party List====
+Valid customer accounts have been defined in this list. The customer account alias is provided as an alternate id. 
+The Related Parties for each customer account are the authorized Trader (in this case, the Investor ID), 
+Trading Firm, and Clearing Firm. Risk controls are defined at the levels of platform and product group.  
+The first account can trade any product to an exposure of $90M.  At the product group level, a product restriction is 
+placed on CDS-IG where a gross limit has been set at $50M and a net limit at $10M.  
+The second account can only trade up to $7M gross in CDS-IG and up to $5M net. The account level exposure limit is 
+set at $7.5M.  All of these restrictions apply to the platform "DVS" only.
+
+<pre>
+PartyDetailsListReportID = 3
+NoPartyList = 2
+> PartyID = CUST601986                 // Customer Account
+> PartyIDSource = D                    // Proprietary / Custom code
+> PartyRole = 24                       // Customer Account
+> NoPartySubIDs = 2
+> > PartySubID = GOGOL AND ASSOCIATES  // Account Name
+> > PartySubIDType = 5                 // Full legal name of firm
+> > PartySubID = 1                     // Position account type
+> > PartySubIDType = 26                // Position account type
+> NoPartyAltIDs = 1
+> > PartyAltID = 987ABC654XYZ          // Customer Account Alias
+> NoRiskLimits = 3
+> > RiskLimitType = 3                  // Exposure (for entire account)
+> > RiskLimitAmount = 90000000
+> > RiskLimitCurrency = USD            // Currency - USD
+> > RiskLimitPlatform=DRS              // Limit applies to platform DRS only
+> > RiskLimitType = 2                  // Net limit (for CDS-IG)
+> > RiskLimitAmount = 10000000
+> > RiskLimitCurrency = USD            // Currency - USD
+> > RiskLimitPlatform=DRS              // Limit applies to platform DRS only
+> > NoRiskInstruments = 1
+> > > RiskInstrumentOperator = 1       // Include
+> > > RiskSecurityGroup = IG
+> > > RiskSecurityType = CDS
+> > RiskLimitType = 1                  // Gross Limit (for CDS-IG)
+> > RiskLimitAmount = 50000000
+> > RiskLimitCurrency = USD            // Currency - USD
+> > RiskLimitPlatform=DRS              // Limit applies to platform DRS only
+> > NoRiskInstruments = 1
+> > > RiskInstrumentOperator = 1       // Include
+> > > RiskSecurityGroup = IG
+> > > RiskSecurityType = CDS
+> NoRelatedPartyIDs = 3
+> > RelatedPartyID = 1234567890        // Investor ID
+> > RelatedPartyIDSource = D           // Proprietary / Custom code
+> > RelatedPartyRole = 5               // Investor ID
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 20           // Invests through
+> > RelatedPartyID = 313               // Trading Firm
+> > RelatedPartyIDSource = D           // Proprietary / Custom code
+> > RelatedPartyRole = 1               // Executing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME      // Trading Firm Exchange
+> > > RelatedContextPartyIDSource = D  // Proprietary / Custom code
+> > > RelatedContextPartyRole = 22     // Exchange
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 4            // TradesThrough
+> > RelatedPartyID = 312               // Clearing Firm
+> > RelatedPartyIDSource = D           // Proprietary / Custom code
+> > RelatedPartyRole = 4               // Clearing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME      // Clearing Firm Organization
+> > > RelatedContextPartyIDSource = D  // Proprietary / Custom code
+> > > RelatedContextPartyRole = 21     // Clearing Organization
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 2            // ClearsThrough
+> PartyID = CUSTHNG57Y                 // Customer Account
+> PartyIDSource = D                    // Proprietary / Custom code
+> PartyRole = 24                       // Customer Account
+> NoPartySubIDs = 2
+> > PartySubID = PAULSON INVESTMENTS   // Account Name
+> > PartySubIDType = 5                 // Full legal name of firm
+> > PartySubID = 1                     // Position account type
+> > PartySubIDType = 26                // Position account type
+> NoPartyAltIDs = 1
+> > PartyAltID = 987ABC654XYZ          // Customer Account Alias
+> NoRiskLimits = 3
+> > RiskLimitType = 3                  // Exposure (for entire account)
+> > RiskLimitAmount = 7500000
+> > RiskLimitCurrency = USD            // Currency - USD
+> > RiskLimitPlatform=DRS              // Limit applies to platform DRS only
+> > RiskLimitType = 2                  // Net limit (for CDS-IG)
+> > RiskLimitAmount = 5000000
+> > RiskLimitCurrency = USD            // Currency - USD
+> > RiskLimitPlatform=DRS              // Limit applies to platform DRS only
+> > NoRiskInstruments = 1
+> > > RiskInstrumentOperator = 1       // Include
+> > > RiskSecurityGroup = IG
+> > > RiskSecurityType = CDS
+> > RiskLimitType = 1                  // Gross Limit (for CDS-IG)
+> > RiskLimitAmount = 7000000
+> > RiskLimitCurrency = USD            // Currency - USD
+> > RiskLimitPlatform=DRS              // Limit applies to platform DRS only
+> > NoRiskInstruments = 1
+> > > RiskInstrumentOperator = 1       // Include
+> > > RiskSecurityGroup = IG
+> > > RiskSecurityType = CDS
+> NoRelatedPartyIDs = 3
+> > RelatedPartyID = 2345678901        // Investor ID
+> > RelatedPartyIDSource = D           // Proprietary / Custom code
+> > RelatedPartyRole = 5               // Investor ID
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 20           // Invests through
+> > RelatedPartyID = 313               // Trading Firm
+> > RelatedPartyIDSource = D           // Proprietary / Custom code
+> > RelatedPartyRole = 1               // Executing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME      // Trading Firm Exchange
+> > > RelatedContextPartyIDSource = D  // Proprietary / Custom code
+> > > RelatedContextPartyRole = 22     // Exchange
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 4            // TradesThrough
+> > RelatedPartyID = 312               // Clearing Firm
+> > RelatedPartyIDSource = D           // Proprietary / Custom code
+> > RelatedPartyRole = 4               // Clearing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME      // Clearing Firm Organization
+> > > RelatedContextPartyIDSource = D  // Proprietary / Custom code
+> > > RelatedContextPartyRole = 21     // Clearing Organization
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 2            // ClearsThrough
+</pre>
+
+====Trading Firm Party List====
+Valid Trading Firms have been defined in this list.  Each Trading Firm ID has an Exchange ID specified to 
+provide context.  The Party is the Trading Firm, and the Related Party is the Clearing Firm, which consists of a 
+Clearing Firm ID and a Clearing Organization to provide context.  In this example, a Trading Firm, 
+within the context of a given Exchange, may have only one Clearing Firm.
+
+<pre>
+PartyDetailsListReportID = 2
+NoPartyList = 4
+> PartyID = 313                         // Trading Firm ID
+> PartyIDSource = D                     // Proprietary / Custom code
+> PartyRole = 1                         // Executing Firm
+> NoPartySubIDs = 1
+> > PartySubID = BANC OF AMERICA        // Trading Firm Name
+> > PartySubIDType = 5                  // Full legal name of firm
+> NoContextParties = 1
+>  > ContextPartyID = CME               // Trading Firm Exchange
+>  > ContextPartyIDSource = D           // Proprietary / Custom code
+>  > ContextPartyRole = 22              // Exchange
+> NoRelatedPartyIDs = 1
+> > RelatedPartyID = 312                // Clearing Firm
+> > RelatedPartyIDSource = D            // Proprietary / Custom code
+> > RelatedPartyRole = 4                // Clearing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME       // Clearing Firm Organization
+> > > RelatedContextPartyIDSource = D   // Proprietary / Custom code
+> > > RelatedContextPartyRole = 21      // Clearing Organization
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 2             // ClearsThrough
+> PartyID = 112                         // Trading Firm ID
+> PartyIDSource = D                     // Proprietary / Custom code
+> PartyRole = 1                         // Executing Firm
+> NoPartySubIDs = 1
+> > PartySubID = PRUDENTIAL SECURITES   // Trading Firm Name
+> > PartySubIDType = 5                  // Full legal name of firm
+> NoContextParties = 1
+>  > ContextPartyID = CME               // Trading Firm Exchange
+>  > ContextPartyIDSource = D           // Proprietary / Custom code
+>  > ContextPartyRole = 22              // Exchange
+> NoRelatedPartyIDs = 1
+> > RelatedPartyID = 112                // Clearing Firm
+> > RelatedPartyIDSource = D            // Proprietary / Custom code
+> > RelatedPartyRole = 4                // Clearing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME       // Clearing Firm Organization
+> > > RelatedContextPartyIDSource = D   // Proprietary / Custom code
+> > > RelatedContextPartyRole = 21      // Clearing Organization
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 2             // ClearsThrough
+> PartyID = 710                         // Trading Firm ID
+> PartyIDSource = D                     // Proprietary / Custom code
+> PartyRole = 1                         // Executing Firm
+> NoPartySubIDs = 1
+> > PartySubID = DEUTSCHE BANK          // Trading Firm Name
+> > PartySubIDType = 5                  // Full legal name of firm
+> NoContextParties = 1
+>  > ContextPartyID = CME               // Trading Firm Exchange
+>  > ContextPartyIDSource = D           // Proprietary / Custom code
+>  > ContextPartyRole = 22              // Exchange
+> NoRelatedPartyIDs = 1
+> > RelatedPartyID = 709                // Clearing Firm
+> > RelatedPartyIDSource = D            // Proprietary / Custom code
+> > RelatedPartyRole = 4                // Clearing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME       // Clearing Firm Organization
+> > > RelatedContextPartyIDSource = D   // Proprietary / Custom code
+> > > RelatedContextPartyRole = 21      // Clearing Organization
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 2             // ClearsThrough
+> PartyID = 709                         // Trading Firm ID
+> PartyIDSource = D                     // Proprietary / Custom code
+> PartyRole = 1                         // Executing Firm
+> NoPartySubIDs = 1
+> > PartySubID = DEUTSCHE BANK CLEARING // Trading Firm Name
+> > PartySubIDType = 5                  // Full legal name of firm
+> NoContextParties = 1
+>  > ContextPartyID = CME               // Trading Firm Exchange
+>  > ContextPartyIDSource = D           // Proprietary / Custom code
+>  > ContextPartyRole = 22              // Exchange
+> NoRelatedPartyIDs = 1
+> > RelatedPartyID = 709                // Clearing Firm
+> > RelatedPartyIDSource = D            // Proprietary / Custom code
+> > RelatedPartyRole = 4                // Clearing Firm
+> > NoRelatedContextParties = 1
+> > > RelatedContextPartyID = CME       // Clearing Firm Organization
+> > > RelatedContextPartyIDSource = D   // Proprietary / Custom code
+> > > RelatedContextPartyRole = 21      // Clearing Organization
+> > NoPartyRelationships = 1
+> > > PartyRelationship = 2             // ClearsThrough
+</pre>

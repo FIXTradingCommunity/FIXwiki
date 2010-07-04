@@ -1,0 +1,8 @@
+==FIX Fields==
+
+A FIX message is an ordered sequence of FIX fields. A field is identified by a unique tag number and a name. Each field in a message is associated with a value.
+
+In {{SITENAME}} each field has a page which describes it.
+The categories at the bottom of each field page show which messages or components the given field appears in.
+
+All field pages belong to the {{SITENAME}} category "Field".

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          copyright="Copyright (c) FIX Protocol Ltd. All Rights Reserved."
+          edition="2009"
+          xsi:noNamespaceSchemaLocation="../../schema/Enums.xsd"
+          version="FIXT.1.1">
+	  <Enums Added="FIX.2.7">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>43</Tag>
+      <Enum>N</Enum>
+      <Description>Original transmission</Description>
+   </Enums>
+	  <Enums Added="FIX.2.7">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>43</Tag>
+      <Enum>Y</Enum>
+      <Description>Possible duplicate</Description>
+   </Enums>
+	  <Enums Added="FIX.4.1">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>97</Tag>
+      <Enum>N</Enum>
+      <Description>Original Transmission</Description>
+   </Enums>
+	  <Enums Added="FIX.4.1">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>97</Tag>
+      <Enum>Y</Enum>
+      <Description>Possible Resend</Description>
+   </Enums>
+	  <Enums Added="FIX.2.7">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>98</Tag>
+      <Enum>0</Enum>
+      <Description>None / Other</Description>
+   </Enums>
+	  <Enums Added="FIX.2.7">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>98</Tag>
+      <Enum>1</Enum>
+      <Description>PKCS (Proprietary)</Description>
+   </Enums>
+	  <Enums Added="FIX.2.7">
+      <Group/>
+      <Sort>3</Sort>
+      <Tag>98</Tag>
+      <Enum>2</Enum>
+      <Description>DES (ECB Mode)</Description>
+   </Enums>
+	  <Enums Added="FIX.2.7">
+      <Group/>
+      <Sort>4</Sort>
+      <Tag>98</Tag>
+      <Enum>3</Enum>
+      <Description>PKCS / DES (Proprietary)</Description>
+   </Enums>
+	  <Enums Added="FIX.3.0">
+      <Group/>
+      <Sort>5</Sort>
+      <Tag>98</Tag>
+      <Enum>4</Enum>
+      <Description>PGP / DES (Defunct)</Description>
+   </Enums>
+	  <Enums Added="FIX.4.0">
+      <Group/>
+      <Sort>6</Sort>
+      <Tag>98</Tag>
+      <Enum>5</Enum>
+      <Description>PGP / DES-MD5 (See app note on FIX web site)</Description>
+   </Enums>
+	  <Enums Added="FIX.4.0">
+      <Group/>
+      <Sort>7</Sort>
+      <Tag>98</Tag>
+      <Enum>6</Enum>
+      <Description>PEM / DES-MD5 (see app note on FIX web site)</Description>
+   </Enums>
+	  <Enums Added="FIX.4.0">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>123</Tag>
+      <Enum>N</Enum>
+      <Description>Sequence Reset, Ignore Msg Seq Num (N/A For FIXML - Not Used)</Description>
+   </Enums>
+	  <Enums Added="FIX.4.0">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>123</Tag>
+      <Enum>Y</Enum>
+      <Description>Gap Fill Message, Msg Seq Num Field Valid</Description>
+   </Enums>
+	  <Enums Added="FIX.4.1">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>141</Tag>
+      <Enum>N</Enum>
+      <Description>No</Description>
+   </Enums>
+	  <Enums Added="FIX.4.1">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>141</Tag>
+      <Enum>Y</Enum>
+      <Description>Yes, reset sequence numbers</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>0</Sort>
+      <Tag>373</Tag>
+      <Enum>0</Enum>
+      <Description>Invalid Tag Number</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>373</Tag>
+      <Enum>1</Enum>
+      <Description>Required Tag Missing</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>373</Tag>
+      <Enum>2</Enum>
+      <Description>Tag not defined for this message type</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>3</Sort>
+      <Tag>373</Tag>
+      <Enum>3</Enum>
+      <Description>Undefined tag</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>4</Sort>
+      <Tag>373</Tag>
+      <Enum>4</Enum>
+      <Description>Tag specified without a value</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>5</Sort>
+      <Tag>373</Tag>
+      <Enum>5</Enum>
+      <Description>Value is incorrect (out of range) for this tag</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>6</Sort>
+      <Tag>373</Tag>
+      <Enum>6</Enum>
+      <Description>Incorrect data format for value</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>7</Sort>
+      <Tag>373</Tag>
+      <Enum>7</Enum>
+      <Description>Decryption problem</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>8</Sort>
+      <Tag>373</Tag>
+      <Enum>8</Enum>
+      <Description>Signature problem</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>9</Sort>
+      <Tag>373</Tag>
+      <Enum>9</Enum>
+      <Description>CompID problem</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>10</Sort>
+      <Tag>373</Tag>
+      <Enum>10</Enum>
+      <Description>SendingTime Accuracy Problem</Description>
+   </Enums>
+	  <Enums Added="FIX.4.2">
+      <Group/>
+      <Sort>11</Sort>
+      <Tag>373</Tag>
+      <Enum>11</Enum>
+      <Description>Invalid MsgType</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>12</Sort>
+      <Tag>373</Tag>
+      <Enum>12</Enum>
+      <Description>XML Validation Error</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>13</Sort>
+      <Tag>373</Tag>
+      <Enum>13</Enum>
+      <Description>Tag appears more than once</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>14</Sort>
+      <Tag>373</Tag>
+      <Enum>14</Enum>
+      <Description>Tag specified out of required order</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>15</Sort>
+      <Tag>373</Tag>
+      <Enum>15</Enum>
+      <Description>Repeating group fields out of order</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>16</Sort>
+      <Tag>373</Tag>
+      <Enum>16</Enum>
+      <Description>Incorrect NumInGroup count for repeating group</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>17</Sort>
+      <Tag>373</Tag>
+      <Enum>17</Enum>
+      <Description>Non "Data" value includes field delimiter (&lt;SOH&gt; character)</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>19</Sort>
+      <Tag>373</Tag>
+      <Enum>18</Enum>
+      <Description>Invalid/Unsupported Application Version</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4">
+      <Group/>
+      <Sort>99</Sort>
+      <Tag>373</Tag>
+      <Enum>99</Enum>
+      <Description>Other</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>464</Tag>
+      <Enum>N</Enum>
+      <Description>Fales (Production)</Description>
+   </Enums>
+	  <Enums Added="FIX.4.3">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>464</Tag>
+      <Enum>Y</Enum>
+      <Description>True (Test)</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>0</Sort>
+      <Tag>1128</Tag>
+      <Enum>0</Enum>
+      <Description>FIX27</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>1128</Tag>
+      <Enum>1</Enum>
+      <Description>FIX30</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>1128</Tag>
+      <Enum>2</Enum>
+      <Description>FIX40</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>3</Sort>
+      <Tag>1128</Tag>
+      <Enum>3</Enum>
+      <Description>FIX41</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>4</Sort>
+      <Tag>1128</Tag>
+      <Enum>4</Enum>
+      <Description>FIX42</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>5</Sort>
+      <Tag>1128</Tag>
+      <Enum>5</Enum>
+      <Description>FIX43</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>6</Sort>
+      <Tag>1128</Tag>
+      <Enum>6</Enum>
+      <Description>FIX44</Description>
+   </Enums>
+	  <Enums Added="FIX.4.4" AddedEP="EP-1">
+      <Group/>
+      <Sort>7</Sort>
+      <Tag>1128</Tag>
+      <Enum>7</Enum>
+      <Description>FIX50</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>8</Sort>
+      <Tag>1128</Tag>
+      <Enum>8</Enum>
+      <Description>FIX50SP1</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>1</Sort>
+      <Tag>1409</Tag>
+      <Enum>0</Enum>
+      <Description>Session active</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>2</Sort>
+      <Tag>1409</Tag>
+      <Enum>1</Enum>
+      <Description>Session password changed</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>3</Sort>
+      <Tag>1409</Tag>
+      <Enum>2</Enum>
+      <Description>Session password due to expire</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>4</Sort>
+      <Tag>1409</Tag>
+      <Enum>3</Enum>
+      <Description>New session password does not comply with policy</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>5</Sort>
+      <Tag>1409</Tag>
+      <Enum>4</Enum>
+      <Description>Session logout complete</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>6</Sort>
+      <Tag>1409</Tag>
+      <Enum>5</Enum>
+      <Description>Invalid username or password</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>7</Sort>
+      <Tag>1409</Tag>
+      <Enum>6</Enum>
+      <Description>Account locked</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>8</Sort>
+      <Tag>1409</Tag>
+      <Enum>7</Enum>
+      <Description>Logons are not allowed at this time</Description>
+   </Enums>
+	  <Enums Added="FIX.5.0" AddedEP="EP-1">
+      <Group/>
+      <Sort>9</Sort>
+      <Tag>1409</Tag>
+      <Enum>8</Enum>
+      <Description>Password expired</Description>
+   </Enums>
+</dataroot>

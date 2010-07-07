@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          copyright="Copyright (c) FIX Protocol Ltd. All Rights Reserved."
+          edition="2009"
+          xsi:noNamespaceSchemaLocation="../../schema/Components.xsd"
+          version="FIX.4.3"
+          generated="2010-03-13T14:54:02-05:00">
+	  <Components Added="FIX.4.3">
+      <ComponentName>CommissionData</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1000</MsgID>
+      <Description>The CommissionDate component block is used to carry commission information such as the type of commission and the rate.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>Instrument</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1003</MsgID>
+      <Description>The Instrument component block contains all the fields commonly used to describe a security or instrument. Typically the data elements in this component block are considered the static data of a security, data that may be commonly found in a security master database. The Instrument component block can be used to describe any asset type supported by FIX.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>InstrumentLeg</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1005</MsgID>
+      <Description>The InstrumentLeg component block, like the Instrument component block, contains all the fields commonly used to describe a security or instrument.  In the case of the InstrumentLeg component block it describes a security used in multileg-oriented messages.
+      Refer to the Instrument component block comments as this component block mirrors Instrument, except for the noted fields.
+      Several multileg-oriented messages specify an Instrument Leg component block. An instrument can have zero or more instrument legs. The fundamental business rule that applies to the multileg instrument is that the multileg instrument is defined as the combination of instrument legs. The multileg instrument must be able to be traded atomically – that all instrument legs are traded or none are traded.
+      The LegRatioQty[623] is used to define the quantity of the leg that makes up a single unit of the multleg instrument. An option butterfly strategy is made up of three option legs.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>NestedParties</ComponentName>
+      <ComponentType>BlockRepeating</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1008</MsgID>
+      <Description>The NestedParties component block is identical to the Parties Block. It is used in other component blocks and repeating groups when nesting will take place resulting in multiple occurrences of the Parties block within a single FIX message.. Use of NestedParties under these conditions avoids multiple references to the Parties block within the same message which is not allowed in FIX tag/value syntax.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>OrderQtyData</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1011</MsgID>
+      <Description>The OrderQtyData component block contains the fields commonly used for indicating the amount or quantity of an order. Note that when this component block is marked as "required" in a message either one of these three fields must be used to identify the amount: OrderQty, CashOrderQty or OrderPercent (in the case of CIV).</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>Parties</ComponentName>
+      <ComponentType>BlockRepeating</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1012</MsgID>
+      <Description>The Parties component block is used to identify and convey information on the entities both central and peripheral to the financial transaction represented by the FIX message containing the Parties Block. The Parties block allows many different types of entites to be expressed through use of the PartyRole field and identifies the source of the PartyID through the the PartyIDSource.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>SpreadOrBenchmarkCurveData</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1018</MsgID>
+      <Description>The SpreadOrBenchmarkCurveData component block is primarily used for Fixed Income to convey spread to a benchmark security or curve.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>Stipulations</ComponentName>
+      <ComponentType>BlockRepeating</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1019</MsgID>
+      <Description>The Stipulations component block is used in Fixed Income to provide additional information on a given security. These additional information are usually not considered static data information.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>UnderlyingInstrument</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1021</MsgID>
+      <Description>The UnderlyingInstrument component block, like the Instrument component block, contains all the fields commonly used to describe a security or instrument. In the case of the UnderlyingInstrument component block it describes an instrument which underlies the primary instrument Refer to the Instrument component block comments as this component block mirrors Instrument, except for the noted fields.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.3">
+      <ComponentName>YieldData</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Common</Category>
+      <MsgID>1022</MsgID>
+      <Description>The YieldData component block conveys yield information for a given Fixed Income security.</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.0">
+      <ComponentName>StandardHeader</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Session</Category>
+      <MsgID>1024</MsgID>
+      <Description>The standard FIX message header</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+	  <Components Added="FIX.4.0">
+      <ComponentName>StandardTrailer</ComponentName>
+      <ComponentType>Block</ComponentType>
+      <Category>Session</Category>
+      <MsgID>1025</MsgID>
+      <Description>The standard FIX message trailer</Description>
+      <NotReqXML>1</NotReqXML>
+   </Components>
+</dataroot>

@@ -1,0 +1,6165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          copyright="Copyright (c) FIX Protocol Ltd. All Rights Reserved."
+          edition="2009"
+          xsi:noNamespaceSchemaLocation="../../schema/Enums.xsd"
+          version="FIX.4.3">
+  <Enums Added="FIX.2.7">
+      <Tag>4</Tag>
+      <Enum>B</Enum>
+      <Description>Buy</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>4</Tag>
+      <Enum>S</Enum>
+      <Description>Sell</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>4</Tag>
+      <Enum>X</Enum>
+      <Description>Cross</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>4</Tag>
+      <Enum>T</Enum>
+      <Description>Trade</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>5</Tag>
+      <Enum>N</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>5</Tag>
+      <Enum>C</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>5</Tag>
+      <Enum>R</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>13</Tag>
+      <Enum>6</Enum>
+      <Description>per bond</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>13</Tag>
+      <Enum>1</Enum>
+      <Description>per share</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>13</Tag>
+      <Enum>2</Enum>
+      <Description>percentage</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>13</Tag>
+      <Enum>3</Enum>
+      <Description>absolute</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>13</Tag>
+      <Enum>5</Enum>
+      <Description>(for CIV buy orders) percentage waived enhanced units</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>13</Tag>
+      <Enum>4</Enum>
+      <Description>(for CIV buy orders) percentage waived cash discount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>18</Tag>
+      <Enum>Y</Enum>
+      <Description>TryToStop</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>M</Enum>
+      <Description>MidPrcPeg</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>P</Enum>
+      <Description>MarkPeg</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>18</Tag>
+      <Enum>Q</Enum>
+      <Description>CancelOnSysFail</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>R</Enum>
+      <Description>PrimPeg</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>S</Enum>
+      <Description>Suspend</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>18</Tag>
+      <Enum>U</Enum>
+      <Description>CustDispInst</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>18</Tag>
+      <Enum>V</Enum>
+      <Description>Netting</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>18</Tag>
+      <Enum>W</Enum>
+      <Description>PegVWAP</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>18</Tag>
+      <Enum>X</Enum>
+      <Description>TradeAlong</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>D</Enum>
+      <Description>PercVol</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>0</Enum>
+      <Description>StayOffer</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>2</Enum>
+      <Description>Work</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>4</Enum>
+      <Description>OverDay</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>5</Enum>
+      <Description>Held</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>6</Enum>
+      <Description>PartNotInit</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>7</Enum>
+      <Description>StrictScale</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>8</Enum>
+      <Description>TryToScale</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>9</Enum>
+      <Description>StayBid</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>A</Enum>
+      <Description>NoCross</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>O</Enum>
+      <Description>OpenPeg</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>C</Enum>
+      <Description>CallFirst</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>N</Enum>
+      <Description>NonNego</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>E</Enum>
+      <Description>DNI</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>F</Enum>
+      <Description>DNR</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>G</Enum>
+      <Description>AON</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>18</Tag>
+      <Enum>H</Enum>
+      <Description>RestateOnSysFail</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>I</Enum>
+      <Description>InstitOnly</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>18</Tag>
+      <Enum>J</Enum>
+      <Description>RestateOnTradingHalt</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>18</Tag>
+      <Enum>K</Enum>
+      <Description>CancelOnTradingHalt</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>18</Tag>
+      <Enum>L</Enum>
+      <Description>LastPeg</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>3</Enum>
+      <Description>GoAlong</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>B</Enum>
+      <Description>OkCross</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>18</Tag>
+      <Enum>1</Enum>
+      <Description>NotHeld</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>20</Tag>
+      <Enum>1</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>20</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>20</Tag>
+      <Enum>3</Enum>
+      <Description>Status</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>20</Tag>
+      <Enum>2</Enum>
+      <Description>Correct</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>21</Tag>
+      <Enum>1</Enum>
+      <Description>Automated execution order, private, no Broker intervention</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>21</Tag>
+      <Enum>2</Enum>
+      <Description>Automated execution order, public, Broker intervention OK</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>21</Tag>
+      <Enum>3</Enum>
+      <Description>Manual order, best execution</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>E</Enum>
+      <Description>Sicovam</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>22</Tag>
+      <Enum>2</Enum>
+      <Description>SEDOL</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>22</Tag>
+      <Enum>1</Enum>
+      <Description>CUSIP</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>22</Tag>
+      <Enum>3</Enum>
+      <Description>QUIK</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>F</Enum>
+      <Description>Belgian</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>D</Enum>
+      <Description>Valoren</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>C</Enum>
+      <Description>Dutch</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>B</Enum>
+      <Description>Wertpapier</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>A</Enum>
+      <Description>Bloomberg Symbol</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>22</Tag>
+      <Enum>9</Enum>
+      <Description>Consolidated Tape Association (CTA) Symbol (SIAC CTS/CQS line format)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>22</Tag>
+      <Enum>8</Enum>
+      <Description>Exchange Symbol</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>22</Tag>
+      <Enum>7</Enum>
+      <Description>ISO Country Code</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>22</Tag>
+      <Enum>6</Enum>
+      <Description>ISO Currency Code</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>22</Tag>
+      <Enum>5</Enum>
+      <Description>RIC code</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>22</Tag>
+      <Enum>4</Enum>
+      <Description>ISIN number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>22</Tag>
+      <Enum>G</Enum>
+      <Description>Common (Clearstream and Euroclear)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>25</Tag>
+      <Enum>M</Enum>
+      <Description>Medium</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>25</Tag>
+      <Enum>H</Enum>
+      <Description>High</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>25</Tag>
+      <Enum>L</Enum>
+      <Description>Low</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP25">
+      <Tag>27</Tag>
+      <Enum>L</Enum>
+      <Description>Large</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP25">
+      <Tag>27</Tag>
+      <Enum>M</Enum>
+      <Description>Medium</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP25">
+      <Tag>27</Tag>
+      <Enum>S</Enum>
+      <Description>Small</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>28</Tag>
+      <Enum>C</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>28</Tag>
+      <Enum>N</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>28</Tag>
+      <Enum>R</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>29</Tag>
+      <Enum>4</Enum>
+      <Description>Principal</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>29</Tag>
+      <Enum>3</Enum>
+      <Description>Cross as principal</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>29</Tag>
+      <Enum>1</Enum>
+      <Description>Agent</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>29</Tag>
+      <Enum>2</Enum>
+      <Description>Cross as agent</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>0</Enum>
+      <Description>Heartbeat</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>1</Enum>
+      <Description>Test Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>2</Enum>
+      <Description>Resend Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>3</Enum>
+      <Description>Reject</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>4</Enum>
+      <Description>Sequence Reset</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>5</Enum>
+      <Description>Logout</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>6</Enum>
+      <Description>Indication of Interest</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>7</Enum>
+      <Description>Advertisement</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>8</Enum>
+      <Description>Execution Report</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>9</Enum>
+      <Description>Order Cancel Reject</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>a</Enum>
+      <Description>Quote Status Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>A</Enum>
+      <Description>Logon</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AA</Enum>
+      <Description>Derivative Security List</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AB</Enum>
+      <Description>New Order - Multileg</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AC</Enum>
+      <Description>Multileg Order Cancel/Replace (a.k.a. Multileg Order Modification Request)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AD</Enum>
+      <Description>Trade Capture Report Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AE</Enum>
+      <Description>Trade Capture Report</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AF</Enum>
+      <Description>Order Mass Status Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AG</Enum>
+      <Description>Quote Request Reject</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AH</Enum>
+      <Description>RFQ Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>AI</Enum>
+      <Description>Quote Status Report</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>b</Enum>
+      <Description>Mass Quote Acknowledgement</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>B</Enum>
+      <Description>News</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>c</Enum>
+      <Description>Security Definition Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>C</Enum>
+      <Description>Email</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>d</Enum>
+      <Description>Security Definition</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>D</Enum>
+      <Description>Order Single</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>e</Enum>
+      <Description>Security Status Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>E</Enum>
+      <Description>Order List</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>f</Enum>
+      <Description>Security Status</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>F</Enum>
+      <Description>Order Cancel Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>G</Enum>
+      <Description>Order Cancel/Replace Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>g</Enum>
+      <Description>Trading Session Status Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>h</Enum>
+      <Description>Trading Session Status</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>H</Enum>
+      <Description>Order Status Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>i</Enum>
+      <Description>Mass Quote</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>j</Enum>
+      <Description>Business Message Reject</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>J</Enum>
+      <Description>Allocation</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>K</Enum>
+      <Description>List Cancel Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>k</Enum>
+      <Description>Bid Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>l</Enum>
+      <Description>Bid Response (lowercase L)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>L</Enum>
+      <Description>List Execute</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>m</Enum>
+      <Description>List Strike Price</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>M</Enum>
+      <Description>List Status Request</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>N</Enum>
+      <Description>List Status</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>n</Enum>
+      <Description>XML message (e.g. non-FIX MsgType)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>o</Enum>
+      <Description>Registration Instructions</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>P</Enum>
+      <Description>Allocation ACK</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>p</Enum>
+      <Description>Registration Instructions Response</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>q</Enum>
+      <Description>Order Mass Cancel Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>Q</Enum>
+      <Description>Dont Know Trade (DK)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>r</Enum>
+      <Description>Order Mass Cancel Report</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>R</Enum>
+      <Description>Quote Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>s</Enum>
+      <Description>New Order - Cross</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>S</Enum>
+      <Description>Quote</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>t</Enum>
+      <Description>Cross Order Cancel/Replace Request (a.k.a. Cross Order Modification Request)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>T</Enum>
+      <Description>Settlement Instructions</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>u</Enum>
+      <Description>Cross Order Cancel Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>v</Enum>
+      <Description>Security Type Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>V</Enum>
+      <Description>Market Data Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>w</Enum>
+      <Description>Security Types</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>W</Enum>
+      <Description>Market Data-Snapshot/Full Refresh</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>x</Enum>
+      <Description>Security List Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>X</Enum>
+      <Description>Market Data-Incremental Refresh</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>y</Enum>
+      <Description>Security List</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>Y</Enum>
+      <Description>Market Data Request Reject</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>z</Enum>
+      <Description>Derivative Security List Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Group/>
+      <Tag>35</Tag>
+      <Enum>Z</Enum>
+      <Description>Quote Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>1</Enum>
+      <Description>Partially filled</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP35">
+      <Tag>39</Tag>
+      <Enum>5</Enum>
+      <Description>Replaced (Removed/Replaced)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>2</Enum>
+      <Description>Filled</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>6</Enum>
+      <Description>Pending Cancel (e.g. result of Order Cancel Request)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>7</Enum>
+      <Description>Stopped</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>8</Enum>
+      <Description>Rejected</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>39</Tag>
+      <Enum>9</Enum>
+      <Description>Suspended</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>39</Tag>
+      <Enum>A</Enum>
+      <Description>Pending New</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>39</Tag>
+      <Enum>B</Enum>
+      <Description>Calculated</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>39</Tag>
+      <Enum>C</Enum>
+      <Description>Expired</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>39</Tag>
+      <Enum>D</Enum>
+      <Description>Accepted for bidding</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>39</Tag>
+      <Enum>E</Enum>
+      <Description>Pending Replace (e.g. result of Order Cancel/Replace Request)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>3</Enum>
+      <Description>Done for day</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>39</Tag>
+      <Enum>4</Enum>
+      <Description>Canceled</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>40</Tag>
+      <Enum>D</Enum>
+      <Description>Previously quoted</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>2</Enum>
+      <Description>Limit</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>3</Enum>
+      <Description>Stop</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>4</Enum>
+      <Description>Stop limit</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>5</Enum>
+      <Description>Market on close (Deprecated)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>6</Enum>
+      <Description>With or without</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>7</Enum>
+      <Description>Limit or better</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>8</Enum>
+      <Description>Limit with or without</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>9</Enum>
+      <Description>On basis</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>A</Enum>
+      <Description>On close (Deprecated)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>1</Enum>
+      <Description>Market</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>40</Tag>
+      <Enum>C</Enum>
+      <Description>Forex - Market (Deprecated)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>40</Tag>
+      <Enum>F</Enum>
+      <Description>Forex - Limit (Deprecated)</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>40</Tag>
+      <Enum>E</Enum>
+      <Description>Previously indicated</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>40</Tag>
+      <Enum>G</Enum>
+      <Description>Forex - Swap</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>40</Tag>
+      <Enum>I</Enum>
+      <Description>Funari (Limit Day Order with unexecuted portion handled as Market On Close. e.g. Japan)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>40</Tag>
+      <Enum>J</Enum>
+      <Description>Market If Touched (MIT)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>40</Tag>
+      <Enum>K</Enum>
+      <Description>Market with Leftover as Limit (market order then unexecuted quantity becomes limit order at last price)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>40</Tag>
+      <Enum>L</Enum>
+      <Description>Previous Fund Valuation Point (Historic pricing) (for CIV)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>40</Tag>
+      <Enum>M</Enum>
+      <Description>Next Fund Valuation Point (Forward pricing) (for CIV)</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>40</Tag>
+      <Enum>P</Enum>
+      <Description>Pegged</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>40</Tag>
+      <Enum>B</Enum>
+      <Description>Limit on close (Deprecated)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>40</Tag>
+      <Enum>H</Enum>
+      <Description>Forex - Previously Quoted (Deprecated)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>43</Tag>
+      <Enum>N</Enum>
+      <Description>Original transmission</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>43</Tag>
+      <Enum>Y</Enum>
+      <Description>Possible duplicate</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>N</Enum>
+      <Description>Program Order, non-index arb, for other member</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>B</Enum>
+      <Description>Short exempt transaction (refer to A type)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>D</Enum>
+      <Description>Program Order, index arb, for Member firm/org</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>E</Enum>
+      <Description>Short Exempt Transaction for Principal (was incorrectly identified in the FIX spec as Registered Equity Market Maker trades)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>F</Enum>
+      <Description>Short exempt transaction (refer to W type)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>H</Enum>
+      <Description>Short exempt transaction (refer to I type)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>I</Enum>
+      <Description>Individual Investor, single order</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>J</Enum>
+      <Description>Program Order, index arb, for individual customer</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>K</Enum>
+      <Description>Program Order, non-index arb, for individual customer</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>M</Enum>
+      <Description>Program Order, index arb, for other member</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>A</Enum>
+      <Description>Agency single order</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>O</Enum>
+      <Description>Proprietary transactions for competing market-maker that is affiliated with the clearing member (was incorrectly identified in the FIX spec as Competing dealer trades)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>P</Enum>
+      <Description>Principal</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>R</Enum>
+      <Description>Transactions for the account of a non-member competing market maker (was incorrectly identified in the FIX spec as Competing dealer trades)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>S</Enum>
+      <Description>Specialist trades</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>T</Enum>
+      <Description>Transactions for the account of an unaffiliated members competing market maker (was incorrectly identified in the FIX spec as Competing dealer trades)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>U</Enum>
+      <Description>Program Order, index arb, for other agency</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>W</Enum>
+      <Description>All other orders as agent for other member</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>X</Enum>
+      <Description>Short exempt transaction for member competing market-maker not affiliated with the firm clearing the trade (refer to W and T types)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>Y</Enum>
+      <Description>Program Order, non-index arb, for other agency</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>Z</Enum>
+      <Description>Short exempt transaction for non-member competing market-maker (refer to A and R types)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>47</Tag>
+      <Enum>L</Enum>
+      <Description>Short exempt transaction for member competing market-maker affiliated with the firm clearing the trade (refer to P and O types)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>47</Tag>
+      <Enum>C</Enum>
+      <Description>Program Order, non-index arb, for Member firm/org</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>54</Tag>
+      <Enum>6</Enum>
+      <Description>Sell short exempt</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>54</Tag>
+      <Enum>B</Enum>
+      <Description>As Defined (for use with multileg instruments)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>54</Tag>
+      <Enum>C</Enum>
+      <Description>Opposite (for use with multileg instruments)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>54</Tag>
+      <Enum>8</Enum>
+      <Description>Cross (orders where counterparty is an exchange, valid for all messages except IOIs)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>54</Tag>
+      <Enum>9</Enum>
+      <Description>Cross short</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>54</Tag>
+      <Enum>1</Enum>
+      <Description>Buy</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>54</Tag>
+      <Enum>2</Enum>
+      <Description>Sell</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>54</Tag>
+      <Enum>3</Enum>
+      <Description>Buy minus</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>54</Tag>
+      <Enum>4</Enum>
+      <Description>Sell plus</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>54</Tag>
+      <Enum>A</Enum>
+      <Description>Cross short exempt</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>54</Tag>
+      <Enum>5</Enum>
+      <Description>Sell short</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>54</Tag>
+      <Enum>7</Enum>
+      <Description>Undisclosed (valid for IOI and List Order messages only)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>59</Tag>
+      <Enum>7</Enum>
+      <Description>At the Close</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>59</Tag>
+      <Enum>0</Enum>
+      <Description>Day</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>59</Tag>
+      <Enum>1</Enum>
+      <Description>Good Till Cancel (GTC)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>59</Tag>
+      <Enum>2</Enum>
+      <Description>At the Opening (OPG)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>59</Tag>
+      <Enum>3</Enum>
+      <Description>Immediate or Cancel (IOC)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>59</Tag>
+      <Enum>4</Enum>
+      <Description>Fill or Kill (FOK)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>59</Tag>
+      <Enum>5</Enum>
+      <Description>Good Till Crossing (GTX)</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>59</Tag>
+      <Enum>6</Enum>
+      <Description>Good Till Date</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>61</Tag>
+      <Enum>1</Enum>
+      <Description>Flash</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>61</Tag>
+      <Enum>2</Enum>
+      <Description>Background</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>61</Tag>
+      <Enum>0</Enum>
+      <Description>Normal</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>5</Enum>
+      <Description>T+4</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>63</Tag>
+      <Enum>A</Enum>
+      <Description>T+1</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>6</Enum>
+      <Description>Future</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>3</Enum>
+      <Description>T+2</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>2</Enum>
+      <Description>Next Day</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>8</Enum>
+      <Description>Sellers Option</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>1</Enum>
+      <Description>Cash</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>7</Enum>
+      <Description>When And If Issued</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>0</Enum>
+      <Description>Regular</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>63</Tag>
+      <Enum>9</Enum>
+      <Description>T+ 5</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>63</Tag>
+      <Enum>4</Enum>
+      <Description>T+3</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>71</Tag>
+      <Enum>5</Enum>
+      <Description>Calculated without Preliminary (sent unsolicited by broker, includes MiscFees and NetMoney) (Removed/Replaced)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>71</Tag>
+      <Enum>4</Enum>
+      <Description>Calculated (includes MiscFees and NetMoney) (Removed/Replaced)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>71</Tag>
+      <Enum>3</Enum>
+      <Description>Preliminary (without MiscFees and NetMoney) (Removed/Replaced)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>71</Tag>
+      <Enum>2</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>71</Tag>
+      <Enum>1</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>71</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>77</Tag>
+      <Enum>F</Enum>
+      <Description>FIFO</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>77</Tag>
+      <Enum>R</Enum>
+      <Description>Rolled</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>77</Tag>
+      <Enum>C</Enum>
+      <Description>Close</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>77</Tag>
+      <Enum>O</Enum>
+      <Description>Open</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>81</Tag>
+      <Enum>6</Enum>
+      <Description>plan sponsor</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>81</Tag>
+      <Enum>0</Enum>
+      <Description>regular</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>81</Tag>
+      <Enum>1</Enum>
+      <Description>soft dollar</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>81</Tag>
+      <Enum>2</Enum>
+      <Description>step-in</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>81</Tag>
+      <Enum>3</Enum>
+      <Description>step-out</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>81</Tag>
+      <Enum>4</Enum>
+      <Description>soft-dollar step-in</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>81</Tag>
+      <Enum>5</Enum>
+      <Description>soft-dollar step-out</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>87</Tag>
+      <Enum>1</Enum>
+      <Description>rejected</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>87</Tag>
+      <Enum>2</Enum>
+      <Description>partial accept</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>87</Tag>
+      <Enum>3</Enum>
+      <Description>received (received, not yet processed)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>87</Tag>
+      <Enum>0</Enum>
+      <Description>accepted (successfully processed)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>0</Enum>
+      <Description>unknown account(s)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>6</Enum>
+      <Description>unknown ListID</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>3</Enum>
+      <Description>unknown executing broker mnemonic</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>5</Enum>
+      <Description>unknown OrderID</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>7</Enum>
+      <Description>other</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>4</Enum>
+      <Description>commission difference</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>1</Enum>
+      <Description>incorrect quantity</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>88</Tag>
+      <Enum>2</Enum>
+      <Description>incorrect average price</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>94</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>94</Tag>
+      <Enum>1</Enum>
+      <Description>Reply</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>94</Tag>
+      <Enum>2</Enum>
+      <Description>Admin Reply</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>97</Tag>
+      <Enum>N</Enum>
+      <Description>Original transmission</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>97</Tag>
+      <Enum>Y</Enum>
+      <Description>Possible resend</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>98</Tag>
+      <Enum>2</Enum>
+      <Description>DES (ECB mode)</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>98</Tag>
+      <Enum>6</Enum>
+      <Description>PEM/DES-MD5 (see app note on FIX web site)</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>98</Tag>
+      <Enum>5</Enum>
+      <Description>PGP/DES-MD5 (see app note on FIX web site)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>98</Tag>
+      <Enum>3</Enum>
+      <Description>PKCS/DES (proprietary)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>98</Tag>
+      <Enum>0</Enum>
+      <Description>None / other</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>98</Tag>
+      <Enum>1</Enum>
+      <Description>PKCS (proprietary)</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>98</Tag>
+      <Enum>4</Enum>
+      <Description>PGP/DES (defunct)</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>102</Tag>
+      <Enum>1</Enum>
+      <Description>Unknown order</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>102</Tag>
+      <Enum>0</Enum>
+      <Description>Too late to cancel</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>102</Tag>
+      <Enum>6</Enum>
+      <Description>Duplicate ClOrdID received</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>102</Tag>
+      <Enum>5</Enum>
+      <Description>OrigOrdModTime did not match last TransactTime of order</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>102</Tag>
+      <Enum>4</Enum>
+      <Description>Unable to process Order Mass Cancel Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>102</Tag>
+      <Enum>3</Enum>
+      <Description>Order already in Pending Cancel or Pending Replace status</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>102</Tag>
+      <Enum>2</Enum>
+      <Description>Broker / Exchange Option</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>103</Tag>
+      <Enum>2</Enum>
+      <Description>Exchange closed</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>103</Tag>
+      <Enum>1</Enum>
+      <Description>Unknown symbol</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>103</Tag>
+      <Enum>3</Enum>
+      <Description>Order exceeds limit</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>103</Tag>
+      <Enum>4</Enum>
+      <Description>Too late to enter</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>103</Tag>
+      <Enum>5</Enum>
+      <Description>Unknown Order</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>103</Tag>
+      <Enum>7</Enum>
+      <Description>Duplicate of a verbally communicated order</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>103</Tag>
+      <Enum>9</Enum>
+      <Description>Trade Along required</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>103</Tag>
+      <Enum>10</Enum>
+      <Description>Invalid Investor ID</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>103</Tag>
+      <Enum>6</Enum>
+      <Description>Duplicate Order (e.g. dupe ClOrdID)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>103</Tag>
+      <Enum>11</Enum>
+      <Description>Unsupported order characteristic</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>103</Tag>
+      <Enum>12</Enum>
+      <Description>Surveillence Option</Description>
+   </Enums>
+  <Enums Added="FIX.2.7">
+      <Tag>103</Tag>
+      <Enum>0</Enum>
+      <Description>Broker / Exchange option</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>103</Tag>
+      <Enum>8</Enum>
+      <Description>Stale Order</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>O</Enum>
+      <Description>At the open</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>X</Enum>
+      <Description>Crossing opportunity</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>W</Enum>
+      <Description>Indication - Working away</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>V</Enum>
+      <Description>Versus</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>T</Enum>
+      <Description>Through the day</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>S</Enum>
+      <Description>Portfolio shown</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>104</Tag>
+      <Enum>R</Enum>
+      <Description>Ready to trade</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>A</Enum>
+      <Description>All or none</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>P</Enum>
+      <Description>Taking a position</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>M</Enum>
+      <Description>More behind</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>L</Enum>
+      <Description>Limit</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>I</Enum>
+      <Description>In touch with</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>104</Tag>
+      <Enum>D</Enum>
+      <Description>VWAP (Volume Weighted Avg Price)</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>C</Enum>
+      <Description>At the close (around/not held to close)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>104</Tag>
+      <Enum>B</Enum>
+      <Description>Market On Close (MOC) (held to close)</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>104</Tag>
+      <Enum>Q</Enum>
+      <Description>At the Market (previously called Current Quote)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>104</Tag>
+      <Enum>Y</Enum>
+      <Description>At the Midpoint</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>104</Tag>
+      <Enum>Z</Enum>
+      <Description>Pre-open</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>113</Tag>
+      <Enum>Y</Enum>
+      <Description>Indicates that party receiving message must report trade</Description>
+   </Enums>
+  <Enums Added="FIX.3.0">
+      <Tag>113</Tag>
+      <Enum>N</Enum>
+      <Description>Indicates that party sending message will report trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>114</Tag>
+      <Enum>Y</Enum>
+      <Description>Indicates the broker is responsible for locating the stock</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>114</Tag>
+      <Enum>N</Enum>
+      <Description>Indicates the broker is not required to locate</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>121</Tag>
+      <Enum>Y</Enum>
+      <Description>Execute Forex after security trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>121</Tag>
+      <Enum>N</Enum>
+      <Description>Do not execute Forex after security trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>123</Tag>
+      <Enum>Y</Enum>
+      <Description>Gap Fill message, MsgSeqNum field valid</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>123</Tag>
+      <Enum>N</Enum>
+      <Description>Sequence Reset, ignore MsgSeqNum</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>127</Tag>
+      <Enum>B</Enum>
+      <Description>Wrong side</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>127</Tag>
+      <Enum>C</Enum>
+      <Description>Quantity exceeds order</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>127</Tag>
+      <Enum>D</Enum>
+      <Description>No matching order</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>127</Tag>
+      <Enum>E</Enum>
+      <Description>Price exceeds limit</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>127</Tag>
+      <Enum>Z</Enum>
+      <Description>Other</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>127</Tag>
+      <Enum>A</Enum>
+      <Description>Unknown symbol</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>130</Tag>
+      <Enum>Y</Enum>
+      <Description>Natural</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>130</Tag>
+      <Enum>N</Enum>
+      <Description>Not natural</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>3</Enum>
+      <Description>Local Commission</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>4</Enum>
+      <Description>Exchange Fees</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>5</Enum>
+      <Description>Stamp</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>6</Enum>
+      <Description>Levy</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>7</Enum>
+      <Description>Other</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>139</Tag>
+      <Enum>8</Enum>
+      <Description>Markup</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>139</Tag>
+      <Enum>9</Enum>
+      <Description>Consumption Tax</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>1</Enum>
+      <Description>Regulatory (e.g. SEC)</Description>
+   </Enums>
+  <Enums Added="FIX.4.0">
+      <Tag>139</Tag>
+      <Enum>2</Enum>
+      <Description>Tax</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>141</Tag>
+      <Enum>Y</Enum>
+      <Description>Yes, reset sequence numbers</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>141</Tag>
+      <Enum>N</Enum>
+      <Description>No</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>6</Enum>
+      <Description>Pending Cancel (e.g. result of Order Cancel Request)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>1</Enum>
+      <Description>Partial fill (Replaced)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>2</Enum>
+      <Description>Fill (Replaced)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>4</Enum>
+      <Description>Canceled</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>5</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>8</Enum>
+      <Description>Rejected</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>9</Enum>
+      <Description>Suspended</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>A</Enum>
+      <Description>Pending New</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>B</Enum>
+      <Description>Calculated</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>C</Enum>
+      <Description>Expired</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>150</Tag>
+      <Enum>D</Enum>
+      <Description>Restated (ExecutionRpt sent unsolicited by sellside, with ExecRestatementReason set)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>150</Tag>
+      <Enum>E</Enum>
+      <Description>Pending Replace (e.g. result of Order Cancel/Replace Request)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>150</Tag>
+      <Enum>F</Enum>
+      <Description>Trade (partial fill or fill)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>150</Tag>
+      <Enum>G</Enum>
+      <Description>Trade Correct (formerly an ExecTransType)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>150</Tag>
+      <Enum>H</Enum>
+      <Description>Trade Cancel (formerly an ExecTransType)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>150</Tag>
+      <Enum>I</Enum>
+      <Description>Order Status (formerly an ExecTransType)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>3</Enum>
+      <Description>Done for day</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>150</Tag>
+      <Enum>7</Enum>
+      <Description>Stopped</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP38">
+      <Tag>156</Tag>
+      <Enum>D</Enum>
+      <Description>Divide</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP38">
+      <Tag>156</Tag>
+      <Enum>M</Enum>
+      <Description>Multiply</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>160</Tag>
+      <Enum>0</Enum>
+      <Description>Default</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>160</Tag>
+      <Enum>4</Enum>
+      <Description>Specific Order for a single account (for CIV)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>160</Tag>
+      <Enum>3</Enum>
+      <Description>Specific Allocation Account Standing</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>160</Tag>
+      <Enum>1</Enum>
+      <Description>Standing Instructions Provided</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>160</Tag>
+      <Enum>2</Enum>
+      <Description>Specific Allocation Account Overriding</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>163</Tag>
+      <Enum>N</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>163</Tag>
+      <Enum>R</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>163</Tag>
+      <Enum>C</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>165</Tag>
+      <Enum>2</Enum>
+      <Description>Institutions Instructions</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>165</Tag>
+      <Enum>3</Enum>
+      <Description>Investor (e.g. CIV use)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>165</Tag>
+      <Enum>1</Enum>
+      <Description>Brokers Instructions</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>FED</Enum>
+      <Description>Federal Book Entry</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>ISO Country Code</Enum>
+      <Description>Local Market Settle Location</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>PNY</Enum>
+      <Description>Physical</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>EUR</Enum>
+      <Description>Euroclear</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>DTC</Enum>
+      <Description>Depository Trust Company</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>CED</Enum>
+      <Description>CEDEL</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>166</Tag>
+      <Enum>PTC</Enum>
+      <Description>Participant Trust Company</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>CP</Enum>
+      <Description>Commercial Paper</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>VRDN</Enum>
+      <Description>Variable Rate Demand Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>PZFJ</Enum>
+      <Description>Plazos Fijos</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>PN</Enum>
+      <Description>Promissory Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>ONITE</Enum>
+      <Description>Overnight</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>MTN</Enum>
+      <Description>Medium Term Notes</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TECP</Enum>
+      <Description>Tax Exempt Commercial Paper</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>AMENDED</Enum>
+      <Description>Amended &amp; Restated</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>BRIDGE</Enum>
+      <Description>Bridge Loan</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>LOFC</Enum>
+      <Description>Letter of Credit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>SWING</Enum>
+      <Description>Swing Line Facility</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>DINP</Enum>
+      <Description>Debtor in Possession</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>DEFLTED</Enum>
+      <Description>Defaulted</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>WITHDRN</Enum>
+      <Description>Withdrawn</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>LQN</Enum>
+      <Description>Liquidity Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>MATURED</Enum>
+      <Description>Matured</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>DN</Enum>
+      <Description>Deposit Notes</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>RETIRED</Enum>
+      <Description>Retired</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>BA</Enum>
+      <Description>Bankers Acceptance</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>BN</Enum>
+      <Description>Bank Notes</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>BOX</Enum>
+      <Description>Bill of Exchanges</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>CD</Enum>
+      <Description>Certificate of Deposit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>CL</Enum>
+      <Description>Call Loans</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>REPLACD</Enum>
+      <Description>Replaced</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>MT</Enum>
+      <Description>Mandatory Tender</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>RVLVTRM</Enum>
+      <Description>Revolver/Term Loan</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>MPP</Enum>
+      <Description>Mortgage Private Placement</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>STN</Enum>
+      <Description>Short Term Loan Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>MPT</Enum>
+      <Description>Miscellaneous Pass-through</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TBA</Enum>
+      <Description>To be Announced</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>AN</Enum>
+      <Description>Other Anticipation Notes BAN, GAN, etc.</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>MIO</Enum>
+      <Description>Mortgage Interest Only</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>COFP</Enum>
+      <Description>Certificate of Participation</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>MBS</Enum>
+      <Description>Mortgage-backed Securities</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>REV</Enum>
+      <Description>Revenue Bonds</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>SPCLA</Enum>
+      <Description>Special Assessment</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>SPCLO</Enum>
+      <Description>Special Obligation</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>SPCLT</Enum>
+      <Description>Special Tax</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TAN</Enum>
+      <Description>Tax Anticipation Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TAXA</Enum>
+      <Description>Tax Allocation</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>COFO</Enum>
+      <Description>Certificate of Obligation</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>TD</Enum>
+      <Description>Time Deposit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>GO</Enum>
+      <Description>General Obligation Bonds</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>167</Tag>
+      <Enum>?</Enum>
+      <Description>Wildcard entry (used on Security Definition Request message)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>WAR</Enum>
+      <Description>Warrant</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>MF</Enum>
+      <Description>Mutual Fund (i.e. any kind of open-ended Collective Investment Vehicle)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>MLEG</Enum>
+      <Description>Multi-leg instrument (e.g. options strategy or futures spread. CFICode can be used to identify if options-based, futures-based, etc.)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TRAN</Enum>
+      <Description>Tax &amp; Revenue Anticipation Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>MPO</Enum>
+      <Description>Mortgage Principal Only</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>RP</Enum>
+      <Description>Repurchase Agreement</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>NONE</Enum>
+      <Description>No Security Type</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>XCN</Enum>
+      <Description>Extended Comm Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>POOL</Enum>
+      <Description>Agency Pools</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>ABS</Enum>
+      <Description>Asset-backed Securities</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>CMBS</Enum>
+      <Description>Corp. Mortgage-backed Securities</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>CMO</Enum>
+      <Description>Collateralized Mortgage Obligation</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>167</Tag>
+      <Enum>IET</Enum>
+      <Description>IOETTE Mortgage</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>RVRP</Enum>
+      <Description>Reverse Repurchase Agreement</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>FOR</Enum>
+      <Description>Foreign Exchange Contract</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>RAN</Enum>
+      <Description>Revenue Anticipation Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>RVLV</Enum>
+      <Description>Revolver Loan</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>FAC</Enum>
+      <Description>Federal Agency Coupon</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>FADN</Enum>
+      <Description>Federal Agency Discount Note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>PEF</Enum>
+      <Description>Private Export Funding</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>CORP</Enum>
+      <Description>Corporate Bond</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>CPP</Enum>
+      <Description>Corporate Private Placement</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>167</Tag>
+      <Enum>CB</Enum>
+      <Description>Convertible Bond</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>DUAL</Enum>
+      <Description>Dual Currency</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>XLINKD</Enum>
+      <Description>Indexed Linked</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>YANK</Enum>
+      <Description>Yankee Corporate Bond</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>CS</Enum>
+      <Description>Common Stock</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>PS</Enum>
+      <Description>Preferred Stock</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>BRADY</Enum>
+      <Description>Brady Bond</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TBOND</Enum>
+      <Description>US Treasury Bond</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TINT</Enum>
+      <Description>Interest strip from any bond or note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TIPS</Enum>
+      <Description>Treasury Inflation Protected Securities</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TCAL</Enum>
+      <Description>Principal strip of a callable bond or note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TPRN</Enum>
+      <Description>Principal strip from a non-callable bond or note</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>UST</Enum>
+      <Description>US Treasury Note/Bond</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>167</Tag>
+      <Enum>USTB</Enum>
+      <Description>US Treasury Bill</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>TERM</Enum>
+      <Description>Term Loan</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>167</Tag>
+      <Enum>STRUCT</Enum>
+      <Description>Structured Notes</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>169</Tag>
+      <Enum>0</Enum>
+      <Description>Other</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>169</Tag>
+      <Enum>1</Enum>
+      <Description>DTC SID</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>169</Tag>
+      <Enum>3</Enum>
+      <Description>A Global Custodian (StandInstDbName must be provided)</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>169</Tag>
+      <Enum>2</Enum>
+      <Description>Thomson ALERT</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP35">
+      <Tag>172</Tag>
+      <Enum>1</Enum>
+      <Description>Free</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP35">
+      <Tag>172</Tag>
+      <Enum>0</Enum>
+      <Description>Versus Payment</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>197</Tag>
+      <Enum>0</Enum>
+      <Description>F/X Netting</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>197</Tag>
+      <Enum>1</Enum>
+      <Description>F/X Swap</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>201</Tag>
+      <Enum>0</Enum>
+      <Description>Put</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>201</Tag>
+      <Enum>1</Enum>
+      <Description>Call</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>203</Tag>
+      <Enum>1</Enum>
+      <Description>Uncovered</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>203</Tag>
+      <Enum>0</Enum>
+      <Description>Covered</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>204</Tag>
+      <Enum>0</Enum>
+      <Description>Customer</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>204</Tag>
+      <Enum>1</Enum>
+      <Description>Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>208</Tag>
+      <Enum>N</Enum>
+      <Description>Details should not be communicated</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>208</Tag>
+      <Enum>Y</Enum>
+      <Description>Details should be communicated</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>209</Tag>
+      <Enum>3</Enum>
+      <Description>Forward and Match</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>209</Tag>
+      <Enum>2</Enum>
+      <Description>Forward</Description>
+   </Enums>
+  <Enums Added="FIX.4.1">
+      <Tag>209</Tag>
+      <Enum>1</Enum>
+      <Description>Match</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>216</Tag>
+      <Enum>1</Enum>
+      <Description>Target Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>216</Tag>
+      <Enum>2</Enum>
+      <Description>Target List</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>216</Tag>
+      <Enum>3</Enum>
+      <Description>Block Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>216</Tag>
+      <Enum>4</Enum>
+      <Description>Block List</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>5</Enum>
+      <Description>OLD-10</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>1</Enum>
+      <Description>CURVE</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>2</Enum>
+      <Description>5-YR</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>4</Enum>
+      <Description>10-YR</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>6</Enum>
+      <Description>30-YR</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>7</Enum>
+      <Description>OLD-30</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>8</Enum>
+      <Description>3-MO-LIBOR</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>9</Enum>
+      <Description>6-MO-LIBOR</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>219</Tag>
+      <Enum>3</Enum>
+      <Description>OLD-5</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>SWAP</Enum>
+      <Description>SWAP</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>LIBID</Enum>
+      <Description>LIBID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>OTHER</Enum>
+      <Description>OTHER</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>Treasury</Enum>
+      <Description>Treasury</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>Euribor</Enum>
+      <Description>Euribor</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>Pfandbriefe</Enum>
+      <Description>Pfandbriefe</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>FutureSWAP</Enum>
+      <Description>FutureSWAP</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>MuniAAA</Enum>
+      <Description>MuniAAA</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>221</Tag>
+      <Enum>LIBOR</Enum>
+      <Description>LIBOR (London Inter-Bank Offers)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>ABS</Enum>
+      <Description>Absolute Prepayment Speed</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>WALA</Enum>
+      <Description>Weighted Average Loan Age (value in months)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>WAM</Enum>
+      <Description>Weighted Average Maturity (value in months)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>CPR</Enum>
+      <Description>Constant Prepayment Rate</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>HEP</Enum>
+      <Description>final CPR of Home Equity Prepayment Curve</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>WAL</Enum>
+      <Description>Weighted Average Life (value in months)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>MHP</Enum>
+      <Description>% of Manufactured Housing Prepayment Curve</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>SMM</Enum>
+      <Description>Single Monthly Mortality</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>MPR</Enum>
+      <Description>Monthly Prepayment Rate</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PSA</Enum>
+      <Description>% of BMA Prepayment Curve</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PPC</Enum>
+      <Description>% of Prospectus Prepayment Curve</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>CPP</Enum>
+      <Description>Constant Prepayment Penalty</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>LOTVAR</Enum>
+      <Description>Lot Variance (value in percent maximum over- or under-allocation allowed)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>CPY</Enum>
+      <Description>Constant Prepayment Yield</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>WAC</Enum>
+      <Description>Weighted Average Coupon (value in percent)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>ISSUE</Enum>
+      <Description>Year of Issue</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>MAT</Enum>
+      <Description>Maturity Year</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PIECES</Enum>
+      <Description>Number of Pieces</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PMAX</Enum>
+      <Description>Pools Maximum</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PPM</Enum>
+      <Description>Pools per Million</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PPL</Enum>
+      <Description>Pools per Lot</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PPT</Enum>
+      <Description>Pools per Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>PROD</Enum>
+      <Description>Production Year</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>TRDVAR</Enum>
+      <Description>Trade Variance (value in percent maximum over- or under-allocation allowed)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>233</Tag>
+      <Enum>GEOG</Enum>
+      <Description>Geographics</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>TRUE</Enum>
+      <Description>True Yield The yield calculated with coupon dates moved from a weekend or holiday to the next valid settlement date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>PREVCLOSE</Enum>
+      <Description>Previous Close Yield The yield of a bond based on the closing price 1 day ago.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>LONGEST</Enum>
+      <Description>Yield to Longest Average (Sinking Fund Bonds) The yield assuming only mandatory sinks are taken. This results in a slower paydown of debt; the yield is then calculated to the final payment date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>LONGAVGLIFE</Enum>
+      <Description>Yield to Longest Average Life The yield assuming only mandatory sinks are taken. This results in a lower paydown of debt; the yield is then calculated to the final payment date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>MATURITY</Enum>
+      <Description>Yield to Maturity The yield of a bond to its maturity date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>MARK</Enum>
+      <Description>Mark To Market Yield An adjustment in the valuation of a securities portfolio to reflect the current market values of the respective securities in the portfolio.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>OPENAVG</Enum>
+      <Description>Open Average Yield The average yield of the respective securities in the portfolio.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>PUT</Enum>
+      <Description>Yield to Next Put The yield to the date at which the bond holder can next put the bond to the issuer.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>PROCEEDS</Enum>
+      <Description>Proceeds Yield The CD equivalent yield when the remaining time to maturity is less than two years.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>SEMIANNUAL</Enum>
+      <Description>Semi-annual Yield The yield of a bond whose coupon payments are reinvested semi-annually</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>SHORTAVGLIFE</Enum>
+      <Description>Yield to Shortest Average Life same as AVGLIFE above.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>SHORTEST</Enum>
+      <Description>Yield to Shortest Average (Sinking Fund Bonds) The yield assuming that all sinks (mandatory and voluntary) are taken. This results in a faster paydown of debt; the yield is then calculated to the final payment date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>SIMPLE</Enum>
+      <Description>Simple Yield The yield of a bond assuming no reinvestment of coupon payments. (Act/360 day count)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>TENDER</Enum>
+      <Description>Yield to Tender Date The yield on a Municipal bond to its mandatory tender date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>VALUE1/32</Enum>
+      <Description>Yield Value Of 1/32 The amount that the yield will change for a 1/32nd change in price.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>WORST</Enum>
+      <Description>Yield To Worst Convention The lowest yield to all possible redemption date scenarios.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>TAXEQUIV</Enum>
+      <Description>Tax Equivalent Yield The after tax yield grossed up by the maximum federal tax rate of 39.6%. For comparison to taxable yields.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>ANNUAL</Enum>
+      <Description>Annual Yield The annual interest or dividend income an investment earns, expressed as a percentage of the investments total value.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>LASTYEAR</Enum>
+      <Description>Closing Yield Most Recent Year The yield of a bond based on the closing price as of the most recent years end.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>NEXTREFUND</Enum>
+      <Description>Yield To Next Refund (Sinking Fund Bonds) Yield assuming all bonds are redeemed at the next refund date at the redemption price.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>AFTERTAX</Enum>
+      <Description>After Tax Yield (Municipals) The yield on the bond net of any tax consequences from holding the bond. The discount on municipal securities can be subject to both capital gains taxes and ordinary income taxes. Calculated from dollar price.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>ATISSUE</Enum>
+      <Description>Yield At Issue (Municipals) The yield of the bond offered on the issue date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>AVGLIFE</Enum>
+      <Description>Yield To Average Life The yield assuming that all sinks (mandatory and voluntary) are taken at par. This results in a faster paydown of debt; the yield is then calculated to the average life date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>AVGMATURITY</Enum>
+      <Description>Yield To Average Maturity The yield achieved by substituting a bond's average maturity for the issue's final maturity date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>BOOK</Enum>
+      <Description>Book Yield The yield of a security calculated by using its book value instead of the current market price. This term is typically used in the US domestic market.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>CALL</Enum>
+      <Description>Yield to Next Call The yield of a bond to the next possible call date.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>CHANGE</Enum>
+      <Description>Yield Change Since Close The change in the yield since the previous day's closing yield.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>COMPOUND</Enum>
+      <Description>Compound Yield The yield of certain Japanese bonds based on its price. Certain Japanese bonds have irregular first or last coupons, and the yield is calculated compound for these irregular periods.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>CURRENT</Enum>
+      <Description>Current Yield Annual interest on a bond divided by the market value. The actual income rate of return as opposed to the coupon rate expressed as a percentage.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>GROSS</Enum>
+      <Description>True Gross Yield Yield calculated using the price including accrued interest, where coupon dates are moved from holidays and weekends to the next trading day.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>GOVTEQUIV</Enum>
+      <Description>Government Equivalent Yield Ask yield based on semi-annual coupons compounding in all periods and actual/actual calendar.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>INFLATION</Enum>
+      <Description>Yield with Inflation Assumption Based on price, the return an investor would require on a normal bond that would make the real return equal to that of the inflation-indexed bond, assuming a constant inflation rate.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>INVERSEFLOATER</Enum>
+      <Description>Inverse Floater Bond Yield Inverse floater semi-annual bond equivalent rate.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>LASTQUARTER</Enum>
+      <Description>Closing Yield Most Recent Quarter The yield of a bond based on the closing price as of the most recent quarters end.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>LASTCLOSE</Enum>
+      <Description>Most Recent Closing Yield The last available yield stored in history, computed using price.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>LASTMONTH</Enum>
+      <Description>Closing Yield Most Recent Month The yield of a bond based on the closing price as of the most recent month's end.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>235</Tag>
+      <Enum>CLOSE</Enum>
+      <Description>Closing Yield The yield of a bond based on the closing price.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>258</Tag>
+      <Enum>N</Enum>
+      <Description>Not Traded Flat</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>258</Tag>
+      <Enum>Y</Enum>
+      <Description>Traded Flat</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>263</Tag>
+      <Enum>1</Enum>
+      <Description>Snapshot + Updates (Subscribe)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>263</Tag>
+      <Enum>2</Enum>
+      <Description>Disable previous Snapshot + Update Request (Unsubscribe)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>263</Tag>
+      <Enum>0</Enum>
+      <Description>Snapshot</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>265</Tag>
+      <Enum>0</Enum>
+      <Description>Full Refresh</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>265</Tag>
+      <Enum>1</Enum>
+      <Description>Incremental Refresh</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP34">
+      <Tag>266</Tag>
+      <Enum>Y</Enum>
+      <Description>one book entry per side per price</Description>
+   </Enums>
+  <Enums Added="FIX.4.4" AddedEP="EP34">
+      <Tag>266</Tag>
+      <Enum>N</Enum>
+      <Description>Multiple entries per side per price allowed</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>7</Enum>
+      <Description>Trading Session High Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>1</Enum>
+      <Description>Offer</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>269</Tag>
+      <Enum>A</Enum>
+      <Description>Imbalance</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>9</Enum>
+      <Description>Trading Session VWAP Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>8</Enum>
+      <Description>Trading Session Low Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>5</Enum>
+      <Description>Closing Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>4</Enum>
+      <Description>Opening Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>0</Enum>
+      <Description>Bid</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>2</Enum>
+      <Description>Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>3</Enum>
+      <Description>Index Value</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>269</Tag>
+      <Enum>6</Enum>
+      <Description>Settlement Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>274</Tag>
+      <Enum>0</Enum>
+      <Description>Plus Tick</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>274</Tag>
+      <Enum>1</Enum>
+      <Description>Zero-Plus Tick</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>274</Tag>
+      <Enum>2</Enum>
+      <Description>Minus Tick</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>274</Tag>
+      <Enum>3</Enum>
+      <Description>Zero-Minus Tick</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>E</Enum>
+      <Description>Locked</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>I</Enum>
+      <Description>Non-Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>H</Enum>
+      <Description>Fast Trading</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>F</Enum>
+      <Description>Crossed</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>D</Enum>
+      <Description>Consolidated Best</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>C</Enum>
+      <Description>Exchange Best</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>B</Enum>
+      <Description>Closed / Inactive</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>A</Enum>
+      <Description>Open / Active</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>276</Tag>
+      <Enum>G</Enum>
+      <Description>Depth</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>J</Enum>
+      <Description>Next Day Trade (next day clearing)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>K</Enum>
+      <Description>Opened (late report of opened trade)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>L</Enum>
+      <Description>Seller</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>B</Enum>
+      <Description>Average Price Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>M</Enum>
+      <Description>Sold (out of sequence)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>H</Enum>
+      <Description>Rule 155 Trade (Amex)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>N</Enum>
+      <Description>Stopped Stock (guarantee of price but does not execute the order)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>277</Tag>
+      <Enum>P</Enum>
+      <Description>Imbalance More Buyers (Cannot be used in combination with Q)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>277</Tag>
+      <Enum>Q</Enum>
+      <Description>Imbalance More Sellers (Cannot be used in combination with P)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>277</Tag>
+      <Enum>R</Enum>
+      <Description>Opening Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>I</Enum>
+      <Description>Sold Last (late reporting)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>A</Enum>
+      <Description>Cash (only) Market</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>C</Enum>
+      <Description>Cash Trade (same day clearing)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>E</Enum>
+      <Description>Opening / Reopening Trade Detail</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>F</Enum>
+      <Description>Intraday Trade Detail</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>G</Enum>
+      <Description>Rule 127 Trade (NYSE)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>277</Tag>
+      <Enum>D</Enum>
+      <Description>Next Day (only) Market</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>279</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>279</Tag>
+      <Enum>1</Enum>
+      <Description>Change</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>279</Tag>
+      <Enum>2</Enum>
+      <Description>Delete</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>7</Enum>
+      <Description>Unsupported AggregatedBook</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>1</Enum>
+      <Description>Duplicate MDReqID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>281</Tag>
+      <Enum>C</Enum>
+      <Description>Unsupported MDImplicitDelete</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>281</Tag>
+      <Enum>B</Enum>
+      <Description>Unsupported OpenCloseSettleFlag</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>281</Tag>
+      <Enum>A</Enum>
+      <Description>Unsupported Scope</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>281</Tag>
+      <Enum>9</Enum>
+      <Description>Unsupported TradingSessionID</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>8</Enum>
+      <Description>Unsupported MDEntryType</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>6</Enum>
+      <Description>Unsupported MDUpdateType</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>5</Enum>
+      <Description>Unsupported MarketDepth</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>4</Enum>
+      <Description>Unsupported SubscriptionRequestType</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>2</Enum>
+      <Description>Insufficient Bandwidth</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>0</Enum>
+      <Description>Unknown symbol</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>281</Tag>
+      <Enum>3</Enum>
+      <Description>Insufficient Permissions</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>285</Tag>
+      <Enum>0</Enum>
+      <Description>Cancelation / Trade Bust</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>285</Tag>
+      <Enum>1</Enum>
+      <Description>Error</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>286</Tag>
+      <Enum>1</Enum>
+      <Description>Session Open / Close / Settlement price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>286</Tag>
+      <Enum>2</Enum>
+      <Description>Delivery Settlement price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>286</Tag>
+      <Enum>3</Enum>
+      <Description>Expected price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>286</Tag>
+      <Enum>4</Enum>
+      <Description>Price from previous business day</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>286</Tag>
+      <Enum>0</Enum>
+      <Description>Daily Open / Close / Settlement price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>291</Tag>
+      <Enum>1</Enum>
+      <Description>Bankrupt</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>291</Tag>
+      <Enum>2</Enum>
+      <Description>Pending delisting</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>292</Tag>
+      <Enum>B</Enum>
+      <Description>Ex-Distribution</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>292</Tag>
+      <Enum>E</Enum>
+      <Description>Ex-Interest</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>292</Tag>
+      <Enum>C</Enum>
+      <Description>Ex-Rights</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>292</Tag>
+      <Enum>A</Enum>
+      <Description>Ex-Dividend</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>292</Tag>
+      <Enum>D</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>297</Tag>
+      <Enum>6</Enum>
+      <Description>Removed from Market</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>297</Tag>
+      <Enum>1</Enum>
+      <Description>Canceled for Symbol(s)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>297</Tag>
+      <Enum>10</Enum>
+      <Description>Pending</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>297</Tag>
+      <Enum>9</Enum>
+      <Description>Quote Not Found</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>297</Tag>
+      <Enum>8</Enum>
+      <Description>Query</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>297</Tag>
+      <Enum>7</Enum>
+      <Description>Expired</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>297</Tag>
+      <Enum>5</Enum>
+      <Description>Rejected</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>297</Tag>
+      <Enum>4</Enum>
+      <Description>Canceled All</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>297</Tag>
+      <Enum>3</Enum>
+      <Description>Canceled for Underlying</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>297</Tag>
+      <Enum>2</Enum>
+      <Description>Canceled for Security Type(s)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>297</Tag>
+      <Enum>0</Enum>
+      <Description>Accepted</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>298</Tag>
+      <Enum>4</Enum>
+      <Description>Cancel All Quotes</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>298</Tag>
+      <Enum>2</Enum>
+      <Description>Cancel for Security Type(s)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>298</Tag>
+      <Enum>1</Enum>
+      <Description>Cancel for Symbol(s)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>298</Tag>
+      <Enum>3</Enum>
+      <Description>Cancel for Underlying Symbol</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>9</Enum>
+      <Description>Not authorized to quote security</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>1</Enum>
+      <Description>Unknown symbol (Security)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>2</Enum>
+      <Description>Exchange (Security) closed</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>3</Enum>
+      <Description>Quote Request exceeds limit</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>4</Enum>
+      <Description>Too late to enter</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>5</Enum>
+      <Description>Unknown Quote</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>6</Enum>
+      <Description>Duplicate Quote</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>7</Enum>
+      <Description>Invalid bid/ask spread</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>300</Tag>
+      <Enum>8</Enum>
+      <Description>Invalid price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>301</Tag>
+      <Enum>1</Enum>
+      <Description>Acknowledge only negative or erroneous quotes</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>301</Tag>
+      <Enum>0</Enum>
+      <Description>No Acknowledgement (Default)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>301</Tag>
+      <Enum>2</Enum>
+      <Description>Acknowledge each quote messages</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>303</Tag>
+      <Enum>2</Enum>
+      <Description>Automatic</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>303</Tag>
+      <Enum>1</Enum>
+      <Description>Manual</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>321</Tag>
+      <Enum>0</Enum>
+      <Description>Request Security identity and specifications</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>321</Tag>
+      <Enum>1</Enum>
+      <Description>Request Security identity for the specifications provided (Name of the security is not supplied)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>321</Tag>
+      <Enum>2</Enum>
+      <Description>Request List Security Types</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>321</Tag>
+      <Enum>3</Enum>
+      <Description>Request List Securities (Can be qualified with Symbol, SecurityType, TradingSessionID, SecurityExchange. If provided then only list Securities for the specific type)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>323</Tag>
+      <Enum>5</Enum>
+      <Description>Reject security proposal</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>323</Tag>
+      <Enum>1</Enum>
+      <Description>Accept security proposal as is</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>323</Tag>
+      <Enum>6</Enum>
+      <Description>Can not match selection criteria</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>323</Tag>
+      <Enum>2</Enum>
+      <Description>Accept security proposal with revisions as indicated in the message</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>323</Tag>
+      <Enum>4</Enum>
+      <Description>List of securities returned per request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>323</Tag>
+      <Enum>3</Enum>
+      <Description>List of security types returned per request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>325</Tag>
+      <Enum>Y</Enum>
+      <Description>Message is being sent unsolicited</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>325</Tag>
+      <Enum>N</Enum>
+      <Description>Message is being sent as a result of a prior request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>20</Enum>
+      <Description>Unknown or Invalid</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>13</Enum>
+      <Description>No Market On Close Imbalance</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>14</Enum>
+      <Description>ITS Pre-Opening</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>15</Enum>
+      <Description>New Price Indication</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>16</Enum>
+      <Description>Trade Dissemination Time</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>17</Enum>
+      <Description>Ready to trade (start of session)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>19</Enum>
+      <Description>Not Traded on this Market</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>326</Tag>
+      <Enum>22</Enum>
+      <Description>Opening Rotation</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>326</Tag>
+      <Enum>21</Enum>
+      <Description>Pre-Open</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>12</Enum>
+      <Description>No Market Imbalance</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>18</Enum>
+      <Description>Not Available for trading (end of session)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>10</Enum>
+      <Description>Market On Close Imbalance Sell</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>9</Enum>
+      <Description>Market On Close Imbalance Buy</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>8</Enum>
+      <Description>Market Imbalance Sell</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>7</Enum>
+      <Description>Market Imbalance Buy</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>6</Enum>
+      <Description>Trading Range Indication</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>5</Enum>
+      <Description>Price Indication</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>4</Enum>
+      <Description>No Open/No Resume</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>3</Enum>
+      <Description>Resume</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>1</Enum>
+      <Description>Opening Delay</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>326</Tag>
+      <Enum>2</Enum>
+      <Description>Trading Halt</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>326</Tag>
+      <Enum>23</Enum>
+      <Description>Fast Market</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>327</Tag>
+      <Enum>X</Enum>
+      <Description>Equipment Changeover</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>327</Tag>
+      <Enum>M</Enum>
+      <Description>Additional Information</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>327</Tag>
+      <Enum>E</Enum>
+      <Description>Order Influx</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>327</Tag>
+      <Enum>P</Enum>
+      <Description>News Pending</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>327</Tag>
+      <Enum>I</Enum>
+      <Description>Order Imbalance</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>327</Tag>
+      <Enum>D</Enum>
+      <Description>News Dissemination</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>328</Tag>
+      <Enum>Y</Enum>
+      <Description>Halt was due to common stock being halted</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>328</Tag>
+      <Enum>N</Enum>
+      <Description>Halt was not related to a halt of the common stock</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>329</Tag>
+      <Enum>Y</Enum>
+      <Description>Halt was due to related security being halted</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>329</Tag>
+      <Enum>N</Enum>
+      <Description>Halt was not related to a halt of the related security</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>334</Tag>
+      <Enum>1</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>334</Tag>
+      <Enum>2</Enum>
+      <Description>Error</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>334</Tag>
+      <Enum>3</Enum>
+      <Description>Correction</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>338</Tag>
+      <Enum>3</Enum>
+      <Description>Two Party</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>338</Tag>
+      <Enum>1</Enum>
+      <Description>Electronic</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>338</Tag>
+      <Enum>2</Enum>
+      <Description>Open Outcry</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>339</Tag>
+      <Enum>3</Enum>
+      <Description>Production</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>339</Tag>
+      <Enum>1</Enum>
+      <Description>Testing</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>339</Tag>
+      <Enum>2</Enum>
+      <Description>Simulated</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>340</Tag>
+      <Enum>5</Enum>
+      <Description>Pre-Close</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>340</Tag>
+      <Enum>6</Enum>
+      <Description>Request Rejected</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>340</Tag>
+      <Enum>4</Enum>
+      <Description>Pre-Open</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>340</Tag>
+      <Enum>3</Enum>
+      <Description>Closed</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>340</Tag>
+      <Enum>2</Enum>
+      <Description>Open</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>340</Tag>
+      <Enum>1</Enum>
+      <Description>Halted</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>340</Tag>
+      <Enum>0</Enum>
+      <Description>Unknown</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>347</Tag>
+      <Enum>UTF-8</Enum>
+      <Description>(for using Unicode)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>347</Tag>
+      <Enum>ISO-2022-JP</Enum>
+      <Description>(for using JIS)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>347</Tag>
+      <Enum>EUC-JP</Enum>
+      <Description>(for using EUC)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>347</Tag>
+      <Enum>Shift_JIS</Enum>
+      <Description>(for using SJIS)</Description>
+   </Enums>
+   <Enums Added="FIX.4.3">
+      <Tag>373</Tag>
+      <Enum>12</Enum>
+      <Description>XML Validation error</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>373</Tag>
+      <Enum>17</Enum>
+      <Description>Non data value includes field delimiter (SOH character)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>373</Tag>
+      <Enum>16</Enum>
+      <Description>Incorrect NumInGroup count for repeating group</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>373</Tag>
+      <Enum>15</Enum>
+      <Description>Repeating group fields out of order</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>373</Tag>
+      <Enum>14</Enum>
+      <Description>Tag specified out of required order</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>11</Enum>
+      <Description>Invalid MsgType</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>0</Enum>
+      <Description>Invalid tag number</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>9</Enum>
+      <Description>CompID problem</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>8</Enum>
+      <Description>Signature problem</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>7</Enum>
+      <Description>Decryption problem</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>6</Enum>
+      <Description>Incorrect data format for value</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>5</Enum>
+      <Description>Value is incorrect (out of range) for this tag</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>4</Enum>
+      <Description>Tag specified without a value</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>3</Enum>
+      <Description>Undefined Tag</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>10</Enum>
+      <Description>SendingTime accuracy problem</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>373</Tag>
+      <Enum>13</Enum>
+      <Description>Tag appears more than once</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>2</Enum>
+      <Description>Tag not defined for this message type</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>373</Tag>
+      <Enum>1</Enum>
+      <Description>Required tag missing</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>374</Tag>
+      <Enum>N</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>374</Tag>
+      <Enum>C</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>377</Tag>
+      <Enum>N</Enum>
+      <Description>Was not solicited</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>377</Tag>
+      <Enum>Y</Enum>
+      <Description>Was solcitied</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>378</Tag>
+      <Enum>7</Enum>
+      <Description>Cancel on System Failure</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>378</Tag>
+      <Enum>0</Enum>
+      <Description>GT Corporate action</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>378</Tag>
+      <Enum>8</Enum>
+      <Description>Market (Exchange) Option</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>378</Tag>
+      <Enum>6</Enum>
+      <Description>Cancel on Trading Halt</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>378</Tag>
+      <Enum>5</Enum>
+      <Description>Partial decline of OrderQty (e.g. exchange-initiated partial cancel)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>378</Tag>
+      <Enum>4</Enum>
+      <Description>Broker option</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>378</Tag>
+      <Enum>3</Enum>
+      <Description>Repricing of order</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>378</Tag>
+      <Enum>1</Enum>
+      <Description>GT renewal / restatement (no corporate action)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>378</Tag>
+      <Enum>2</Enum>
+      <Description>Verbal change</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>380</Tag>
+      <Enum>3</Enum>
+      <Description>Unsupported Message Type</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>380</Tag>
+      <Enum>7</Enum>
+      <Description>DeliverTo firm not available at this time</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>380</Tag>
+      <Enum>4</Enum>
+      <Description>Application not available</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>380</Tag>
+      <Enum>6</Enum>
+      <Description>Not authorized</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>380</Tag>
+      <Enum>0</Enum>
+      <Description>Other</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>380</Tag>
+      <Enum>5</Enum>
+      <Description>Conditionally Required Field Missing</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>380</Tag>
+      <Enum>1</Enum>
+      <Description>Unkown ID</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>380</Tag>
+      <Enum>2</Enum>
+      <Description>Unknown Security</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>385</Tag>
+      <Enum>S</Enum>
+      <Description>Send</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>385</Tag>
+      <Enum>R</Enum>
+      <Description>Receive</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>388</Tag>
+      <Enum>0</Enum>
+      <Description>Related to displayed price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>388</Tag>
+      <Enum>1</Enum>
+      <Description>Related to market price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>388</Tag>
+      <Enum>2</Enum>
+      <Description>Related to primary price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>388</Tag>
+      <Enum>3</Enum>
+      <Description>Related to local primary price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>388</Tag>
+      <Enum>4</Enum>
+      <Description>Related to midpoint price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>388</Tag>
+      <Enum>5</Enum>
+      <Description>Related to last trade price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>394</Tag>
+      <Enum>1</Enum>
+      <Description>Non Disclosed Style (e.g. US/European)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>394</Tag>
+      <Enum>2</Enum>
+      <Description>Disclosed Style (e.g. Japanese)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>394</Tag>
+      <Enum>3</Enum>
+      <Description>No Bidding Process</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>399</Tag>
+      <Enum>3</Enum>
+      <Description>Index</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>399</Tag>
+      <Enum>2</Enum>
+      <Description>Country</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>399</Tag>
+      <Enum>1</Enum>
+      <Description>Sector</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>401</Tag>
+      <Enum>1</Enum>
+      <Description>SideValue1</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>401</Tag>
+      <Enum>2</Enum>
+      <Description>SideValue 2</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>409</Tag>
+      <Enum>3</Enum>
+      <Description>Normal Market Size</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>409</Tag>
+      <Enum>4</Enum>
+      <Description>Other</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>409</Tag>
+      <Enum>2</Enum>
+      <Description>20 day moving average</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>409</Tag>
+      <Enum>1</Enum>
+      <Description>5day moving average</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>411</Tag>
+      <Enum>N</Enum>
+      <Description>False</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>411</Tag>
+      <Enum>Y</Enum>
+      <Description>True</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>414</Tag>
+      <Enum>3</Enum>
+      <Description>Real-time execution reports (to be discouraged)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>414</Tag>
+      <Enum>2</Enum>
+      <Description>SellSide periodically sends status using ListStatus. Period optionally specified in ProgressPeriod</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>414</Tag>
+      <Enum>1</Enum>
+      <Description>BuySide explicitly requests status using StatusRequest (Default) The sell-side firm can however, send a DONE status List Status Response in an unsolicited fashion</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>416</Tag>
+      <Enum>2</Enum>
+      <Description>Gross</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>416</Tag>
+      <Enum>1</Enum>
+      <Description>Net</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>418</Tag>
+      <Enum>G</Enum>
+      <Description>VWAP Guarantee</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>418</Tag>
+      <Enum>A</Enum>
+      <Description>Agency</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>418</Tag>
+      <Enum>J</Enum>
+      <Description>Guaranteed Close</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>418</Tag>
+      <Enum>R</Enum>
+      <Description>Risk Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>8</Enum>
+      <Description>VWAP through an afternoon session</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>D</Enum>
+      <Description>Open</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>Z</Enum>
+      <Description>Others</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>C</Enum>
+      <Description>Strike</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>B</Enum>
+      <Description>VWAP through an afternoon session except YORI (an opening auction)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>9</Enum>
+      <Description>VWAP through a day except YORI (an opening auction)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>7</Enum>
+      <Description>VWAP through a morning session</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>6</Enum>
+      <Description>VWAP through a day</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>5</Enum>
+      <Description>SQ</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>4</Enum>
+      <Description>Current price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>3</Enum>
+      <Description>Closing Price</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>2</Enum>
+      <Description>Closing Price at morning session</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>419</Tag>
+      <Enum>A</Enum>
+      <Description>VWAP through a morning session except YORI (an opening auction)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>423</Tag>
+      <Enum>3</Enum>
+      <Description>Fixed Amount (absolute value)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>423</Tag>
+      <Enum>1</Enum>
+      <Description>Percentage</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>423</Tag>
+      <Enum>4</Enum>
+      <Description>discount - percentage points below par</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>423</Tag>
+      <Enum>6</Enum>
+      <Description>basis points relative to benchmark</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>423</Tag>
+      <Enum>7</Enum>
+      <Description>TED price (see "Volume 1 - Glossary")</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>423</Tag>
+      <Enum>8</Enum>
+      <Description>TED yield (see "Volume 1 - Glossary")</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>423</Tag>
+      <Enum>5</Enum>
+      <Description>premium - percentage points over par</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>423</Tag>
+      <Enum>2</Enum>
+      <Description>per share (e.g. cents per share)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>427</Tag>
+      <Enum>0</Enum>
+      <Description>book out all trades on day of execution</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>427</Tag>
+      <Enum>2</Enum>
+      <Description>accumulate until verbally notified otherwise</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>427</Tag>
+      <Enum>1</Enum>
+      <Description>accumulate executions until order is filled or expires</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>429</Tag>
+      <Enum>6</Enum>
+      <Description>Alert</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>429</Tag>
+      <Enum>4</Enum>
+      <Description>ExecStarted</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>429</Tag>
+      <Enum>3</Enum>
+      <Description>Timed</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>429</Tag>
+      <Enum>2</Enum>
+      <Description>Response</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>429</Tag>
+      <Enum>1</Enum>
+      <Description>Ack</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>429</Tag>
+      <Enum>5</Enum>
+      <Description>AllDone</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>430</Tag>
+      <Enum>1</Enum>
+      <Description>Net</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>430</Tag>
+      <Enum>2</Enum>
+      <Description>Gross</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>4</Enum>
+      <Description>Canceling</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>3</Enum>
+      <Description>Executing</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>7</Enum>
+      <Description>Reject</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>6</Enum>
+      <Description>All Done</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>5</Enum>
+      <Description>Alert</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>2</Enum>
+      <Description>ReceivedForExecution</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>431</Tag>
+      <Enum>1</Enum>
+      <Description>InBiddingProcess</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>433</Tag>
+      <Enum>5</Enum>
+      <Description>Exchange/switch CIV order Buy driven, cash withdraw (i.e. additional cash will not be provided to fulfil the order)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>433</Tag>
+      <Enum>4</Enum>
+      <Description>Exchange/switch CIV order Buy driven, cash top-up (i.e. additional cash will be provided to fulfil the order)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>433</Tag>
+      <Enum>2</Enum>
+      <Description>Wait for Execute Instruction (e.g. a List Execute message or phone call before proceeding with execution of the list)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>433</Tag>
+      <Enum>1</Enum>
+      <Description>Immediate</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>433</Tag>
+      <Enum>3</Enum>
+      <Description>Exchange/switch CIV order Sell driven</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>434</Tag>
+      <Enum>2</Enum>
+      <Description>Order Cancel/Replace Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>434</Tag>
+      <Enum>1</Enum>
+      <Description>Order Cancel Request</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>442</Tag>
+      <Enum>1</Enum>
+      <Description>Single Security (default if not specified)</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>442</Tag>
+      <Enum>2</Enum>
+      <Description>Individual leg of a multi-leg security</Description>
+   </Enums>
+  <Enums Added="FIX.4.2">
+      <Tag>442</Tag>
+      <Enum>3</Enum>
+      <Description>Multi-leg security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>5</Enum>
+      <Description>Chinese B Share (Shezhen and Shanghai)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>8</Enum>
+      <Description>US Employer Identification Number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>A</Enum>
+      <Description>Australian Tax File Number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>9</Enum>
+      <Description>Australian Business Number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>E</Enum>
+      <Description>ISO Country Code</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>B</Enum>
+      <Description>BIC (Bank Identification CodeSwift managed) code (ISO 9362 - See Appendix 6-B)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>7</Enum>
+      <Description>US Social Security Number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>D</Enum>
+      <Description>Proprietary/Custom code</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>F</Enum>
+      <Description>Settlement Entity Location (note if Local Market Settlement use E = ISO Country Code) (see Appendix 6-G for valid values)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>1</Enum>
+      <Description>Korean Investor ID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>2</Enum>
+      <Description>Taiwanese Qualified Foreign Investor ID QFII / FID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>3</Enum>
+      <Description>Taiwanese Trading Account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>4</Enum>
+      <Description>Malaysian Central Depository (MCD) number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>6</Enum>
+      <Description>UK National Insurance or Pension Number</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>447</Tag>
+      <Enum>C</Enum>
+      <Description>Generally accepted market participant identifier (e.g. NASD mnemonic)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>15</Enum>
+      <Description>Correspondant Clearing Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>3</Enum>
+      <Description>Client ID (formerly FIX 4.2 ClientID)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>20</Enum>
+      <Description>Underlying Contra Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>19</Enum>
+      <Description>Sponsoring Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>18</Enum>
+      <Description>Contra Clearing Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>17</Enum>
+      <Description>Contra Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>16</Enum>
+      <Description>Executing System</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>7</Enum>
+      <Description>Entering Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>1</Enum>
+      <Description>Executing Firm (formerly FIX 4.2 ExecBroker)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>2</Enum>
+      <Description>Broker of Credit (formerly FIX 4.2 BrokerOfCredit)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>5</Enum>
+      <Description>Investor ID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>6</Enum>
+      <Description>Introducing Firm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>14</Enum>
+      <Description>Giveup Clearing Firm (firm to which trade is given up)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>8</Enum>
+      <Description>Locate/Lending Firm (for short-sales)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>9</Enum>
+      <Description>Fund manager Client ID (for CIV)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>10</Enum>
+      <Description>Settlement Location (formerly FIX 4.2 SettlLocation)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>11</Enum>
+      <Description>Order Origination Trader (associated with Order Origination Firm e.g. trader who initiates/submits the order)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>12</Enum>
+      <Description>Executing Trader (associated with Executing Firm - actually executes)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>13</Enum>
+      <Description>Order Origination Firm (e.g. buyside firm)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>452</Tag>
+      <Enum>4</Enum>
+      <Description>Clearing Firm (formerly FIX 4.2 ClearingFirm)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>8</Enum>
+      <Description>LOAN</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>12</Enum>
+      <Description>OTHER</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>11</Enum>
+      <Description>MUNICIPAL</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>1</Enum>
+      <Description>AGENCY</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>3</Enum>
+      <Description>CORPORATE</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>4</Enum>
+      <Description>CURRENCY</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>2</Enum>
+      <Description>COMMODITY</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>6</Enum>
+      <Description>GOVERNMENT</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>10</Enum>
+      <Description>MORTGAGE</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>7</Enum>
+      <Description>INDEX</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>9</Enum>
+      <Description>MONEYMARKET</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>460</Tag>
+      <Enum>5</Enum>
+      <Description>EQUITY</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>464</Tag>
+      <Enum>Y</Enum>
+      <Description>True (Test)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>464</Tag>
+      <Enum>N</Enum>
+      <Description>False (Production)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>6</Enum>
+      <Description>CONTRACTS</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>7</Enum>
+      <Description>OTHER</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>5</Enum>
+      <Description>CURRENCY</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>4</Enum>
+      <Description>ORIGINALFACE</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>3</Enum>
+      <Description>CURRENTFACE</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>2</Enum>
+      <Description>BONDS</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>1</Enum>
+      <Description>SHARES</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>465</Tag>
+      <Enum>8</Enum>
+      <Description>PAR (see Volume 1 Glossary)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>468</Tag>
+      <Enum>0</Enum>
+      <Description>Round to nearest</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>468</Tag>
+      <Enum>1</Enum>
+      <Description>Round down</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>468</Tag>
+      <Enum>2</Enum>
+      <Description>Round up</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>480</Tag>
+      <Enum>M</Enum>
+      <Description>No waiver agreement</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>480</Tag>
+      <Enum>N</Enum>
+      <Description>No execution only</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>480</Tag>
+      <Enum>Y</Enum>
+      <Description>Yes</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>480</Tag>
+      <Enum>O</Enum>
+      <Description>No institutional.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>481</Tag>
+      <Enum>3</Enum>
+      <Description>Exempt Authorised Credit or Financial Institution.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>481</Tag>
+      <Enum>2</Enum>
+      <Description>Exempt Client Money Type Exemption</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>481</Tag>
+      <Enum>1</Enum>
+      <Description>Exempt Below The Limit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>481</Tag>
+      <Enum>Y</Enum>
+      <Description>Passed</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>481</Tag>
+      <Enum>N</Enum>
+      <Description>Not checked</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>S</Enum>
+      <Description>Single price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>Q</Enum>
+      <Description>Offer price minus adjustment amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>P</Enum>
+      <Description>Offer price minus adjustment %</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>O</Enum>
+      <Description>Offer price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>E</Enum>
+      <Description>Creation price plus adjustment amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>D</Enum>
+      <Description>Creation price plus adjustment %</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>C</Enum>
+      <Description>Creation price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>484</Tag>
+      <Enum>B</Enum>
+      <Description>Bid price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>487</Tag>
+      <Enum>N</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>487</Tag>
+      <Enum>R</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>487</Tag>
+      <Enum>C</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>14</Enum>
+      <Description>BPAY</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>13</Enum>
+      <Description>ACH Credit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>12</Enum>
+      <Description>ACH Debit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>11</Enum>
+      <Description>Credit Card</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>10</Enum>
+      <Description>Direct Credit (BECS)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>9</Enum>
+      <Description>Direct Debit (BECS)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>8</Enum>
+      <Description>Debit Card</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>7</Enum>
+      <Description>FedWire</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>15</Enum>
+      <Description>High Value Clearing System (HVACS)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>3</Enum>
+      <Description>Euroclear</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>6</Enum>
+      <Description>Telegraphic Transfer</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>4</Enum>
+      <Description>Clearstream</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>1</Enum>
+      <Description>CREST</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>2</Enum>
+      <Description>NSCC</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>492</Tag>
+      <Enum>5</Enum>
+      <Description>Cheque</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>19</Enum>
+      <Description>Profit Sharing Plan (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>11</Enum>
+      <Description>Employer - prior year (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>12</Enum>
+      <Description>Employer – current year (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>13</Enum>
+      <Description>Non-fund prototype IRA (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>14</Enum>
+      <Description>Non-fund qualified plan (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>15</Enum>
+      <Description>Defined contribution plan (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>10</Enum>
+      <Description>Employee – current year (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>17</Enum>
+      <Description>Individual Retirement Account – Rollover (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>5</Enum>
+      <Description>Mini Insurance ISA (UK)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>16</Enum>
+      <Description>Individual Retirement Account (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>9</Enum>
+      <Description>Employee - prior year (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>8</Enum>
+      <Description>Asset transfer (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>21</Enum>
+      <Description>Self-Directed IRA (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>6</Enum>
+      <Description>Current year payment (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>20</Enum>
+      <Description>401K (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>4</Enum>
+      <Description>Mini Stocks and Shares ISA (UK)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>3</Enum>
+      <Description>Mini Cash ISA (UK)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>2</Enum>
+      <Description>TESSA (UK)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>1</Enum>
+      <Description>Maxi ISA (UK)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>0</Enum>
+      <Description>None/Not Applicable (default)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>7</Enum>
+      <Description>Prior year payment (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>23</Enum>
+      <Description>457 (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>24</Enum>
+      <Description>Roth IRA (fund prototype) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>25</Enum>
+      <Description>Roth IRA (non-prototype) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>26</Enum>
+      <Description>Roth Conversion IRA (fund prototype) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>27</Enum>
+      <Description>Roth Conversion IRA (non-prototype) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>28</Enum>
+      <Description>Education IRA (fund prototype) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>29</Enum>
+      <Description>Education IRA (non-prototype) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>18</Enum>
+      <Description>KEOGH (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>495</Tag>
+      <Enum>22</Enum>
+      <Description>403(b) (US)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>497</Tag>
+      <Enum>N</Enum>
+      <Description>No</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>497</Tag>
+      <Enum>Y</Enum>
+      <Description>Yes</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>506</Tag>
+      <Enum>A</Enum>
+      <Description>Accept</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>506</Tag>
+      <Enum>N</Enum>
+      <Description>Reminder</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>506</Tag>
+      <Enum>R</Enum>
+      <Description>Reject</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>506</Tag>
+      <Enum>H</Enum>
+      <Description>Held</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>13</Enum>
+      <Description>Invalid/unacceptable NoDistribInstns</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>17</Enum>
+      <Description>Invalid/unacceptable Cash Distrib Agent Code</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>16</Enum>
+      <Description>Invalid/unacceptable Cash Distrib Agent Acct Name</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>4</Enum>
+      <Description>Invalid/unacceptable No Reg Detls</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>15</Enum>
+      <Description>Invalid/unacceptable Distrib Payment Method</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>14</Enum>
+      <Description>Invalid/unacceptable Distrib Percentage</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>3</Enum>
+      <Description>Invalid/unacceptable Ownership Type</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>2</Enum>
+      <Description>Invalid/unacceptable Tax Exempt Type</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>12</Enum>
+      <Description>Invalid/unacceptable Investor Country Of Residence</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>11</Enum>
+      <Description>Invalid/unacceptable Date of Birth</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>10</Enum>
+      <Description>Invalid/unacceptable Investor ID Source</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>9</Enum>
+      <Description>Invalid/unacceptable Investor ID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>8</Enum>
+      <Description>Invalid/unacceptable Mailing Inst</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>7</Enum>
+      <Description>Invalid/unacceptable Mailing Dtls</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>5</Enum>
+      <Description>Invalid/unacceptable Reg Seq No</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>1</Enum>
+      <Description>Invalid/unacceptable Account Type</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>18</Enum>
+      <Description>Invalid/unacceptable Cash Distrib Agent Acct Num</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>507</Tag>
+      <Enum>6</Enum>
+      <Description>Invalid/unacceptable Reg Dtls</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>514</Tag>
+      <Enum>2</Enum>
+      <Description>Cancel</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>514</Tag>
+      <Enum>0</Enum>
+      <Description>New</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>514</Tag>
+      <Enum>1</Enum>
+      <Description>Replace</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>15</Enum>
+      <Description>Net Settlement Amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>1</Enum>
+      <Description>Commission Amount (actual)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>2</Enum>
+      <Description>Commission % (actual)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>3</Enum>
+      <Description>Initial Charge Amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>4</Enum>
+      <Description>Initial Charge %</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>5</Enum>
+      <Description>Discount Amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>6</Enum>
+      <Description>Discount %</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>7</Enum>
+      <Description>Dilution Levy Amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>8</Enum>
+      <Description>Dilution Levy %</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>9</Enum>
+      <Description>Exit Charge Amount</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>10</Enum>
+      <Description>Exit Charge %</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>11</Enum>
+      <Description>Fund-based Renewal Commission % (a.k.a. Trail commission)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>12</Enum>
+      <Description>Projected Fund Value (i.e. for investments intended to realise or exceed a specific future value)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>14</Enum>
+      <Description>Fund-based Renewal Commission Amount (based on Projected Fund value)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>519</Tag>
+      <Enum>13</Enum>
+      <Description>Fund-based Renewal Commission Amount (based on Order value)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>5</Enum>
+      <Description>Company Trustee</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>13</Enum>
+      <Description>Nominee</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>12</Enum>
+      <Description>Corporate Body</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>11</Enum>
+      <Description>Non-Profit Organization</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>10</Enum>
+      <Description>Networking Sub-Account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>9</Enum>
+      <Description>Fiduciaries</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>8</Enum>
+      <Description>Trusts</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>6</Enum>
+      <Description>Pension Plan</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>4</Enum>
+      <Description>Individual Trustee</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>2</Enum>
+      <Description>Public Company</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>3</Enum>
+      <Description>Private Company</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>1</Enum>
+      <Description>Individual Investor</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>522</Tag>
+      <Enum>7</Enum>
+      <Description>Custodian Under Gifts to Minors Act</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>528</Tag>
+      <Enum>R</Enum>
+      <Description>Riskless Principal</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>528</Tag>
+      <Enum>I</Enum>
+      <Description>Individual</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>528</Tag>
+      <Enum>P</Enum>
+      <Description>Principal (Note for CMS purposes, Principal includes Proprietary)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>528</Tag>
+      <Enum>W</Enum>
+      <Description>Agent for Other Member</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>528</Tag>
+      <Enum>A</Enum>
+      <Description>Agency</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>528</Tag>
+      <Enum>G</Enum>
+      <Description>Proprietary</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>7</Enum>
+      <Description>Foreign Entity (of foreign governmnet or regulatory jurisdiction)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>A</Enum>
+      <Description>Riskless Arbitrage</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>1</Enum>
+      <Description>Program Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>8</Enum>
+      <Description>External Market Participant</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>6</Enum>
+      <Description>Acting as Market Maker or Specialist in the underlying security of a derivative security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>5</Enum>
+      <Description>Acting as Market Maker or Specialist in the security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>3</Enum>
+      <Description>Non-Index Arbitrage</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>2</Enum>
+      <Description>Index Arbitrage</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>4</Enum>
+      <Description>Competing Market Maker</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>529</Tag>
+      <Enum>9</Enum>
+      <Description>External Inter-connected Market Linkage</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>1</Enum>
+      <Description>Cancel orders for a security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>7</Enum>
+      <Description>Cancel all orders</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>6</Enum>
+      <Description>Cancel orders for a trading session</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>5</Enum>
+      <Description>Cancel orders for a SecurityType</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>4</Enum>
+      <Description>Cancel orders for a CFICode</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>2</Enum>
+      <Description>Cancel orders for an Underlying security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>530</Tag>
+      <Enum>3</Enum>
+      <Description>Cancel orders for a Product</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>6</Enum>
+      <Description>Cancel orders for a trading session</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>0</Enum>
+      <Description>Cancel Request Rejected -- See MassCancelRejectReason (532)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>7</Enum>
+      <Description>Cancel all orders</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>3</Enum>
+      <Description>Cancel orders for a Product</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>5</Enum>
+      <Description>Cancel orders for a SecurityType</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>4</Enum>
+      <Description>Cancel orders for a CFICode</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>1</Enum>
+      <Description>Cancel orders for a security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>531</Tag>
+      <Enum>2</Enum>
+      <Description>Cancel orders for an Underlying security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>2</Enum>
+      <Description>Invalid or unknown underlying</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>6</Enum>
+      <Description>Invalid or unknown trading session</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>5</Enum>
+      <Description>Invalid or unknown Security Type</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>3</Enum>
+      <Description>Invalid or unknown Product</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>1</Enum>
+      <Description>Invalid or unknown Security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>0</Enum>
+      <Description>Mass Cancel Not Supported</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>532</Tag>
+      <Enum>4</Enum>
+      <Description>Invalid or unknown CFICode</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>537</Tag>
+      <Enum>0</Enum>
+      <Description>Indicative</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>537</Tag>
+      <Enum>1</Enum>
+      <Description>Tradeable</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>537</Tag>
+      <Enum>2</Enum>
+      <Description>Restricted Tradeable</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>544</Tag>
+      <Enum>2</Enum>
+      <Description>Margin Open</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>544</Tag>
+      <Enum>3</Enum>
+      <Description>Margin Close</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>544</Tag>
+      <Enum>1</Enum>
+      <Description>Cash</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>546</Tag>
+      <Enum>1</Enum>
+      <Description>Local (Exchange, ECN, ATS)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>546</Tag>
+      <Enum>2</Enum>
+      <Description>National</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>546</Tag>
+      <Enum>3</Enum>
+      <Description>Global</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>547</Tag>
+      <Enum>Y</Enum>
+      <Description>Client has responsibility for implicitly deleting bids or offers falling outside the MarketDepth of the request.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>547</Tag>
+      <Enum>N</Enum>
+      <Description>Server must send an explicit delete for bids or offers falling outside the requested MarketDepth of the request.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>549</Tag>
+      <Enum>1</Enum>
+      <Description>Cross Trade which is executed completely or not. Both sides are treated in the same manner. This is equivalent to an All or None.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>549</Tag>
+      <Enum>2</Enum>
+      <Description>Cross Trade which is executed partially and the rest is cancelled. One side is fully executed, the other side is partially executed with the remainder being cancelled. This is equivalent to an Immediate or Cancel on the other side.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>549</Tag>
+      <Enum>3</Enum>
+      <Description>Cross trade which is partially executed with the unfilled portions remaining active. One side of the cross is fully executed (as denoted with the CrossPrioritization field), but the unfilled portion remains active.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>549</Tag>
+      <Enum>4</Enum>
+      <Description>Cross trade is executed with existing orders with the same price.</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>550</Tag>
+      <Enum>2</Enum>
+      <Description>Sellside prioritized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>550</Tag>
+      <Enum>0</Enum>
+      <Description>None</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>550</Tag>
+      <Enum>1</Enum>
+      <Description>Buyside prioritized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>552</Tag>
+      <Enum>1</Enum>
+      <Description>one side</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>552</Tag>
+      <Enum>2</Enum>
+      <Description>both sides</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>559</Tag>
+      <Enum>1</Enum>
+      <Description>SecurityType and/or CFICode</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>559</Tag>
+      <Enum>2</Enum>
+      <Description>Product</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>559</Tag>
+      <Enum>3</Enum>
+      <Description>TradingSessionID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>559</Tag>
+      <Enum>4</Enum>
+      <Description>All Securities</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>559</Tag>
+      <Enum>0</Enum>
+      <Description>Symbol</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>560</Tag>
+      <Enum>4</Enum>
+      <Description>Instrument data temporarily unavailable</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>560</Tag>
+      <Enum>0</Enum>
+      <Description>Valid request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>560</Tag>
+      <Enum>1</Enum>
+      <Description>Invalid or unsupported request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>560</Tag>
+      <Enum>5</Enum>
+      <Description>Request for instrument data not supported</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>560</Tag>
+      <Enum>3</Enum>
+      <Description>Not authorized to retrieve instrument data</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>560</Tag>
+      <Enum>2</Enum>
+      <Description>No instruments found that match selection criteria</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>567</Tag>
+      <Enum>1</Enum>
+      <Description>Unknown or invalid TradingSessionID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>569</Tag>
+      <Enum>4</Enum>
+      <Description>Advisories that match criteria</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>569</Tag>
+      <Enum>3</Enum>
+      <Description>Unreported trades that match criteria</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>569</Tag>
+      <Enum>2</Enum>
+      <Description>Unmatched trades that match criteria</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>569</Tag>
+      <Enum>1</Enum>
+      <Description>Matched trades matching Criteria provided on request (parties, order id, instrument, input source, etc.)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>569</Tag>
+      <Enum>0</Enum>
+      <Description>All trades</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>570</Tag>
+      <Enum>N</Enum>
+      <Description>not reported to counterparty</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>570</Tag>
+      <Enum>Y</Enum>
+      <Description>previously reported to counterparty</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>573</Tag>
+      <Enum>0</Enum>
+      <Description>compared, matched or affirmed</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>573</Tag>
+      <Enum>1</Enum>
+      <Description>uncompared, unmatched, or unaffirmed</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>573</Tag>
+      <Enum>2</Enum>
+      <Description>advisory or alert</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>S5</Enum>
+      <Description>Summarized Match using A1 to A5 exact match criteria except quantity is summarized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>M1</Enum>
+      <Description>ACT M1 Match / Exact Match on Trade Date, Stock Symbol, Quantity, Price, Trade Type, and Special Trade Indicator minus badges and times</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>M6</Enum>
+      <Description>ACT M6 Match</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>M5</Enum>
+      <Description>ACT Default After M2</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>M3</Enum>
+      <Description>ACT Accepted Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>S2</Enum>
+      <Description>Summarized Match using A1 to A5 exact match criteria except quantity is summarized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>S3</Enum>
+      <Description>Summarized Match using A1 to A5 exact match criteria except quantity is summarized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>S4</Enum>
+      <Description>Summarized Match using A1 to A5 exact match criteria except quantity is summarized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>M2</Enum>
+      <Description>ACT M2 Match / Summarized Match minus badges and times</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>A2</Enum>
+      <Description>Exact match on Trade Date, Stock Symbol, Quantity, Price, Trade Type, and Special Trade Indicator plus four badges</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>A3</Enum>
+      <Description>Exact match on Trade Date, Stock Symbol, Quantity, Price, Trade Type, and Special Trade Indicator plus two badges and execution time (within two-minute window)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>A4</Enum>
+      <Description>Exact match on Trade Date, Stock Symbol, Quantity, Price, Trade Type, and</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>AQ</Enum>
+      <Description>Compared records resulting from stamped advisories or specialist</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>MT</Enum>
+      <Description>Non-ACT / OCS Locked In</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>M4</Enum>
+      <Description>ACT Default Trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>A1</Enum>
+      <Description>Exact match on Trade Date, Stock Symbol, Quantity, Price, Trade Type, and Special Trade Indicator plus four badges and execution time (within two-minute window)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>S1</Enum>
+      <Description>Summarized Match using A1 to A5 exact match criteria except quantity is summarized</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>574</Tag>
+      <Enum>A5</Enum>
+      <Description>Exact match on Trade Date, Stock Symbol, Quantity, Price, Trade Type, and Special Trade Indicator plus execution time (within two-minute window)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>8</Enum>
+      <Description>Manual mode (pre-posting and/or pre-giveup)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>5</Enum>
+      <Description>multilateral netting</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>9</Enum>
+      <Description>Automatic posting mode (trade posting to the position account number specified)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>2</Enum>
+      <Description>bilateral netting only</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>6</Enum>
+      <Description>clear against central counterparty</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>10</Enum>
+      <Description>Automatic give-up mode (trade give-up to the give-up destination number specified)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>4</Enum>
+      <Description>special trade</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>3</Enum>
+      <Description>ex clearing</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>0</Enum>
+      <Description>process normally</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>7</Enum>
+      <Description>exclude from central counterparty</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>577</Tag>
+      <Enum>1</Enum>
+      <Description>exclude from all netting</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>3</Enum>
+      <Description>House Trader</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>7</Enum>
+      <Description>Account is house trader and is cross margined</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>6</Enum>
+      <Description>Account is carried on non-customer side of books and is cross margined</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>4</Enum>
+      <Description>Floor Trader</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>2</Enum>
+      <Description>Account is carried on non-Customer Side of books</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>1</Enum>
+      <Description>Account is carried on customer Side of Books</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>581</Tag>
+      <Enum>8</Enum>
+      <Description>Joint Backoffice Account (JBO)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>1</Enum>
+      <Description>Status for orders for a security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>2</Enum>
+      <Description>Status for orders for an Underlying security</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>3</Enum>
+      <Description>Status for orders for a Product</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>4</Enum>
+      <Description>Status for orders for a CFICode</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>5</Enum>
+      <Description>Status for orders for a SecurityType</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>6</Enum>
+      <Description>Status for orders for a trading session</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>8</Enum>
+      <Description>Status for orders for a PartyID</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>585</Tag>
+      <Enum>7</Enum>
+      <Description>Status for all orders</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>589</Tag>
+      <Enum>0</Enum>
+      <Description>Can trigger booking without reference to the order initiator ("auto")</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>589</Tag>
+      <Enum>1</Enum>
+      <Description>Speak with order initiator before booking ("speak first")</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>590</Tag>
+      <Enum>1</Enum>
+      <Description>Aggregate partial executions on this order, and book one trade per order</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>590</Tag>
+      <Enum>2</Enum>
+      <Description>Aggregate executions for this symbol, side, and settlement date</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>590</Tag>
+      <Enum>0</Enum>
+      <Description>Each partial execution is a bookable unit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>591</Tag>
+      <Enum>0</Enum>
+      <Description>Pro-rata</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>591</Tag>
+      <Enum>1</Enum>
+      <Description>Do not pro-rata = discuss first</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>626</Tag>
+      <Enum>6</Enum>
+      <Description>Buyside Ready-To-Book - Combined Set of Orders</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>626</Tag>
+      <Enum>2</Enum>
+      <Description>Buyside Preliminary (without MiscFees and NetMoney)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>626</Tag>
+      <Enum>3</Enum>
+      <Description>Sellside Calculated Using Preliminary (includes MiscFees and NetMoney)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>626</Tag>
+      <Enum>5</Enum>
+      <Description>Buyside Ready-To-Book - Single Order</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>626</Tag>
+      <Enum>1</Enum>
+      <Description>Buyside Calculated (includes MiscFees and NetMoney)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>626</Tag>
+      <Enum>4</Enum>
+      <Description>Sellside Calculated Without Preliminary (sent unsolicited by sellside, includes MiscFees and NetMoney)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>H</Enum>
+      <Description>106.H and 106.J Firms</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>5</Enum>
+      <Description>5th year delegate trading for his own account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>4</Enum>
+      <Description>4th year delegate trading for his own account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>3</Enum>
+      <Description>3rd year delegate trading for his own account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>2</Enum>
+      <Description>2nd year delegate trading for his own account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>1</Enum>
+      <Description>1st year delegate trading for his own account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>M</Enum>
+      <Description>All other ownership types</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>I</Enum>
+      <Description>GIM, IDEM and COM Membership Interest Holders</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>9</Enum>
+      <Description>6th year and beyond delegate trading for his own account</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>F</Enum>
+      <Description>Full and Associate Member trading for own account and as floor</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>E</Enum>
+      <Description>Equity Member and Clearing Member</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>C</Enum>
+      <Description>Non-member and Customer</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>B</Enum>
+      <Description>CBOE Member</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>635</Tag>
+      <Enum>L</Enum>
+      <Description>Lessee and 106.F Employees</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>636</Tag>
+      <Enum>N</Enum>
+      <Description>Order has been accepted but not yet in a working state</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>636</Tag>
+      <Enum>Y</Enum>
+      <Description>Order is currently being worked</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>638</Tag>
+      <Enum>0</Enum>
+      <Description>Priority Unchanged</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>638</Tag>
+      <Enum>1</Enum>
+      <Description>Lost Priority as result of order change</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>650</Tag>
+      <Enum>Y</Enum>
+      <Description>Legal confirm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>650</Tag>
+      <Enum>N</Enum>
+      <Description>Does not constitute a legal confirm</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>653</Tag>
+      <Enum>2</Enum>
+      <Description>Rejected</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>653</Tag>
+      <Enum>3</Enum>
+      <Description>Unauthorized request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>653</Tag>
+      <Enum>1</Enum>
+      <Description>Approved (Accepted)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>653</Tag>
+      <Enum>0</Enum>
+      <Description>Pending Approval</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>653</Tag>
+      <Enum>4</Enum>
+      <Description>Invalid definition request</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>658</Tag>
+      <Enum>1</Enum>
+      <Description>Unknown symbol (Security)</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>658</Tag>
+      <Enum>2</Enum>
+      <Description>Exchange (Security) closed</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>658</Tag>
+      <Enum>3</Enum>
+      <Description>Quote Request exceeds limit</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>658</Tag>
+      <Enum>4</Enum>
+      <Description>Too late to enter</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>658</Tag>
+      <Enum>5</Enum>
+      <Description>Invalid price</Description>
+   </Enums>
+  <Enums Added="FIX.4.3">
+      <Tag>658</Tag>
+      <Enum>6</Enum>
+      <Description>Not authorized to request quote</Description>
+   </Enums>
+</dataroot>

@@ -106,6 +106,8 @@ public class RepoInfo {
       String fixDirPath = repoDir.getAbsolutePath() + File.separator + version + File.separator + "Base";
       File fixDir = new File(fixDirPath);
 
+      System.out.printf("fixDirPath = %s\n",fixDirPath);      
+      
       if (fixDir.exists()) {
 
         componentInfosByVersion[i] = parse(fixDir, "Components.xml", "Component", "Name", false);

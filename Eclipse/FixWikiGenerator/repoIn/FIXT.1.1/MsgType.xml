@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          copyright="Copyright (c) FIX Protocol Ltd. All Rights Reserved."
+          edition="2009"
+          xsi:noNamespaceSchemaLocation="../../schema/MsgType.xsd"
+          version="FIXT.1.1"
+          generated="2010-03-10T08:47:23-05:00">
+	  <MsgType Added="FIX.2.7">
+      <MsgType>0</MsgType>
+      <MessageName>Heartbeat</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>1</MsgID>
+      <Section>Session</Section>
+      <AbbrName>Heartbeat</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The Heartbeat monitors the status of the communication link and identifies when the last of a string of messages was not received.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.2.7">
+      <MsgType>1</MsgType>
+      <MessageName>TestRequest</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>2</MsgID>
+      <Section>Session</Section>
+      <AbbrName>TestRequest</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The test request message forces a heartbeat from the opposing application. The test request message checks sequence numbers or verifies communication line status. The opposite application responds to the Test Request with a Heartbeat containing the TestReqID.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.2.7">
+      <MsgType>2</MsgType>
+      <MessageName>ResendRequest</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>3</MsgID>
+      <Section>Session</Section>
+      <AbbrName>ResendRequest</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The resend request is sent by the receiving application to initiate the retransmission of messages. This function is utilized if a sequence number gap is detected, if the receiving application lost a message, or as a function of the initialization process.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.2.7">
+      <MsgType>3</MsgType>
+      <MessageName>Reject</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>4</MsgID>
+      <Section>Session</Section>
+      <AbbrName>Reject</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The reject message should be issued when a message is received but cannot be properly processed due to a session-level rule violation. An example of when a reject may be appropriate would be the receipt of a message with invalid basic data which successfully passes de-encryption, CheckSum and BodyLength checks.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.2.7">
+      <MsgType>4</MsgType>
+      <MessageName>SequenceReset</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>5</MsgID>
+      <Section>Session</Section>
+      <AbbrName>SequenceReset</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The sequence reset message is used by the sending application to reset the incoming sequence number on the opposing side.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.2.7">
+      <MsgType>5</MsgType>
+      <MessageName>Logout</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>6</MsgID>
+      <Section>Session</Section>
+      <AbbrName>Logout</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The logout message initiates or confirms the termination of a FIX session. Disconnection without the exchange of logout messages should be interpreted as an abnormal condition.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.2.7">
+      <MsgType>A</MsgType>
+      <MessageName>Logon</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>11</MsgID>
+      <Section>Session</Section>
+      <AbbrName>Logon</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description>The logon message authenticates a user establishing a connection to a remote system. The logon message must be the first message sent by the application requesting to initiate a FIX session.</Description>
+   </MsgType>
+	  <MsgType Added="FIX.4.3">
+      <MsgType>n</MsgType>
+      <MessageName>XMLnonFIX</MessageName>
+      <ComponentType>Message</ComponentType>
+      <Category>Session</Category>
+      <MsgID>47</MsgID>
+      <Section>Session</Section>
+      <AbbrName>XMLnonFIX</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <Description/>
+   </MsgType>
+</dataroot>

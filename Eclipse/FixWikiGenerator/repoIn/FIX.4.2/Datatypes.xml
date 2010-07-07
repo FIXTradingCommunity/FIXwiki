@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          copyright="Copyright (c) FIX Protocol Ltd. All Rights Reserved."
+          edition="2009"
+          xsi:noNamespaceSchemaLocation="../../schema/Datatypes.xsd"
+          version="FIX.4.2"
+          generated="2010-03-13T14:54:02-05:00">
+	  <Datatype Added="FIX.2.7">
+      <TypeName>int</TypeName>
+      <Desc>Sequence of digits without commas or decimals and optional sign character (ASCII characters "-" and "0" - "9" ). The sign character utilizes one byte (i.e. positive int is "99999" while negative int is "-99999"). Note that int values may contain leading zeros (e.g. "00023" = "23").
+Examples:
+723 in field 21 would be mapped int as |21=723|.
+-723 in field 12 would be mapped int as |12=-723|
+The following data types are based on int.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.2.7">
+      <TypeName>float</TypeName>
+      <Desc>Sequence of digits with optional decimal point and sign character (ASCII characters "-", "0" - "9" and "."); the absence of the decimal point within the string will be interpreted as the float representation of an integer value. All float fields must accommodate up to fifteen significant digits. The number of decimal places used should be a factor of business/market needs and mutual agreement between counterparties.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>Qty</TypeName>
+      <BaseType>float</BaseType>
+      <Desc>float field (see definition of "float" above) capable of storing either a whole number (no decimal places) of "shares" or a decimal value containing decimal places for non-share quantity asset classes.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>Price</TypeName>
+      <BaseType>float</BaseType>
+      <Desc>float field (see definition of "float" above) representing a price. Note the number of decimal places may vary.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>PriceOffset</TypeName>
+      <BaseType>float</BaseType>
+      <Desc>float field (see definition of "float" above) representing a price offset, which can be mathematically added to a "Price". Note the number of decimal places may vary and some fields such as LastForwardPoints may be negative.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>Amt</TypeName>
+      <BaseType>float</BaseType>
+      <Desc>float field typically representing a Price times a Qty</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.2.7">
+      <TypeName>char</TypeName>
+      <Desc>Single character value, can include any alphanumeric character or punctuation except the delimiter. All char fields are case sensitive</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>Boolean</TypeName>
+      <BaseType>char</BaseType>
+      <Desc>char field containing one of two values:
+'Y' = True/Yes
+'N' = False/No</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>String</TypeName>
+      <Desc>Alpha-numeric free format strings, can include any character or punctuation except the delimiter. All String fields are case sensitive.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>MultipleStringValue</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>String field containing one or more space delimited multiple character values.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>Currency</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>String field (see definition of "String" above) representing a currency type (see Appendix A-Valid Currency Codes).</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>Exchange</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>String field (see definition of "String" above) representing a market or exchange. (see Appendix C-Reuters Exchange Mnemonics).</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>UTCTimestamp</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>Time/date combination represented in UTC (Universal Time Coordinated, also known as "GMT") in either YYYYMMDD-HH:MM:SS (whole seconds) or YYYYMMDD-HH:MM:SS.sss (milliseconds) format, colons, dash, and period required.
+Valid values:
+* YYYY = 0000-9999, MM = 01-12, DD = 01-31, HH = 00-23, MM = 00-59, SS = 00-59 (without milliseconds).
+* YYYY = 0000-9999, MM = 01-12, DD = 01-31, HH = 00-23, MM = 00-59, SS = 00-59. sss=000-999 (indicating milliseconds).</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>UTCTimeOnly</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>Time-only represented in UTC (Universal Time Coordinated, also known as "GMT") in either HH:MM:SS (whole seconds) or HH:MM:SS.sss (milliseconds) format, colons, and period required.
+Valid values:
+* HH = 00-23, MM = 00-59, SS = 00-59. (without milliseconds)
+* HH = 00-23, MM = 00-59, SS = 00-59. sss=000-999 (indicating milliseconds).</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>LocalMktDate</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>Date of Local Market (vs. UTC) in YYYYMMDD format. Valid values: YYYY = 0000-9999, MM = 01-12, DD = 01-31.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.2">
+      <TypeName>UTCDate</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>Date represented in UTC (Universal Time Coordinated, also known as "GMT") in YYYYMMDD format. Valid values: YYYY = 0000-9999, MM = 01-12, DD = 01-31.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.2.7">
+      <TypeName>data</TypeName>
+      <Desc>Raw data with no format or content restrictions. Data fields are always immediately preceded by a length field. The length field should specify the number of bytes of the value of the data field (up to but not including the terminating SOH). Caution: the value of one of these fields may contain the delimiter (SOH) character. Note that the value specified for this field should be followed by the delimiter (SOH) character as all fields are terminated with an "SOH".</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.1">
+      <TypeName>MonthYear</TypeName>
+      <BaseType>String</BaseType>
+      <Desc>char field representing month of a year in YYYYMM format. Valid values: YYYY = 0000-9999, MM = 01-12.</Desc>
+   </Datatype>
+	  <Datatype Added="FIX.4.1">
+      <TypeName>DayOfMonth</TypeName>
+      <BaseType>int</BaseType>
+      <Desc>int field representing a day during a particular monthy (values 1 to 31).</Desc>
+   </Datatype>
+</dataroot>

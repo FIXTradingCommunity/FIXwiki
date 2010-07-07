@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          copyright="Copyright (c) FIX Protocol Ltd. All Rights Reserved."
+          edition="2009"
+          xsi:noNamespaceSchemaLocation="../../schema/Fields.xsd"
+          version="FIXT.1.1"
+          generated="2010-03-10T08:47:23-05:00">
+	  <Fields Added="FIX.2.7">
+      <Tag>7</Tag>
+      <FieldName>BeginSeqNo</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>Message sequence number of first message in range to be resent</Desc>
+      <AbbrName>BeginSeqNo</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>8</Tag>
+      <FieldName>BeginString</FieldName>
+      <Type>String</Type>
+      <Desc>Identifies beginning of new message and protocol version. ALWAYS FIRST FIELD IN MESSAGE. (Always unencrypted)
+Valid values:
+FIXT.1.1</Desc>
+      <AbbrName>BeginString</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>9</Tag>
+      <FieldName>BodyLength</FieldName>
+      <Type>Length</Type>
+      <Desc>Message length, in bytes, forward to the CheckSum field. ALWAYS SECOND FIELD IN MESSAGE. (Always unencrypted)</Desc>
+      <AbbrName>BodyLength</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>10</Tag>
+      <FieldName>CheckSum</FieldName>
+      <Type>String</Type>
+      <Desc>Three byte, simple checksum (see Volume 2: "Checksum Calculation" for description). ALWAYS LAST FIELD IN MESSAGE; i.e. serves, with the trailing &lt;SOH&gt;, as the end-of-message delimiter. Always defined as three characters. (Always unencrypted)</Desc>
+      <AbbrName>CheckSum</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>16</Tag>
+      <FieldName>EndSeqNo</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>Message sequence number of last message in range to be resent. If request is for a single message BeginSeqNo (7) = EndSeqNo. If request is for all messages subsequent to a particular message, EndSeqNo = "0" (representing infinity).</Desc>
+      <AbbrName>EndSeqNo</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>34</Tag>
+      <FieldName>MsgSeqNum</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>Integer message sequence number.</Desc>
+      <AbbrName>SeqNum</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>35</Tag>
+      <FieldName>MsgType</FieldName>
+      <Type>String</Type>
+      <Desc>Defines message type ALWAYS THIRD FIELD IN MESSAGE. (Always unencrypted)
+Note: A "U" as the first character in the MsgType field (i.e. U, U2, etc) indicates that the message format is privately defined between the sender and receiver.
+*** Note the use of lower case letters ***</Desc>
+      <AbbrName>MsgTyp</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>36</Tag>
+      <FieldName>NewSeqNo</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>New sequence number</Desc>
+      <AbbrName>NewSeqNo</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>43</Tag>
+      <FieldName>PossDupFlag</FieldName>
+      <Type>Boolean</Type>
+      <Desc>Indicates possible retransmission of message with this sequence number</Desc>
+      <AbbrName>PosDup</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>45</Tag>
+      <FieldName>RefSeqNum</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>Reference message sequence number</Desc>
+      <AbbrName>RefSeqNum</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>49</Tag>
+      <FieldName>SenderCompID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify firm sending message.</Desc>
+      <AbbrName>SID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>50</Tag>
+      <FieldName>SenderSubID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message originator (desk, trader, etc.)</Desc>
+      <AbbrName>SSub</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>52</Tag>
+      <FieldName>SendingTime</FieldName>
+      <Type>UTCTimestamp</Type>
+      <Desc>Time of message transmission (always expressed in UTC (Universal Time Coordinated, also known as "GMT")</Desc>
+      <AbbrName>Snt</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>56</Tag>
+      <FieldName>TargetCompID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify receiving firm.</Desc>
+      <AbbrName>TID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>57</Tag>
+      <FieldName>TargetSubID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific individual or unit intended to receive message. "ADMIN" reserved for administrative messages not intended for a specific user.</Desc>
+      <AbbrName>TSub</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>58</Tag>
+      <FieldName>Text</FieldName>
+      <Type>String</Type>
+      <Desc>Free format text string
+(Note: this field does not have a specified maximum length)</Desc>
+      <AbbrName>Txt</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7" Deprecated="FIXT.1.1">
+      <Tag>89</Tag>
+      <FieldName>Signature</FieldName>
+      <Type>data</Type>
+      <Desc>Electronic signature</Desc>
+      <AbbrName>Signature</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7" Deprecated="FIXT.1.1">
+      <Tag>90</Tag>
+      <FieldName>SecureDataLen</FieldName>
+      <Type>Length</Type>
+      <Desc>Length of encrypted message</Desc>
+      <LenRefers>91</LenRefers>
+      <AbbrName>SecureDataLen</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7" Deprecated="FIXT.1.1">
+      <Tag>91</Tag>
+      <FieldName>SecureData</FieldName>
+      <Type>data</Type>
+      <Desc>Actual encrypted data stream</Desc>
+      <AbbrName>SecureData</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7" Deprecated="FIXT.1.1">
+      <Tag>93</Tag>
+      <FieldName>SignatureLength</FieldName>
+      <Type>Length</Type>
+      <Desc>Number of bytes in signature field</Desc>
+      <LenRefers>89</LenRefers>
+      <AbbrName>SignatureLength</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>95</Tag>
+      <FieldName>RawDataLength</FieldName>
+      <Type>Length</Type>
+      <Desc>Number of bytes in raw data field.</Desc>
+      <LenRefers>96</LenRefers>
+      <AbbrName>RawDataLength</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>96</Tag>
+      <FieldName>RawData</FieldName>
+      <Type>data</Type>
+      <Desc>Unformatted raw data, can include bitmaps, word processor documents, etc.</Desc>
+      <AbbrName>RawData</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>97</Tag>
+      <FieldName>PossResend</FieldName>
+      <Type>Boolean</Type>
+      <Desc>Indicates that message may contain information that has been sent under another sequence number.</Desc>
+      <AbbrName>PosRsnd</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.2.7">
+      <Tag>98</Tag>
+      <FieldName>EncryptMethod</FieldName>
+      <Type>int</Type>
+      <Desc>Method of encryption.</Desc>
+      <AbbrName>EncryptMethod</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.3.0">
+      <Tag>108</Tag>
+      <FieldName>HeartBtInt</FieldName>
+      <Type>int</Type>
+      <Desc>Heartbeat interval (seconds)</Desc>
+      <AbbrName>HeartBtInt</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.3.0">
+      <Tag>112</Tag>
+      <FieldName>TestReqID</FieldName>
+      <Type>String</Type>
+      <Desc>Identifier included in Test Request message to be returned in resulting Heartbeat</Desc>
+      <AbbrName>TestReqID</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.0">
+      <Tag>115</Tag>
+      <FieldName>OnBehalfOfCompID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify firm originating message if the message was delivered by a third party i.e. the third party firm identifier would be delivered in the SenderCompID field and the firm originating the message in this field.</Desc>
+      <AbbrName>OBID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.0">
+      <Tag>116</Tag>
+      <FieldName>OnBehalfOfSubID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message originator (i.e. trader) if the message was delivered by a third party</Desc>
+      <AbbrName>OBSub</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.0">
+      <Tag>122</Tag>
+      <FieldName>OrigSendingTime</FieldName>
+      <Type>UTCTimestamp</Type>
+      <Desc>Original time of message transmission (always expressed in UTC (Universal Time Coordinated, also known as "GMT") when transmitting orders as the result of a resend request.</Desc>
+      <AbbrName>OrigSnt</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.0">
+      <Tag>123</Tag>
+      <FieldName>GapFillFlag</FieldName>
+      <Type>Boolean</Type>
+      <Desc>Indicates that the Sequence Reset message is replacing administrative or application messages which will not be resent.</Desc>
+      <AbbrName>GapFillFlag</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.0">
+      <Tag>128</Tag>
+      <FieldName>DeliverToCompID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify the firm targeted to receive the message if the message is delivered by a third party i.e. the third party firm identifier would be delivered in the TargetCompID (56) field and the ultimate receiver firm ID in this field.</Desc>
+      <AbbrName>D2ID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.0">
+      <Tag>129</Tag>
+      <FieldName>DeliverToSubID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message recipient (i.e. trader) if the message is delivered by a third party</Desc>
+      <AbbrName>D2Sub</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.1">
+      <Tag>141</Tag>
+      <FieldName>ResetSeqNumFlag</FieldName>
+      <Type>Boolean</Type>
+      <Desc>Indicates that the both sides of the FIX session should reset sequence numbers.</Desc>
+      <AbbrName>ResetSeqNumFlag</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.1">
+      <Tag>142</Tag>
+      <FieldName>SenderLocationID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message originator’s location (i.e. geographic location and/or desk, trader)</Desc>
+      <AbbrName>SLoc</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.1">
+      <Tag>143</Tag>
+      <FieldName>TargetLocationID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message destination’s location (i.e. geographic location and/or desk, trader)</Desc>
+      <AbbrName>TLoc</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.1">
+      <Tag>144</Tag>
+      <FieldName>OnBehalfOfLocationID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message originator’s location (i.e. geographic location and/or desk, trader) if the message was delivered by a third party</Desc>
+      <AbbrName>OBLoc</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.1">
+      <Tag>145</Tag>
+      <FieldName>DeliverToLocationID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify specific message recipient’s location (i.e. geographic location and/or desk, trader) if the message was delivered by a third party</Desc>
+      <AbbrName>D2Loc</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>212</Tag>
+      <FieldName>XmlDataLen</FieldName>
+      <Type>Length</Type>
+      <Desc>Length of the XmlData data block.</Desc>
+      <LenRefers>213</LenRefers>
+      <AbbrName>XmlDataLen</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>213</Tag>
+      <FieldName>XmlData</FieldName>
+      <Type>data</Type>
+      <Desc>Actual XML data stream (e.g. FIXML). See approriate XML reference (e.g. FIXML). Note: may contain embedded SOH characters.</Desc>
+      <AbbrName>XmlData</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>347</Tag>
+      <FieldName>MessageEncoding</FieldName>
+      <Type>String</Type>
+      <Desc>Type of message encoding (non-ASCII (non-English) characters) used in a message’s "Encoded" fields.</Desc>
+      <AbbrName>MsgEncd</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>354</Tag>
+      <FieldName>EncodedTextLen</FieldName>
+      <Type>Length</Type>
+      <Desc>Byte length of encoded (non-ASCII characters) EncodedText (355) field.</Desc>
+      <LenRefers>355</LenRefers>
+      <AbbrName>EncTxtLen</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>355</Tag>
+      <FieldName>EncodedText</FieldName>
+      <Type>data</Type>
+      <Desc>Encoded (non-ASCII characters) representation of the Text (58) field in the encoded format specified via the MessageEncoding (347) field. If used, the ASCII (English) representation should also be specified in the Text field.</Desc>
+      <AbbrName>EncTxt</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>369</Tag>
+      <FieldName>LastMsgSeqNumProcessed</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>The last MsgSeqNum (34) value received by the FIX engine and processed by downstream application, such as trading engine or order routing system. Can be specified on every message sent. Useful for detecting a backlog with a counterparty.</Desc>
+      <AbbrName>LastMsgSeqNumProced</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>371</Tag>
+      <FieldName>RefTagID</FieldName>
+      <Type>int</Type>
+      <Desc>The tag number of the FIX field being referenced.</Desc>
+      <AbbrName>RefTagID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>372</Tag>
+      <FieldName>RefMsgType</FieldName>
+      <Type>String</Type>
+      <Desc>The MsgType (35) of the FIX message being referenced.</Desc>
+      <AbbrName>RefMsgTyp</AbbrName>
+      <NotReqXML>0</NotReqXML>
+      <UsesEnumsFromTag>35</UsesEnumsFromTag>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>373</Tag>
+      <FieldName>SessionRejectReason</FieldName>
+      <Type>int</Type>
+      <Desc>Code to identify reason for a session-level Reject message.</Desc>
+      <AbbrName>SessRejRsn</AbbrName>
+      <NotReqXML>1</NotReqXML>
+      <UnionDataType>Reserved100Plus</UnionDataType>
+   </Fields>
+	  <Fields Added="FIX.4.2">
+      <Tag>383</Tag>
+      <FieldName>MaxMessageSize</FieldName>
+      <Type>Length</Type>
+      <Desc>Maximum number of bytes supported for a single message.</Desc>
+      <AbbrName>MaxMsgSz</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>464</Tag>
+      <FieldName>TestMessageIndicator</FieldName>
+      <Type>Boolean</Type>
+      <Desc>Indicates whether or not this FIX Session is a "test" vs. "production" connection. Useful for preventing "accidents".</Desc>
+      <AbbrName>TestMsgInd</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>553</Tag>
+      <FieldName>Username</FieldName>
+      <Type>String</Type>
+      <Desc>Userid or username.</Desc>
+      <AbbrName>Username</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>554</Tag>
+      <FieldName>Password</FieldName>
+      <Type>String</Type>
+      <Desc>Password or passphrase.</Desc>
+      <AbbrName>Password</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>627</Tag>
+      <FieldName>NoHops</FieldName>
+      <Type>NumInGroup</Type>
+      <Desc>Number of HopCompID entries in repeating group.</Desc>
+      <AbbrName>NoHops</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>628</Tag>
+      <FieldName>HopCompID</FieldName>
+      <Type>String</Type>
+      <Desc>Assigned value used to identify the third party firm which delivered a specific message either from the firm which originated the message or from another third party (if multiple "hops" are performed). It is recommended that this value be the SenderCompID (49) of the third party.
+Applicable when messages are communicated/re-distributed via third parties which function as service bureaus or "hubs". Only applicable if OnBehalfOfCompID (115) is being used.</Desc>
+      <AbbrName>ID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>629</Tag>
+      <FieldName>HopSendingTime</FieldName>
+      <Type>UTCTimestamp</Type>
+      <Desc>Time that HopCompID (628) sent the message. It is recommended that this value be the SendingTime (52) of the message sent by the third party.
+Applicable when messages are communicated/re-distributed via third parties which function as service bureaus or "hubs". Only applicable if OnBehalfOfCompID (115) is being used.</Desc>
+      <AbbrName>Snt</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.3">
+      <Tag>630</Tag>
+      <FieldName>HopRefID</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>Reference identifier assigned by HopCompID (628) associated with the message sent. It is recommended that this value be the MsgSeqNum (34) of the message sent by the third party.
+Applicable when messages are communicated/re-distributed via third parties which function as service bureaus or "hubs". Only applicable if OnBehalfOfCompID (115) is being used.</Desc>
+      <AbbrName>Ref</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.4">
+      <Tag>789</Tag>
+      <FieldName>NextExpectedMsgSeqNum</FieldName>
+      <Type>SeqNum</Type>
+      <Desc>Next expected MsgSeqNum value to be received.</Desc>
+      <AbbrName>NextExpectedMsgSeqNum</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.4.4">
+      <Tag>925</Tag>
+      <FieldName>NewPassword</FieldName>
+      <Type>String</Type>
+      <Desc>New Password or passphrase</Desc>
+      <AbbrName>NewPassword</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0">
+      <Tag>1128</Tag>
+      <FieldName>ApplVerID</FieldName>
+      <Type>String</Type>
+      <Desc>Specifies the service pack release being applied at message level. Enumerated field with values assigned at time of service pack release</Desc>
+      <AbbrName>ApplVerID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0">
+      <Tag>1129</Tag>
+      <FieldName>CstmApplVerID</FieldName>
+      <Type>String</Type>
+      <Desc>Specifies a custom extension to a message being applied at the message level. Enumerated field</Desc>
+      <AbbrName>CstmApplVerID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0">
+      <Tag>1130</Tag>
+      <FieldName>RefApplVerID</FieldName>
+      <Type>String</Type>
+      <Desc>Specifies the service pack release being applied to a message at the session level. Enumerated field with values assigned at time of service pack release. Uses same values as ApplVerID</Desc>
+      <AbbrName>RefApplVerID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+      <UsesEnumsFromTag>1128</UsesEnumsFromTag>
+   </Fields>
+	  <Fields Added="FIX.5.0">
+      <Tag>1131</Tag>
+      <FieldName>RefCstmApplVerID</FieldName>
+      <Type>String</Type>
+      <Desc>Specifies a custom extension to a message being applied at the session level.</Desc>
+      <AbbrName>RefCstmApplVerID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0">
+      <Tag>1137</Tag>
+      <FieldName>DefaultApplVerID</FieldName>
+      <Type>String</Type>
+      <Desc>Specifies the service pack release being applied, by default, to message at the session level. Enumerated field with values assigned at time of service pack release. Uses same values as ApplVerID</Desc>
+      <AbbrName>DefApplVerID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+      <UsesEnumsFromTag>1128</UsesEnumsFromTag>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1156</Tag>
+      <FieldName>ApplExtID</FieldName>
+      <Type>int</Type>
+      <Desc>The extension pack number associated with an application message.</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>ApplExtID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1400</Tag>
+      <FieldName>EncryptedPasswordMethod</FieldName>
+      <Type>int</Type>
+      <Desc>Enumeration defining the encryption method used to encrypt password fields.
+At this time there are no encryption methods defined by FPL.</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>EncPwdMethod</AbbrName>
+      <NotReqXML>0</NotReqXML>
+      <UnionDataType>Reserved100Plus</UnionDataType>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1401</Tag>
+      <FieldName>EncryptedPasswordLen</FieldName>
+      <Type>Length</Type>
+      <Desc>Length of the EncryptedPassword(1402) field</Desc>
+      <LenRefers>1402</LenRefers>
+      <AbbrName>EncPwdLen</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1402</Tag>
+      <FieldName>EncryptedPassword</FieldName>
+      <Type>data</Type>
+      <Desc>Encrypted password - encrypted via the method specified in the field EncryptedPasswordMethod(1400)</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>EncPwd</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1403</Tag>
+      <FieldName>EncryptedNewPasswordLen</FieldName>
+      <Type>Length</Type>
+      <Desc>Length of the EncryptedNewPassword(1404) field</Desc>
+      <LenRefers>1404</LenRefers>
+      <AbbrName>EncNewPwdLen</AbbrName>
+      <NotReqXML>1</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1404</Tag>
+      <FieldName>EncryptedNewPassword</FieldName>
+      <Type>data</Type>
+      <Desc>Encrypted new password - encrypted via the method specified in the field EncryptedPasswordMethod(1400)</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>EncNewPwd</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1406</Tag>
+      <FieldName>RefApplExtID</FieldName>
+      <Type>int</Type>
+      <Desc>The extension pack number associated with an application message.</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>RefApplExtID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1407</Tag>
+      <FieldName>DefaultApplExtID</FieldName>
+      <Type>int</Type>
+      <Desc>The extension pack number that is the default for a FIX session.</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>DfltApplExtID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1408</Tag>
+      <FieldName>DefaultCstmApplVerID</FieldName>
+      <Type>String</Type>
+      <Desc>The default custom application version ID that is the default for a session.</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>DefaultCstmApplVerID</AbbrName>
+      <NotReqXML>0</NotReqXML>
+   </Fields>
+	  <Fields Added="FIX.5.0SP1">
+      <Tag>1409</Tag>
+      <FieldName>SessionStatus</FieldName>
+      <Type>int</Type>
+      <Desc>Status of a FIX session</Desc>
+      <LenRefers>0</LenRefers>
+      <AbbrName>SessStat</AbbrName>
+      <NotReqXML>0</NotReqXML>
+      <UnionDataType>Reserved100Plus</UnionDataType>
+   </Fields>
+</dataroot>

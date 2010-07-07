@@ -3,7 +3,7 @@
  * Reproduction in whole or in part in any form or medium without express
  * written permission of Cameron Edge Pty Ltd is strictly prohibited.
  */
-
+ 
 package com.cameronedge.fixrepo;
 
 import com.cameronedge.fixwiki.FIXVersionInfo;
@@ -145,38 +145,10 @@ public class RepoInfo {
     //Postprocess message/component segments.
     postProcessSegments();
 
-    //Now enrich the data with extra resource files.
+//Now enrich the data with extra resource files.
+// *** REMOVED by PAO - this data has already been integrated into the 2010+ edition repository
+//    
 
-    s = "MessageDesc.xml";
-    is = loader.getResourceAsStream(s);
-    if (is == null) {
-      System.out.println("WARNING: Missing resource file " + s);
-    }
-    extraData = parse(is, "MessageDesc", "MsgType", false);
-    processExtraMessageDescriptions(extraData);
-
-    s = "ComponentDesc.xml";
-    is = loader.getResourceAsStream(s);
-    if (is == null) {
-      System.out.println("WARNING: Missing resource file " + s);
-    }
-    extraData = parse(is, "ComponentDesc", "ComponentName", false);
-    processExtraComponentDescriptions(extraData);
-
-    s = "EnumDesc.xml";
-    is = loader.getResourceAsStream(s);
-    if (is == null) {
-      System.out.println("WARNING: Missing resource file " + s);
-    }
-    extraData = parse(is, "Enums", "Tag", true);
-    processExtraEnumDescriptions(extraData);
-
-    s = "Glossary.txt";
-    is = loader.getResourceAsStream(s);
-    if (is == null) {
-      System.out.println("WARNING: Missing resource file " + s);
-    }
-    processGlossary(is);
 
   }
 

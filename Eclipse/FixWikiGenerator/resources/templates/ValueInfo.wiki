@@ -3,7 +3,7 @@
 {| border="1"
 ! Value !! Name !! Field(tag) !! First introduced !! Deprecated
 |-
-|| {{{Enum}}} || {{{EnumName}}} || [[{{{FieldName}}} | {{{FieldName}}}({{{Tag}}})]] || {{{FromVersion}}} || {{{Deprecated|}}}
+|| {{{Enum}}} || {{{EnumName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{{FromVersion}}} || {{{Deprecated|}}}
 |}
 <!--Special code for MsgType field which adds a link to the corresponding Message page.-->
 {{#ifeq: {{{FieldName}}} | MsgType
@@ -11,6 +11,6 @@
 See [[{{{EnumName}}}]] for details about this message.
 }}
 
-{{{Desc}}}
+{{{Description}}}
 
 <includeonly> [[Category:Value]] </includeonly>

@@ -53,17 +53,31 @@ public class RepoUtil {
       switch (ch) {
         case 'Ò':
         case 'Ó':
-          convertedCh = String.valueOf('"');
+          convertedCh = "\"";
           break;
 
         case 'Ô':
         case 'Õ':
-          convertedCh = String.valueOf('\'');
+          convertedCh = "\\";
           break;
 
+        case 8211:  // En dash
+        case 8212:  // Em dash
+            convertedCh = "-";
+            break;          
+
+        case 8216:            
+        case 8217:
+            convertedCh = "'";
+            break;
+                        
         case 8218:
-          convertedCh = String.valueOf(',');
+          convertedCh = ",";
           break;
+          
+        case 8226:	// Bullet
+            convertedCh = "*";
+            break;          
 
         case 8594: //Right arrow
           convertedCh = "->";
@@ -72,11 +86,11 @@ public class RepoUtil {
         case 65533:
         case 'Ð':
         case 'Ñ':
-          convertedCh = String.valueOf('-');
+          convertedCh = "-";
           break;
 
         case 8195: //Funny space which messes up Java parsing.
-          convertedCh = String.valueOf(' ');
+          convertedCh = " ";
           break;
 
         case '¥':
@@ -84,11 +98,9 @@ public class RepoUtil {
           break;
 
         default:
-          handled = false;
-      }
-
-      if (ch > 255 && !handled) {
-        System.out.println("WARNING: Unhandled non ASCII character " + ch + "(" + (int) ch + ")");
+			if (ch > 255) {
+			  System.out.printf("WARNING: Unhandled non ASCII character %s (%d)\n",convertedCh,(int)ch);
+			}
       }
 
       cleanValue.append(convertedCh);

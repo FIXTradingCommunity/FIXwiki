@@ -115,12 +115,11 @@ public class FixRepoHandler extends DefaultHandler {
   }
 
   @Override
-  public void endElement(String uri, String localName, String qName) throws SAXException {
-//    System.out.println("Element end");
+  public void endElement(String uri, String localName, String qName) throws SAXException {  
     if (qName.equals(startElement) && depth == 2) { //Need the depth check because element MsgType also has subelement MsgType!
       String indexElementValue = currentProps.getProperty(indexElement);
       String elementIndex = indexElementValue.trim();
-
+      
       if (!indexElementValue.equals(elementIndex)) {
         currentProps.setProperty(indexElement, elementIndex);
       }
@@ -136,9 +135,9 @@ public class FixRepoHandler extends DefaultHandler {
         }
       }
       propList.add(currentProps);
-    } else {
-      if (currentElement != null && depth == 3) {
-        addProp(currentElement, currentText);
+    } else {  		
+      if (currentElement != null && depth == 3) {   	  
+        addProp(currentElement, currentText.trim());
       }
     }
     currentElement = null;

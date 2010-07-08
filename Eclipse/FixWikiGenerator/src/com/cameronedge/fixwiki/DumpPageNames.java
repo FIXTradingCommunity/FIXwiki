@@ -52,10 +52,10 @@ public class DumpPageNames {
 
       Properties fieldProps = fieldInfoEntry.getValue().get(0);
 
-      String fieldName = fieldProps.getProperty("FieldName");
+      String fieldName = fieldProps.getProperty("Name");
 
       String enumTag;
-      String usesEnumsFromTag = fieldProps.getProperty("UsesEnumsFromTag");
+      String usesEnumsFromTag = fieldProps.getProperty("AssociatedDataTag");
       if (usesEnumsFromTag != null) {
         enumTag = usesEnumsFromTag;
       } else {
@@ -67,7 +67,7 @@ public class DumpPageNames {
       if (values != null) {
         for (Properties props : values) {
 
-          String enumValue = props.getProperty("Enum");
+          String enumValue = props.getProperty("Value");
 
           String enumName = props.getProperty("EnumName");
 

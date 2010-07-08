@@ -3,10 +3,10 @@
 {| border="1"
 ! MsgType !! FIX Specification !! First introduced !! Deprecated
 |-
-|| [[MsgType/{{{MsgType}}} {{{MessageName}}} | MsgType={{{MsgType}}}]] || {{{Volume}}}: {{{Section}}} messages - {{{Category}}} || {{{FromVersion}}} || {{{Deprecated|}}}
+|| [[MsgType/{{{MsgType}}} {{{Name}}} | MsgType={{{MsgType}}}]] || {{{Volume}}}: {{{Section}}} messages - {{{Category}}} || {{{FromVersion}}} || {{{Deprecated|}}}
 |}
 
-{{{Desc|}}}
+{{{Description|}}}
 
 {{#ifexist: FPL:{{{MessageName}}} Notes
 |{{FPL:{{{MessageName}}} Notes}}

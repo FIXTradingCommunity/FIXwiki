@@ -5,7 +5,7 @@
 {| border="1"
 ! Name !! BaseType !! First introduced !! Deprecated
 |-
-|| {{{TypeName}}} || {{{BaseType|}}} || {{{FromVersion|}}} || {{{Deprecated|}}}
+|| {{{Name}}} || {{{BaseType|}}} || {{{FromVersion|}}} || {{{Deprecated|}}}
 |}
 
 {{{Desc|}}}

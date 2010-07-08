@@ -5,7 +5,7 @@
 	<property name="lib" value="${project}/lib"/>
 	<property name="build" value="${project}/build" />	
 	<property name="repoIn" value="${project}/repoIn" />
-	<property name="scriptDir" value="${project}/resources" />
+	<property name="outDir" value="${project}/build/WikiOut" />
 	<property name="genJar" value="${build}/FixWikiGenerator.jar" />
 
 	<taskdef name="saxon-xslt" 
@@ -27,14 +27,16 @@
 	</target>
 
 	<target name="generateWiki">
+		<delete dir="${outDir}" />
+		
        <java classname="com.cameronedge.fixwiki.FixwikiGenerator"
            fork="true"
            failonerror="true"
            maxmemory="512m">
+			<arg line="${repoIn} ${outDir} createUserPages" />
 			<classpath>
 				<pathelement location="${genJar}"/>
 			</classpath>           
-			<arg line="${repoIn} ${scriptDir} createUserPages" />
        </java>	
 	</target>
 

@@ -75,8 +75,8 @@ public class FixwikiGenerator {
 
     ClassLoader loader = this.getClass().getClassLoader();
 
-
-    InputStream is = loader.getResourceAsStream(resourceName);
+    String resourcePath="resources/"+resourceName;
+    InputStream is = loader.getResourceAsStream(resourcePath);
     if (is == null) {
       throw new RuntimeException("Missing resource file " + resourceName);
     }
@@ -256,9 +256,13 @@ public class FixwikiGenerator {
 
       //Look up fieldInfo from tag.
       List<Properties> fieldInfo = fieldInfos.get(Integer.toString(fieldTag));
+      if (fieldInfo==null) {
+    	  System.out.printf("** Tag #%d not found in fieldInfos\n", fieldTag);
+    	  continue;
+      }
       Properties props = fieldInfo.get(0);
 
-      String currentFieldName = props.getProperty("FieldName");
+      String currentFieldName = props.getProperty("Name");
       if (!currentFieldName.equalsIgnoreCase(fieldName)) {
         //Create redirect page for old field name.
 
@@ -354,7 +358,7 @@ public class FixwikiGenerator {
     for (List<Properties> values : messageInfos.values()) {
       Properties props = values.get(0); //Message only has only one Properties.
 
-      String messageName = getCleanProperty(props, "MessageName");
+      String messageName = getCleanProperty(props, "Name");
 
       String userTitle = messageName;
       String fplTitle = RepoUtil.computeFPLTitle(messageName);
@@ -477,7 +481,7 @@ public class FixwikiGenerator {
     for (List<Properties> values : componentInfos.values()) {
       Properties props = values.get(0); //Component only has only one Properties.
 
-      String componentName = getCleanProperty(props, "ComponentName");
+      String componentName = getCleanProperty(props, "Name");
 
       //Component page
       String userTitle = componentName;
@@ -602,10 +606,10 @@ public class FixwikiGenerator {
 
       Properties fieldProps = fieldInfoEntry.getValue().get(0);
 
-      String fieldName = fieldProps.getProperty("FieldName");
+      String fieldName = fieldProps.getProperty("Name");
 
       String enumTag;
-      String usesEnumsFromTag = fieldProps.getProperty("UsesEnumsFromTag");
+      String usesEnumsFromTag = fieldProps.getProperty("AssociatedDataTag");
       if (usesEnumsFromTag != null) {
         enumTag = usesEnumsFromTag;
       } else {
@@ -614,12 +618,11 @@ public class FixwikiGenerator {
 
       //Get the enumerated values for this field, if any.
       List<Properties> values = enumInfos.get(enumTag);
-      if (values != null) {
+      if (values != null) {  	  
         for (Properties props : values) {
 
-          String enumValue = props.getProperty("Enum");
-
-          String enumName = props.getProperty("EnumName");
+          String enumValue = props.getProperty("Value");
+          String enumName = props.getProperty("EnumName");        
 
           //Create value subpages from field name and enum name and enum value.
           String userTitle = RepoUtil.computeValueTitle(fieldName, enumValue, enumName);
@@ -629,6 +632,7 @@ public class FixwikiGenerator {
           //Create file from title.
           String relName = titleToName(fplTitle) + ".val";
           fname = scriptDir.getAbsolutePath() + File.separator + relName;
+  
           PrintWriter fw = new PrintWriter(new FileWriter(fname));
 
           //Write field info transclusion passing each property as a parameter.
@@ -718,7 +722,10 @@ public class FixwikiGenerator {
 
   private static String titleToName(String title) {
     title = title.replace(':', '_');
-    return title.replace('/', '-');
+    title = title.replace('/', '-');
+    title = title.replace("?","QMARK");
+    title = title.replace("*","ASTRSK");	    
+    return title;
   }
 
   private void writeSegmentFile(String fname, String name, String msgType,
@@ -795,11 +802,15 @@ public class FixwikiGenerator {
       System.out.println("WARNING: Unused in any message: " + name);
     } else {
       List<String> sortedList = new ArrayList<String>(messageAndComponents);
-      Collections.sort(sortedList);
-      for (String messageAndComponent : sortedList) {
-        fw.print("[[Category:" + messageAndComponent + "]]");
+      if (sortedList==null) {
+          System.out.println("WARNING: sortedList returned null for: " + name);
+      } else {	  
+	      Collections.sort(sortedList);
+	      for (String messageAndComponent : sortedList) {
+	        fw.print("[[Category:" + messageAndComponent + "]]");
+	      }
+	      fw.println();
       }
-      fw.println();
     }
   }
 
@@ -822,8 +833,8 @@ public class FixwikiGenerator {
         fw.print("|| [[" + tagText + "]] ");
 
         Properties fieldProps = repoInfo.getFieldPropsFromTag(tag, fixVersion);
-        String fieldName = fieldProps.getProperty("FieldName");
-        String hint = extractHint(fieldProps.getProperty("Desc"));
+        String fieldName = fieldProps.getProperty("Name");
+        String hint = extractHint(fieldProps.getProperty("Description"));
 
         if (hint == null || hint.length() == 0) {
           fw.print("|| [[" + fieldName + "]] ");
@@ -834,7 +845,7 @@ public class FixwikiGenerator {
         fw.print("|| ");  //leave tag field blank for components
 
         Properties componentProps = repoInfo.getComponentPropsFromName(tagText, fixVersion);
-        String hint = extractHint(componentProps.getProperty("Desc"));
+        String hint = extractHint(componentProps.getProperty("Description"));
 
         if (hint == null || hint.length() == 0) {
           fw.print("|| [[" + tagText + "]] ");
@@ -875,7 +886,7 @@ public class FixwikiGenerator {
     //Replace inconsistent description key
     value = value.replace('|', ' ');
     if ("Description".equals(key) || "Desc".equals(key)) {
-      key = "Desc";
+      key = "Description";
       value = formatDescription(value, linkDetector);
     }
     fw.println("| " + key + "=" + value);

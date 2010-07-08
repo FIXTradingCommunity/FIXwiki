@@ -64,7 +64,7 @@ public class LinkDetector {
       List<Properties> values = enumInfos.get(Integer.toString(matchTagValues));
       String fieldName = repoInfo.getFieldNameFromTag(matchTagValues);
       for (Properties props : values) {
-        String enumValue = props.getProperty("Enum");
+        String enumValue = props.getProperty("Value");
         String enumName = props.getProperty("EnumName");
         linkNames2.put(enumName, RepoUtil.computeValueTitle(fieldName, enumValue, enumName));
       }
@@ -93,7 +93,7 @@ public class LinkDetector {
       //We need to iterate since the key to this map is msgType.
       for (List<Properties> values : messageInfos.values()) {
         Properties props = values.get(0); //Message only has only one Properties.
-        String messageName = props.getProperty("MessageName");
+        String messageName = props.getProperty("Name");
         String previous = linkNames1.put(messageName, messageName);
         if (previous != null) {
           System.out.println("WARNING: Duplicate name " + messageName);

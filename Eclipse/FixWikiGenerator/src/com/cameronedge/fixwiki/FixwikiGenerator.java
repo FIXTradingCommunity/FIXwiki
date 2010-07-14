@@ -54,7 +54,7 @@ public class FixwikiGenerator {
   private void addImportToScript(PrintWriter script, String relName, String title) {
     String cmd = "php importTextFile.php " +
             (title == null ? "" : "--title '" + title + "' ") +
-            "--user 'camerojo' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
+            "--user 'fixwiki' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
     script.println(cmd);
   }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="FixWikiGenerator/build/FixWikiGenerator.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/FixWikiGenerator/genjar.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixrepo"/>
+        <folder path="/FixWikiGenerator/resources/FIXwiki"/>
+        <folder path="/FixWikiGenerator/resources/templates"/>
+        <folder path="/FixWikiGenerator/resources/images"/>
+        <file path="/FixWikiGenerator/resources/Glossary.txt"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki"/>
+        <folder path="/FixWikiGenerator/resources/fpl"/>
+        <folder path="/FixWikiGenerator/resources/categories"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com"/>
+        <folder path="/FixWikiGenerator/resources/MediaWiki"/>
+        <folder path="/FixWikiGenerator/resources/help"/>
+    </selectedElements>
+</jardesc>

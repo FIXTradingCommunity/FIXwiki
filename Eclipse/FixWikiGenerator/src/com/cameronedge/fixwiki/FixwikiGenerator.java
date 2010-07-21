@@ -37,15 +37,17 @@ public class FixwikiGenerator {
   private static final String COMPONENT_CONTENT_INFO = "Component Content info";
   private static final String COMPONENT_INFO = "Component info";
   private static final String FIELD_INFO = "Field info";
-  private static final String IMPORT_DIR_VARIABLE = "importdir";
+  private static final String PATH_SEPARATOR="/";  
+  private static final String IMPORT_PREFIX = "";
   private static final String INVITATION_TO_POST = "Invitation to post";
   private static final String MESSAGE_CONTENT_INFO = "Message Content info";
   private static final String MESSAGE_INFO = "Message info";
   private static final String REFER_TO_USER_PAGE = "ReferToUserPage";
   private static final String TYPE_INFO = "Type info";
   private static final String VALUE_INFO = "Value info";
-  private static final String FPL_PAGE_TERMINATION_STRING = "</includeonly><noinclude>{{" + REFER_TO_USER_PAGE + "}}</noinclude>";
-
+  private static final String FPL_PAGE_TERMINATION_STRING = "</includeonly><noinclude>{{" + REFER_TO_USER_PAGE + "}}</noinclude>\n";
+  
+  
   public FixwikiGenerator(RepoInfo repoInfo) {
     this.repoInfo = repoInfo;
     linkDetector = new LinkDetector(repoInfo, 0);
@@ -54,12 +56,12 @@ public class FixwikiGenerator {
   private void addImportToScript(PrintWriter script, String relName, String title) {
     String cmd = "php importTextFile.php " +
             (title == null ? "" : "--title '" + title + "' ") +
-            "--user 'fixwiki' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
-    script.println(cmd);
+            "--user 'camerojo' ${importdir}'" + IMPORT_PREFIX + relName + "'";
+    script.printf("%s\n",cmd);
   }
 
   private void addResourceImportToScript(File scriptDir, PrintWriter script, String resourceName, String title) throws IOException {
-    String fname = scriptDir.getAbsolutePath() + File.separator + resourceName;
+    String fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + resourceName;
     copyResourceToFile(resourceName, fname);
 
     addImportToScript(script, resourceName, title);
@@ -121,10 +123,10 @@ public class FixwikiGenerator {
   private void generate(File scriptDir) throws Exception {
 
     //Create script file.
-    String fname = scriptDir.getAbsolutePath() + File.separator + BUILD_SCRIPT;
-    PrintWriter script = new PrintWriter(new FileWriter(fname));
-    script.println("#!/bin/sh");
-    script.println(IMPORT_DIR_VARIABLE + "=`dirname $0`");
+    String fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + BUILD_SCRIPT;
+    PrintWriter script = new PrintWriter(new File(fname),"US-ASCII");
+    script.print("#!/bin/sh\n");
+    script.print("export importdir=`dirname $0`"+PATH_SEPARATOR+"\n");
 
     generateConstantPages(scriptDir, script);
 
@@ -228,13 +230,13 @@ public class FixwikiGenerator {
       //Create file from fixversion name.
       String plusName = fixVersion + "+";
       String relName = plusName + ".tem";
-      String fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      String fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
       PrintWriter fw = new PrintWriter(new FileWriter(fname));
 
       for (int j = i; j <= RepoInfo.latestFIXVersionIndex; j++) {
         fw.print("[[Category:" + repoInfo.getFIXVersionString(j) + "]]");
       }
-      fw.println();
+      fw.print("\n");
       fw.close();
 
       //Update script
@@ -274,9 +276,9 @@ public class FixwikiGenerator {
           //Old field name redirection page
           //Create file from old field name.
           String relName = fieldName + ".fld";
-          String fname = scriptDir.getAbsolutePath() + File.separator + relName;
+          String fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
           PrintWriter fw = new PrintWriter(new FileWriter(fname));
-          fw.println("#REDIRECT [[" + currentFieldName + "]]");
+          fw.print("#REDIRECT [[" + currentFieldName + "]]\n");
           fw.close();
 
           //Write to script file
@@ -292,22 +294,22 @@ public class FixwikiGenerator {
 
         //Create file from field name.
         String relName = titleToName(fplTitle) + ".fld";
-        String fname = scriptDir.getAbsolutePath() + File.separator + relName;
+        String fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
         PrintWriter fw = new PrintWriter(new FileWriter(fname));
 
         //Write field info transclusion passing each property as a parameter.
-        fw.println("<includeonly>");
-        fw.println("{{Field info");
+        fw.print("<includeonly>\n");
+        fw.print("{{Field info\n");
         for (Map.Entry<Object, Object> entry : props.entrySet()) {
           writeWikiTemplateParameter(fw, (String) entry.getKey(), (String) entry.getValue());
         }
 
-        fw.println("}}");
+        fw.print("}}\n");
 
         writeFIXVersionCategories(props, fw);
 
         writeMessageAndComponentCategories(Integer.toString(fieldTag), fw);
-        fw.println(FPL_PAGE_TERMINATION_STRING);
+        fw.print(FPL_PAGE_TERMINATION_STRING);
         fw.close();
 
         //Write to script file
@@ -319,9 +321,9 @@ public class FixwikiGenerator {
         //Field tag redirection page
         //Create file from field tag.
         relName = fieldTag + ".fld";
-        fname = scriptDir.getAbsolutePath() + File.separator + relName;
+        fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
         fw = new PrintWriter(new FileWriter(fname));
-        fw.println("#REDIRECT [[" + fieldName + "]]");
+        fw.print("#REDIRECT [[" + fieldName + "]]\n");
         fw.close();
 
         //Write to script file
@@ -335,7 +337,7 @@ public class FixwikiGenerator {
 //          System.out.println(fieldName + " or " + abbrName);
 //          //Create file from field abbrName.
 //          //Check that we are not overwriting an existing field.
-//          fname = scriptDir.getAbsolutePath() + File.separator + abbrName + ".fld";
+//          fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + abbrName + ".fld";
 //          File abbrFile = new File(fname);
 //          if (abbrFile.exists()) {
 //            System.out.println("WARNING: AbbrName clashes with existing name - " + abbrName );
@@ -366,21 +368,21 @@ public class FixwikiGenerator {
       //Message page
       //Create file from message name.
       String relName = titleToName(fplTitle) + ".msg";
-      fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName; 
       PrintWriter fw = new PrintWriter(new FileWriter(fname));
-
+      
       //Write message info transclusion passing each property as a parameter.
-      fw.println("<includeonly>");
-      fw.println("{{Message info");
+      fw.print("<includeonly>\n");
+      fw.print("{{Message info\n");
       for (Map.Entry<Object, Object> entry : props.entrySet()) {
         writeWikiTemplateParameter(fw, (String) entry.getKey(), (String) entry.getValue());
       }
 
       //Note that it is a Message rather than a Component
-      fw.println("| SegmentType=Message");
+      fw.print("| SegmentType=Message\n");
 
-      fw.println("}}");
-      fw.println(FPL_PAGE_TERMINATION_STRING);
+      fw.print("}}\n");
+      fw.print(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
       //Write to script file
@@ -392,10 +394,10 @@ public class FixwikiGenerator {
       //Message category page
       //Create file from message name.
       relName = messageName + ".cat";
-      fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
       fw = new PrintWriter(new FileWriter(fname));
       //Just redirect to message page.
-      fw.println("#REDIRECT [[" + userTitle + "]]");
+      fw.print("#REDIRECT [[" + userTitle + "]]\n");
       fw.close();
       //Write to script file
       addImportToScript(script, relName, "Category:" + messageName);
@@ -429,7 +431,7 @@ public class FixwikiGenerator {
             }
 
             //Now create a message contents subpage constructed from the Message and its fromVersion and toVersion.
-            userTitle = messageName + "/";
+            userTitle = messageName + PATH_SEPARATOR;
             if (fromVersion == toVersion) {
               userTitle += repoInfo.getFIXVersionString(fromVersion);
             } else {
@@ -437,7 +439,7 @@ public class FixwikiGenerator {
             }
             fplTitle = RepoUtil.computeFPLTitle(userTitle);
             relName = titleToName(fplTitle) + ".msg";
-            fname = scriptDir.getAbsolutePath() + File.separator + relName;
+            fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
 
             writeSegmentFile(fname, messageName, msgType, fromVersion, toVersion, toVersion);
 
@@ -455,10 +457,10 @@ public class FixwikiGenerator {
 
       //Create + subpage from any lingering fromVersion
       if (fromVersion >= 0) {
-        userTitle = messageName + "/" + repoInfo.getFIXVersionString(fromVersion) + "+";
+        userTitle = messageName + PATH_SEPARATOR + repoInfo.getFIXVersionString(fromVersion) + "+";
         fplTitle = RepoUtil.computeFPLTitle(userTitle);
         relName = titleToName(fplTitle) + ".msg";
-        fname = scriptDir.getAbsolutePath() + File.separator + relName;
+        fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
 
         writeSegmentFile(fname, messageName, msgType, fromVersion, -1, RepoInfo.latestFIXVersionIndex);
 
@@ -489,23 +491,23 @@ public class FixwikiGenerator {
 
       //Create file from component name.
       String relName = titleToName(fplTitle) + ".cmp";
-      fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
       PrintWriter fw = new PrintWriter(new FileWriter(fname));
 
       //Write component info transclusion passing each property as a parameter.
-      fw.println("<includeonly>");
-      fw.println("{{" + COMPONENT_INFO);
+      fw.print("<includeonly>\n");
+      fw.print("{{" + COMPONENT_INFO+"\n");
       for (Map.Entry<Object, Object> entry : props.entrySet()) {
         writeWikiTemplateParameter(fw, (String) entry.getKey(), (String) entry.getValue());
       }
 
       //Note that it is a Component rather than a Message
-      fw.println("| SegmentType=Component");
+      fw.print("| SegmentType=Component\n");
 
-      fw.println("}}");
+      fw.print("}}\n");
 
       writeMessageAndComponentCategories(componentName, fw);
-      fw.println(FPL_PAGE_TERMINATION_STRING);
+      fw.print(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
       //Write to script file
@@ -517,10 +519,10 @@ public class FixwikiGenerator {
       //Component category page
       //Create file from component name.
       relName = componentName + ".cat";
-      fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
       fw = new PrintWriter(new FileWriter(fname));
       //Just redirect to component page.
-      fw.println("#REDIRECT [[" + userTitle + "]]");
+      fw.print("#REDIRECT [[" + userTitle + "]]\n");
       fw.close();
       //Write to script file
       addImportToScript(script, relName, "Category:" + componentName);
@@ -552,7 +554,7 @@ public class FixwikiGenerator {
             }
 
             //Now create a component contents subpage constructed from the Component and its fromVersion and toVersion.
-            userTitle = componentName + "/";
+            userTitle = componentName + PATH_SEPARATOR;
             if (fromVersion == toVersion) {
               userTitle += repoInfo.getFIXVersionString(fromVersion);
             } else {
@@ -560,7 +562,7 @@ public class FixwikiGenerator {
             }
             fplTitle = RepoUtil.computeFPLTitle(userTitle);
             relName = titleToName(fplTitle) + ".cmp";
-            fname = scriptDir.getAbsolutePath() + File.separator + relName;
+            fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
 
             writeSegmentFile(fname, componentName, null, fromVersion, toVersion, toVersion);
 
@@ -578,10 +580,10 @@ public class FixwikiGenerator {
 
       //Create + subpage from any lingering fromVersion
       if (fromVersion >= 0) {
-        userTitle = componentName + "/" + repoInfo.getFIXVersionString(fromVersion) + "+";
+        userTitle = componentName + PATH_SEPARATOR + repoInfo.getFIXVersionString(fromVersion) + "+";
         fplTitle = RepoUtil.computeFPLTitle(userTitle);
         relName = titleToName(fplTitle) + ".cmp";
-        fname = scriptDir.getAbsolutePath() + File.separator + relName;
+        fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
 
         writeSegmentFile(fname, componentName, null, fromVersion, -1, RepoInfo.latestFIXVersionIndex);
 
@@ -631,13 +633,13 @@ public class FixwikiGenerator {
           //Write FPL version of the page.
           //Create file from title.
           String relName = titleToName(fplTitle) + ".val";
-          fname = scriptDir.getAbsolutePath() + File.separator + relName;
+          fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
   
           PrintWriter fw = new PrintWriter(new FileWriter(fname));
 
           //Write field info transclusion passing each property as a parameter.
-          fw.println("<includeonly>");
-          fw.println("{{" + VALUE_INFO);
+          fw.print("<includeonly>\n");
+          fw.print("{{" + VALUE_INFO+"\n");
           for (Map.Entry<Object, Object> entry : props.entrySet()) {
             String key = (String) entry.getKey();
             String value = (String) entry.getValue();
@@ -649,12 +651,12 @@ public class FixwikiGenerator {
           }
 
           //Add extra FieldName property - redundant since we have tag, but probably convenient.
-          fw.println("| " + "FieldName=" + fieldName);
+          fw.print("| " + "FieldName=" + fieldName+"\n");
 
-          fw.println("}}");
+          fw.print("}}\n");
 
           writeFIXVersionCategories(props, fw);
-          fw.println(FPL_PAGE_TERMINATION_STRING);
+          fw.print(FPL_PAGE_TERMINATION_STRING);
           fw.close();
 
           //Write to script file
@@ -674,7 +676,7 @@ public class FixwikiGenerator {
     for (List<Properties> values : typeInfos.values()) {
       Properties props = values.get(0); //Type only has only one Properties.
 
-      String typeName = getCleanProperty(props, "TypeName");
+      String typeName = getCleanProperty(props, "Name");
 
       String userTitle = typeName + "DataType";
       String fplTitle = RepoUtil.computeFPLTitle(userTitle);
@@ -682,18 +684,18 @@ public class FixwikiGenerator {
       //Type page
       //Create file from type name with DataType suffix so that it does not clash with Field names (eg Price).
       String relName = titleToName(fplTitle) + ".typ";
-      fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
       PrintWriter fw = new PrintWriter(new FileWriter(fname));
 
       //Write type info transclusion passing each property as a parameter.
-      fw.println("<includeonly>");
-      fw.println("{{" + TYPE_INFO);
+      fw.print("<includeonly>\n");
+      fw.print("{{" + TYPE_INFO+"\n");
       for (Map.Entry<Object, Object> entry : props.entrySet()) {
         writeWikiTemplateParameter(fw, (String) entry.getKey(), (String) entry.getValue());
       }
 
-      fw.println("}}");
-      fw.println(FPL_PAGE_TERMINATION_STRING);
+      fw.print("}}\n");
+      fw.print(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
       //Write to script file
@@ -713,10 +715,10 @@ public class FixwikiGenerator {
   }
 
   private void inviteInput(PrintWriter fw) {
-    fw.println();
-    fw.println("=Notes=");
-    fw.println("<!-- The first person to post something here should delete this comment and the following line -->");
-    fw.println("{{" + INVITATION_TO_POST + "}}");
+    fw.print("\n");
+    fw.print("=Notes=\n");
+    fw.print("<!-- The first person to post something here should delete this comment and the following line -->\n");
+    fw.print("{{" + INVITATION_TO_POST + "}}\n");
 
   }
 
@@ -740,23 +742,23 @@ public class FixwikiGenerator {
       PrintWriter fw;
       fw = new PrintWriter(new FileWriter(fname));
 
-      fw.println("<includeonly>");
-      fw.println("{{" + (msgType != null ? MESSAGE_CONTENT_INFO : COMPONENT_CONTENT_INFO));
-      fw.println("| Name=" + name);
+      fw.print("<includeonly>\n");
+      fw.print("{{" + (msgType != null ? MESSAGE_CONTENT_INFO : COMPONENT_CONTENT_INFO)+"\n");
+      fw.print("| Name=" + name+"\n");
       if (msgType != null) {
-        fw.println("| MsgType=" + msgType);
+        fw.print("| MsgType=" + msgType+"\n");
       }
-      fw.println("| FromVersion=" + repoInfo.getFIXVersionString(fromVersion));
+      fw.print("| FromVersion=" + repoInfo.getFIXVersionString(fromVersion)+"\n");
       if (toVersion >= 0) {
-        fw.println("| ToVersion=" + repoInfo.getFIXVersionString(toVersion));
+        fw.print("| ToVersion=" + repoInfo.getFIXVersionString(toVersion)+"\n");
       }
-      fw.println("}}");
+      fw.print("}}\n");
 
       writeSegmentContents(fw, segmentInfo, fixVersion);
 
       writeFIXVersionCategories(fromVersion, toVersion, fw);
 
-      fw.println(FPL_PAGE_TERMINATION_STRING);
+      fw.print(FPL_PAGE_TERMINATION_STRING);
       fw.close();
     }
   }
@@ -785,39 +787,39 @@ public class FixwikiGenerator {
     //No toVersion (-ve) means open ended. Use {{FIX.x.y+}}.
     if (toVersion < 0) {
       String fixVersion = repoInfo.getFIXVersionString(fromVersion);
-      fw.println("{{" + fixVersion + "+}}");
+      fw.print("{{" + fixVersion + "+}}\n");
     } else {
       //Explicit list of categories eg [[Category:FIX.4.1]][[Category:FIX.4.2]]
       for (int i = fromVersion; i <= toVersion; i++) {
         String fixVersion = repoInfo.getFIXVersionString(i);
         fw.print("[[Category:" + fixVersion + "]]");
       }
-      fw.println();
+      fw.print("\n");
     }
   }
 
   private void writeMessageAndComponentCategories(String name, PrintWriter fw) {
     Set<String> messageAndComponents = repoInfo.getContainingMessagesAndComponents(name);
     if (messageAndComponents == null) {
-      System.out.println("WARNING: Unused in any message: " + name);
+      System.out.print("WARNING: Unused in any message: " + name+"\n");
     } else {
       List<String> sortedList = new ArrayList<String>(messageAndComponents);
       if (sortedList==null) {
-          System.out.println("WARNING: sortedList returned null for: " + name);
+          System.out.print("WARNING: sortedList returned null for: " + name+"\n");
       } else {	  
 	      Collections.sort(sortedList);
 	      for (String messageAndComponent : sortedList) {
 	        fw.print("[[Category:" + messageAndComponent + "]]");
 	      }
-	      fw.println();
+	      fw.print("\n");
       }
     }
   }
 
   private void writeSegmentContents(PrintWriter fw, List<Properties> segmentInfo, int fixVersion) {
     for (Properties props : segmentInfo) {
-      fw.println();
-      fw.println("|-");
+      fw.print("\n");
+      fw.print("|-\n");
 
       String tagText = props.getProperty("TagText").trim();
 
@@ -863,17 +865,17 @@ public class FixwikiGenerator {
 
     }
 
-    fw.println();
-    fw.println("|}");
+    fw.print("\n");
+    fw.print("|}\n");
   }
 
   private void writeUserVersion(File scriptDir, PrintWriter script, String userTitle, String fplTitle, String suffix) throws IOException {
     if (createUserPages) {
       String relName = titleToName(userTitle) + suffix;
-      String fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      String fname = scriptDir.getAbsolutePath() + PATH_SEPARATOR + relName;
       PrintWriter fw = new PrintWriter(new FileWriter(fname));
       //Write include of fpl version of page
-      fw.println("{{" + fplTitle + "}}");
+      fw.print("{{" + fplTitle + "}}\n");
       inviteInput(fw);
       fw.close();
 
@@ -889,7 +891,7 @@ public class FixwikiGenerator {
       key = "Description";
       value = formatDescription(value, linkDetector);
     }
-    fw.println("| " + key + "=" + value);
+    fw.print("| " + key + "=" + value+"\n");
   }
 
   public static void main(String[] args) throws Exception {

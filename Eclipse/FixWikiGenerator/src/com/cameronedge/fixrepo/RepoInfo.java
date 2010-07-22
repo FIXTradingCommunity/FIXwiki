@@ -535,15 +535,14 @@ public class RepoInfo {
 
       List<Properties> values = enumInfoEntry.getValue();
       for (Properties valueProps : values) {
-        String enumName = valueProps.getProperty("EnumName");
+    	String enumName = valueProps.getProperty("SymbolicName");
         String enumValue = valueProps.getProperty("Value");
         String description = valueProps.getProperty("Description");
         if (enumName == null) {
           //Compute new EnumName property from the description attribute.
           enumName = RepoUtil.computeEnumName(description);
-
-          valueProps.setProperty("EnumName", enumName);
         }
+        valueProps.setProperty("EnumName", enumName);        
 
         if (checkEnumName(enumName, names, tagStr, enumValue, description)) {
           warnCount++;
@@ -983,56 +982,6 @@ public class RepoInfo {
       } else {
         Properties currentProps = currentPropList.get(0);
         currentProps.setProperty("Description", desc);
-      }
-    }
-  }
-
-  public void processGlossary(InputStream glossary) throws IOException {
-    if (glossary != null) {
-      InputStreamReader glossaryReader = new InputStreamReader(glossary);
-      GlossaryProcessor gp = new GlossaryProcessor();
-      List<GlossaryEntry> entries = gp.processGlossaryText(glossaryReader);
-
-      for (GlossaryEntry entry : entries) {
-//        System.out.println();
-//        System.out.println(entry);
-//        System.out.println();
-
-        //Extract field - will be surrounded by square brackets.
-        String fieldName = extractGlossaryFieldName(entry.fieldName);
-
-        if (fieldName == null) {
-          if (entry.fieldName.trim().length() > 0) {
-            System.out.println("INFO: Glossary entry not associated with field. " + entry.fieldName);
-          }
-        } else {
-
-          //Look up its tag.
-          Integer tag = fieldNameTagMap.get(fieldName);
-          if (tag == null) {
-            System.out.println("WARNING: Unknown field in glossary " + fieldName);
-          } else {
-            //Does value name go with field?
-            //Skip marked values
-            if (entry.valueName.length() == 0 || entry.valueName.charAt(0) == '?') {
-              System.out.println("INFO: Ignoring: " + entry);
-            } else {
-              Properties enumInfo = getEnumInfoFromTagValueName(tag, entry.valueName);
-              if (enumInfo == null) {
-                System.out.println("WARNING: Unknown glossary value '" + entry.valueName + "' for field " + fieldName);
-              } else {
-                if (enumInfo.getProperty("Description").length() > entry.description.length()) {
-                  System.out.println("WARNING: Replacing longer description with shorter " + entry.valueName + "for field " + fieldName);
-                  System.out.println("Replacing description of " + fieldName + ":" + entry.valueName);
-                  System.out.println(enumInfo.getProperty("Description"));
-                  System.out.println("   V");
-                  System.out.println(entry.description);
-                }
-                enumInfo.setProperty("Description", entry.description);
-              }
-            }
-          }
-        }
       }
     }
   }

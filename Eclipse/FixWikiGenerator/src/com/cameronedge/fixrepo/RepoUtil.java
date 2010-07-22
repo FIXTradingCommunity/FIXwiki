@@ -151,7 +151,7 @@ public class RepoUtil {
   }
 
   public static String computeValueTitle(String fieldName, String enumValue, String enumName) {
-    return fieldName + "/" + enumValue + " " + enumName;
+    return fieldName + "/" + enumValue + "_" + enumName;
   }
 
   private static String copyUntil(Reader reader, char c) throws IOException {

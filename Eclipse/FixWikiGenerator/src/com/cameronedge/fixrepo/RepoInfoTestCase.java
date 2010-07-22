@@ -24,10 +24,4 @@ public class RepoInfoTestCase {
   public void tearDown() throws Exception {
   }
 
-  @Test
-  public void testProcessGlossary() throws Exception {
-    //TODO JC testProcessGlossary 
-    //assertTrue( false );
-  }
-
 }

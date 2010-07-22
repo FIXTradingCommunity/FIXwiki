@@ -11,17 +11,54 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/FixWikiGenerator/resources/images/ProductMarketDataModelFig5.png"/>
+        <file path="/FixWikiGenerator/resources/images/ProductMarketDataModelFig1.png"/>
+        <file path="/FixWikiGenerator/resources/templates/MessageContentInfo.wiki"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{LinkDetectorTestCase.java"/>
+        <file path="/FixWikiGenerator/resources/templates/MessageInfo.wiki"/>
+        <file path="/FixWikiGenerator/resources/images/RelatedPartyComponentStructure.png"/>
+        <file path="/FixWikiGenerator/resources/images/SchemaFileHierarchy.png"/>
+        <file path="/FixWikiGenerator/resources/images/UserDefinedSpreadMessageFlow.png"/>
+        <file path="/FixWikiGenerator/resources/templates/ComponentInfo.wiki"/>
+        <file path="/FixWikiGenerator/resources/images/LayersFIXMLSchema.png"/>
         <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixrepo"/>
-        <folder path="/FixWikiGenerator/resources/FIXwiki"/>
-        <folder path="/FixWikiGenerator/resources/templates"/>
-        <folder path="/FixWikiGenerator/resources/images"/>
+        <file path="/FixWikiGenerator/resources/images/ProductMarketDataModelFig2.png"/>
         <file path="/FixWikiGenerator/resources/Glossary.txt"/>
-        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki"/>
-        <folder path="/FixWikiGenerator/resources/fpl"/>
+        <file path="/FixWikiGenerator/resources/images/UserDefinedSpreadTwoStepProcess.png"/>
+        <file path="/FixWikiGenerator/resources/templates/TypeInfo.wiki"/>
+        <file path="/FixWikiGenerator/resources/images/SchemaFileNaming.png"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{LinkDetector.java"/>
+        <file path="/FixWikiGenerator/resources/templates/ValueInfo.wiki"/>
+        <folder path="/FixWikiGenerator/resources/FIXwiki"/>
+        <file path="/FixWikiGenerator/resources/images/ProductMarketDataModelFig4.png"/>
+        <file path="/FixWikiGenerator/resources/images/ExtensibilityPattern.png"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{ConvertWordTableToWikiTable.java"/>
+        <file path="/FixWikiGenerator/resources/images/PartyReferenceStructure.png"/>
         <folder path="/FixWikiGenerator/resources/categories"/>
-        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge"/>
         <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com"/>
+        <file path="/FixWikiGenerator/resources/images/PartyDetailsListReportMessageStructure.png"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{ConvertToWikiText.java"/>
+        <file path="/FixWikiGenerator/resources/images/ProductMarketDataModelFig3.png"/>
+        <file path="/FixWikiGenerator/resources/templates/ReferToUserPage.wiki"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge"/>
+        <file path="/FixWikiGenerator/resources/templates/RepoError.wiki"/>
         <folder path="/FixWikiGenerator/resources/MediaWiki"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{FIXVersionInfo.java"/>
+        <file path="/FixWikiGenerator/resources/templates/SpecError.wiki"/>
+        <file path="/FixWikiGenerator/resources/images/CustomizableSchemaFiles.png"/>
+        <file path="/FixWikiGenerator/resources/templates/FieldInfo.wiki"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{DumpPageNames.java"/>
+        <file path="/FixWikiGenerator/resources/templates/ToDo.wiki"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{FixwikiUtil.java"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{FixwikiGenerator.java"/>
+        <file path="/FixWikiGenerator/resources/templates/InvitationToPost.wiki"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{FixwikiGeneratorTestCase.java"/>
+        <javaElement handleIdentifier="=FixWikiGenerator/src&lt;com.cameronedge.fixwiki{AddLinks.java"/>
+        <file path="/FixWikiGenerator/resources/images/FIXMLRootElement.png"/>
+        <file path="/FixWikiGenerator/resources/images/UserDefinedSpreadOneStepProcess.png"/>
         <folder path="/FixWikiGenerator/resources/help"/>
+        <file path="/FixWikiGenerator/resources/templates/ComponentContentInfo.wiki"/>
+        <file path="/FixWikiGenerator/resources/images/PartiesReferenceDataNormalMessageFlow.png"/>
+        <folder path="/FixWikiGenerator/resources/fpl"/>
     </selectedElements>
 </jardesc>

@@ -1,21 +1,21 @@
-===FIX Message {{{MessageName}}} (MsgType={{{MsgType}}})===
+===FIX Message {{{Name}}} (MsgType={{{MsgType}}})===
 
 {| border="1"
 ! MsgType !! FIX Specification !! First introduced !! Deprecated
 |-
-|| [[MsgType/{{{MsgType}}} {{{Name}}} | MsgType={{{MsgType}}}]] || {{{Volume}}}: {{{Section}}} messages - {{{Category}}} || {{{FromVersion}}} || {{{Deprecated|}}}
+|| [[MsgType/{{{MsgType}}} {{{Name}}} | MsgType={{{MsgType}}}]] || {{{SectionID}}} messages - {{{CategoryID}}} || {{{FromVersion}}} || {{{Deprecated|}}}
 |}
 
 {{{Description|}}}
 
-{{#ifexist: FPL:{{{MessageName}}} Notes
-|{{FPL:{{{MessageName}}} Notes}}
+{{#ifexist: FPL:{{{Name}}} Notes
+|{{FPL:{{{Name}}} Notes}}
 }}
 
 ====Message Contents By FIX Version====
 
 {{#tag:splist
-|  parent={{{MessageName}}}
+|  parent={{{Name}}}
 |  kidsonly=yes
 }}
 

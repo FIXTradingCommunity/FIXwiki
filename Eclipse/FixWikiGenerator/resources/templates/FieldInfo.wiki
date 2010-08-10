@@ -12,7 +12,7 @@
 |
 === Enumerated Values ===
 {{#tag:splist
-|  parent={{{FieldName}}}
+|  parent={{{Name}}}
 |  kidsonly=yes
 }}
 |

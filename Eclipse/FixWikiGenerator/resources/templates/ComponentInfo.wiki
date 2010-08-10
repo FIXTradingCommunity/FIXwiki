@@ -1,11 +1,11 @@
-===FIX Message Component {{{ComponentName}}}===
+===FIX Message Component {{{Name}}}===
 
 <!--TODO This hardcoded Volume1 is not correct = components are defined elsewhere. The trouble that the repo does not say where.-->
 
 {| border="1"
 ! FIX Specification !! Type !! First introduced !! Deprecated
 |-
-|| Volume1: {{{Category}}} || {{{ComponentType}}} || {{{FromVersion}}} || {{{Deprecated|}}}
+|| Volume1: {{{CategoryID}}} || {{{ComponentType}}} || {{{FromVersion}}} || {{{Deprecated|}}}
 |}
 
 {{{Description|}}}
@@ -13,7 +13,7 @@
 ====Component Contents By FIX Version====
 
 {{#tag:splist
-|  parent={{{ComponentName}}}
+|  parent={{{Name}}}
 |  kidsonly=yes
 }}
 

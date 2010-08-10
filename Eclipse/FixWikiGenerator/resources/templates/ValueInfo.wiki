@@ -3,12 +3,12 @@
 {| border="1"
 ! Value !! Name !! Field(tag) !! First introduced !! Deprecated
 |-
-|| {{{Enum}}} || {{{EnumName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{{FromVersion}}} || {{{Deprecated|}}}
+|| {{{Value}}} || {{{SymbolicName}}} || [[{{{FieldName}}} | {{{FieldName}}}({{{Tag}}})]] || {{{FromVersion}}} || {{{Deprecated|}}}
 |}
 <!--Special code for MsgType field which adds a link to the corresponding Message page.-->
 {{#ifeq: {{{FieldName}}} | MsgType
 |
-See [[{{{EnumName}}}]] for details about this message.
+See [[{{{SymbolicName}}}]] for details about this message.
 }}
 
 {{{Description}}}

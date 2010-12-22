@@ -1,4 +1,0 @@
-'''Error in FIX Specification:'''
-<includeonly>
-[[Category:SpecError]]
-</includeonly>

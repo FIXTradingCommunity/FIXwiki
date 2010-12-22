@@ -1,1 +1,0 @@
-See http://www.fixprotocol.org/specifications/FIX.5.0SP1

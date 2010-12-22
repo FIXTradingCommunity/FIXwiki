@@ -1,4 +1,0 @@
-'''You are now logged out.'''
-
-You can [[Special:UserLogin|log in again]] as the same or as a different user.
-Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.

@@ -1,4 +1,0 @@
-See [http://en.wikipedia.org/wiki/Wikipedia:Cheatsheet Wikipedia's editing documentation]
-
-If you would like to experiment with Wiki editing,
-[http://en.wikipedia.org/wiki/Wikipedia:Sandbox Wikipedia's "sandbox"] is a good place to play.

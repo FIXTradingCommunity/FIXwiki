@@ -1,0 +1,289 @@
+<!--
+  ~ Copyright (c) 2010. Cameron Edge Pty Ltd. All rights reserved.
+  -->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>FIXwiki Developer's Guide</title>
+</head>
+<body>
+<h1>
+    FIXwiki Developer's Guide
+</h1>
+
+<p align="right">
+    John Cameron<br>
+    21 December 2010
+</p>
+
+<h2>
+    Introduction
+</h2>
+
+<p>
+    <a target="_blank" href="http://fixwiki.org/">FIXwiki</a> is a wiki
+    whose core content is taken from the
+    <a target="_blank" href="http://fixprotocol.org/">FIX Protocol
+        Specification</a>.
+    Wiki pages are generated automatically from the
+    <a target="_blank" href="http://fixprotocol.org/repository/">FIX
+        repository</a>.
+</p>
+
+<p>
+    This document describes the Java and PHP code which is used to generate
+    FIXwiki. It is intended for developers who are responsible for
+    maintaining that code base.
+</p>
+
+<p>
+    You should start by taking a look at the FIXwiki website
+    <a target="_blank" href="http://fixwiki.org/">http://fixwiki.org/</a>
+    for high level information about FIXwiki.
+    Particularly the following sections:
+</p>
+<ul>
+    <li><a target="_blank" href="http://fixwiki.org/fixwiki/FIXwiki:Structure">Structure
+        of FIXwiki</a></li>
+    <li><a target="_blank" href="http://fixwiki.org/fixwiki/FIXwiki:About">About
+        FIXwiki</a></li>
+</ul>
+<h2>
+    Wiki Software
+</h2>
+
+<p>
+    FIXwiki uses <a target="_blank"
+                    href="http://www.mediawiki.org/">MediaWiki</a>
+    for the basic wiki software.
+    There are numerous wiki implementations. However, MediaWiki was chosen
+    because it is the software used for the world's largest and most active
+    wiki, <a target="_blank" href="http://wikipedia.org">Wikipedia</a>.
+    This gave confidence that the software, whatever shortcomings it might have,
+    would be highly scalable and highly reliable.
+</p>
+
+<p>
+    FIXwiki's design was strongly influenced by the book
+    <a target="_blank"
+       href="http://www.amazon.com/Mediawiki-Wikipedia-Beyond-Daniel-Barrett/dp/0596519796/ref=sr_1_1?s=books&ie=UTF8&qid=1292813546&sr=1-1">"MediaWiki"
+        (Daniel J Barrett, published by O'Reilly)</a>. The FIXwiki developer
+    will find that book a very useful reference.
+</p>
+
+<p>
+    Mediawiki is built using <a target="_blank"
+                                href="http://www.php.net/">PHP</a>.
+    PHP may not be everyone's favourite language. However it
+    is Mediawiki's native language so the FIXwiki developer will need
+    to acquire some basic knowledge of it.
+</p>
+
+<p>
+    MediaWiki sits on top of a database. Theoretically that database does not
+    have to be <a target="_blank" href="http://www.mysql.com/">MySQL</a>,
+    but MySQL is what is used by Wikipedia, so
+    FIXwiki also uses MySQL on the assumption that it would be the most
+    reliable partner for MediaWiki. Some attempts were made a while back
+    to move FIXwiki to <a target="_blank" href="http://www.postgresql.org/">PostgreSQL</a>
+    and a whole bunch of problems arose. The project was eventually abandoned.
+    So MySQL does indeed appear to be the best choice for MediaWiki.
+    Fortunately, the operation of the underlying database is largely
+    hidden, so the FIXwiki developer requires minimal knowledge of MySQL.
+</p>
+
+<h2>
+    Generating FIXwiki
+</h2>
+
+<p>
+    There is a page in FIXwiki for every FIX message, component, field, value or
+    type. The <a target="_blank" href="http://fixprotocol.org/repository/">FIX
+    repository</a>
+    contains the official definitions of all FIX
+    messages, components, fields, values and types.
+    So generating FIXwiki involves creating a wiki page for each of these
+    FIX repository definitions.
+</p>
+
+<p>
+    MediaWiki provides a standard PHP function (importTextFile.php) for creating
+    a wiki page from the contents of a text file.
+    So the software which generates FIXwiki copies each
+    FIX repository definition into a text file and creates a PHP script which
+    calls the PHP import function for each text file. Running the resulting
+    PHP script creates FIXwiki. This software is written in Java.
+</p>
+
+<p>
+    To summarize, generating FIXwiki is a two stage process:
+</p>
+<ol>
+    <li>Read the FIX repository and generate a number of text files and a PHP
+        script which creates a wiki page from each file
+    </li>
+    <li>Run the PHP script</li>
+</ol>
+<p>
+    The rest of this document will describe the Java software that performs
+    the first stage of the above process.
+</p>
+
+<h2>
+    FIXwiki Generating Software
+</h2>
+
+<p>
+    The software is broken up into the following modules.
+</p>
+
+<h3>RepoInfo - Processes the FIX repository files</h3>
+
+<p>
+    The FIX repository is in the form of a number of interrelated XML files.
+    The files are arranged in a directory hierarchy.
+    RepoInfo takes the root directory of a FIX repository and processes
+    all the files in the repository into an internal Java object based
+    representation.
+</p>
+<p>
+    In fact, RepoInfo also process some extra files - defined as resources in
+    the Java code - ie you will find them checked in with the Java source code.
+    These extra files add more extensive definitions for messages, fields etc
+    than what is currently held in the FIX repository.
+    (These definitions come directly from the specification, however, so they
+    are "official").
+</p>
+<p>
+    The intention is that the FIX repository will eventually hold these
+    "elaborated" definitions, but it does not currently. Part of the value
+    of FIXwiki is that it contains these more complete definitions, so
+    for now they need to be supplied by these extra files
+    (ComponentDesc.xml, EnumDesc.xml, Glossary.txt, MessageDesc.xml).
+</p>
+<h3>LinkDetector - Detects links to other pages</h3>
+
+<p>
+    Many pages contain references to other pages. For example, the description
+    about a given FIX message will typically mention some of the fields that
+    make up the message. Each of these fields will have its own FIXwiki page
+    and it is highly desirable for someone reading the message description
+    to be able to quickly go to the page of a mentioned field by simply
+    clicking on the field's name.
+</p>
+
+<p>
+    LinkDetector processes the text files searching for such links and
+    converting the text accordingly.
+</p>
+
+<h3>Converting to Wiki Text - FixwikiUtil.formatDescription</h3>
+
+<p>
+    MediaWiki uses some
+    <a target="_blank" href="http://www.mediawiki.org/wiki/Help:Formatting">very
+        simple rules for formatting text</a>.
+    For example, you indicate a new paragraph by simply leaving a blank line.
+    (Anyone who has contributed to Wikipedia will be familiar with these rules).
+</p>
+
+<p>
+    This code scans the text files and attempts to convert them to
+    use wiki formatting so that the text displays nicely in FIXwiki.
+</p>
+
+<h3>Generating PHP script - FixwikiGenerator</h3>
+
+<p>
+    This is the main module of the FIXwiki generating code. It uses the
+    other modules as required.
+</p>
+
+<p>
+    Apart from calling the other modules as needed, the main function of this
+    code is to actually generate the PHP script which imports the text files
+    which end up being FIXwiki pages.
+</p>
+
+<h2>
+    FIXwiki Templates
+</h2>
+
+<p>
+    The generated FIXwiki pages use
+    <a target="_blank" href="http://www.mediawiki.org/wiki/Help:Templates">templates</a>
+    to standardize the layout of pages.
+    For example, pages that display information about FIX messages all have a
+    common format - only the displayed data changes.
+    FIXwiki imposes that common format by using a template called
+    "Message info" to display the data on each message page.
+    A template is like a Java method. It receives its data passed in as
+    parameters and then does something with that data - eg displays the
+    data on the page.
+</p>
+
+<p>
+    For example, look at the source for the FIXwiki
+    <a target="_blank" href="http://www.fixwiki.org/fixwiki/TestRequest">TestRequest
+        page</a>.
+    It will look like:
+</p>
+<blockquote>
+<pre>
+{{FPL:TestRequest}}
+
+=Notes=
+{{Invitation to post}}    
+</pre>
+</blockquote>
+<p>
+    In fact, most FIXwiki pages will look very similar to this. Two templates
+    are called here: "FPL:TestRequest" and "Invitation to post".
+    The "Invitation to post" displays the standard text inviting people to
+    contribute. The "FPL:TestRequest" displays the contents of the
+    TestRequest page in the protected FPL namespace. See the FIXwiki doc -
+    <a target="_blank" href="http://fixwiki.org/fixwiki/FIXwiki:Structure">Structure
+        of FIXwiki</a> - for a discussion of the use of namespaces.
+    Basically we are making sure that users can't modify the part of
+    FIXwiki that comes from the specification.
+</p>
+
+<p>
+    If you look at the source of the page FPL:TestRequest you will see something
+    like:
+</p>
+<blockquote>
+<pre>
+{{Message info
+| AbbrName=TestRequest
+| MsgType=1
+| ComponentType=Message
+| MessageName=TestRequest
+| MsgID=2
+| Section=Session
+| NotReqXML=1
+| OverrideAbbr=TestRequest
+| Volume=Volume2
+| Category=Session
+| Desc=The test request message forces a heartbeat...
+
+| FromVersion=FIX.4.0
+| SegmentType=Message
+}}
+</pre>
+</blockquote>
+<p>
+    As you can see, this calls the standard "Message info" template passing
+    in all the data specific to the TestRequest message. You can look at
+    all the templates, including the "Message info" template, by going to the
+    special <a target="_blank" href="http://fixwiki.org/fixwiki/Special:UncategorizedTemplates">Uncategorized templates page</a>.
+</p>
+
+<p>
+    This approach means that the appearance of all FIXwiki pages could be
+    changed by simply modifying these formatting templates.
+</p>
+</body>
+</html>

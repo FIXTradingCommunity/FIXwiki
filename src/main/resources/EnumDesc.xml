@@ -3,627 +3,627 @@
     <Tag>
       263
     </Tag>
-    <Enum>
+    <Value>
        1
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
       Snapshot and Updates (Subscribe)
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
  39
     </Tag>
-    <Enum>
+    <Value>
  0
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Outstanding order with no executions
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 1
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Outstanding order with executions and remaining quantity
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
  39
     </Tag>
-    <Enum>
+    <Value>
 2
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order completely filled, no remaining quantity
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 3
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order not, or partially, filled;  no further executions forthcoming for the trading day
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 4
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Canceled order with or without executions
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 5
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
       Order Replace Request has been applied to order.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
   39
     </Tag>
-    <Enum>
+    <Value>
   6
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order with an Order Cancel Request pending, used to confirm receipt of an Order Cancel Request.  DOES NOT INDICATE THAT THE ORDER HAS BEEN CANCELED.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 7
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been stopped at the exchange. Used when guranteeing or protecting a price and quantity
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 8
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been rejected by sell-side (broker, exchange, ECN).  NOTE:  An order can be rejected subsequent to order acknowledgment, i.e. an order can pass from New to Rejected status.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 9
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been placed in suspended state at the request of the client.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 A
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been received by sell-side’s (broker, exchange, ECN) system but not yet accepted for execution.  An execution message with this status will only be sent in response to a Status Request message.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 B
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been completed for the day (either filled or done for day).  Commission or currency settlement details have been calculated and reported in this execution message
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 C
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been canceled in broker’s system due to time in force instructions.  The only exceptions are Fill or Kill and Immediate or Cancel orders that have Canceled as terminal order state.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 D
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order has been received and is being evaluated for pricing.  It is anticipated that this status will only be  used with the “Disclosed” BidType List Order Trading model.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 39
     </Tag>
-    <Enum>
+    <Value>
 E
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Order with an Order Cancel/Replace Request pending, used to confirm receipt of an Order Cancel/Replace Request.  DOES NOT INDICATE THAT THE ORDER HAS BEEN REPLACED.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 1
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel orders that match the security identification block, all fields required to uniquely qualify the security should be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 2
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel orders that match the underlying security identification block, all fields required to uniquely identify the underlying security should be populated
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 3
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel orders for a specific type of Product (high-level security classification). Only Product should be specified
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 4
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel orders for a specific type of CFICode (security classification). Only CFICode should be specified
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 5
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel orders for a specific type of security. Only SecurityType should be specified
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 6
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel orders for a specific trading session, TradingSessionID must be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 7
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel all orders for the firm identified using this FIX connection
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 8
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel all orders for a specific market.  MarketID must be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 9
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel all orders for a specific market segment.  MarketSegmentID must be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 A
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Cancel all orders for a specific security group.  SecurityGroup must be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 B
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Cancel for Security Issuer
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 530
     </Tag>
-    <Enum>
+    <Value>
 C
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Cancel for Issuer of Underlying Security
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 1
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on orders that match the security identification block, all fields required to uniquely qualify the security should be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 2
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on orders that match the underlying security identification block, all fields required to uniquely identify the underlying security should be populated
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 3
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on orders for a specific type of Product (high-level security classification), Only Product should be specified
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 4
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on orders for a specific type of CFICode (security classification), Only CFICode should be specified
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 5
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on orders for a specific type of security, Only SecurityType should be specified
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 6
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on orders for a specific trading session, TradingSessionID must be specified.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 7
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Return status on all orders for the firm identified using this FIX connection
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 8
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Status all orders belonging to a PartyID
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 9
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 	Status for orders for an account.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 585
     </Tag>
-    <Enum>
+    <Value>
 10
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Status for Issuer of Underlying Security 
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 1
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Indicates that a list has been received and is being evalutated for pricing. It is envisaged that this status will only be used with the "Disclosed" List Order Trading model.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 2
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Indicates that a list has been received and the sell side is awaiting the instruction to start working the trade. It is envisaged that this status will be used under both models.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 3
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Indicates that a list has been received and the sell side is working it.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 4
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Indicates that a List Cancel Message has been received and the sell side is in the process of pulling any orders that were being worked. The status of individual order can be found out from the detail repeating group.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 5
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Used whenever any of the individual orders have a status that requires something to be done. For instance, an alert would be used when a buy-side firm has submitted a list that has individual stock reject that have not been addressed.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 6
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Indicates that a list has been executed as far as possible for the day.  This would also apply if a list has been previously cancelled. The status of individual order can be determined from the detail repeating group.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 431
     </Tag>
-    <Enum>
+    <Value>
 7
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Used when a response cannot be generated. For example when the ListID is not recognised. The text field should include an explanation of why the Request s been rejected.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 0
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 The Allocation Instruction has been validated and processed successfully.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 1
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 The entire Allocation Instruction has been rejected. The AllocRejCode (88) field must be populated when performing a block level reject; this gives the reason for rejecting the Allocation Instruction.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 2
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 The Allocation Instruction has been validated and one or more of the AllocAccount details in the NoAllocs repeating group has failed validation (e.g. account not found). In this case, it is possible (though not mandatory) to include a list of the AllocAccount details that failed validation together with reject reasons.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 3
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Used to acknowledge receipt of an Allocation Instruction message. This should always be followed by a second Allocation Instruction Ack of status 0, 1 or 2 as follows or an Allocation Report message.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 4
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Incomplete
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 5
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Rejected by intermediary
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 6
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Allocation pending
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 87
     </Tag>
-    <Enum>
+    <Value>
 7
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Reversed
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 506
     </Tag>
-    <Enum>
+    <Value>
 A
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Registration details are acceptable to the receiving broker, intermediary or fund manager.  Assigned client and account Ids may be returned.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 506
     </Tag>
-    <Enum>
+    <Value>
 H
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Registration details have been held by the receving broker, intermediary or fund manager.  Assigned (possibly provisional) client and account Ids may be returned.
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 506
     </Tag>
-    <Enum>
+    <Value>
 N
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Reminder
-    </Desc>
+    </Description>
   </Enums>
   <Enums>
     <Tag>
 506
     </Tag>
-    <Enum>
+    <Value>
 R
-    </Enum>
-    <Desc>
+    </Value>
+    <Description>
 Registration details have been rejected by the receiving broker, intermediary or fund manager.
-    </Desc>
+    </Description>
   </Enums>
 </dataroot>

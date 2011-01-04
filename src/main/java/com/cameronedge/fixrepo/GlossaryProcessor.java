@@ -40,7 +40,7 @@ public class GlossaryProcessor {
       String s = copyUntil(glossaryReader, '\t');  
       entry.description = RepoUtil.cleanText(s);
 
-//      System.out.println("Desc: " + entry.description);
+//      System.out.println("Description: " + entry.description);
 
       entry.fieldName = copyUntil(glossaryReader, '\n');
       if (entry.fieldName.length() > 35) {

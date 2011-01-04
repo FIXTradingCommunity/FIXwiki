@@ -1,13 +1,13 @@
 <!--TODO BaseType should be link to BaseTypeDataType.-->
 
-===FIX Data Type {{{TypeName}}}===
+===FIX Data Type {{{Name}}}===
 
 {| border="1"
 ! Name !! BaseType !! First introduced !! Deprecated
 |-
-|| {{{TypeName}}} || {{{BaseType|}}} || {{{FromVersion|}}} || {{{Deprecated|}}}
+|| {{{Name}}} || {{{BaseType|}}} || {{{FromVersion|}}} || {{{Deprecated|}}}
 |}
 
-{{{Desc|}}}
+{{{Description|}}}
 
 <includeonly>[[Category:Type]]</includeonly>

@@ -52,10 +52,10 @@ public class DumpPageNames {
 
       Properties fieldProps = fieldInfoEntry.getValue().get(0);
 
-      String fieldName = fieldProps.getProperty("FieldName");
+      String fieldName = fieldProps.getProperty(RepoInfo.PROP_FIELD_NAME);
 
       String enumTag;
-      String usesEnumsFromTag = fieldProps.getProperty("UsesEnumsFromTag");
+      String usesEnumsFromTag = fieldProps.getProperty(RepoInfo.PROP_FIELD_USES_ENUMS_FROM_TAG);
       if (usesEnumsFromTag != null) {
         enumTag = usesEnumsFromTag;
       } else {
@@ -67,9 +67,9 @@ public class DumpPageNames {
       if (values != null) {
         for (Properties props : values) {
 
-          String enumValue = props.getProperty("Enum");
+          String enumValue = props.getProperty(RepoInfo.PROP_ENUM_VALUE);
 
-          String enumName = props.getProperty("EnumName");
+          String enumName = props.getProperty(RepoInfo.PROP_ENUM_NAME);
 
           //Create value subpages from field name and enum name and enum value.
           String userTitle = fieldName + "/" + enumValue + " " + enumName;

@@ -258,7 +258,7 @@ public class FixwikiGenerator {
       List<Properties> fieldInfo = fieldInfos.get(Integer.toString(fieldTag));
       Properties props = fieldInfo.get(0);
 
-      String currentFieldName = props.getProperty("FieldName");
+      String currentFieldName = props.getProperty(RepoInfo.PROP_FIELD_NAME);
       if (!currentFieldName.equalsIgnoreCase(fieldName)) {
         //Create redirect page for old field name.
 
@@ -354,7 +354,7 @@ public class FixwikiGenerator {
     for (List<Properties> values : messageInfos.values()) {
       Properties props = values.get(0); //Message only has only one Properties.
 
-      String messageName = getCleanProperty(props, "MessageName");
+      String messageName = getCleanProperty(props, RepoInfo.PROP_MESSAGE_NAME);
 
       String userTitle = messageName;
       String fplTitle = RepoUtil.computeFPLTitle(messageName);
@@ -602,10 +602,10 @@ public class FixwikiGenerator {
 
       Properties fieldProps = fieldInfoEntry.getValue().get(0);
 
-      String fieldName = fieldProps.getProperty("FieldName");
+      String fieldName = fieldProps.getProperty(RepoInfo.PROP_FIELD_NAME);
 
       String enumTag;
-      String usesEnumsFromTag = fieldProps.getProperty("UsesEnumsFromTag");
+      String usesEnumsFromTag = fieldProps.getProperty(RepoInfo.PROP_FIELD_USES_ENUMS_FROM_TAG);
       if (usesEnumsFromTag != null) {
         enumTag = usesEnumsFromTag;
       } else {
@@ -617,9 +617,9 @@ public class FixwikiGenerator {
       if (values != null) {
         for (Properties props : values) {
 
-          String enumValue = props.getProperty("Enum");
+          String enumValue = props.getProperty(RepoInfo.PROP_ENUM_VALUE);
 
-          String enumName = props.getProperty("EnumName");
+          String enumName = props.getProperty(RepoInfo.PROP_ENUM_NAME);
 
           //Create value subpages from field name and enum name and enum value.
           String userTitle = RepoUtil.computeValueTitle(fieldName, enumValue, enumName);
@@ -670,7 +670,7 @@ public class FixwikiGenerator {
     for (List<Properties> values : typeInfos.values()) {
       Properties props = values.get(0); //Type only has only one Properties.
 
-      String typeName = getCleanProperty(props, "TypeName");
+      String typeName = getCleanProperty(props, RepoInfo.PROP_TYPE_NAME);
 
       String userTitle = typeName + "DataType";
       String fplTitle = RepoUtil.computeFPLTitle(userTitle);
@@ -822,8 +822,8 @@ public class FixwikiGenerator {
         fw.print("|| [[" + tagText + "]] ");
 
         Properties fieldProps = repoInfo.getFieldPropsFromTag(tag, fixVersion);
-        String fieldName = fieldProps.getProperty("FieldName");
-        String hint = extractHint(fieldProps.getProperty("Desc"));
+        String fieldName = fieldProps.getProperty(RepoInfo.PROP_FIELD_NAME);
+        String hint = extractHint(fieldProps.getProperty(RepoInfo.PROP_FIELD_DESCRIPTION));
 
         if (hint == null || hint.length() == 0) {
           fw.print("|| [[" + fieldName + "]] ");
@@ -834,7 +834,7 @@ public class FixwikiGenerator {
         fw.print("|| ");  //leave tag field blank for components
 
         Properties componentProps = repoInfo.getComponentPropsFromName(tagText, fixVersion);
-        String hint = extractHint(componentProps.getProperty("Desc"));
+        String hint = extractHint(componentProps.getProperty(RepoInfo.PROP_FIELD_DESCRIPTION));
 
         if (hint == null || hint.length() == 0) {
           fw.print("|| [[" + tagText + "]] ");
@@ -847,7 +847,7 @@ public class FixwikiGenerator {
       String reqd = props.getProperty("Reqd");
       fw.print("|| " + (reqd.equals("1") ? "x" : "") + " ");
 
-      String description = props.getProperty("Description");
+      String description = props.getProperty(RepoInfo.PROP_SEGMENT_DESCRIPTION);
       fw.print("|| " + (description == null ? "" : formatDescription(description, linkDetector)) + " ");
 
     }
@@ -874,8 +874,7 @@ public class FixwikiGenerator {
   private void writeWikiTemplateParameter(PrintWriter fw, String key, String value) {
     //Replace inconsistent description key
     value = value.replace('|', ' ');
-    if ("Description".equals(key) || "Desc".equals(key)) {
-      key = "Desc";
+    if (RepoInfo.PROP_DESCRIPTION.equals(key)) {
       value = formatDescription(value, linkDetector);
     }
     fw.println("| " + key + "=" + value);

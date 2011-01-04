@@ -33,6 +33,27 @@ import java.util.Set;
  */
 public class RepoInfo {
 
+  public static final String PROP_DESCRIPTION = "Description";
+
+  public static final String PROP_COMPONENT_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_COMPONENT_NAME = "Name";
+
+  public static final String PROP_ENUM_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_ENUM_NAME = "SymbolicName";
+  public static final String PROP_ENUM_VALUE = "Value";
+
+  public static final String PROP_FIELD_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_FIELD_ENUM_FIELD_NAME = "EnumFieldName";
+  public static final String PROP_FIELD_NAME = "Name";
+  public static final String PROP_FIELD_USES_ENUMS_FROM_TAG = "EnumDatatype";
+
+  public static final String PROP_MESSAGE_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_MESSAGE_NAME = "Name";
+
+  public static final String PROP_SEGMENT_DESCRIPTION = PROP_DESCRIPTION;
+  
+  public static final String PROP_TYPE_NAME = "Name";
+  
   private static final FIXVersionInfo[] fixVersionInfos = new FIXVersionInfo[]{
           new FIXVersionInfo("FIX.4.0", "4.0", 140),
           new FIXVersionInfo("FIX.4.1", "4.1", 211),
@@ -103,6 +124,9 @@ public class RepoInfo {
       String version = fixVersionInfos[i].version;
       System.out.println("Processing FIX version " + version);
 
+      
+      //TODO JC Base needs to be not hard coded
+      
       String fixDirPath = repoDir.getAbsolutePath() + File.separator + version + File.separator + "Base";
       File fixDir = new File(fixDirPath);
 
@@ -224,11 +248,11 @@ public class RepoInfo {
   private void dumpEnumWarning(String tagStr, String enumValue, String enumName, String description) {
     System.out.println("  <Enums>");
     System.out.println("    <Tag>" + tagStr + "</Tag>");
-    System.out.println("    <Enum>" + enumValue + "</Enum>");
-    System.out.println("    <EnumName>" + enumName + "</EnumName>");
-    System.out.println("    <Desc>");
+    System.out.println("    <" + PROP_ENUM_VALUE + ">" + enumValue + "</" + PROP_ENUM_VALUE + ">");
+    System.out.println("    <" + PROP_ENUM_NAME + ">" + enumName + "</" + PROP_ENUM_NAME + ">");
+    System.out.println("    <" + PROP_ENUM_DESCRIPTION + ">");
     System.out.println(description);
-    System.out.println("    </Desc>");
+    System.out.println("    </" + PROP_ENUM_DESCRIPTION + ">");
     System.out.println("  </Enums>");
   }
 
@@ -272,7 +296,7 @@ public class RepoInfo {
     if (enumInfoList != null) {
       //Search through property list for matching value name.
       for (Properties props : enumInfoList) {
-        if (valueName.equalsIgnoreCase(props.getProperty("SymbolicName")) || valueName.equalsIgnoreCase(props.getProperty("Value"))) {
+        if (valueName.equalsIgnoreCase(props.getProperty(PROP_ENUM_NAME)) || valueName.equalsIgnoreCase(props.getProperty(PROP_ENUM_VALUE))) {
           return props;
         }
       }
@@ -440,7 +464,7 @@ public class RepoInfo {
    */
   public String getFieldNameFromTag(int tag) {
     Properties fieldProps = getFieldPropsFromTag(tag);
-    return fieldProps.getProperty("FieldName");
+    return fieldProps.getProperty(PROP_FIELD_NAME);
   }
 
   public Map<String, Integer> getFieldNameTagMap() {
@@ -502,7 +526,7 @@ public class RepoInfo {
 
     //Check if enumValue appears in any of the tag's values.
     for (Properties props : values) {
-      if (enumValue.equals(props.getProperty("Value"))) {
+      if (enumValue.equals(props.getProperty(PROP_ENUM_VALUE))) {
         return true;
       }
     }
@@ -561,14 +585,14 @@ public class RepoInfo {
 
       List<Properties> values = enumInfoEntry.getValue();
       for (Properties valueProps : values) {
-        String enumName = valueProps.getProperty("SymbolicName");
-        String enumValue = valueProps.getProperty("Value");
-        String description = valueProps.getProperty("Description");
+        String enumName = valueProps.getProperty(PROP_ENUM_NAME);
+        String enumValue = valueProps.getProperty(PROP_ENUM_VALUE);
+        String description = valueProps.getProperty(PROP_ENUM_DESCRIPTION);
         if (enumName == null) {
           //Compute new EnumName property from the description attribute.
           enumName = RepoUtil.computeEnumName(description);
 
-          valueProps.setProperty("SymbolicName", enumName);
+          valueProps.setProperty(PROP_ENUM_NAME, enumName);
         }
 
         if (checkEnumName(enumName, names, tagStr, enumValue, description)) {
@@ -656,7 +680,7 @@ public class RepoInfo {
           Properties props = values.get(0);
 
           int fieldTag = Integer.parseInt(props.getProperty("Tag"));
-          String fieldName = props.getProperty("Name");
+          String fieldName = props.getProperty(PROP_FIELD_NAME);
 
           if (fieldName != null) {
             String clean = fieldName.replace('/', ' ');
@@ -694,7 +718,7 @@ public class RepoInfo {
 
       int fieldTag = Integer.parseInt(props.getProperty("Tag"));
 
-      String fieldName = props.getProperty("FieldName");
+      String fieldName = props.getProperty(PROP_FIELD_NAME);
 
 
       //Add FromVersion attribute computed from first FIX version where this field appeared.
@@ -704,7 +728,7 @@ public class RepoInfo {
 
       //Add an Enum tag if this field has enumerated values.
       String enumFieldName = null;
-      String usesStr = props.getProperty("UsesEnumsFromTag");
+      String usesStr = props.getProperty(PROP_FIELD_USES_ENUMS_FROM_TAG);
       if (usesStr != null) {
         int enumFieldTag = Integer.parseInt(usesStr);
         enumFieldName = getFieldNameFromTag(enumFieldTag);
@@ -717,7 +741,7 @@ public class RepoInfo {
 
       //If field has enumerated values add an Enum attribute.
       if (enumFieldName != null) {
-        props.setProperty("EnumName", enumFieldName);
+        props.setProperty(PROP_FIELD_ENUM_FIELD_NAME, enumFieldName);
       }
     }
   }
@@ -759,7 +783,7 @@ public class RepoInfo {
     for (List<Properties> messagePropsList : messageInfos.values()) {
       Properties messageProps = messagePropsList.get(0);
       String msgType = messageProps.getProperty("MsgType");
-      String messageName = messageProps.getProperty("MessageName");
+      String messageName = messageProps.getProperty(PROP_MESSAGE_NAME);
 
       for (int i = 0; i < fixVersionInfos.length; i++) {
         List<Properties> segmentInfo = getSegmentInfoForMessage(msgType, i);
@@ -946,8 +970,8 @@ public class RepoInfo {
     for (List<Properties> propertiesList : extraData.values()) {
       Properties props = propertiesList.get(0);
 
-      String componentName = props.getProperty("ComponentName");
-      String desc = props.getProperty("Desc");
+      String componentName = props.getProperty(PROP_COMPONENT_NAME);
+      String desc = props.getProperty(PROP_COMPONENT_DESCRIPTION);
 
       //Now update existing description.
       List<Properties> currentPropList = componentInfos.get(componentName);
@@ -955,7 +979,7 @@ public class RepoInfo {
         throw new RuntimeException("Unknown component name in extra component descriptions: " + componentName);
       } else {
         Properties currentProps = currentPropList.get(0);
-        currentProps.setProperty("Desc", desc);
+        currentProps.setProperty(PROP_COMPONENT_DESCRIPTION, desc);
       }
     }
   }
@@ -968,8 +992,8 @@ public class RepoInfo {
       for (Properties props : propertiesList) {
 
         String tag = props.getProperty("Tag");
-        String enumValue = props.getProperty("Enum");
-        String desc = props.getProperty("Desc");
+        String enumValue = props.getProperty(PROP_ENUM_VALUE);
+        String desc = props.getProperty(PROP_ENUM_DESCRIPTION);
 
         //Now update existing message description in enumInfos.
         List<Properties> currentPropList = enumInfos.get(tag);
@@ -979,9 +1003,9 @@ public class RepoInfo {
           //Scan through current properties looking for one with matching enum value.
           boolean found = false;
           for (Properties currentProps : currentPropList) {
-            if (enumValue.equals(currentProps.getProperty("Value"))) {
+            if (enumValue.equals(currentProps.getProperty(PROP_ENUM_VALUE))) {
               found = true;
-              currentProps.setProperty("Description", desc); //Note non standard name in repo for description
+              currentProps.setProperty(PROP_ENUM_DESCRIPTION, desc); //Note non standard name in repo for description
               break;
             }
           }
@@ -1000,7 +1024,7 @@ public class RepoInfo {
       Properties props = propertiesList.get(0);
 
       String msgType = props.getProperty("MsgType");
-      String desc = props.getProperty("Desc");
+      String desc = props.getProperty(PROP_MESSAGE_DESCRIPTION);
 
       //Now update existing message description in messageInfos.
       List<Properties> currentPropList = messageInfos.get(msgType);
@@ -1008,7 +1032,7 @@ public class RepoInfo {
         throw new RuntimeException("Unknown message type in extra message descriptions: " + msgType);
       } else {
         Properties currentProps = currentPropList.get(0);
-        currentProps.setProperty("Desc", desc);
+        currentProps.setProperty(PROP_MESSAGE_DESCRIPTION, desc);
       }
     }
   }
@@ -1047,14 +1071,14 @@ public class RepoInfo {
               if (enumInfo == null) {
                 System.out.println("WARNING: Unknown glossary value '" + entry.valueName + "' for field " + fieldName);
               } else {
-                if (enumInfo.getProperty("Description").length() > entry.description.length()) {
+                if (enumInfo.getProperty(PROP_ENUM_DESCRIPTION).length() > entry.description.length()) {
                   System.out.println("WARNING: Replacing longer description with shorter " + entry.valueName + "for field " + fieldName);
                   System.out.println("Replacing description of " + fieldName + ":" + entry.valueName);
-                  System.out.println(enumInfo.getProperty("Description"));
+                  System.out.println(enumInfo.getProperty(PROP_ENUM_DESCRIPTION));
                   System.out.println("   V");
                   System.out.println(entry.description);
                 }
-                enumInfo.setProperty("Description", entry.description);
+                enumInfo.setProperty(PROP_ENUM_DESCRIPTION, entry.description);
               }
             }
           }
@@ -1085,7 +1109,7 @@ public class RepoInfo {
       //Check that each key value in props1 appears in props2.
       for (Object key : props1.keySet()) {
         //Ignore Description and MsgID keys - doesn't matter if they change.
-        if (!key.equals("Description") && !key.equals("ComponentID")) {
+        if (!key.equals(PROP_COMPONENT_DESCRIPTION) && !key.equals("ComponentID")) {
           String val1 = props1.getProperty((String) key);
           String val2 = props2.getProperty((String) key);
           if (!val1.equals(val2)) {

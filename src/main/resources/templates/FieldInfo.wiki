@@ -3,16 +3,16 @@
 {| border="1"
 ! Tag !! Name !! Type !! Enumerated !! First introduced !! Deprecated
 |-
-|| {{{Tag}}} || {{{FieldName}}} || [[{{{Type}}}DataType | {{{Type}}}]] || {{#if: {{{EnumName|}}} | {{#if: {{{UsesEnumsFromTag|}}} | Same values as [[{{{EnumName}}}]]| x}} |}} || {{{FromVersion}}} || {{{Deprecated|}}}
+|| {{{Tag}}} || {{{Name}}} || [[{{{Type}}}DataType | {{{Type}}}]] || {{#if: {{{EnumFieldName|}}} | {{#if: {{{EnumDatatype|}}} | Same values as [[{{{EnumFieldName}}}]]| x}} |}} || {{{FromVersion}}} || {{{Deprecated|}}}
 |}
 
-{{{Desc|}}}
+{{{Description|}}}
 
-{{#if: {{{EnumName|}}}
+{{#if: {{{EnumFieldName|}}}
 |
 === Enumerated Values ===
 {{#tag:splist
-|  parent={{{FieldName}}}
+|  parent={{{Name}}}
 |  kidsonly=yes
 }}
 |

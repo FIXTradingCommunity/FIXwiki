@@ -120,7 +120,7 @@ public class DumpRepo {
   }
 
   private void openElement(PrintWriter os, String element, boolean forceNewline) throws IOException {
-    boolean newLine = forceNewline || "Desc".equals(element) || "Description".equals(element);
+    boolean newLine = forceNewline || RepoInfo.PROP_DESCRIPTION.equals(element);
     os.print(BLANKS.substring(0, indent));
     os.print("<" + element + ">");
     if (newLine) {
@@ -133,7 +133,7 @@ public class DumpRepo {
   private void closeElement(PrintWriter os, String element, boolean forceNewline) throws IOException {
     indent -= INDENT_INCREMENT;
 
-    boolean newLine = forceNewline || "Desc".equals(element) || "Description".equals(element);
+    boolean newLine = forceNewline || RepoInfo.PROP_DESCRIPTION.equals(element);
     if (newLine) {
       os.println();
       os.print(BLANKS.substring(0, indent));

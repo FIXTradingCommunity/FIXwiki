@@ -46,9 +46,12 @@ public class FixwikiGenerator {
   private static final String VALUE_INFO = "Value info";
   private static final String FPL_PAGE_TERMINATION_STRING = "</includeonly><noinclude>{{" + REFER_TO_USER_PAGE + "}}</noinclude>";
   
-  private boolean ignoreErrors = false; 
+  private boolean ignoreErrors; 
 
   public FixwikiGenerator(RepoInfo repoInfo) {
+    
+    ignoreErrors = System.getProperty("ignoreErrors") != null;
+
     this.repoInfo = repoInfo;
     linkDetector = new LinkDetector(repoInfo, 0);
   }
@@ -261,7 +264,7 @@ public class FixwikiGenerator {
       if (fieldInfo == null) {
         String errmess = "Inconsistency in repository - missing information for field " + fieldTag;
         if (ignoreErrors) {
-          System.out.println("WARNING: " + errmess);
+          System.out.println("ERROR: " + errmess);
         } else {
           throw new Exception(errmess);
         }

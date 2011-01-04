@@ -51,9 +51,9 @@ public class RepoInfo {
   public static final String PROP_MESSAGE_NAME = "Name";
 
   public static final String PROP_SEGMENT_DESCRIPTION = PROP_DESCRIPTION;
-  
+
   public static final String PROP_TYPE_NAME = "Name";
-  
+
   private static final FIXVersionInfo[] fixVersionInfos = new FIXVersionInfo[]{
           new FIXVersionInfo("FIX.4.0", "4.0", 140),
           new FIXVersionInfo("FIX.4.1", "4.1", 211),
@@ -113,7 +113,12 @@ public class RepoInfo {
 
   private SAXParser parser;
 
+  private boolean ignoreErrors; 
+
   public RepoInfo(File repoDir) throws Exception {
+    
+    ignoreErrors = System.getProperty("ignoreErrors") != null;
+    
     ClassLoader loader = this.getClass().getClassLoader();
 
     SAXParserFactory parserFactory = SAXParserFactory.newInstance();
@@ -124,9 +129,9 @@ public class RepoInfo {
       String version = fixVersionInfos[i].version;
       System.out.println("Processing FIX version " + version);
 
-      
-      //TODO JC Base needs to be not hard coded
-      
+
+      //TODO JC Base needs to be not hard coded if we are going to take account of extension packs
+
       String fixDirPath = repoDir.getAbsolutePath() + File.separator + version + File.separator + "Base";
       File fixDir = new File(fixDirPath);
 
@@ -184,7 +189,7 @@ public class RepoInfo {
     if (is == null) {
       System.out.println("WARNING: Missing resource file " + s);
     }
-    extraData = parse(is, "ComponentDesc", "ComponentName", false);
+    extraData = parse(is, "ComponentDesc", PROP_COMPONENT_NAME, false);
     processExtraComponentDescriptions(extraData);
 
     s = "EnumDesc.xml";
@@ -307,7 +312,8 @@ public class RepoInfo {
 
   /**
    * Returns map of field properties indexed by tag.
-   * <p>
+   * <p/>
+   *
    * @return Map indexed by tag number (as String). Indexed entries are Lists of Properties, but each
    *         List should only contain one Properties. That is the field properties corresponding to the field tag.
    */
@@ -317,8 +323,9 @@ public class RepoInfo {
 
   /**
    * Returns map of message properties indexed by msgType.
-   * <p>
-   * @return Map indexed by msgType. Indexed entries are Lists of Properties, but each List should only contain one 
+   * <p/>
+   *
+   * @return Map indexed by msgType. Indexed entries are Lists of Properties, but each List should only contain one
    *         Properties. That is the message properties corresponding to the msgType.
    */
   public Map<String, List<Properties>> getMessageInfos() {
@@ -688,7 +695,7 @@ public class RepoInfo {
             if (!fieldName.equals(clean)) {
               System.out.println("WARNING: Bad chars in field name " + fieldName + ". Tag " + fieldTag +
                       ". Version " + getFIXVersionString(i));
-              fieldName = clean;              
+              fieldName = clean;
             }
           }
 
@@ -872,7 +879,7 @@ public class RepoInfo {
           }
         }
       }
-      
+
       List<Properties> messageInfoPropList = messageInfos.get(msgType);
       Properties messageInfoProps = messageInfoPropList.get(0);
       if (fromVersion >= 0) {
@@ -1029,7 +1036,12 @@ public class RepoInfo {
       //Now update existing message description in messageInfos.
       List<Properties> currentPropList = messageInfos.get(msgType);
       if (currentPropList == null) {
-        throw new RuntimeException("Unknown message type in extra message descriptions: " + msgType);
+        String errmess = "Unknown message type in extra message descriptions: " + msgType;
+        if (ignoreErrors) {
+          System.out.println("ERROR: " + errmess);
+        } else {
+          throw new RuntimeException(errmess);
+        }
       } else {
         Properties currentProps = currentPropList.get(0);
         currentProps.setProperty(PROP_MESSAGE_DESCRIPTION, desc);

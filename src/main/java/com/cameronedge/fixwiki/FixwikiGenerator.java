@@ -56,9 +56,11 @@ public class FixwikiGenerator {
     linkDetector = new LinkDetector(repoInfo, 0);
   }
 
-  private void addImportToScript(PrintWriter script, String relName, String title) {
+  private void addImportToScript(PrintWriter script, String relName, 
+                                 String title, boolean overwrite) {
     String cmd = "php importTextFile.php " +
             (title == null ? "" : "--title '" + title + "' ") +
+            (overwrite ? "" : "--nooverwrite ") +
             "--user 'camerojo' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
     script.println(cmd);
   }
@@ -67,7 +69,7 @@ public class FixwikiGenerator {
     String fname = scriptDir.getAbsolutePath() + File.separator + resourceName;
     copyResourceToFile(resourceName, fname);
 
-    addImportToScript(script, resourceName, title);
+    addImportToScript(script, resourceName, title, true);
   }
 
   private void copyResourceToFile(String resourceName, String fname) throws IOException {
@@ -243,7 +245,7 @@ public class FixwikiGenerator {
       fw.close();
 
       //Update script
-      addImportToScript(script, relName, "Template:" + plusName);
+      addImportToScript(script, relName, "Template:" + plusName, true);
     }
   }
 
@@ -289,7 +291,7 @@ public class FixwikiGenerator {
             fw.close();
 
             //Write to script file
-            addImportToScript(script, relName, fieldName);
+            addImportToScript(script, relName, fieldName, true);
           }
 
         } else {
@@ -320,7 +322,7 @@ public class FixwikiGenerator {
           fw.close();
 
           //Write to script file
-          addImportToScript(script, relName, fplTitle);
+          addImportToScript(script, relName, fplTitle, true);
 
           writeUserVersion(scriptDir, script, userTitle, fplTitle, ".fld");
 
@@ -334,7 +336,7 @@ public class FixwikiGenerator {
           fw.close();
 
           //Write to script file
-          addImportToScript(script, relName, Integer.toString(fieldTag));
+          addImportToScript(script, relName, Integer.toString(fieldTag), true);
         }
       }
 
@@ -394,7 +396,7 @@ public class FixwikiGenerator {
       fw.close();
 
       //Write to script file
-      addImportToScript(script, relName, fplTitle);
+      addImportToScript(script, relName, fplTitle, true);
 
       writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
 
@@ -408,7 +410,7 @@ public class FixwikiGenerator {
       fw.println("#REDIRECT [[" + userTitle + "]]");
       fw.close();
       //Write to script file
-      addImportToScript(script, relName, "Category:" + messageName);
+      addImportToScript(script, relName, "Category:" + messageName, true);
 
 
       //Write contents subpages based on FIX versions.
@@ -452,7 +454,7 @@ public class FixwikiGenerator {
             writeSegmentFile(fname, messageName, msgType, fromVersion, toVersion, toVersion);
 
             //Write to script file
-            addImportToScript(script, relName, fplTitle);
+            addImportToScript(script, relName, fplTitle, true);
 
             writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
 
@@ -473,7 +475,7 @@ public class FixwikiGenerator {
         writeSegmentFile(fname, messageName, msgType, fromVersion, -1, RepoInfo.latestFIXVersionIndex);
 
         //Write to script file
-        addImportToScript(script, relName, fplTitle);
+        addImportToScript(script, relName, fplTitle, true);
 
         writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
       }
@@ -519,7 +521,7 @@ public class FixwikiGenerator {
       fw.close();
 
       //Write to script file
-      addImportToScript(script, relName, fplTitle);
+      addImportToScript(script, relName, fplTitle, true);
 
       writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
 
@@ -533,7 +535,7 @@ public class FixwikiGenerator {
       fw.println("#REDIRECT [[" + userTitle + "]]");
       fw.close();
       //Write to script file
-      addImportToScript(script, relName, "Category:" + componentName);
+      addImportToScript(script, relName, "Category:" + componentName, true);
 
       //Write contents subpages based on FIX versions.
       //Look up associated message version info.
@@ -575,7 +577,7 @@ public class FixwikiGenerator {
             writeSegmentFile(fname, componentName, null, fromVersion, toVersion, toVersion);
 
             //Write to script file
-            addImportToScript(script, relName, fplTitle);
+            addImportToScript(script, relName, fplTitle, true);
 
             writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
 
@@ -596,7 +598,7 @@ public class FixwikiGenerator {
         writeSegmentFile(fname, componentName, null, fromVersion, -1, RepoInfo.latestFIXVersionIndex);
 
         //Write to script file
-        addImportToScript(script, relName, fplTitle);
+        addImportToScript(script, relName, fplTitle, true);
 
         writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
       }
@@ -668,7 +670,7 @@ public class FixwikiGenerator {
           fw.close();
 
           //Write to script file
-          addImportToScript(script, relName, fplTitle);
+          addImportToScript(script, relName, fplTitle, true);
 
           writeUserVersion(scriptDir, script, userTitle, fplTitle, ".val");
 
@@ -707,7 +709,7 @@ public class FixwikiGenerator {
       fw.close();
 
       //Write to script file
-      addImportToScript(script, relName, fplTitle);
+      addImportToScript(script, relName, fplTitle, true);
 
       writeUserVersion(scriptDir, script, userTitle, fplTitle, ".typ");
     }
@@ -881,7 +883,7 @@ public class FixwikiGenerator {
       fw.close();
 
       //Write to script file
-      addImportToScript(script, relName, userTitle);
+      addImportToScript(script, relName, userTitle, false);
     }
   }
 

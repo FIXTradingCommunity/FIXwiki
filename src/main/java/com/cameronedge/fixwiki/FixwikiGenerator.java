@@ -45,6 +45,8 @@ public class FixwikiGenerator {
   private static final String TYPE_INFO = "Type info";
   private static final String VALUE_INFO = "Value info";
   private static final String FPL_PAGE_TERMINATION_STRING = "</includeonly><noinclude>{{" + REFER_TO_USER_PAGE + "}}</noinclude>";
+  
+  private boolean ignoreErrors = false; 
 
   public FixwikiGenerator(RepoInfo repoInfo) {
     this.repoInfo = repoInfo;
@@ -256,72 +258,81 @@ public class FixwikiGenerator {
 
       //Look up fieldInfo from tag.
       List<Properties> fieldInfo = fieldInfos.get(Integer.toString(fieldTag));
-      Properties props = fieldInfo.get(0);
+      if (fieldInfo == null) {
+        String errmess = "Inconsistency in repository - missing information for field " + fieldTag;
+        if (ignoreErrors) {
+          System.out.println("WARNING: " + errmess);
+        } else {
+          throw new Exception(errmess);
+        }
+      } else {
+        Properties props = fieldInfo.get(0);
 
-      String currentFieldName = props.getProperty(RepoInfo.PROP_FIELD_NAME);
-      if (!currentFieldName.equalsIgnoreCase(fieldName)) {
-        //Create redirect page for old field name.
+        String currentFieldName = props.getProperty(RepoInfo.PROP_FIELD_NAME);
+        if (!currentFieldName.equalsIgnoreCase(fieldName)) {
+          //Create redirect page for old field name.
 
-        //Ignore old field names containing '(' - this is always some note like (no longer used) or (replaced)
-        if (fieldName.indexOf('(') < 0) {
+          //Ignore old field names containing '(' - this is always some note like (no longer used) or (replaced)
+          if (fieldName.indexOf('(') < 0) {
 
 //          System.out.println("Redirecting old field name " + fieldName + "->" + currentFieldName);
 
-          //Old field name redirection page
-          //Create file from old field name.
-          String relName = fieldName + ".fld";
+            //Old field name redirection page
+            //Create file from old field name.
+            String relName = fieldName + ".fld";
+            String fname = scriptDir.getAbsolutePath() + File.separator + relName;
+            PrintWriter fw = new PrintWriter(new FileWriter(fname));
+            fw.println("#REDIRECT [[" + currentFieldName + "]]");
+            fw.close();
+
+            //Write to script file
+            addImportToScript(script, relName, fieldName);
+          }
+
+        } else {
+          //Create new field page for current field name.
+
+          //Field page
+          String userTitle = fieldName;
+          String fplTitle = RepoUtil.computeFPLTitle(userTitle);
+
+          //Create file from field name.
+          String relName = titleToName(fplTitle) + ".fld";
           String fname = scriptDir.getAbsolutePath() + File.separator + relName;
           PrintWriter fw = new PrintWriter(new FileWriter(fname));
-          fw.println("#REDIRECT [[" + currentFieldName + "]]");
+
+          //Write field info transclusion passing each property as a parameter.
+          fw.println("<includeonly>");
+          fw.println("{{Field info");
+          for (Map.Entry<Object, Object> entry : props.entrySet()) {
+            writeWikiTemplateParameter(fw, (String) entry.getKey(), (String) entry.getValue());
+          }
+
+          fw.println("}}");
+
+          writeFIXVersionCategories(props, fw);
+
+          writeMessageAndComponentCategories(Integer.toString(fieldTag), fw);
+          fw.println(FPL_PAGE_TERMINATION_STRING);
           fw.close();
 
           //Write to script file
-          addImportToScript(script, relName, fieldName);
+          addImportToScript(script, relName, fplTitle);
+
+          writeUserVersion(scriptDir, script, userTitle, fplTitle, ".fld");
+
+
+          //Field tag redirection page
+          //Create file from field tag.
+          relName = fieldTag + ".fld";
+          fname = scriptDir.getAbsolutePath() + File.separator + relName;
+          fw = new PrintWriter(new FileWriter(fname));
+          fw.println("#REDIRECT [[" + fieldName + "]]");
+          fw.close();
+
+          //Write to script file
+          addImportToScript(script, relName, Integer.toString(fieldTag));
         }
-
-      } else {
-        //Create new field page for current field name.
-
-        //Field page
-        String userTitle = fieldName;
-        String fplTitle = RepoUtil.computeFPLTitle(userTitle);
-
-        //Create file from field name.
-        String relName = titleToName(fplTitle) + ".fld";
-        String fname = scriptDir.getAbsolutePath() + File.separator + relName;
-        PrintWriter fw = new PrintWriter(new FileWriter(fname));
-
-        //Write field info transclusion passing each property as a parameter.
-        fw.println("<includeonly>");
-        fw.println("{{Field info");
-        for (Map.Entry<Object, Object> entry : props.entrySet()) {
-          writeWikiTemplateParameter(fw, (String) entry.getKey(), (String) entry.getValue());
-        }
-
-        fw.println("}}");
-
-        writeFIXVersionCategories(props, fw);
-
-        writeMessageAndComponentCategories(Integer.toString(fieldTag), fw);
-        fw.println(FPL_PAGE_TERMINATION_STRING);
-        fw.close();
-
-        //Write to script file
-        addImportToScript(script, relName, fplTitle);
-
-        writeUserVersion(scriptDir, script, userTitle, fplTitle, ".fld");
-
-
-        //Field tag redirection page
-        //Create file from field tag.
-        relName = fieldTag + ".fld";
-        fname = scriptDir.getAbsolutePath() + File.separator + relName;
-        fw = new PrintWriter(new FileWriter(fname));
-        fw.println("#REDIRECT [[" + fieldName + "]]");
-        fw.close();
-
-        //Write to script file
-        addImportToScript(script, relName, Integer.toString(fieldTag));
       }
 
       //I don't think that AbbrNames are worth the effort. Could add special disambiguation page afterwards
@@ -477,7 +488,7 @@ public class FixwikiGenerator {
     for (List<Properties> values : componentInfos.values()) {
       Properties props = values.get(0); //Component only has only one Properties.
 
-      String componentName = getCleanProperty(props, "ComponentName");
+      String componentName = getCleanProperty(props, RepoInfo.PROP_COMPONENT_NAME);
 
       //Component page
       String userTitle = componentName;
@@ -888,10 +899,10 @@ public class FixwikiGenerator {
 
     File repoDir = new File(args[0]);
     File scriptDir = new File(args[1]);
-    
+
     //Create output directory if necessary.
     scriptDir.mkdirs();
-    
+
     createUserPages = args.length == 3 && "createUserPages".equals(args[2]);
 
     RepoInfo repoInfo = new RepoInfo(repoDir);

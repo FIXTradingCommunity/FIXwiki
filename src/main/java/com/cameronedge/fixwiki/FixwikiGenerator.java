@@ -929,6 +929,9 @@ public class FixwikiGenerator {
     System.out.println("                     text files used to populate the FIX Wiki are stored.");
     System.out.println("createUserPages    - User pages are generated only if this is specified.");
     System.out.println();
+    System.out.println("There is also a system property ignoreErrors which will try to continue processing even if fatal errors are detected.");
+    System.out.println("Activate on the command line in the usual way - ie -DignoreErrors");
+    System.out.println();
     System.out.println("Example:");
     System.out.println("com.cameronedge.fixwiki.FixwikiGenerator ~/FIX/Repository ~/Temp/fixwiki createUserPages");
     System.out.println();

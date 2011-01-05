@@ -55,6 +55,9 @@ public class RepoInfo {
   public static final String PROP_TYPE_NAME = "Name";
 
   private static final FIXVersionInfo[] fixVersionInfos = new FIXVersionInfo[]{
+          new FIXVersionInfo("FIX.1.0", "1.0", 0),
+          new FIXVersionInfo("FIX.2.7", "2.7", 103),
+          new FIXVersionInfo("FIX.3.0", "3.0", 113),
           new FIXVersionInfo("FIX.4.0", "4.0", 140),
           new FIXVersionInfo("FIX.4.1", "4.1", 211),
           new FIXVersionInfo("FIX.4.2", "4.2", 446),
@@ -67,18 +70,20 @@ public class RepoInfo {
   };
   public static final int latestFIXVersionIndex = fixVersionInfos.length - 1;
 
-  public static final int fixTVersionIndex = 6;
+  public static final int fixTVersionIndex = 9;
 
   public static int maxCommonPrefix = 43;
 
   private int[] enumNameLens = new int[200];
 
+  //TODO JC Not sure if this is needed any more
   //Key is MsgType. Each MsgType is associated with an array where each element
   //corresponds to a FIX version (array index is FIXVersion index). The value of each element is the FIXVersion
   //index of the FIX Version at which this version of the message first appeared.
   //Value is -1 if the message was not present in this FIX version.
   private Map<String, Integer[]> messageVersionInfos = new HashMap<String, Integer[]>();
 
+  //TODO JC Not sure if this is needed any more
   //Key is ComponentName. Otherwise same as messageVersionInfos
   private Map<String, Integer[]> componentVersionInfos = new HashMap<String, Integer[]>();
 
@@ -181,7 +186,6 @@ public class RepoInfo {
     //Must follow postProcessEnums.
     //Adds Enum attribute to fields with enumerated values. 
     // Computed from enumInfos. This assumes that the enums are up to date.
-    //Also adds FromVersion attribute to each field (using {@link #getFIXVersionTagIntroduced}).
     postProcessFields();
 
     //Postprocess message/component segments. This should come after 
@@ -506,6 +510,9 @@ public class RepoInfo {
   }
 
   public int getFIXVersionIndex(String fixVersionString) throws Exception {
+    if (fixVersionString == null) {
+      return 0;
+    }
     for (int i = 0; i < fixVersionInfos.length; i++) {
       String version = fixVersionInfos[i].version;
       if (version.equalsIgnoreCase(fixVersionString)) {
@@ -670,35 +677,20 @@ public class RepoInfo {
           warnCount++;
         }
 
-        //Compute FromVersion property from the enumInfos of previous versions.
-        //Loops through previous versions looking for the first that has this value.
-        int fixVersionIndex = latestFIXVersionIndex;
-        for (int i = 0; i < enumInfosByVersion.length; i++) {
-          Map<String, List<Properties>> enumInfos = enumInfosByVersion[i];
-          if (hasTagValue(enumInfos, tagStr, enumValue)) {
-            fixVersionIndex = i;
-            break;
-          }
-        }
-
-        String fromVersion = getFIXVersionString(fixVersionIndex);
-        valueProps.setProperty("FromVersion", fromVersion);
-
-
         //Fix possible bad deprecated FIX versions that appear in current repo.
-        String version = valueProps.getProperty("Deprecated");
+        String version = valueProps.getProperty("deprecated");
         boolean renamed = false;
         if ("FIX 5.0".equals(version)) {
-          valueProps.setProperty("Deprecated", "FIX.5.0");
+          valueProps.setProperty("deprecated", "FIX.5.0");
           renamed = true;
         } else if ("FIX 4.2".equals(version)) {
-          valueProps.setProperty("Deprecated", "FIX.4.2");
+          valueProps.setProperty("deprecated", "FIX.4.2");
           renamed = true;
         } else if ("FIX 4.3".equals(version)) {
-          valueProps.setProperty("Deprecated", "FIX.4.3");
+          valueProps.setProperty("deprecated", "FIX.4.3");
           renamed = true;
         } else if ("FIX 4.4".equals(version)) {
-          valueProps.setProperty("Deprecated", "FIX.4.4");
+          valueProps.setProperty("deprecated", "FIX.4.4");
           renamed = true;
         }
         if (renamed) {
@@ -712,8 +704,6 @@ public class RepoInfo {
   }
 
   /**
-   * Adds fieldInfo FromVersion attribute.
-   * <p/>
    * Adds fieldInfo PROP_FIELD_ENUM_FIELD_NAME attribute.
    * <p/>
    * Populates fieldNameTagMap.
@@ -775,12 +765,6 @@ public class RepoInfo {
       int fieldTag = Integer.parseInt(props.getProperty("Tag"));
 
       String fieldName = props.getProperty(PROP_FIELD_NAME);
-
-
-      //Add FromVersion attribute computed from first FIX version where this field appeared.
-      String startFIXVersion = getFIXVersionTagIntroduced(fieldTag);
-      props.setProperty("FromVersion", startFIXVersion);
-
 
       //Add an Enum tag if this field has enumerated values.
       String enumFieldName = null;
@@ -921,34 +905,6 @@ public class RepoInfo {
         //Update entry for this FIX version to myVersion
         versions[i] = myVersion;
       }
-
-      //Use versions to update the FromVersion and ToVersion attributes
-      int fromVersion = -1;
-      int toVersion = -1;
-      for (int i = 0; i < versions.length; i++) {
-        Integer version = versions[i];
-        if (version != null) {
-          toVersion = i;
-          if (fromVersion == -1) {
-            fromVersion = i;
-          }
-        }
-      }
-
-      List<Properties> messageInfoPropList = messageInfos.get(msgType);
-      Properties messageInfoProps = messageInfoPropList.get(0);
-      if (fromVersion >= 0) {
-        messageInfoProps.setProperty("FromVersion", getFIXVersionString(fromVersion));
-      }
-      if (toVersion < RepoInfo.latestFIXVersionIndex) {
-        //Check for existing deprecation.
-        String toVersionStr = getFIXVersionString(toVersion);
-        String deprecated = messageInfoProps.getProperty("Deprecated");
-        if (!toVersionStr.equals(deprecated)) {
-          System.out.println("WARNING: Message " + msgType + "missing deprecation at " + toVersionStr + ". Adding it.");
-          messageInfoProps.setProperty("Deprecated", toVersionStr);
-        }
-      }
     }
 
 
@@ -995,33 +951,6 @@ public class RepoInfo {
         }
         //Update entry for this FIX version to myVersion
         versions[i] = myVersion;
-      }
-
-      //Use versions to update the FromVersion and ToVersion attributes 
-      int fromVersion = -1;
-      int toVersion = -1;
-      for (int i = 0; i < versions.length; i++) {
-        Integer version = versions[i];
-        if (version != null) {
-          toVersion = i;
-          if (fromVersion == -1) {
-            fromVersion = i;
-          }
-        }
-      }
-      List<Properties> componentInfoPropList = componentInfos.get(componentName);
-      Properties componentInfoProps = componentInfoPropList.get(0);
-      if (fromVersion >= 0) {
-        componentInfoProps.setProperty("FromVersion", getFIXVersionString(fromVersion));
-      }
-      if (toVersion < RepoInfo.latestFIXVersionIndex) {
-        //Check for existing deprecation.
-        String toVersionStr = getFIXVersionString(toVersion);
-        String deprecated = componentInfoProps.getProperty("Deprecated");
-        if (!toVersionStr.equals(deprecated)) {
-          System.out.println("WARNING: Component " + componentName + "missing deprecation at " + toVersionStr + ". Adding it.");
-          componentInfoProps.setProperty("Deprecated", toVersionStr);
-        }
       }
     }
   }

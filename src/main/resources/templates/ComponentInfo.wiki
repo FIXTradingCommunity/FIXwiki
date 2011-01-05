@@ -5,7 +5,7 @@
 {| border="1"
 ! FIX Specification !! Type !! First introduced !! Deprecated
 |-
-|| Volume1: {{{Category}}} || {{{ComponentType}}} || {{{FromVersion}}} || {{{Deprecated|}}}
+|| Volume1: {{{CategoryID}}} || {{{ComponentType}}} || {{{added}}} || {{{deprecated|}}}
 |}
 
 {{{Description|}}}

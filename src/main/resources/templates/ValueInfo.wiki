@@ -3,7 +3,7 @@
 {| border="1"
 ! Value !! Name !! Field(tag) !! First introduced !! Deprecated
 |-
-|| {{{Value}}} || {{{SymbolicName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{{FromVersion}}} || {{{Deprecated|}}}
+|| {{{Value}}} || {{{SymbolicName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{{added}}} || {{{deprecated|}}}
 |}
 <!--Special code for MsgType field which adds a link to the corresponding Message page.-->
 {{#ifeq: {{{Name}}} | MsgType

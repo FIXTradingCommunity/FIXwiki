@@ -608,35 +608,6 @@
   </MessageDesc>
   <MessageDesc>
     <MsgType>
-      CF
-    </MsgType>
-    <Description>
-      The Party Details List Request message is used to request party reference information from a central master reference system or another party that stores and maintains party reference information. The central master reference system can be an exchange that provides such information to trading applications that connect to it. Reference information may include relationships between parties, and details such as risk limits. The response to this message is the PartyDetailsListReport.
-      Types of requests may include:
-      • Request all party information available from counterparty.
-      • Request party information for a specific party identifier or list of identifiers
-      • Request party information for one or more party roles
-      • Request party information for one or more types of party relationships
-      • Request all related party information
-      • Request party risk limits, or risk limits specific to a relationship between parties
-      A request may specify one or more PartyID values, one or more RequestedPartyRole values, one or more RelationshipType values, or none of these.
-      A request without these fields returns the requested details on all parties, as determined by PartyListResponseType.
-      A request specifying only one or more PartyIDs returns details about those parties. This may more make not include risk limits and/or related parties, as determined by PartyListResponseType.
-      A request specifying only one or more RequestedPartyRole returns details about all parties with a matching PartyRole. This may more make not include risk limits and/or related parties, as determined by PartyListResponseType.
-    </Description>
-  </MessageDesc>
-  <MessageDesc>
-    <MsgType>
-      CG
-    </MsgType>
-    <Description>
-      The Party Details List Report message is used by a central master file systerm or another party that stores and maintains party reference information to disseminate party reference information. Reference information may include relationships between parties, and details such as risk limits.
-      This message can be sent in response to the Party Details List Request or it may be sent unsolicited without a request.
-
-    </Description>
-  </MessageDesc>
-  <MessageDesc>
-    <MsgType>
       D
     </MsgType>
     <Description>

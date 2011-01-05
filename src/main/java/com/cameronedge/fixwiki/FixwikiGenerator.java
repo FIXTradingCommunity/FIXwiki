@@ -661,7 +661,7 @@ public class FixwikiGenerator {
           }
 
           //Add extra FieldName property - redundant since we have tag, but probably convenient.
-          fw.println("| " + "FieldName=" + fieldName);
+          fw.println("| " + RepoInfo.PROP_FIELD_NAME + "=" + fieldName);
 
           fw.println("}}");
 
@@ -755,9 +755,9 @@ public class FixwikiGenerator {
       if (msgType != null) {
         fw.println("| MsgType=" + msgType);
       }
-      fw.println("| FromVersion=" + repoInfo.getFIXVersionString(fromVersion));
+      fw.println("| added=" + repoInfo.getFIXVersionString(fromVersion));
       if (toVersion >= 0) {
-        fw.println("| ToVersion=" + repoInfo.getFIXVersionString(toVersion));
+        fw.println("| deprecated=" + repoInfo.getFIXVersionString(toVersion));
       }
       fw.println("}}");
 
@@ -771,12 +771,12 @@ public class FixwikiGenerator {
   }
 
   private void writeFIXVersionCategories(Properties props, PrintWriter fw) throws Exception {
-    //Compute valid FIX versions from FromVersion property (gives start) and any deprecated property (gives end).
+    //Compute valid FIX versions from added property (gives start) and any deprecated property (gives end).
     //Undeprecated always have form {{FIX.x.y+}}.
     //Deprecated just have explicit list of categories eg [[Category:FIX.4.1]][[Category:FIX.4.2]]
     //Check for deprecated property
     int toVersion;
-    String deprecated = getCleanProperty(props, "Deprecated");
+    String deprecated = getCleanProperty(props, "deprecated");
     if (deprecated == null || deprecated.length() == 0) {
       toVersion = -1;
     } else {
@@ -784,7 +784,7 @@ public class FixwikiGenerator {
     }
 
     int fromVersion;
-    String startFIXVersion = props.getProperty("FromVersion");
+    String startFIXVersion = props.getProperty("added");
     fromVersion = repoInfo.getFIXVersionIndex(startFIXVersion);
 
     writeFIXVersionCategories(fromVersion, toVersion, fw);

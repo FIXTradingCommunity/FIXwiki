@@ -2,12 +2,23 @@
 
 This describes what needs to be done in order to do a basic install of FIXwiki.
 
-Once this process is complete, the rest of the installation process can be completed from within the wiki itself by wiki users with the appropriate rights.
+Once this process is complete, the rest of the installation process can be 
+completed from within the wiki itself by wiki users with the appropriate rights.
 
 The basic sequence of tasks is:
 
-# Modify the standard MediaWiki LocalSettings.php so that it includes another file LocalSettings.inc. This file can start off blank. This involves adding the following as the last line in LocalSettings.php: include('LocalSettings.inc');
-# Upload and unpack the [[#Extensions|extensions below]] into the wiki's "extensions" subdirectory
+# Install MediaWiki into a directory called "w".
+# Configure MediaWiki with Wiki name = FIXwiki, a working contact email, 
+MySQL as database, and the rest can default. 
+In particular accept the default WikiSysop as
+the admin user name (the build script uses this user name). Make sure that
+you record the admin password that you specify. Note also that you need
+to have a MySQL user name set up (using root is fine if you know it).
+# Modify the standard MediaWiki LocalSettings.php so that it includes another 
+file LocalSettings.inc. This file can start off blank. This involves adding the 
+following as the last line in LocalSettings.php: include('LocalSettings.inc');
+# Upload and unpack the [[#Extensions|extensions below]] into the wiki's 
+"extensions" subdirectory
 # Update the [[#Configuration|configuration]]
 # Upload the [[#Data Files|data files]]
 # Run the [[#Build Script|build script]]
@@ -26,6 +37,9 @@ Each of these tasks is described in more detail the following sections.
 Assumes that MediaWiki has been installed into a directory called "w".
 
 Copy the complete LocalSettings.inc into the wiki's root directory (same directory as LocalSettings.php)
+
+(Note that the $wgArticlePath and $wgUsePathInfo lines may cause
+problems and need to be commented out until the rewriting is working).
 
 Here is the current contents of LocalSettings.inc:
 

@@ -755,7 +755,7 @@ public class FixwikiGenerator {
       if (msgType != null) {
         fw.println("| MsgType=" + msgType);
       }
-      fw.println("| added=" + repoInfo.getFIXVersionString(fromVersion));
+      fw.println("| " + RepoInfo.PROP_ADDED_VERSION + "=" + repoInfo.getFIXVersionString(fromVersion));
       if (toVersion >= 0) {
         fw.println("| deprecated=" + repoInfo.getFIXVersionString(toVersion));
       }
@@ -784,7 +784,7 @@ public class FixwikiGenerator {
     }
 
     int fromVersion;
-    String startFIXVersion = props.getProperty("added");
+    String startFIXVersion = props.getProperty(RepoInfo.PROP_ADDED_VERSION);
     fromVersion = repoInfo.getFIXVersionIndex(startFIXVersion);
 
     writeFIXVersionCategories(fromVersion, toVersion, fw);

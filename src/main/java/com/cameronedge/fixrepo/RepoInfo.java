@@ -33,6 +33,7 @@ import java.util.Set;
  */
 public class RepoInfo {
 
+  public static final String PROP_ADDED_VERSION = "added";
   public static final String PROP_DESCRIPTION = "Description";
 
   public static final String PROP_COMPONENT_DESCRIPTION = PROP_DESCRIPTION;
@@ -70,6 +71,8 @@ public class RepoInfo {
   public static final int latestFIXVersionIndex = fixVersionInfos.length - 1;
 
   public static final int fixTVersionIndex = 8;
+
+  private static final String FIRST_VERSION = fixVersionInfos[0].version;
 
   public static int maxCommonPrefix = 43;
 
@@ -172,10 +175,10 @@ public class RepoInfo {
 
     //Just creates merged infos for all versions
     postProcessComponents();
-    
+
     //Just creates merged infos for all versions
     postProcessMessages();
-    
+
     //Just creates merged infos for all versions
     postProcessTypes();
 
@@ -265,6 +268,26 @@ public class RepoInfo {
       }
     }
     return warning;
+  }
+
+  /**
+   * Scans all Properties for PROP_ADDED_VERSION. If property not present
+   * defaults it to the first FIX version.
+   * @param infosByVersion infos data by version
+   */
+  private void defaultAddedVersionProperty(Map<String, List<Properties>>[] infosByVersion) {
+    for (Map<String, List<Properties>> infos : infosByVersion) {
+      if (infos != null) {
+        for (List<Properties> propertiesList : infos.values()) {
+          for (Properties props : propertiesList) {
+            String addedVersion = props.getProperty(PROP_ADDED_VERSION);
+            if (addedVersion == null) {
+              props.setProperty(PROP_ADDED_VERSION, FIRST_VERSION);
+            }
+          }
+        }
+      }
+    }
   }
 
   private void dumpEnumWarning(String tagStr, String enumValue, String enumName, String description) {
@@ -574,9 +597,10 @@ public class RepoInfo {
   }
 
   /**
-   * Clears mergedInfos and repopulates it with merge of all data in infosByVersion.
+   * Clears mergedInfos and repopulates it with merge of all data in
+   * infosByVersion.
    */
-  private void mergeInfos(Map<String, List<Properties>> mergedInfos, 
+  private void mergeInfos(Map<String, List<Properties>> mergedInfos,
                           Map<String, List<Properties>>[] infosByVersion) {
 
     mergedInfos.clear();
@@ -618,6 +642,7 @@ public class RepoInfo {
    * Constructs merged componentInfosAllVersions
    */
   private void postProcessComponents() {
+    defaultAddedVersionProperty(componentInfosByVersion);
     mergeInfos(componentInfosAllVersions, componentInfosByVersion);
   }
 
@@ -626,8 +651,9 @@ public class RepoInfo {
    */
   private void postProcessEnums() {
     System.out.println("INFO: --- Processing Enums");
-    
-    mergeInfos(enumInfosAllVersions, enumInfosByVersion);    
+
+    defaultAddedVersionProperty(enumInfosByVersion);
+    mergeInfos(enumInfosAllVersions, enumInfosByVersion);
 
     Map<String, List<Properties>> latestInfos = getEnumInfos();
 
@@ -712,6 +738,7 @@ public class RepoInfo {
    * @throws Exception Any fatal problems
    */
   private void postProcessFields() throws Exception {
+    defaultAddedVersionProperty(fieldInfosByVersion);
 
     //First scan through field names for all versions, populating {@link #fieldNameTagMap} and
     //tidying up field names.
@@ -746,7 +773,7 @@ public class RepoInfo {
       }
     }
 
-    mergeInfos(fieldInfosAllVersions, fieldInfosByVersion);    
+    mergeInfos(fieldInfosAllVersions, fieldInfosByVersion);
 
 
     //Now scan through latest field infos.
@@ -786,6 +813,7 @@ public class RepoInfo {
   }
 
   private void postProcessMessages() {
+    defaultAddedVersionProperty(messageInfosByVersion);
     mergeInfos(messageInfosAllVersions, messageInfosByVersion);
   }
 
@@ -797,6 +825,7 @@ public class RepoInfo {
    * Constructs messageVersionInfos and componentVersionInfos.
    */
   private void postProcessSegments() {
+    defaultAddedVersionProperty(segmentInfosByVersion);
 
     //First sort segment lists by Position tag. They are not in order in repo.
     Comparator<Properties> propertiesComparator = new Comparator<Properties>() {
@@ -817,8 +846,8 @@ public class RepoInfo {
       }
     }
 
-    
-    mergeInfos(segmentInfosAllVersions, segmentInfosByVersion);    
+
+    mergeInfos(segmentInfosAllVersions, segmentInfosByVersion);
 
     //Construct messagesAndComponentsByName.
 
@@ -955,6 +984,7 @@ public class RepoInfo {
   }
 
   private void postProcessTypes() {
+    defaultAddedVersionProperty(typeInfosByVersion);
     mergeInfos(typeInfosAllVersions, typeInfosByVersion);
   }
 

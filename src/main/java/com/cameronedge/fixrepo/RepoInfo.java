@@ -85,15 +85,19 @@ public class RepoInfo {
   //Message component properties indexed by ComponentName. (List<Properties> only contains one Properties).
   //The MsgID property links to the corresponding message segment in segmentInfos.
   private Map<String, List<Properties>>[] componentInfosByVersion = new Map[latestFIXVersionIndex + 1];
+  private Map<String, List<Properties>> componentInfosAllVersions = new HashMap();
 
   //Data type properties indexed by TypeName. (List<Properties> only contains one Properties).
   private Map<String, List<Properties>>[] typeInfosByVersion = new Map[latestFIXVersionIndex + 1];
+  private Map<String, List<Properties>> typeInfosAllVersions = new HashMap();
 
   //Enumerated field values indexed by tag. Each enumerated value has an associated Properties.
   private Map<String, List<Properties>>[] enumInfosByVersion = new Map[latestFIXVersionIndex + 1];
+  private Map<String, List<Properties>> enumInfosAllVersions = new HashMap();
 
   //Field properties indexed by tag. (List<Properties> only contains one Properties).
   private Map<String, List<Properties>>[] fieldInfosByVersion = new Map[latestFIXVersionIndex + 1];
+  private Map<String, List<Properties>> fieldInfosAllVersions = new HashMap();
 
   //Map of all field names, occurring in any FIX version, to a tag number.
   private Map<String, Integer> fieldNameTagMap = new HashMap<String, Integer>();
@@ -101,6 +105,7 @@ public class RepoInfo {
   //Message properties indexed by MsgType. (List<Properties> only contains one Properties).
   //The MsgID property links to the corresponding message segment in segmentInfos.
   private Map<String, List<Properties>>[] messageInfosByVersion = new Map[latestFIXVersionIndex + 1];
+  private Map<String, List<Properties>> messageInfosAllVersions = new HashMap();
 
   //For each tag or component, List of all message names or components containing it.
   //Indexed by tag number or component name.
@@ -110,15 +115,16 @@ public class RepoInfo {
   //Properties. The TagText field is either a numeric tag number - indexing via the tag index to a field entry in
   //fieldInfos, or a component name - indexing via the ComponentName index to a component entry in componentInfos.
   private Map<String, List<Properties>>[] segmentInfosByVersion = new Map[latestFIXVersionIndex + 1];
+  private Map<String, List<Properties>> segmentInfosAllVersions = new HashMap();
 
   private SAXParser parser;
 
-  private boolean ignoreErrors; 
+  private boolean ignoreErrors;
 
   public RepoInfo(File repoDir) throws Exception {
-    
+
     ignoreErrors = System.getProperty("ignoreErrors") != null;
-    
+
     ClassLoader loader = this.getClass().getClassLoader();
 
     SAXParserFactory parserFactory = SAXParserFactory.newInstance();
@@ -128,9 +134,6 @@ public class RepoInfo {
     for (int i = 0; i < fixVersionInfos.length; i++) {
       String version = fixVersionInfos[i].version;
       System.out.println("Processing FIX version " + version);
-
-
-      //TODO JC Base needs to be not hard coded if we are going to take account of extension packs
 
       String fixDirPath = repoDir.getAbsolutePath() + File.separator + version + File.separator + "Base";
       File fixDir = new File(fixDirPath);
@@ -163,18 +166,29 @@ public class RepoInfo {
     Map<String, List<Properties>> extraData;
     InputStream is;
 
+    //Just creates merged infos for all versions
+    postProcessComponents();
+    
+    //Just creates merged infos for all versions
+    postProcessMessages();
+    
+    //Just creates merged infos for all versions
+    postProcessTypes();
+
     //Special post process for latest version. That is what users will use.
-    //Checks for good data and fabricates names for enum values in new EnumName property.
     postProcessEnums();
 
-    //Adds Enum attribute to fields with enumerated values. Computed from enumInfos. This assumes that the enums are up to date.
+    //Must follow postProcessEnums.
+    //Adds Enum attribute to fields with enumerated values. 
+    // Computed from enumInfos. This assumes that the enums are up to date.
     //Also adds FromVersion attribute to each field (using {@link #getFIXVersionTagIntroduced}).
     postProcessFields();
 
-    //Postprocess message/component segments.
+    //Postprocess message/component segments. This should come after 
+    //postprocessing of fields, messages and components.
     postProcessSegments();
 
-    //Now enrich the data with extra resource files.
+    //Now enrich the merged data with extra resource files.
 
     s = "MessageDesc.xml";
     is = loader.getResourceAsStream(s);
@@ -318,7 +332,7 @@ public class RepoInfo {
    *         List should only contain one Properties. That is the field properties corresponding to the field tag.
    */
   public Map<String, List<Properties>> getFieldInfos() {
-    return fieldInfosByVersion[latestFIXVersionIndex];
+    return fieldInfosAllVersions;
   }
 
   /**
@@ -329,7 +343,7 @@ public class RepoInfo {
    *         Properties. That is the message properties corresponding to the msgType.
    */
   public Map<String, List<Properties>> getMessageInfos() {
-    return messageInfosByVersion[latestFIXVersionIndex];
+    return messageInfosAllVersions;
   }
 
   public Map<String, Integer[]> getMessageVersionInfos() {
@@ -337,11 +351,11 @@ public class RepoInfo {
   }
 
   public Map<String, List<Properties>> getSegmentInfos() {
-    return segmentInfosByVersion[latestFIXVersionIndex];
+    return segmentInfosAllVersions;
   }
 
   public Map<String, List<Properties>> getTypeInfos() {
-    return typeInfosByVersion[latestFIXVersionIndex];
+    return typeInfosAllVersions;
   }
 
   /**
@@ -553,6 +567,26 @@ public class RepoInfo {
 
   }
 
+  /**
+   * Clears mergedInfos and repopulates it with merge of all data in infosByVersion.
+   */
+  private void mergeInfos(Map<String, List<Properties>> mergedInfos, 
+                          Map<String, List<Properties>>[] infosByVersion) {
+
+    mergedInfos.clear();
+
+    //Scan through all versions
+    for (int i = 0; i <= latestFIXVersionIndex; i++) {
+      Map<String, List<Properties>> infos = infosByVersion[i];
+      if (infos != null) {
+        //Populate merged infos
+        for (Map.Entry<String, List<Properties>> entry : infos.entrySet()) {
+          mergedInfos.put(entry.getKey(), entry.getValue());
+        }
+      }
+    }
+  }
+
   private Map<String, List<Properties>> parse(InputStream is, String element, String indexElement, boolean multiValued) throws IOException, SAXException {
     if (is != null) {
       FixRepoHandler handler = new FixRepoHandler(element, indexElement, multiValued);
@@ -575,9 +609,18 @@ public class RepoInfo {
   }
 
   /**
+   * Constructs merged componentInfosAllVersions
+   */
+  private void postProcessComponents() {
+    mergeInfos(componentInfosAllVersions, componentInfosByVersion);
+  }
+
+  /**
    * Checks for good data and fabricates names for enum values in new EnumName property.
    */
   private void postProcessEnums() {
+    
+    mergeInfos(enumInfosAllVersions, enumInfosByVersion);    
 
     Map<String, List<Properties>> latestInfos = getEnumInfos();
 
@@ -662,13 +705,14 @@ public class RepoInfo {
         }
       }
     }
+
     System.out.println("WARNING: Number of enumName check warnings: " + warnCount);
   }
 
   /**
    * Adds fieldInfo FromVersion attribute.
    * <p/>
-   * Adds fieldInfo EnumName attribute.
+   * Adds fieldInfo PROP_FIELD_ENUM_FIELD_NAME attribute.
    * <p/>
    * Populates fieldNameTagMap.
    * <p/>
@@ -706,9 +750,12 @@ public class RepoInfo {
           }
 
           fieldNameTagMap.put(fieldName, fieldTag);
+
         }
       }
     }
+
+    mergeInfos(fieldInfosAllVersions, fieldInfosByVersion);    
 
 
     //Now scan through latest field infos.
@@ -753,6 +800,10 @@ public class RepoInfo {
     }
   }
 
+  private void postProcessMessages() {
+    mergeInfos(messageInfosAllVersions, messageInfosByVersion);
+  }
+
   /**
    * Sorts segmentInfo lists.
    * <p/>
@@ -781,6 +832,8 @@ public class RepoInfo {
       }
     }
 
+    
+    mergeInfos(segmentInfosAllVersions, segmentInfosByVersion);    
 
     //Construct messagesAndComponentsByName.
 
@@ -969,6 +1022,10 @@ public class RepoInfo {
         }
       }
     }
+  }
+
+  private void postProcessTypes() {
+    mergeInfos(typeInfosAllVersions, typeInfosByVersion);
   }
 
   private void processExtraComponentDescriptions(Map<String, List<Properties>> extraData) {

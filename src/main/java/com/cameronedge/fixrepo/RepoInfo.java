@@ -255,8 +255,8 @@ public class RepoInfo {
       }
 
       if (enumNameExpectedUnique.equalsIgnoreCase(nameExpectedUnique)) {
+        System.out.println("WARNING: Tag " + tagStr + " Similar value names: " + enumName + " and " + name);
         dumpEnumWarning(tagStr, enumValue, enumName, description);
-//        System.out.println("WARNING: Tag " + tagStr + " Similar value names: " + enumName + " and " + name);
         warning = true;
         break;
       }
@@ -658,14 +658,14 @@ public class RepoInfo {
         }
 
         if (enumName.length() <= 1) {
-//          dumpEnumWarning(tagStr, enumValue, enumName, description);
           System.out.println("WARNING: Tag " + tagStr + " Short enumName: " + enumName + " Value " + enumValue);
+          dumpEnumWarning(tagStr, enumValue, enumName, description);
           warnCount++;
         }
 
         if (enumName.length() > maxCommonPrefix) {
+          System.out.println("WARNING: Tag " + tagStr + " Long enumName: " + enumName);
           dumpEnumWarning(tagStr, enumValue, enumName, description);
-//            System.out.println("WARNING: Tag " + tagStr + " Long enumName: " + enumName);
           warnCount++;
         }
 

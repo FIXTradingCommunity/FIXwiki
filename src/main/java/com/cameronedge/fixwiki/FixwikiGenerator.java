@@ -61,7 +61,7 @@ public class FixwikiGenerator {
     String cmd = "php importTextFile.php " +
             (title == null ? "" : "--title '" + title + "' ") +
             (overwrite ? "" : "--nooverwrite ") +
-            "--user 'camerojo' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
+            "--user 'WikiSysop' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
     script.println(cmd);
   }
 

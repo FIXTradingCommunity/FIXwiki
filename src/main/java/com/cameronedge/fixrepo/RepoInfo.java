@@ -619,6 +619,7 @@ public class RepoInfo {
    * Checks for good data and fabricates names for enum values in new EnumName property.
    */
   private void postProcessEnums() {
+    System.out.println("INFO: --- Processing Enums");
     
     mergeInfos(enumInfosAllVersions, enumInfosByVersion);    
 
@@ -707,6 +708,7 @@ public class RepoInfo {
     }
 
     System.out.println("WARNING: Number of enumName check warnings: " + warnCount);
+    System.out.println("INFO: --- End Processing Enums");
   }
 
   /**
@@ -1108,6 +1110,7 @@ public class RepoInfo {
 
   public void processGlossary(InputStream glossary) throws IOException {
     if (glossary != null) {
+      System.out.println("INFO: --- Processing Glossary");
       InputStreamReader glossaryReader = new InputStreamReader(glossary);
       GlossaryProcessor gp = new GlossaryProcessor();
       List<GlossaryEntry> entries = gp.processGlossaryText(glossaryReader);
@@ -1153,6 +1156,7 @@ public class RepoInfo {
           }
         }
       }
+      System.out.println("INFO: --- End Processing Glossary");
     }
   }
 

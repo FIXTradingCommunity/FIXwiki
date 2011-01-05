@@ -55,6 +55,8 @@ public class LinkDetector {
   }
 
   public LinkDetector(RepoInfo repoInfo, int matchTagValues) {
+    System.out.println("INFO: --- Detecting Link Text");
+
     linkNames1 = new HashMap<String, String>();
     linkNames2 = new HashMap<String, String>();
 
@@ -100,6 +102,7 @@ public class LinkDetector {
         }
       }
     }
+    System.out.println("INFO: --- End Detecting Link Text");
   }
 
   public String convert(String source) {

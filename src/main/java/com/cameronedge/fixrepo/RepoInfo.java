@@ -55,7 +55,6 @@ public class RepoInfo {
   public static final String PROP_TYPE_NAME = "Name";
 
   private static final FIXVersionInfo[] fixVersionInfos = new FIXVersionInfo[]{
-          new FIXVersionInfo("FIX.1.0", "1.0", 0),
           new FIXVersionInfo("FIX.2.7", "2.7", 103),
           new FIXVersionInfo("FIX.3.0", "3.0", 113),
           new FIXVersionInfo("FIX.4.0", "4.0", 140),
@@ -70,7 +69,7 @@ public class RepoInfo {
   };
   public static final int latestFIXVersionIndex = fixVersionInfos.length - 1;
 
-  public static final int fixTVersionIndex = 9;
+  public static final int fixTVersionIndex = 8;
 
   public static int maxCommonPrefix = 43;
 

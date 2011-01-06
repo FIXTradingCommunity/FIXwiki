@@ -74,18 +74,18 @@ public class RepoInfo {
 
   private static final String FIRST_VERSION = fixVersionInfos[0].version;
 
+  private int firstVersionWithRepoData;
+
   public static int maxCommonPrefix = 43;
 
   private int[] enumNameLens = new int[200];
 
-  //TODO JC Not sure if this is needed any more
   //Key is MsgType. Each MsgType is associated with an array where each element
   //corresponds to a FIX version (array index is FIXVersion index). The value of each element is the FIXVersion
   //index of the FIX Version at which this version of the message first appeared.
   //Value is -1 if the message was not present in this FIX version.
   private Map<String, Integer[]> messageVersionInfos = new HashMap<String, Integer[]>();
 
-  //TODO JC Not sure if this is needed any more
   //Key is ComponentName. Otherwise same as messageVersionInfos
   private Map<String, Integer[]> componentVersionInfos = new HashMap<String, Integer[]>();
 
@@ -137,6 +137,8 @@ public class RepoInfo {
     SAXParserFactory parserFactory = SAXParserFactory.newInstance();
     parser = parserFactory.newSAXParser();
 
+    firstVersionWithRepoData = -1;
+
     //Now process the data for each FIX versions.
     for (int i = 0; i < fixVersionInfos.length; i++) {
       String version = fixVersionInfos[i].version;
@@ -146,6 +148,10 @@ public class RepoInfo {
       File fixDir = new File(fixDirPath);
 
       if (fixDir.exists()) {
+
+        if (firstVersionWithRepoData < 0) {
+          firstVersionWithRepoData = i;
+        }
 
         componentInfosByVersion[i] = parse(fixDir, "Components.xml", "Component", "Name", false);
         System.out.println("    Processed " + componentInfosByVersion[i].size() + " categories");
@@ -273,6 +279,7 @@ public class RepoInfo {
   /**
    * Scans all Properties for PROP_ADDED_VERSION. If property not present
    * defaults it to the first FIX version.
+   *
    * @param infosByVersion infos data by version
    */
   private void defaultAddedVersionProperty(Map<String, List<Properties>>[] infosByVersion) {
@@ -405,7 +412,13 @@ public class RepoInfo {
     //as previous version.
     if (fixVersionIndex == fixTVersionIndex) {
       fixVersionIndex = fixTVersionIndex - 1;
-    }
+    } else
+
+      //Also hack around versions for which the repo has no data - assume that
+      //it has the same contents as first version for which repo has data.
+      if (fixVersionIndex < firstVersionWithRepoData) {
+        fixVersionIndex = firstVersionWithRepoData;
+      }
 
     Map<String, List<Properties>> segmentInfos = segmentInfosByVersion[fixVersionIndex];
 
@@ -430,6 +443,14 @@ public class RepoInfo {
   private List<Properties> getContentsOfMessage(String msgType, int fixVersionIndex) {
 
     if (fixVersionIndex < 0) {
+      //Unknown FIX version
+      return null;
+    }
+
+    Map<String, List<Properties>> messageInfos = getMessageInfos();
+    List<Properties> messageInfo = messageInfos.get(msgType);
+    if (messageInfo == null) {
+      //Unknown message type
       return null;
     }
 
@@ -437,17 +458,37 @@ public class RepoInfo {
     //as previous version.
     if (fixVersionIndex == fixTVersionIndex) {
       fixVersionIndex = fixTVersionIndex - 1;
-    }
+    } else
+
+      //Also hack around versions for which the repo has no data - assume that
+      //it has the same contents as first version for which repo has data as
+      //long as we know that this message was in fact added in an early version.
+      if (fixVersionIndex < firstVersionWithRepoData) {
+
+        //Get FIX version where message was added.
+        String addedVersion = messageInfo.get(0).getProperty(PROP_ADDED_VERSION);
+        int fromVersion = 0;
+        try {
+          fromVersion = getFIXVersionIndex(addedVersion);
+        } catch (Exception e) {
+          //Illegal version string
+        }
+
+        //If message was added early on, do the hack.
+        if (fromVersion < firstVersionWithRepoData) {
+          fixVersionIndex = firstVersionWithRepoData;
+        }
+      }
 
     Map<String, List<Properties>> segmentInfos = segmentInfosByVersion[fixVersionIndex];
 
     //Find corresponding msgID.
-    Map<String, List<Properties>> messageInfos = messageInfosByVersion[fixVersionIndex];
+    messageInfos = messageInfosByVersion[fixVersionIndex];
     if (messageInfos == null) {
       return null;
     }
 
-    List<Properties> messageInfo = messageInfos.get(msgType);
+    messageInfo = messageInfos.get(msgType);
     if (messageInfo == null) {
       //Message type does not appear in this version.
       return null;
@@ -531,6 +572,13 @@ public class RepoInfo {
     return getFieldPropsFromTag(tag, latestFIXVersionIndex);
   }
 
+  /**
+   * Returns index of given FIX version.
+   *
+   * @param fixVersionString FIX version string
+   * @return FIX version index
+   * @throws Exception if the given version string is not recognised.
+   */
   public int getFIXVersionIndex(String fixVersionString) throws Exception {
     if (fixVersionString == null) {
       return 0;

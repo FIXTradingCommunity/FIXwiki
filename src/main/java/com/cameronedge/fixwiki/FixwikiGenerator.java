@@ -481,8 +481,6 @@ public class FixwikiGenerator {
       }
     }
 
-
-    //TODO JC FIX SPEC Volume category.
   }
 
   private void generateComponentPages(File scriptDir, PrintWriter script) throws Exception {

@@ -145,6 +145,8 @@ public class FixwikiGenerator {
 
     generateTypePages(scriptDir, script);
 
+    script.println("php rebuildall.php");
+
     script.close();
 
   }

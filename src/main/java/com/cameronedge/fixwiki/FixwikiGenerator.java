@@ -206,6 +206,8 @@ public class FixwikiGenerator {
     addResourceImportToScript(scriptDir, script, "templates/ToDo.wiki", "Template:Todo");
     addResourceImportToScript(scriptDir, script, "templates/TypeInfo.wiki", "Template:" + TYPE_INFO);
     addResourceImportToScript(scriptDir, script, "templates/ValueInfo.wiki", "Template:" + VALUE_INFO);
+    addResourceImportToScript(scriptDir, script, "categories/FIX.2.7.wiki", "Category:FIX.2.7");
+    addResourceImportToScript(scriptDir, script, "categories/FIX.3.0.wiki", "Category:FIX.3.0");
     addResourceImportToScript(scriptDir, script, "categories/FIX.4.0.wiki", "Category:FIX.4.0");
     addResourceImportToScript(scriptDir, script, "categories/FIX.4.1.wiki", "Category:FIX.4.1");
     addResourceImportToScript(scriptDir, script, "categories/FIX.4.2.wiki", "Category:FIX.4.2");

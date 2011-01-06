@@ -15,7 +15,7 @@ $wgUsePathInfo = true;
 
 $wgUseAjax = true;
 $wgEnableMWSuggest = true;
-$wgLogo = "$wgScriptPath/images/cameronedge_logo_blue135trans.png";
+$wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
 $wgFavicon = "$wgScriptPath/images/favicon.ico";
 $wgRightsIcon = "$wgScriptPath/images/cameronedge_logo_blueSmall.png";
 $wgRightsUrl = "http://cameronedge.com/";

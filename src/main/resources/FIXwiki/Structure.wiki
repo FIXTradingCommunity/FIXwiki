@@ -51,7 +51,7 @@ This allows {{SITENAME}} to automatically keep track of which fields appear in w
 ==Subpages==
 
 Pages for FIX messages and components have [http://www.mediawiki.org/wiki/Help:Subpages subpages] which show their different contents according to FIX version.
-For example, the subpage [[Reject/FIX.4.0-4.1]] shows the contents of the FIX reject message in FIX versions 4.0 through 4.1.
+For example, the subpage [[Reject/FIX.4.2-5.0]] shows the contents of the FIX reject message in FIX versions 4.2 through 5.0.
 
 Pages for FIX fields which have enumerated values have a subpage for each possible value. So each {{SITENAME}} value page is a subpage of the page of its associated field.
 For example, the subpage [[Side/4 SellPlus]] has details on the "SellPlus" value (4) of the FIX Side field.

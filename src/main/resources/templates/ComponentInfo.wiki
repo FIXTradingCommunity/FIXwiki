@@ -1,11 +1,9 @@
 ===FIX Message Component {{{Name}}}===
 
-<!--TODO This hardcoded Volume1 is not correct = components are defined elsewhere. The trouble that the repo does not say where.-->
-
 {| border="1"
 ! FIX Specification !! Type !! First introduced !! Deprecated
 |-
-|| Volume1: {{{CategoryID}}} || {{{ComponentType}}} || {{{added}}} || {{{deprecated|}}}
+|| {{{CategoryID}}} || {{{ComponentType}}} || {{{added}}} || {{{deprecated|}}}
 |}
 
 {{{Description|}}}

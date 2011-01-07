@@ -15,7 +15,7 @@
 
 <p align="right">
     John Cameron<br>
-    21 December 2010
+    7 January 2011
 </p>
 
 <h2>
@@ -50,6 +50,12 @@
     <li><a target="_blank" href="http://fixwiki.org/fixwiki/FIXwiki:About">About
         FIXwiki</a></li>
 </ul>
+
+<p>
+    All code, data files, and this documentation are available from FPL's
+    Subversion repository at
+    <a target="_blank" href="https://svn.fixprotocol.org/svn/fixwiki">https://svn.fixprotocol.org/svn/fixwiki</a>.
+</p>
 <h2>
     Wiki Software
 </h2>
@@ -94,6 +100,96 @@
     hidden, so the FIXwiki developer requires minimal knowledge of MySQL.
 </p>
 
+<h3>
+    Installing MediaWiki
+</h3>
+
+<p>
+    You can freely download the latest MediaWiki software from
+    <a href="http://www.mediawiki.org/wiki/Download">http://www.mediawiki.org/wiki/Download</a>.
+</p>
+
+<p>
+    Unpack the MediaWiki distribution into a directory called "w" accessible
+    to a web browser.
+</p>
+
+<p>
+    See the INSTALL file of the unpacked distribution for installation
+    instructions. Basically you just point your browser to the directory
+    you unpacked into and then follow the instructions. Generally you can
+    choose the default values. This is how you should fill in other values.
+</p>
+<ul>
+    <li>Wiki name - FIXwiki</li>
+    <li>Admin user - Keep the default value "WikiSysop". The FIXwiki generated
+        pages
+        will be added using user WikiSysop. Be sure to note down the admin
+        password
+        you choose.
+    </li>
+    <li>MySQL database - Note also that you need to have a MySQL user name set
+        up (using root is fine if you know it).
+    </li>
+</ul>
+<p>
+    Once MediaWiki is installed, modify the standard MediaWiki LocalSettings.php
+    so that it includes another file LocalSettings.inc.
+    This file is where you will put the FIXwiki specific configuration settings.
+    It can start off blank.
+    You should add the following as the last line in LocalSettings.php: 
+    <pre>
+    include('LocalSettings.inc');    
+    </pre>
+</p>
+<h3>
+    Standard Extensions Used by FIXwiki
+</h3>
+
+<p>
+    FIXwiki uses the following standard extensions:
+</p>
+<ul>
+    <li><a href="http://www.mediawiki.org/wiki/Extension:ParserFunctions">ParserFunctions</a>
+    </li>
+    <li><a href="http://www.mediawiki.org/wiki/Extension:SubPageList3">SubPageList3</a>
+    </li>
+    <li><a href="http://www.mediawiki.org/wiki/Extension:MaintenanceShell">MaintenanceShell</a>
+    </li>
+</ul>
+<p>
+    These need to be downloaded and unpacked into the wiki's "extensions"
+    subdirectory.
+</p>
+
+<p>
+    Once the extensions are present in the "extensions" subdirectory, you can
+    copy the LocalSettings.inc across. See the following section.
+</p>
+
+<h3>
+    LocalSettings.inc
+</h3>
+
+<p>
+    This file contains special configuration settings for FIXwiki,
+    including the lines needed to complete the configuration of the standard
+    wiki extensions mentioned above.
+</p>
+
+<p>
+    The latest version of the file can be found in FPL's Subversion
+    repository. A sample copy of the file appears in the Appendix below.
+</p>
+
+<p>
+    This file should be in place and working as expected for the wiki before
+    running the FIXwiki build script (described below).
+    In particular, the url rewriting rules should be working correctly.
+    Links in imported wiki pages will contain urls according to the 
+    configured rules. These cannot be changed later.
+</p>
+
 <h2>
     Generating FIXwiki
 </h2>
@@ -113,22 +209,73 @@
     a wiki page from the contents of a text file.
     So the software which generates FIXwiki copies each
     FIX repository definition into a text file and creates a PHP script which
-    calls the PHP import function for each text file. Running the resulting
+    calls this import function for each text file. Running the resulting
     PHP script creates FIXwiki. This software is written in Java.
 </p>
 
 <p>
-    To summarize, generating FIXwiki is a two stage process:
+    To summarize, once the wiki is correctly configured, generating the FIXwiki 
+    content (ie all the FIXwiki pages) is a two stage process:    
 </p>
 <ol>
     <li>Read the FIX repository and generate a number of text files and a PHP
         script which creates a wiki page from each file
     </li>
-    <li>Run the PHP script</li>
+    <li>Run the generated PHP script</li>
 </ol>
+<h3>
+    Generated Text Files
+</h3>
+
 <p>
-    The rest of this document will describe the Java software that performs
-    the first stage of the above process.
+    These are generated automatically from the FIX repository and other sources
+    by the FIXwiki generation code (described below).
+    There are around 20,000 data files totalling about 90Mb.
+</p>
+
+<p>
+    These files will be imported into the wiki by running the build script
+    which is generated along with the text files.
+</p>
+
+<h3>
+    Generated Build Script
+</h3>
+
+<p>
+    buildFIXwiki.sh is located in the root directory of the text files.
+</p>
+<ul>
+    <li>It needs to be run from the wiki's "maintenance" subdirectory.</li>
+    <li>It needs to be run by a user with full update access to the MySQL 
+        wiki database.
+    </li>
+    <li>The wiki needs to be fully configured using LocalSettings.inc as
+        described above before running the script. In particular the url
+        rewriting rules need to be functioning correctly.
+    </li>
+    <li>It can take around an hour to complete.</li>
+    <li>After the script has completed it can still take a while for subpages to
+        display correctly. Until that is complete, you may see messages like
+        "Page has no subpages to list".
+    </li>
+</ul>
+<p>
+    Running the build script will replace any existing specification
+    wiki pages. However, it will not replace any user content pages.
+</p>
+
+<p>
+    The command line to run the script (from the wiki "maintenance" directory)
+    is simply:
+</p>
+<pre>
+    sh &lt;path to data files root directory&gt;/buildFIXwiki.sh    
+</pre>
+
+<p>
+    The rest of this document will describe the Java software that actually
+    generates the text files and build script.
 </p>
 
 <h2>
@@ -136,7 +283,11 @@
 </h2>
 
 <p>
-    The software is broken up into the following modules.
+    The software is kept in FPL's Subversion repository.
+</p>
+
+<p>
+    It is broken up into the following modules.
 </p>
 
 <h3>RepoInfo - Processes the FIX repository files</h3>
@@ -148,6 +299,7 @@
     all the files in the repository into an internal Java object based
     representation.
 </p>
+
 <p>
     In fact, RepoInfo also process some extra files - defined as resources in
     the Java code - ie you will find them checked in with the Java source code.
@@ -156,6 +308,7 @@
     (These definitions come directly from the specification, however, so they
     are "official").
 </p>
+
 <p>
     The intention is that the FIX repository will eventually hold these
     "elaborated" definitions, but it does not currently. Part of the value
@@ -163,6 +316,7 @@
     for now they need to be supplied by these extra files
     (ComponentDesc.xml, EnumDesc.xml, Glossary.txt, MessageDesc.xml).
 </p>
+
 <h3>LinkDetector - Detects links to other pages</h3>
 
 <p>
@@ -257,19 +411,16 @@
 <blockquote>
 <pre>
 {{Message info
-| AbbrName=TestRequest
-| MsgType=1
-| ComponentType=Message
-| MessageName=TestRequest
-| MsgID=2
-| Section=Session
-| NotReqXML=1
-| OverrideAbbr=TestRequest
-| Volume=Volume2
-| Category=Session
 | Description=The test request message forces a heartbeat...
 
-| FromVersion=FIX.4.0
+| AbbrName=TestRequest
+| MsgType=1
+| Name=TestRequest
+| ComponentID=2
+| SectionID=Session
+| CategoryID=Session
+| NotReqXML=1
+| added=FIX.2.7
 | SegmentType=Message
 }}
 </pre>
@@ -278,12 +429,107 @@
     As you can see, this calls the standard "Message info" template passing
     in all the data specific to the TestRequest message. You can look at
     all the templates, including the "Message info" template, by going to the
-    special <a target="_blank" href="http://fixwiki.org/fixwiki/Special:UncategorizedTemplates">Uncategorized templates page</a>.
+    special <a target="_blank"
+               href="http://fixwiki.org/fixwiki/Special:UncategorizedTemplates">Uncategorized
+    templates page</a>.
 </p>
 
 <p>
     This approach means that the appearance of all FIXwiki pages could be
     changed by simply modifying these formatting templates.
 </p>
+
+<h1>Appendix - Sample LocalSettings.inc</h1>
+
+<p>
+    Here is a sample LocalSettings.inc. It may not be completely up to date. It
+    is included here just to give you an idea of what is in it.
+    Get the current version from the FPL Subversion repository.
+</p>
+<pre>
+    &lt;?php
+
+    #$wgReadOnly = "Backing up FIXwiki";
+
+    $wgEnableUploads = true;
+
+    #Enable short urls.
+    #The following only works if you have installed into "w" and if your Apache .htaccess file has the following lines in it:
+    #RewriteEngine On
+    #RewriteRule ^fixwiki/(.*)$ /w/index.php?title=$1 [PT,L,QSA]
+    #RewriteRule ^fixwiki/*$ /w/index.php [L,QSA]
+    $wgArticlePath = "/fixwiki/$1";
+    $wgUsePathInfo = true;
+
+
+    $wgUseAjax = true;
+    $wgEnableMWSuggest = true;
+    $wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
+    $wgFavicon = "$wgScriptPath/images/favicon.ico";
+    $wgRightsIcon = "$wgScriptPath/images/cameronedge_logo_blueSmall.png";
+    $wgRightsUrl = "http://cameronedge.com/";
+    $wgRightsText = "FIXwiki copyrights";
+    $wgRightsPage = "FIXwiki:Copyrights";
+    $wgEmailConfirmToEdit = true;
+
+    $wgFileExtensions[] = 'txt'; //Used for FIXnames.txt file
+
+    $wgNamespacesWithSubpages[NS_MAIN] = true;
+    $wgNamespacesWithSubpages[NS_TALK] = true;
+    $wgNamespacesWithSubpages[NS_CATEGORY] = true;
+    $wgNamespacesWithSubpages[NS_CATEGORY_TALK] = true;
+
+    #Wiki requires login to read or edit
+    $wgGroupPermissions['*']['edit'] = false;
+    $wgGroupPermissions['*']['read'] = false;
+    $wgWhitelistRead = array(
+      'FIXwiki',
+      'FIXwiki:About',
+      'FIXwiki:Copyrights',
+      'FIXwiki:Structure',
+      'FIXwiki:Use',
+      'Special:RecentChanges',
+      'MediaWiki:Common.css',
+      'MediaWiki:Monobook.css',
+      'MediaWiki:Modern.css',
+      '-',
+    );
+
+    #Add FPL namespace
+    define("NS_FPL", 100);
+    define("NS_FPL_TALK", 101);
+    $wgExtraNamespaces = array(
+      NS_FPL => 'FPL',
+      NS_FPL_TALK => 'FPL_talk'
+    );
+
+    $wgNamespacesWithSubpages[NS_FPL] = true;
+    $wgNamespacesWithSubpages[NS_FPL_TALK] = true;
+
+    #Namespace protection
+    $wgNamespaceProtection[NS_PROJECT] = array('editinterface');
+    $wgNamespaceProtection[NS_FPL] = array('editinterface');
+    $wgNamespaceProtection[NS_TEMPLATE] = array('editinterface');
+    $wgNamespaceProtection[NS_HELP] = array('editinterface');
+    $wgNamespaceProtection[NS_CATEGORY] = array('editinterface');
+
+    $wgExternalLinkTarget = '_blank';
+
+    require_once( "$IP/extensions/ParserFunctions/ParserFunctions.php" );
+    require_once("$IP/extensions/SubPageList3/SubPageList3.php"); // for SubPageList3 extension
+
+    require_once( "$IP/extensions/recaptcha/ReCaptcha.php" );
+    #This is global key - generate a CameronEdge specific one.
+    $recaptcha_public_key = '6LdtuQcAAAAAAFB8LFXNfmMSkOtOowSNQrP1TbDx';
+    $recaptcha_private_key = '6LdtuQcAAAAAAFlf4sHg8L2QCq-ppRJoaCupFif_';
+
+    #Maintenance shell
+    # Sysops will have access to the MaintenanceShell
+    $wgGroupPermissions['sysop']['maintenanceshell'] = true;
+ 
+    #Place this on the VERY LAST line of your Localsettings.php file:
+    require_once("$IP/extensions/MaintenanceShell.0.2.2/MaintenanceShell.php");
+    
+</pre>
 </body>
 </html>

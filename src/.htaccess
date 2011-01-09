@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^fixwiki/(.*)$ /w/index.php?title=$1 [PT,L,QSA]
+RewriteRule ^fixwiki/*$ /w/index.php [L,QSA]
+RewriteRule ^/*$ /w/index.php [L,QSA]

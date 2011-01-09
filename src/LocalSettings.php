@@ -41,7 +41,7 @@ $wgSitename         = "FIXwiki";
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs please see:
 ## http://www.mediawiki.org/wiki/Manual:Short_URL
-$wgScriptPath       = "/~john/FIXwiki";
+$wgScriptPath       = "/w";
 $wgScriptExtension  = ".php";
 
 ## UPO means: this is also a user preference option
@@ -64,7 +64,7 @@ $wgDBuser           = "wikiuser";
 $wgDBpassword       = "buster";
 
 # MySQL specific settings
-$wgDBprefix         = "fix_";
+$wgDBprefix         = "fw_";
 
 # MySQL table options to use during installation or update
 $wgDBTableOptions   = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";

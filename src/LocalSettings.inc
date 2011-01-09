@@ -69,14 +69,14 @@ $wgExternalLinkTarget = '_blank';
 require_once( "$IP/extensions/ParserFunctions/ParserFunctions.php" );
 require_once("$IP/extensions/SubPageList3/SubPageList3.php"); // for SubPageList3 extension
 
-require_once( "$IP/extensions/recaptcha/ReCaptcha.php" );
+#require_once( "$IP/extensions/recaptcha/ReCaptcha.php" );
 #This is global key - generate a CameronEdge specific one.
-$recaptcha_public_key = '6LdtuQcAAAAAAFB8LFXNfmMSkOtOowSNQrP1TbDx';
-$recaptcha_private_key = '6LdtuQcAAAAAAFlf4sHg8L2QCq-ppRJoaCupFif_';
+#$recaptcha_public_key = '6LdtuQcAAAAAAFB8LFXNfmMSkOtOowSNQrP1TbDx';
+#$recaptcha_private_key = '6LdtuQcAAAAAAFlf4sHg8L2QCq-ppRJoaCupFif_';
 
 #Maintenance shell
 # Sysops will have access to the MaintenanceShell
 $wgGroupPermissions['sysop']['maintenanceshell'] = true;
  
 #Place this on the VERY LAST line of your Localsettings.php file:
-require_once("$IP/extensions/MaintenanceShell.0.2.2/MaintenanceShell.php");
+require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

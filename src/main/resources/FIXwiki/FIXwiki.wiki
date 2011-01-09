@@ -7,7 +7,7 @@ clarifications, corrections, examples or suggestions.
 Please contribute.
 
 {{SITENAME}} was created by John Cameron of [http://cameronedge.com/ Cameron Edge] for the benefit of the FIX community.
-It is completely free.
+It is completely free to members of FPL.
 
 ==Quick Start==
 

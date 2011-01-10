@@ -54,7 +54,7 @@ $wgEnableEmail      = true;
 $wgEnableUserEmail  = true; # UPO
 
 $wgEmergencyContact = "jadcpub-fixwiki@yahoo.com.au";
-$wgPasswordSender = "jadcpub-fixwiki@yahoo.com.au";
+$wgPasswordSender = "$wgSitename Mail<fpl@fixprotocol.org>";
 
 $wgEnotifUserTalk = true; # UPO
 $wgEnotifWatchlist = true; # UPO

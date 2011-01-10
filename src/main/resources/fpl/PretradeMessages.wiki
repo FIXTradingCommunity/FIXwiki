@@ -40,7 +40,7 @@ FIX pre-trade messaging can be categorized into the following sections.
 [[News]]
 
 ==Quotation and Negotiation==
-The quotation messages fall into two main sub-categories – those used for quoting in single instruments  
+The quotation messages fall into two main sub-categories - those used for quoting in single instruments  
 "Single product quoting" and those used to quote on multiple instruments such as option series - "Mass quoting".
 
 See [[FPL:Quoting Models|Quoting Models]] for more details.
@@ -48,9 +48,9 @@ See [[FPL:Quoting Models|Quoting Models]] for more details.
 Within the "single product quoting" suite of messages three business models have been identified:
 
 ; Indicative quoting 
-:the predominant business model for retail quoting, where the expected response to a quote is a ‘previously quoted’ order which may be accepted or rejected. In the retail model the quote may be preceded by a [[QuoteRequest]]
+:the predominant business model for retail quoting, where the expected response to a quote is a "previously quoted" order which may be accepted or rejected. In the retail model the quote may be preceded by a [[QuoteRequest]]
 ; Tradeable quoting 
-: a model where the response to a quote may be an execution (rather than an order). A common model where participants are posting quotes to an exchange. [[Quote]] may be issued in response to a [[QuoteRequest]] in a ‘quote on demand’ market
+: a model where the response to a quote may be an execution (rather than an order). A common model where participants are posting quotes to an exchange. [[Quote]] may be issued in response to a [[QuoteRequest]] in a "quote on demand" market
 ; Restricted Tradeable quoting 
 : as per Tradeable quoting but the  response to a quote may be either an execution or an order depending on various parameters. 
 

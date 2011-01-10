@@ -10,7 +10,7 @@ Allowances	Under an emissions cap and trade program, each allowance entitles the
 American style option	An option that can be exercised at anytime before its expiration date.
 Source: www.investopedia.com and www.investorwords.com 
 [ExerciseStyle]	
-Annual Yield	The annual interest or dividend income an investment earns, expressed as a percentage of the investment’s total value.	[YieldType]
+Annual Yield	The annual interest or dividend income an investment earns, expressed as a percentage of the investment"s total value.	[YieldType]
 As defined	Sides of the legs are the same as defined in the multileg instrument.	[Side]
 At Crossing	An order that is valid only during crossing (auction) phases. The order is valid during the day or up to and including a specified trading (sub) session. Also see Good  Till Crossing (GTX), Good Through Crossing,At the Opening and At the Close.	[TimeInForce]
 At the close	Indicated price is to be around the closing price, however, not held to the closing price.	[IOIQualifier]
@@ -87,8 +87,8 @@ Close	An instruction to position keeping that the trade should bring the positio
 Close but Notify on Open	An instruction to position keeping that the trade should close an existing position. If the position is closed out and an opposite position is opened a notification is sent out.	[PositionEffect]
 Closing Yield	The yield of a bond based on the closing price.	[YieldType]
 Closing Yield Most Recent Month	The yield of a bond based on the closing price as of the most recent month's end.	[YieldType]
-Closing Yield Most Recent Quarter	The yield of a bond based on the closing price as of the most recent quarter’s end.	[YieldType]
-Closing Yield Most Recent Year	The yield of a bond based on the closing price as of the most recent year’s end.	[YieldType]
+Closing Yield Most Recent Quarter	The yield of a bond based on the closing price as of the most recent quarter"s end.	[YieldType]
+Closing Yield Most Recent Year	The yield of a bond based on the closing price as of the most recent year"s end.	[YieldType]
 CMTM	Collateralized mark-to-market (CMTM) is determined by marking from coupon rate to settlement price. The resulting amount is collateralized meaning the holder of the position must post acceptable collateral to cover the obligation.
 [from EP83]	[PosAmtType]
 COLAT	Total Collateralized Amount (COLAT) represents the summation of all collateralized amounts (ACPN+CMTM).
@@ -164,15 +164,15 @@ Executing System	System Identifier where execution took place (some markets have
 Executing Trader	Trader or broker id associated with Executing Firm who actually executes the trade.	[PartyRole]
 Executing Unit	Identifies executing unit within an Executing Firm, e.g. trading desk, branch office or similar.	[PartyRole]
 Exhaust	A reserve order refresh method where the displayed quantity is not refreshed until exhausted (filled).	[DisplayWhen]
-External Routing Allowed	Indicates that an order sent to one market may be routed by that market to other external markets, especially in cases where the order locks or crosses the market and it can be executed against another market’s superior price.  Note: The absence of this instruction does not imply that an order should not be routed externally; rather, the order receiver’s default will apply.	[ExecInst]
-External Routing Not Allowed	Indicates that an order sent to one market may never be routed by that market to other external markets.  Should the order lock or cross the market but be unable to execute due to price protection reasons, a market may have to take alternate action, which might include rejecting the order, depending on the market’s rules.  Note: The absence of this instruction does not imply that an order should be routed externally; rather, the order receiver’s default will apply.	[ExecInst]
+External Routing Allowed	Indicates that an order sent to one market may be routed by that market to other external markets, especially in cases where the order locks or crosses the market and it can be executed against another market"s superior price.  Note: The absence of this instruction does not imply that an order should not be routed externally; rather, the order receiver"s default will apply.	[ExecInst]
+External Routing Not Allowed	Indicates that an order sent to one market may never be routed by that market to other external markets.  Should the order lock or cross the market but be unable to execute due to price protection reasons, a market may have to take alternate action, which might include rejecting the order, depending on the market"s rules.  Note: The absence of this instruction does not imply that an order should be routed externally; rather, the order receiver"s default will apply.	[ExecInst]
 Fill or Kill	A market or limit-price order that is to be executed in its entirety as soon as it is represented in the Trading Crowd; if not so executed, the order is to be canceled.  Not to be confused with Immediate or Cancel.	[TimeInForce]
 Final Inventory Due Date	Specifies the last date on which purchase dates for a contract must be provided to the service provider.	[EventType]
 First Delivery Date	Specifies the first delivery date of the delivery period for a physically delivered instrument.	[EventType]
 First Intent Date	Specifies the first date of the delivery period on which intents may be submitted for a physically delivered instrument.	[EventType]
 FIX Connection	A FIX Connection is comprised of three parts: logon, message exchange, and logout.	
 FIX Session	A FIX Session is comprised of one or more FIX Connections, meaning that a FIX Session spans multiple logins.	
-Fixed Payout Option	The payout amount is specified at inception. Associated with Binary options (Yes, it pays or No, it doesn’t pay).
+Fixed Payout Option	The payout amount is specified at inception. Associated with Binary options (Yes, it pays or No, it doesn"t pay).
 [from EP92]	
 Fixed Cabinet Trade Price	Cabinet Trade executed at a price equal to the minimum tick size (or smallest possible price) .  See "Cabinet Trade".	[PriceType]
 Fixed	A fixed cabinet trade price set to a minimum tick amount.	[TickRuleType]
@@ -197,7 +197,7 @@ Full Curve	Price calculation method that uses a complete credit curve to establi
 [from EP83]	[QuoteCondition]
 Funari	Japanese term for an order to buy or sell a stated amount of a security at the specified limit price with any unexecuted (leftover) quantity becoming a Market On Close order.	[OrdType]
 Fund manager Client ID	For CIV:
-An identifier for an Investor or a broker or funds supermarket’s  nominee/custodian company which is recognized by the Fund manager.	[PartyRole]
+An identifier for an Investor or a broker or funds supermarket"s  nominee/custodian company which is recognized by the Fund manager.	[PartyRole]
 Giveup Clearing Firm	Firm to which the trade is given up (carries the position that results from a trade).	[PartyRole]
 Good Till Cancel	An order to buy or sell that remains in effect until it is either executed or canceled; sometimes called an “open order”. 	[TimeInForce]
 Good Till Crossing	An order to buy or sell that is canceled prior to the market entering into an auction, or crossing phase. Typically, markets that support continuous trading will have an auction phase at the beginning and sometimes also at the end of trading to match up orders that have been entered into the exchange's order book during the pre- or post-trading phase (i.e. where no continuous trading was available). A GTX order automatically expires immediately prior to the commencement of a crossing session, i.e. the party originating the order wants to make sure it gets filled during the current continuous auction, and any remaining open quantity should be discarded at the end of the current continuous auction period.	[TimeInForce]
@@ -222,7 +222,7 @@ Initiator	An “initiator” may be one of the following:
 • a financial planner
 • a retail broker representing a retail customer
 • a broker/dealer
-• an inter-dealer broker (or broker’s broker)
+• an inter-dealer broker (or broker"s broker)
 • an issuer	Quoting and other messages Volume 7
 Institutions Only	Broker is restricted to dealing with other buy side firms.	[ExecInst]
 Instrument Denominator	Specifies the price denominator of a fractionally quoted instrument such as treasure note futures or corn futures. Values are whole numbers. Examples are Quarters (4), Eights (8), Sixteenths (16), Thirty-seconds (32), etc.	[InstrAttribType]
@@ -230,7 +230,7 @@ Instrument Numerator	Specifies the denominator for the fractional portion of a n
 Instrument Price Precision	Specifies the number of decimal places that are provided in order to correctly format a price. Generally, used for the formatting of fractional prices. Values are whole numbers.	[InstrAttribType]
 Instrument Strike Price	Specifies the number of decimal places that are provided in order to correctly format a strike price. Generally, used for the formatting of fractional prices. Values are whole numbers.	[InstrAttribType]
 Interest Accrual Date	The start date used for calculating accrued interest on debt instruments which are being sold between interest payment dates. Often but not always the same as the "Issue Date" and the "Dated Date".	
-Intermarket sweep	An order that is an intermarket sweep as defined by the SEC in Regulation NMS.  This value is used on Immediate or Cancel limit orders (or other order type and time in force).  It indicates that the party sending the order has taken responsibility for price protection, and the recipient of the order should execute it, if possible, without regard to protection of other markets’ prices.  While the term “Intermarket sweep” is specific to the United States, the ExecInst value that represents it may be used in other markets, where appropriate, to indicate an order that should be executed without regard to price protection.	[ExecInst]
+Intermarket sweep	An order that is an intermarket sweep as defined by the SEC in Regulation NMS.  This value is used on Immediate or Cancel limit orders (or other order type and time in force).  It indicates that the party sending the order has taken responsibility for price protection, and the recipient of the order should execute it, if possible, without regard to protection of other markets" prices.  While the term “Intermarket sweep” is specific to the United States, the ExecInst value that represents it may be used in other markets, where appropriate, to indicate an order that should be executed without regard to price protection.	[ExecInst]
 Crossed	A trade done internally at a marketplace member. Often restricted to the inside of the current spread. In cases where the trade must be offered to the market for price improvement it is often called Cross Trade.	[TradeCondition]
 Introducing Firm	The broker or other intermediary with the closest association with the investor.	[PartyRole]
 Inverse Floater Bond Yield	Inverse floater semi-annual bond equivalent rate.	[YieldType]
@@ -369,7 +369,7 @@ Note that this "definition" is not for the standard business term.  See online r
 Request to Intermediary	Used in a model where an intermediary, e.g. clearing house, is involved in communicating allocation details and actions between two parties	[AllocType]
 Respondent	A “respondent” may be one of the following:
 • a broker/dealer
-• an inter-dealer broker (or broker’s broker)
+• an inter-dealer broker (or broker"s broker)
 • an electronic service
 • bid or offer prices provided by one or more market makers
 • bid or offer prices provided by an inter-dealer broker
@@ -439,7 +439,7 @@ Trade Along	Clients who specify "Trade Along" give brokers permission to handle 
 Trade Confirmation	A trade report confirming that a trade has been made.	[TradeHandlingInstr]
 Trading Session VWAP Price	The volume weighted average price for a trading session.	[MDEntryType]
 Trailing Stop Peg	A pegged order representing a stop order with a stop price pegged to trail a specified distance behind the last sale price. The price of a trailing stop to buy can never increase, and the price of a trailing stop to sell can never decrease.	[ExecInst]
-Triggered or Activated by System	An execution instruction that indicates that the sending system activated or updated the order. The triggering or activation is normally based on instructions provided in the original order – e.g. Stop order instructions.	[ExecType]
+Triggered or Activated by System	An execution instruction that indicates that the sending system activated or updated the order. The triggering or activation is normally based on instructions provided in the original order - e.g. Stop order instructions.	[ExecType]
 True Gross Yield	Yield calculated using the price including accrued interest, where coupon dates are moved from holidays and weekends to the next trading day.	[YieldType]
 True Yield	The yield calculated with coupon dates moved from a weekend or holiday to the next valid settlement date.	[YieldType]
 Try to Stop	Used in specialist-driven markets to direct the specialist to try and stop the order.	[ExecInst]

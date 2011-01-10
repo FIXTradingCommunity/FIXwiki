@@ -1,14 +1,14 @@
 ==Introduction==
 
-The [[FPL:Pre-trade_messages#Quotation_and_Negotiation|quotation messages]] fall into two main sub-categories – those used for quoting in single instruments  
+The [[FPL:Pre-trade_messages#Quotation_and_Negotiation|quotation messages]] fall into two main sub-categories - those used for quoting in single instruments  
 "Single product quoting" and those used to quote on multiple instruments such as option series - "Mass quoting".
 
 Within the "single product quoting" suite of messages three business models have been identified:
 
 ; Indicative quoting 
-:the predominant business model for retail quoting, where the expected response to a quote is a ‘previously quoted’ order which may be accepted or rejected. In the retail model the quote may be preceded by a [[QuoteRequest]]
+:the predominant business model for retail quoting, where the expected response to a quote is a "previously quoted" order which may be accepted or rejected. In the retail model the quote may be preceded by a [[QuoteRequest]]
 ; Tradeable quoting 
-: a model where the response to a quote may be an execution (rather than an order). A common model where participants are posting quotes to an exchange. [[Quote]] may be issued in response to a [[QuoteRequest]] in a ‘quote on demand’ market
+: a model where the response to a quote may be an execution (rather than an order). A common model where participants are posting quotes to an exchange. [[Quote]] may be issued in response to a [[QuoteRequest]] in a "quote on demand" market
 ; Restricted Tradeable quoting 
 : as per Tradeable quoting but the  response to a quote may be either an execution or an order depending on various parameters. 
 
@@ -169,7 +169,7 @@ following manner.
 
 ===Tradeable Quote Model - Quote on Demand Message Scenario===
 
-In the quote on demand model – markets are not necessarily available until someone interested in the market 
+In the quote on demand model - markets are not necessarily available until someone interested in the market 
 generates a request.
 
 {|border="1"
@@ -299,7 +299,7 @@ Received [[ExecutionReport]] - New
 
 ===Tradeable Quote Model Message Scenario - Continuous markets===
 
-The Tradeable Quote Model in a continuously quoted marketed – requires market makers or specialist to maintain market 
+The Tradeable Quote Model in a continuously quoted marketed - requires market makers or specialist to maintain market 
 compliant two sided markets.
 
 
@@ -405,7 +405,7 @@ Received [[ExecutionReport]] - New
 ===Tradeable Quote Model - Querying for Quote Status===
 
 Market participants may need to query the status of their current quotes. Normally a market will provide status in an 
-unsolicited manner back to the quote issuer. However, to support system or session recovery – 
+unsolicited manner back to the quote issuer. However, to support system or session recovery - 
 the [[QuoteStatusRequest]] can be used to query the current state of quotes within a market.
 
 {|border="1"
@@ -435,10 +435,10 @@ The [[QuoteStatusReport]] message can also contain a [[QuoteStatus]] of  "QuoteN
 ==Restricted Tradeable Quote Model==
 
 The Restricted Tradeable Quote Model extends the behavior of the Tradeable Quote Model to place limits on quantity or 
-price. Orders received against the Restricted Tradeable Quote that are within limits set by the market – will 
-execute against the quote automatically – just as in the case of the Tradeable Quote Model.
+price. Orders received against the Restricted Tradeable Quote that are within limits set by the market - will 
+execute against the quote automatically - just as in the case of the Tradeable Quote Model.
 
-If the order is outside the limits specified by the market – the order is forwarded to the quote issuer(s) to be filled, 
+If the order is outside the limits specified by the market - the order is forwarded to the quote issuer(s) to be filled, 
 partially filled with remaining quantity cancelled, or canceled.
 
 ===Restricted Tradeable Quote Model Message Scenario===

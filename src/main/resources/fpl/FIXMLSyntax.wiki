@@ -510,7 +510,7 @@ Each level of schema file (with the exception of datatypes) provides a base defi
 
 [[Image:SchemaFileHierarchy.png|border|800px]]
 
-Subsequent levels of the schema reference the impl from the previous level Ð thus providing a customization entry point at the field level, component level, and message level.
+Subsequent levels of the schema reference the impl from the previous level - thus providing a customization entry point at the field level, component level, and message level.
 
 [[Image:CustomizableSchemaFiles.png|border|900px]]
 

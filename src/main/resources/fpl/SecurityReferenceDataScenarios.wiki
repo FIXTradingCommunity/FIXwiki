@@ -214,12 +214,12 @@ This scenario has the first party requesting a list of Security types supported 
 |}
 
                                                     
-===Scenario 3 Ð Inquire Common Stocks Available for Trading with Counterparty===
+===Scenario 3 - Inquire Common Stocks Available for Trading with Counterparty===
 This example shows how the [[SecurityDefinitionRequest]] Message and [[SecurityDefinition]] Messages can be used to 
 return a list of common stocks available for trading with a counterparty. 
 The first party specifies  the [[SecurityRequestType]] equal to 3 and specifies the [[SecurityType]] of common stock. 
 The second party returns a list of common stocks available on its market. 
-Note: This is intended to return standing data (static data) or a list of products available for trading Ð 
+Note: This is intended to return standing data (static data) or a list of products available for trading - 
 it is not intended to return an order book (see [[FPL:Pre-trade messages#Market Data|Market Data messages]] for this purpose). 
 This is most applicable but not limited, to the case when the second party is an exchange.
 
@@ -299,12 +299,12 @@ Contains list of Securities available for the specified the Security Types suppo
 Security information for each security is provided for each of the XX securities.
 |}
 
-===Scenario 5 Ð Inquire Option Classes Available for Trading with Counterparty===
+===Scenario 5 - Inquire Option Classes Available for Trading with Counterparty===
 This example shows how the [[SecurityDefinitionRequest]] Message and [[SecurityDefinition]] Messages can be used to 
 return a list of option classes available for trading with a counterparty. 
 The first party specifies a [[SecurityRequestType]] equal to 3 (Request List of Securities) and  the 
 [[SecurityType]] of options. The second party returns a list of option classes available on its markets. 
-Note: This is intended to return standing data (static data) or a list of products available for trading Ð 
+Note: This is intended to return standing data (static data) or a list of products available for trading - 
 it is not intended to return an order book (see [[FPL:Pre-trade messages#Market Data|Market Data messages]]).
 
 {|border="1"

@@ -128,7 +128,7 @@
 A
     </Value>
     <Description>
-	Order has been received by sell-side’s (broker, exchange, ECN) system but not yet accepted for execution.  An execution message with this status will only be sent in response to a Status Request message.
+	Order has been received by sell-side"s (broker, exchange, ECN) system but not yet accepted for execution.  An execution message with this status will only be sent in response to a Status Request message.
     </Description>
   </Enums>
   <Enums>
@@ -150,7 +150,7 @@ B
 C
     </Value>
     <Description>
-	Order has been canceled in broker’s system due to time in force instructions.  The only exceptions are Fill or Kill and Immediate or Cancel orders that have Canceled as terminal order state.
+	Order has been canceled in broker"s system due to time in force instructions.  The only exceptions are Fill or Kill and Immediate or Cancel orders that have Canceled as terminal order state.
     </Description>
   </Enums>
   <Enums>

@@ -44,7 +44,7 @@ The diagrams above illustrate the structure that will be provided to the trading
 # A set of primary party information describing the party in the list ([[PartyListGrp]])
 # A set of alternate party identifiers for each Party ([[PartyAltIDs]])
 # A set of secondary information for each Party (Party Sub Type Block)
-# A set of parent parties to which the primary party is subordinate (Parent Party Block) Ð note that each Parent Party will have its own Party List Group
+# A set of parent parties to which the primary party is subordinate (Parent Party Block) - note that each Parent Party will have its own Party List Group
 # A set of product entitlements that pertains to the Party (Product Entitlement Grp) (future consideration)
 # A set of risk limits that pertains to the primary Party (Risk Control Grp)
 

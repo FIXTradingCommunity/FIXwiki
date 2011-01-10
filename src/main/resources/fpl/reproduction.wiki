@@ -3,8 +3,8 @@ entirety provided that the duplicated pages retain the “Copyright FIX Protocol L
 page.
 
 Portions of the FIX Protocol specification may be extracted or cited in other documents (such as a document which 
-describes one’s implementation of the FIX Protocol) provided that one reference the origin of the FIX Protocol 
+describes one"s implementation of the FIX Protocol) provided that one reference the origin of the FIX Protocol 
 specification (http://www.fixprotocol.org) and that the specification itself is “Copyright FIX Protocol Limited”.
 
-FIX Protocol Limited claims no intellectual property over one’s implementation (programming code) of an application 
+FIX Protocol Limited claims no intellectual property over one"s implementation (programming code) of an application 
 which implements the behavior and details from the FIX Protocol specification.

@@ -61,15 +61,26 @@ public class FixwikiGenerator {
     String cmd = "php importTextFile.php " +
             (title == null ? "" : "--title '" + title + "' ") +
             (overwrite ? "" : "--nooverwrite ") +
-            "--user 'WikiSysop' $" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
+            "$" + IMPORT_DIR_VARIABLE + File.separator + "'" + relName + "'";
     script.println(cmd);
   }
 
   private void addResourceImportToScript(File scriptDir, PrintWriter script, String resourceName, String title) throws IOException {
-    String fname = scriptDir.getAbsolutePath() + File.separator + resourceName;
-    copyResourceToFile(resourceName, fname);
+    addResourceToOutput(scriptDir, resourceName);
 
     addImportToScript(script, resourceName, title, true);
+  }
+
+  private void addResourceToOutput(File outputDir, String resourceName) throws IOException {
+    String fname = outputDir.getAbsolutePath() + File.separator + resourceName;
+    copyResourceToFile(resourceName, fname);
+  }
+
+  private void addUploadToScript(PrintWriter script, String subdirectoryName) {
+    String cmd = "php importImages.php " +
+            "--overwrite " +
+            "$" + IMPORT_DIR_VARIABLE + File.separator + "'" + subdirectoryName + "'";
+    script.println(cmd);
   }
 
   private void copyResourceToFile(String resourceName, String fname) throws IOException {
@@ -144,11 +155,17 @@ public class FixwikiGenerator {
     generateComponentPages(scriptDir, script);
 
     generateTypePages(scriptDir, script);
+    
+    doUploads(script);
 
     script.println("php rebuildall.php");
 
     script.close();
 
+  }
+
+  private void doUploads( PrintWriter script) {
+    addUploadToScript(script, "images");
   }
 
   private void generateConstantPages(File scriptDir, PrintWriter script) throws IOException {
@@ -170,6 +187,7 @@ public class FixwikiGenerator {
     addResourceImportToScript(scriptDir, script, "MediaWiki/Sidebar.wiki", "MediaWiki:Sidebar");
     addResourceImportToScript(scriptDir, script, "FIXwiki/About.wiki", "FIXwiki:About");
     addResourceImportToScript(scriptDir, script, "FIXwiki/Copyrights.wiki", "FIXwiki:Copyrights");
+    addResourceImportToScript(scriptDir, script, "FIXwiki/FIXNames.wiki", "FIXwiki:FIX Names");
     addResourceImportToScript(scriptDir, script, "FIXwiki/FIXwiki.wiki", "FIXwiki");
     addResourceImportToScript(scriptDir, script, "FIXwiki/Structure.wiki", "FIXwiki:Structure");
     addResourceImportToScript(scriptDir, script, "FIXwiki/Use.wiki", "FIXwiki:Use");
@@ -229,6 +247,25 @@ public class FixwikiGenerator {
     addResourceImportToScript(scriptDir, script, "help/Editing.wiki", "Help:Editing");
     addResourceImportToScript(scriptDir, script, "help/Searching.wiki", "Help:Searching");
 
+    addResourceToOutput(scriptDir, "images/CustomizableSchemaFiles.png");
+    addResourceToOutput(scriptDir, "images/ExtensibilityPattern.png");
+    addResourceToOutput(scriptDir, "images/FIXMLRootElement.png");
+    addResourceToOutput(scriptDir, "images/LayersFIXMLSchema.png");
+    addResourceToOutput(scriptDir, "images/PartiesReferenceDataNormalMessageFlow.png");
+    addResourceToOutput(scriptDir, "images/PartyDetailsListReportMessageStructure.png");
+    addResourceToOutput(scriptDir, "images/PartyReferenceStructure.png");
+    addResourceToOutput(scriptDir, "images/ProductMarketDataModelFig1.png");
+    addResourceToOutput(scriptDir, "images/ProductMarketDataModelFig2.png");
+    addResourceToOutput(scriptDir, "images/ProductMarketDataModelFig3.png");
+    addResourceToOutput(scriptDir, "images/ProductMarketDataModelFig4.png");
+    addResourceToOutput(scriptDir, "images/ProductMarketDataModelFig5.png");
+    addResourceToOutput(scriptDir, "images/RelatedPartyComponentStructure.png");
+    addResourceToOutput(scriptDir, "images/SchemaFileHierarchy.png");
+    addResourceToOutput(scriptDir, "images/SchemaFileNaming.png");
+    addResourceToOutput(scriptDir, "images/UserDefinedSpreadMessageFlow.png");
+    addResourceToOutput(scriptDir, "images/UserDefinedSpreadOneStepProcess.png");
+    addResourceToOutput(scriptDir, "images/UserDefinedSpreadTwoStepProcess.png");
+    
     generateFIXVersionPlusTemplates(scriptDir, script);
   }
 

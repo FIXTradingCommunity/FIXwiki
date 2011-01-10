@@ -9,6 +9,7 @@ import com.cameronedge.fixrepo.RepoInfo;
 import com.cameronedge.fixrepo.RepoUtil;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -37,26 +39,28 @@ public class FixwikiGenerator {
   private static final String COMPONENT_CONTENT_INFO = "Component Content info";
   private static final String COMPONENT_INFO = "Component info";
   private static final String FIELD_INFO = "Field info";
+  private static final String FIX_NAMES_FILE_NAME = "FIXNames.txt";
   private static final String IMPORT_DIR_VARIABLE = "importdir";
   private static final String INVITATION_TO_POST = "Invitation to post";
   private static final String MESSAGE_CONTENT_INFO = "Message Content info";
   private static final String MESSAGE_INFO = "Message info";
   private static final String REFER_TO_USER_PAGE = "ReferToUserPage";
   private static final String TYPE_INFO = "Type info";
+  private static final String UPLOAD_DIR_NAME = "uploads";
   private static final String VALUE_INFO = "Value info";
   private static final String FPL_PAGE_TERMINATION_STRING = "</includeonly><noinclude>{{" + REFER_TO_USER_PAGE + "}}</noinclude>";
-  
-  private boolean ignoreErrors; 
+
+  private boolean ignoreErrors;
 
   public FixwikiGenerator(RepoInfo repoInfo) {
-    
+
     ignoreErrors = System.getProperty("ignoreErrors") != null;
 
     this.repoInfo = repoInfo;
     linkDetector = new LinkDetector(repoInfo, 0);
   }
 
-  private void addImportToScript(PrintWriter script, String relName, 
+  private void addImportToScript(PrintWriter script, String relName,
                                  String title, boolean overwrite) {
     String cmd = "php importTextFile.php " +
             (title == null ? "" : "--title '" + title + "' ") +
@@ -155,7 +159,9 @@ public class FixwikiGenerator {
     generateComponentPages(scriptDir, script);
 
     generateTypePages(scriptDir, script);
-    
+
+    generateFIXNamesFile(scriptDir);
+
     doUploads(script);
 
     script.println("php rebuildall.php");
@@ -164,8 +170,9 @@ public class FixwikiGenerator {
 
   }
 
-  private void doUploads( PrintWriter script) {
+  private void doUploads(PrintWriter script) {
     addUploadToScript(script, "images");
+    addUploadToScript(script, UPLOAD_DIR_NAME);
   }
 
   private void generateConstantPages(File scriptDir, PrintWriter script) throws IOException {
@@ -265,8 +272,67 @@ public class FixwikiGenerator {
     addResourceToOutput(scriptDir, "images/UserDefinedSpreadMessageFlow.png");
     addResourceToOutput(scriptDir, "images/UserDefinedSpreadOneStepProcess.png");
     addResourceToOutput(scriptDir, "images/UserDefinedSpreadTwoStepProcess.png");
-    
+
     generateFIXVersionPlusTemplates(scriptDir, script);
+  }
+
+  private void generateFIXNamesFile(File outputDir) throws FileNotFoundException {
+    String fname = outputDir.getAbsolutePath() + File.separator + UPLOAD_DIR_NAME +
+            File.separator + FIX_NAMES_FILE_NAME;
+    File f = new File(fname);
+    File parent = f.getParentFile();
+    if (parent != null) {
+      parent.mkdirs();
+    }
+    PrintWriter pw = new PrintWriter(new FileOutputStream(f));
+
+    Set<String> names = new HashSet<String>();
+    
+    //Extract all repo names.
+
+    //Type and component names can come from key set.
+    Map<String, List<Properties>> typeInfos = repoInfo.getTypeInfos();
+    names.addAll(typeInfos.keySet());
+
+    //Add in message names. Use messageInfos for that.
+    Map<String, List<Properties>> messageInfos = repoInfo.getMessageInfos();
+    //We need to iterate since the key to this map is msgType.
+    for (List<Properties> values : messageInfos.values()) {
+      Properties props = values.get(0); //Message only has only one Properties.
+      String messageName = props.getProperty(RepoInfo.PROP_MESSAGE_NAME);
+      names.add(messageName);
+    }
+
+    //Type and component names can come from key set.
+    Map<String, List<Properties>> componentInfos = repoInfo.getComponentInfos();
+    names.addAll(componentInfos.keySet());
+
+    //Add in enum names. Use enumInfos for that.
+    Map<String, List<Properties>> enumInfos = repoInfo.getEnumInfos();
+    //We need to iterate since the key to this map is tag.
+    for (List<Properties> values : enumInfos.values()) {
+      //Now iterate for each enumerated value
+      for (Properties props : values) {
+        String enumName = props.getProperty(RepoInfo.PROP_ENUM_NAME);
+        names.add(enumName);        
+      }
+    }
+    
+    //Field names from the key set of fieldNameTagMap.
+    Map<String, Integer> fieldNameTagMap = repoInfo.getFieldNameTagMap();
+    names.addAll(fieldNameTagMap.keySet());
+
+    //Only print names of length 3 or longer
+    int nSpellers = 0;
+    for (String name : names) {
+      if (name.length() >= 3) {
+        pw.println(name);
+        nSpellers++;
+      }
+    }
+    System.out.println("INFO: " + nSpellers + " names in FIXNames.txt");
+
+    pw.close();
   }
 
   private void generateFIXVersionPlusTemplates(File scriptDir, PrintWriter script) throws IOException {

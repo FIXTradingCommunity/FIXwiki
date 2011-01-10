@@ -24,9 +24,6 @@ set_include_path( implode( PATH_SEPARATOR, $path ) . PATH_SEPARATOR . get_includ
 
 require_once( "$IP/includes/DefaultSettings.php" );
 
-# If PHP's memory limit is very low, some operations may fail.
-# ini_set( 'memory_limit', '20M' );
-
 if ( $wgCommandLineMode ) {
 	if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
 		die( "This script must be run from the command line\n" );
@@ -44,13 +41,20 @@ $wgSitename         = "FIXwiki";
 $wgScriptPath       = "/w";
 $wgScriptExtension  = ".php";
 
+## The relative URL path to the skins directory
+$wgStylePath        = "$wgScriptPath/skins";
+
+## The relative URL path to the logo.  Make sure you change this from the default,
+## or else you'll overwrite your logo when you upgrade!
+$wgLogo             = "$wgStylePath/common/images/wiki.png";
+
 ## UPO means: this is also a user preference option
 
 $wgEnableEmail      = true;
 $wgEnableUserEmail  = true; # UPO
 
-$wgEmergencyContact = "john.cameron@cameronedge.com";
-$wgPasswordSender = "john.cameron@cameronedge.com";
+$wgEmergencyContact = "jadcpub-fixwiki@yahoo.com.au";
+$wgPasswordSender = "jadcpub-fixwiki@yahoo.com.au";
 
 $wgEnotifUserTalk = true; # UPO
 $wgEnotifWatchlist = true; # UPO
@@ -59,15 +63,15 @@ $wgEmailAuthentication = true;
 ## Database settings
 $wgDBtype           = "mysql";
 $wgDBserver         = "localhost";
-$wgDBname           = "wikidb";
+$wgDBname           = "fixwikidb";
 $wgDBuser           = "wikiuser";
-$wgDBpassword       = "buster";
+$wgDBpassword       = "fqgdIgpM1a";
 
 # MySQL specific settings
 $wgDBprefix         = "fw_";
 
 # MySQL table options to use during installation or update
-$wgDBTableOptions   = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";
+$wgDBTableOptions   = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
 
 # Experimental charset support for MySQL 4.1/5.0.
 $wgDBmysql5 = true;
@@ -85,7 +89,7 @@ $wgEnableUploads       = false;
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
 ## available UTF-8 locale
-# $wgShellLocale = "en_US.UTF-8";
+$wgShellLocale = "en_US.utf8";
 
 ## If you want to use image uploads under safe mode,
 ## create the directories images/archive, images/thumb and
@@ -97,14 +101,19 @@ $wgEnableUploads       = false;
 ## you can enable inline LaTeX equations:
 $wgUseTeX           = false;
 
+## Set $wgCacheDirectory to a writable directory on the web server
+## to make your wiki go slightly faster. The directory should not
+## be publically accessible from the web.
+#$wgCacheDirectory = "$IP/cache";
+
 $wgLocalInterwiki   = strtolower( $wgSitename );
 
 $wgLanguageCode = "en";
 
-$wgSecretKey = "ade1eae975a6e54e2a50c75490b0cefe18e0e694ec8713979c01d360c7c024cb";
+$wgSecretKey = "f5a3e6707e1723817456560ae4a4fd6cf77d74a72d3bda866dca9107ddf5dda8";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
-## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
+## names, ie 'vector', 'monobook':
 $wgDefaultSkin = 'monobook';
 
 ## For attaching licensing metadata to pages, and displaying an

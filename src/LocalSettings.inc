@@ -77,6 +77,13 @@ require_once("$IP/extensions/SubPageList3/SubPageList3.php"); // for SubPageList
 #Maintenance shell
 # Sysops will have access to the MaintenanceShell
 $wgGroupPermissions['sysop']['maintenanceshell'] = true;
+
+$wgSMTP = array(
+ 'host'     => "mail.angel.net", //could also be an IP address
+ 'IDHost'   => "fixwiki.fixprotocol.org",
+ 'port'     => 25,
+ 'auth'     => false
+);
  
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

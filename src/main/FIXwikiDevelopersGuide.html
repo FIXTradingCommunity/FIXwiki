@@ -15,7 +15,7 @@
 
 <p align="right">
     John Cameron<br>
-    10 January 2011
+    11 January 2011
 </p>
 
 <h2>
@@ -186,7 +186,7 @@
 
 <p>
     Note that the ConfirmAccount extension requires that some SQL is run on
-    the underlying database as well. The the doc for that extension.
+    the underlying database as well. See the doc for that extension.
 </p>
 
 <h3>
@@ -548,6 +548,7 @@
       'MediaWiki:Monobook.css',
       'MediaWiki:Modern.css',
       '-',
+      'Special:RequestAccount',
     );
 
     #Add FPL namespace
@@ -578,9 +579,12 @@
     #$recaptcha_public_key = '6LdtuQcAAAAAAFB8LFXNfmMSkOtOowSNQrP1TbDx';
     #$recaptcha_private_key = '6LdtuQcAAAAAAFlf4sHg8L2QCq-ppRJoaCupFif_';
 
-    #Maintenance shell
-    # Sysops will have access to the MaintenanceShell
-    $wgGroupPermissions['sysop']['maintenanceshell'] = true;
+    require_once("$IP/extensions/ConfirmAccount/SpecialConfirmAccount.php");
+
+    require_once("$IP/extensions/ImportUsers/SpecialImportUsers.php");
+
+    $wgGroupPermissions['sysop']['passwordreset']   = true;
+    require_once( "$IP/extensions/PasswordReset/PasswordReset.php" );
 
     $wgSMTP = array(
      'host'     => "mail.angel.net", //could also be an IP address
@@ -588,9 +592,14 @@
      'port'     => 25,
      'auth'     => false
     );
+
+    #Maintenance shell
+    # Sysops will have access to the MaintenanceShell
+    $wgGroupPermissions['sysop']['maintenanceshell'] = true;
  
     #Place this on the VERY LAST line of your Localsettings.php file:
-    require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");    
+    require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");
+    
 </pre>
 </body>
 </html>

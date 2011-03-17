@@ -108,5 +108,17 @@ $wgGroupPermissions['sysop']['maintenanceshell'] = true;
 # Added by nic@angel.net on 4 Feb 2011
 $wgPasswordSender = "$wgSitename Mail<fixwiki@fixprotocol.org>";
 
+# Added by nic@angel.net on 23 Feb 2011
+function lessSpecialPages (&$list) {
+	global $wgUser;
+	if ( ! $wgUser->isAllowed('editinterface') ) {
+		unset( $list['Listusers'] );
+		unset( $list['Listgrouprights'] );
+		unset( $list['Activeusers'] );
+	}
+	return true;
+}
+$wgHooks['SpecialPage_initList'][] = 'lessSpecialPages';
+
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

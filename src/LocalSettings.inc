@@ -15,7 +15,8 @@ $wgUsePathInfo = true;
 
 $wgUseAjax = true;
 $wgEnableMWSuggest = true;
-$wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
+##$wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
+$wgLogo = "$wgScriptPath/FIX_logo.146px.png" ;
 $wgFavicon = "$wgScriptPath/images/favicon.ico";
 $wgRightsIcon = "$wgScriptPath/images/cameronedge_logo_blueSmall.png";
 $wgRightsUrl = "http://cameronedge.com/";
@@ -92,6 +93,6 @@ $wgSMTP = array(
 #Maintenance shell
 # Sysops will have access to the MaintenanceShell
 $wgGroupPermissions['sysop']['maintenanceshell'] = true;
- 
+
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

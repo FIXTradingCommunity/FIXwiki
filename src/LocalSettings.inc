@@ -120,5 +120,8 @@ function lessSpecialPages (&$list) {
 }
 $wgHooks['SpecialPage_initList'][] = 'lessSpecialPages';
 
+# Added by nic@angel.net on 23 Feb 2011
+$wgConfirmAccountRejectAge = 5 * 24 * 3600; // 5 days
+
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

@@ -33,7 +33,7 @@ $wgNamespacesWithSubpages[NS_CATEGORY_TALK] = true;
 
 #Wiki requires login to read or edit
 $wgGroupPermissions['*']['edit'] = false;
-$wgGroupPermissions['*']['read'] = false;
+$wgGroupPermissions['*']['read'] = true;
 $wgWhitelistRead = array(
   'FIXwiki',
   'FIXwiki:About',

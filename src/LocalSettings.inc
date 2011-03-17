@@ -76,7 +76,18 @@ require_once("$IP/extensions/SubPageList3/SubPageList3.php"); // for SubPageList
 #$recaptcha_public_key = '6LdtuQcAAAAAAFB8LFXNfmMSkOtOowSNQrP1TbDx';
 #$recaptcha_private_key = '6LdtuQcAAAAAAFlf4sHg8L2QCq-ppRJoaCupFif_';
 
+###require_once("$IP/extensions/ConfirmAccount/SpecialConfirmAccount.php");
+## bn - replacing above with below to replicate original configuration
+## Thu Feb  3 22:51:25 EST 2011
+##Confirm account edit stuff
 require_once("$IP/extensions/ConfirmAccount/SpecialConfirmAccount.php");
+$wgAccountRequestToS = true;
+$wgUseRealNamesOnly = true;
+$wgRequestExtraInfo = false;
+$wgAccountRequestMinWords = 10;
+$wgAllowAccountRequestFiles = false;
+$wgConfirmAccountContact = "fpl@fixprotocol.org" ;
+## Thu Feb  3 22:51:25 EST 2011
 
 require_once("$IP/extensions/ImportUsers/SpecialImportUsers.php");
 

@@ -105,5 +105,8 @@ $wgSMTP = array(
 # Sysops will have access to the MaintenanceShell
 $wgGroupPermissions['sysop']['maintenanceshell'] = true;
 
+# Added by nic@angel.net on 4 Feb 2011
+$wgPasswordSender = "$wgSitename Mail<fixwiki@fixprotocol.org>";
+
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

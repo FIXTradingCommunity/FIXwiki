@@ -16,7 +16,7 @@ $wgUsePathInfo = true;
 $wgUseAjax = true;
 $wgEnableMWSuggest = true;
 ##$wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
-$wgLogo = "$wgScriptPath/images/FIX_logo.146px.png" ;
+$wgLogo = "$wgScriptPath/FIX_logo.146px.png" ;
 $wgFavicon = "$wgScriptPath/images/favicon.ico";
 $wgRightsIcon = "$wgScriptPath/images/cameronedge_logo_blueSmall.png";
 $wgRightsUrl = "http://cameronedge.com/";
@@ -108,10 +108,15 @@ $wgGroupPermissions['sysop']['maintenanceshell'] = true;
 # Added by nic@angel.net on 4 Feb 2011
 $wgPasswordSender = "$wgSitename Mail<fixwiki@fixprotocol.org>";
 
+# Commented out by nic@angel.net on 6 Feb 2011
+# $wgGroupPermissions['approvers']['confirmaccount'] = true;
+
+# $wgGroupPermissions['user']['createpage'] = false;
+
 # Added by nic@angel.net on 23 Feb 2011
 function lessSpecialPages (&$list) {
 	global $wgUser;
-	if ( ! $wgUser->isAllowed('editinterface') ) {
+	if ( ! $wgUser->isAllowed('editinterface') ) { 
 		unset( $list['Listusers'] );
 		unset( $list['Listgrouprights'] );
 		unset( $list['Activeusers'] );
@@ -122,6 +127,9 @@ $wgHooks['SpecialPage_initList'][] = 'lessSpecialPages';
 
 # Added by nic@angel.net on 23 Feb 2011
 $wgConfirmAccountRejectAge = 5 * 24 * 3600; // 5 days
+
+# Added by nic@angel.net on 24 Feb 2011
+$wgRightsPage = 'FIXwiki:Terms_of_Use';
 
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

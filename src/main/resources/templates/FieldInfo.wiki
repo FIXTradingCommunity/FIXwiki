@@ -3,7 +3,7 @@
 {| border="1"
 ! Tag !! Name !! Type !! Enumerated !! First introduced !! Deprecated
 |-
-|| {{{Tag}}} || {{{Name}}} || [[{{{Type}}}DataType | {{{Type}}}]] || {{#if: {{{EnumFieldName|}}} | {{#if: {{{EnumDatatype|}}} | Same values as [[{{{EnumFieldName}}}]]| x}} |}} || {{{added}}} || {{{deprecated|}}}
+|| {{{Tag}}} || {{{Name}}} || [[{{{Type}}}DataType | {{{Type}}}]] || {{#if: {{{EnumFieldName|}}} | {{#if: {{{EnumDatatype|}}} | Same values as [[{{{EnumFieldName}}}]]| x}} |}} || {{{added|}}} {{#if: {{{addedEP|}}} | EP{{{addedEP}}} | }} || {{{deprecated|}}}
 |}
 
 {{{Description|}}}

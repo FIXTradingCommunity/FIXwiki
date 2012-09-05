@@ -3,7 +3,7 @@
 {| border="1"
 ! FIX Specification !! Type !! First introduced !! Deprecated
 |-
-|| {{{CategoryID}}} || {{{ComponentType}}} || {{{added}}} || {{{deprecated|}}}
+|| {{{CategoryID}}} || {{{ComponentType}}} || {{{added|}}} {{#if: {{{addedEP|}}} | EP{{{addedEP}}} | }} || {{{deprecated|}}}
 |}
 
 {{{Description|}}}

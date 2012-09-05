@@ -59,7 +59,7 @@ public class FixRepoHandler extends DefaultHandler {
     if (value != null) {
 
       if (key == null || key.length()==0) {
-        System.out.println("No key for value " + value + " in " + currentProps);        
+        System.out.println("No key for value " + value + " in " + currentProps);
       }
 
       //Clean up values.
@@ -67,7 +67,8 @@ public class FixRepoHandler extends DefaultHandler {
 
       Object old = currentProps.setProperty(key, clean);
       if (old != null) {
-        throw new RuntimeException("Overwriting property - " + key + " in " + currentElement);
+        //throw new RuntimeException("Overwriting property - " + key + " in " + currentElement);
+        System.out.println("WARNING: Overwriting property "+key+" in "+currentElement);
       }
     }
   }

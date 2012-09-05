@@ -192,11 +192,11 @@ public class RepoInfo {
     postProcessEnums();
 
     //Must follow postProcessEnums.
-    //Adds Enum attribute to fields with enumerated values. 
+    //Adds Enum attribute to fields with enumerated values.
     // Computed from enumInfos. This assumes that the enums are up to date.
     postProcessFields();
 
-    //Postprocess message/component segments. This should come after 
+    //Postprocess message/component segments. This should come after
     //postprocessing of fields, messages and components.
     postProcessSegments();
 
@@ -236,7 +236,7 @@ public class RepoInfo {
   }
 
   private void addContainsItem(int fixVersionIndex, String tagText, String containerName) {
-    //TODO JC If you ever wanted to you could easily have a copy by FIX version here.  
+    //TODO JC If you ever wanted to you could easily have a copy by FIX version here.
     Set<String> mcs = messagesAndComponentsByName.get(tagText);
     if (mcs == null) {
       mcs = new HashSet<String>();
@@ -249,7 +249,7 @@ public class RepoInfo {
   private boolean checkEnumName(String enumName, Set<String> names, String tagStr, String enumValue, String description) {
     boolean warning = false;
 
-    //Keeps tally of enumName lengths and  checks for similar names.    
+    //Keeps tally of enumName lengths and  checks for similar names.
     int nameLen = enumName.length();
     enumNameLens[nameLen]++;
     String enumNameExpectedUnique;
@@ -665,6 +665,22 @@ public class RepoInfo {
     }
   }
 
+  private void scanForInvalidCharacters(InputStream in,String filename) throws IOException {
+    InputStreamReader reader=new InputStreamReader(in);
+    int ch=0;
+    int line=0;
+    int column=0;
+    while((ch=reader.read())!=-1) {
+      column++;
+      if(ch>255) {
+        System.out.println("WARNING: non-ASCII character "+ch+" in "+filename+" (near line "+line+", column "+column+")");
+      } else if(ch=='\n') {
+        line++;
+        column=0;
+      }
+    }
+  }
+
   private Map<String, List<Properties>> parse(InputStream is, String element, String indexElement, boolean multiValued) throws IOException, SAXException {
     if (is != null) {
       FixRepoHandler handler = new FixRepoHandler(element, indexElement, multiValued);
@@ -680,6 +696,10 @@ public class RepoInfo {
     File source = new File(repoDir.getAbsolutePath() + File.separator + filename);
     if (source.exists()) {
       FileInputStream fis = new FileInputStream(source);
+      scanForInvalidCharacters(fis,source.getAbsolutePath());
+      fis.close();
+
+      fis=new FileInputStream(source);
       return parse(fis, element, indexElement, multiValued);
     } else {
       return null;

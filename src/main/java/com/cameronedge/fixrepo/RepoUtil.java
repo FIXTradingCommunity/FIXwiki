@@ -46,18 +46,25 @@ public class RepoUtil {
     StringBuffer cleanValue = new StringBuffer(len);
     for (int i = 0; i < len; i++) {
       char ch = s.charAt(i);
+
+      if (ch > 127) {
+        System.out.println("WARNING: Non ASCII character " + ch + "(" + (int) ch + ")");
+      }
+
       String convertedCh = String.valueOf(ch);
 
       boolean handled = true;
 
+      //These strange character codes are what we see after copy/pasting text
+      //from MS Word.
       switch (ch) {
-        case 'Ò':
-        case 'Ó':
+        case 0xD2: //Open double quote
+        case 0xD3: //Close double quote
           convertedCh = String.valueOf('"');
           break;
 
-        case 'Ô':
-        case 'Õ':
+        case 0xD4: //Open single quote
+        case 0xD5: //Close single quote
           convertedCh = String.valueOf('\'');
           break;
 
@@ -70,8 +77,8 @@ public class RepoUtil {
           break;
 
         case 65533:
-        case 'Ð':
-        case 'Ñ':
+        case 0xD0: // dashes
+        case 0xD1:
           convertedCh = String.valueOf('-');
           break;
 
@@ -79,7 +86,7 @@ public class RepoUtil {
           convertedCh = String.valueOf(' ');
           break;
 
-        case '¥':
+        case 0xA5: //Bullet point
           //We leave these alone for later processing.
           break;
 
@@ -87,7 +94,7 @@ public class RepoUtil {
           handled = false;
       }
 
-      if (ch > 255 && !handled) {
+      if (ch > 127 && !handled) {
         System.out.println("WARNING: Unhandled non ASCII character " + ch + "(" + (int) ch + ")");
       }
 

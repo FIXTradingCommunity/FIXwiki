@@ -244,6 +244,9 @@ public class FixwikiGenerator {
     addResourceImportToScript(scriptDir, script, "categories/FIXT.1.1.wiki", "Category:FIXT.1.1");
     addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP1.wiki", "Category:FIX.5.0SP1");
     addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP2.wiki", "Category:FIX.5.0SP2");
+    
+    //TODO JC Need to add EP category pages
+    
     addResourceImportToScript(scriptDir, script, "categories/message.wiki", "Category:Message");
     addResourceImportToScript(scriptDir, script, "categories/component.wiki", "Category:Component");
     addResourceImportToScript(scriptDir, script, "categories/field.wiki", "Category:Field");
@@ -422,6 +425,8 @@ public class FixwikiGenerator {
 
           fw.println("}}");
 
+          writeEPCategory(props, fw);
+          
           writeFIXVersionCategories(props, fw);
 
           writeMessageAndComponentCategories(Integer.toString(fieldTag), fw);
@@ -499,6 +504,9 @@ public class FixwikiGenerator {
       fw.println("| SegmentType=Message");
 
       fw.println("}}");
+
+      writeEPCategory(props, fw);
+
       fw.println(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
@@ -620,6 +628,8 @@ public class FixwikiGenerator {
       fw.println("| SegmentType=Component");
 
       fw.println("}}");
+
+      writeEPCategory(props, fw);
 
       writeMessageAndComponentCategories(componentName, fw);
       fw.println(FPL_PAGE_TERMINATION_STRING);
@@ -770,6 +780,8 @@ public class FixwikiGenerator {
 
           fw.println("}}");
 
+          writeEPCategory(props, fw);
+
           writeFIXVersionCategories(props, fw);
           fw.println(FPL_PAGE_TERMINATION_STRING);
           fw.close();
@@ -784,7 +796,7 @@ public class FixwikiGenerator {
     }
   }
 
-  private void generateTypePages(File scriptDir, PrintWriter script) throws IOException {
+  private void generateTypePages(File scriptDir, PrintWriter script) throws Exception {
     Map<String, List<Properties>> typeInfos = repoInfo.getTypeInfos();
 
     String fname;//Now iterate through typeInfos generating type pages.
@@ -810,6 +822,9 @@ public class FixwikiGenerator {
       }
 
       fw.println("}}");
+
+      writeEPCategory(props, fw);
+
       fw.println(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
@@ -875,6 +890,13 @@ public class FixwikiGenerator {
     }
   }
 
+  private void writeEPCategory(Properties props, PrintWriter fw) throws Exception {
+    String addedEP = props.getProperty("addedEP");
+    if (addedEP != null) {
+      fw.println("[[Category:EP" + addedEP + "]]");
+    }
+  }
+  
   private void writeFIXVersionCategories(Properties props, PrintWriter fw) throws Exception {
     //Compute valid FIX versions from added property (gives start) and any deprecated property (gives end).
     //Undeprecated always have form {{FIX.x.y+}}.
@@ -1006,6 +1028,8 @@ public class FixwikiGenerator {
       usage();
       System.exit(0);
     }
+    
+    //TODO JC Need to add optional dir containing latest ep repo
 
     File repoDir = new File(args[0]);
     File scriptDir = new File(args[1]);
@@ -1013,6 +1037,7 @@ public class FixwikiGenerator {
     //Create output directory if necessary.
     scriptDir.mkdirs();
 
+    //TODO JC Need to better understand this param - does it replace existing pages.
     createUserPages = args.length == 3 && "createUserPages".equals(args[2]);
 
     RepoInfo repoInfo = new RepoInfo(repoDir);

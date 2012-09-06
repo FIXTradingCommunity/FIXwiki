@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 public class RepoUtil {
 
   public static final char BULLET = 8226;
-  
+
   public static String camelCase(String s) {
     StringBuffer ret = new StringBuffer();
     StringTokenizer stok = new StringTokenizer(s);
@@ -61,16 +61,16 @@ public class RepoUtil {
       //from MS Word.
       switch (ch) {
         case 210: //Open double quote
-        case 8220: 
+        case 8220:
         case 211: //Close double quote
-        case 8221: 
+        case 8221:
           convertedCh = String.valueOf('"');
           break;
 
         case 212: //Open single quote
         case 8216:
         case 213: //Close single quote
-        case 8217: 
+        case 8217:
           convertedCh = String.valueOf('\'');
           break;
 
@@ -105,9 +105,10 @@ public class RepoUtil {
         default:
           handled = false;
       }
+      handled=false;
 
       if (ch > 127 && !handled) {
-        System.out.println("WARNING: Unhandled non ASCII character " + ch + "(" + (int) ch + ")");
+        //System.out.println("WARNING: Unhandled non ASCII character " + ch + "(" + (int) ch + ")");
       }
 
       cleanValue.append(convertedCh);

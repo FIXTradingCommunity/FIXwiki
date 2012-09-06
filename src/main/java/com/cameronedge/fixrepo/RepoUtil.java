@@ -48,7 +48,7 @@ public class RepoUtil {
       char ch = s.charAt(i);
 
       if (ch > 127) {
-        System.out.println("WARNING: Non ASCII character " + ch + "(" + (int) ch + ")");
+        System.out.println("WARNING: Non ASCII character " + ch + " (" + (int) ch + ") in following string\n" + s);
       }
 
       String convertedCh = String.valueOf(ch);

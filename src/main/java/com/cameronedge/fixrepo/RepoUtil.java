@@ -60,16 +60,16 @@ public class RepoUtil {
       //These strange character codes are what we see after copy/pasting text
       //from MS Word.
       switch (ch) {
-        case 0xD2: //Open double quote
+        case 210: //Open double quote
         case 8220: 
-        case 0xD3: //Close double quote
+        case 211: //Close double quote
         case 8221: 
           convertedCh = String.valueOf('"');
           break;
 
-        case 0xD4: //Open single quote
+        case 212: //Open single quote
         case 8216:
-        case 0xD5: //Close single quote
+        case 213: //Close single quote
         case 8217: 
           convertedCh = String.valueOf('\'');
           break;
@@ -83,18 +83,19 @@ public class RepoUtil {
           break;
 
         case 65533:
-        case 0xD0: // dashes
-        case 0xD1:
+        case 208: // dashes
+        case 209:
         case 8211:
         case 8212:
           convertedCh = String.valueOf('-');
           break;
 
         case 8195: //Funny space which messes up Java parsing.
+        case 160:
           convertedCh = String.valueOf(' ');
           break;
 
-        case 0xA5: //Bullet point
+        case 165: //Bullet point
         case BULLET:
           //Convert all bullets to a single special value.
           //It will be converted later

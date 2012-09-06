@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * TODO JC Doc
+ * FIXwiki related utilities.
  *
  * @author John Cameron
  */
@@ -55,7 +55,7 @@ public class FixwikiUtil {
             s = RepoUtil.cleanText(s);
 
             char firstChar = s.charAt(0);
-            if (firstChar <= 255) {
+            if (firstChar <= 127) {
               //Normal ASCII character.
               //Escape it if it is some Wiki formatting character.
               if (wikiFormattingChars.contains(firstChar)) {
@@ -70,7 +70,7 @@ public class FixwikiUtil {
               }
             } else {
               //Special character triggers some special processing.
-              if (firstChar == '¥') {
+              if (firstChar == RepoUtil.BULLET) {
                 //Treat this as a list - translate to standard Wiki list character '*'.
                 result.append('*');
                 if (s.length() > 1) {

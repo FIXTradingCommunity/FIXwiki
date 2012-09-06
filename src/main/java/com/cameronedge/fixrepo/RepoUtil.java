@@ -18,6 +18,8 @@ import java.util.StringTokenizer;
  */
 public class RepoUtil {
 
+  public static final char BULLET = 8226;
+  
   public static String camelCase(String s) {
     StringBuffer ret = new StringBuffer();
     StringTokenizer stok = new StringTokenizer(s);
@@ -59,12 +61,16 @@ public class RepoUtil {
       //from MS Word.
       switch (ch) {
         case 0xD2: //Open double quote
+        case 8220: 
         case 0xD3: //Close double quote
+        case 8221: 
           convertedCh = String.valueOf('"');
           break;
 
         case 0xD4: //Open single quote
+        case 8216:
         case 0xD5: //Close single quote
+        case 8217: 
           convertedCh = String.valueOf('\'');
           break;
 
@@ -79,6 +85,8 @@ public class RepoUtil {
         case 65533:
         case 0xD0: // dashes
         case 0xD1:
+        case 8211:
+        case 8212:
           convertedCh = String.valueOf('-');
           break;
 
@@ -87,7 +95,10 @@ public class RepoUtil {
           break;
 
         case 0xA5: //Bullet point
-          //We leave these alone for later processing.
+        case BULLET:
+          //Convert all bullets to a single special value.
+          //It will be converted later
+          convertedCh = String.valueOf(BULLET);
           break;
 
         default:

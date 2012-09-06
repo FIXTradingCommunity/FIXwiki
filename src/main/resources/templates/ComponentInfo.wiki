@@ -3,7 +3,7 @@
 {| border="1"
 ! FIX Specification !! Type !! First introduced !! Deprecated
 |-
-|| {{{CategoryID}}} || {{{ComponentType}}} || {{{added|}}} {{#if: {{{addedEP|}}} | EP{{{addedEP}}} | }} || {{{deprecated|}}}
+|| {{{CategoryID}}} || {{{ComponentType}}} || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
 |}
 
 {{{Description|}}}

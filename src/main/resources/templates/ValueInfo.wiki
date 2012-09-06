@@ -3,7 +3,7 @@
 {| border="1"
 ! Value !! Name !! Field(tag) !! First introduced !! Deprecated
 |-
-|| {{{Value}}} || {{{SymbolicName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{{added|}}} {{#if: {{{addedEP|}}} | EP{{{addedEP}}} | }} || {{{deprecated|}}}
+|| {{{Value}}} || {{{SymbolicName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
 |}
 <!--Special code for MsgType field which adds a link to the corresponding Message page.-->
 {{#ifeq: {{{Name}}} | MsgType

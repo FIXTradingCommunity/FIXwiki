@@ -3,7 +3,7 @@
 {| border="1"
 ! MsgType !! FIX Specification !! First introduced !! Deprecated
 |-
-|| [[MsgType/{{{MsgType}}} {{{Name}}} | MsgType={{{MsgType}}}]] || {{{SectionID}}} messages - {{{CategoryID}}} || {{{added|}}} {{#if: {{{addedEP|}}} | EP{{{addedEP}}} | }} || {{{deprecated|}}}
+|| [[MsgType/{{{MsgType}}} {{{Name}}} | MsgType={{{MsgType}}}]] || {{{SectionID}}} messages - {{{CategoryID}}} || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
 |}
 
 {{{Description|}}}

@@ -1028,8 +1028,6 @@ public class FixwikiGenerator {
       usage();
       System.exit(0);
     }
-    
-    //TODO JC Need to add optional dir containing latest ep repo
 
     File repoDir = new File(args[0]);
     File scriptDir = new File(args[1]);
@@ -1038,9 +1036,28 @@ public class FixwikiGenerator {
     scriptDir.mkdirs();
 
     //TODO JC Need to better understand this param - does it replace existing pages.
-    createUserPages = args.length == 3 && "createUserPages".equals(args[2]);
+    createUserPages = false;
+    File epDir = null;
 
-    RepoInfo repoInfo = new RepoInfo(repoDir);
+    if (args.length > 2) {
+      String s = args[2];
+      if ("createUserPages".equals(s)) {
+        createUserPages = true;
+      } else {
+        epDir = new File(s);
+      }
+    }
+    
+    if (args.length > 3) {
+      String s = args[3];
+      if ("createUserPages".equals(s)) {
+        createUserPages = true;
+      } else {
+        epDir = new File(s);
+      }
+    }
+
+    RepoInfo repoInfo = new RepoInfo(repoDir, epDir);
 
     FixwikiGenerator generator = new FixwikiGenerator(repoInfo);
     generator.generate(scriptDir);
@@ -1051,10 +1068,11 @@ public class FixwikiGenerator {
     System.out.println();
     System.out.println("Usage:");
     System.out.println();
-    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator <FIX repository> <Script directory> [createUserPages]");
+    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator <FIX repository> <Script directory> [<EP repository>] [createUserPages]");
     System.out.println();
     System.out.println("Generates text files and a script for populating a FIX Wiki from the given FIX repository.");
     System.out.println("<FIX repository>   - a directory containing a FIX repository");
+    System.out.println("<EP repository>    - a directory containing the latest repository files for the last FIX version");
     System.out.println("<Script directory> - the directory where the Wiki page creation script and the associated");
     System.out.println("                     text files used to populate the FIX Wiki are stored.");
     System.out.println("createUserPages    - User pages are generated only if this is specified.");
@@ -1063,7 +1081,7 @@ public class FixwikiGenerator {
     System.out.println("Activate on the command line in the usual way - ie -DignoreErrors");
     System.out.println();
     System.out.println("Example:");
-    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator ~/FIX/Repository ~/Temp/fixwiki createUserPages");
+    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator ~/FIX/Repository ~/Temp/fixwiki ~/FIX/FIXRepository_FIX.5.0SP2_EP156 createUserPages");
     System.out.println();
   }
 

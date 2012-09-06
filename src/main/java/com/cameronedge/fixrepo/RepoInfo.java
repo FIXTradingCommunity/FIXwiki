@@ -128,7 +128,7 @@ public class RepoInfo {
 
   private boolean ignoreErrors;
 
-  public RepoInfo(File repoDir) throws Exception {
+  public RepoInfo(File repoDir, File epRepoDir) throws Exception {
 
     ignoreErrors = System.getProperty("ignoreErrors") != null;
 
@@ -139,41 +139,28 @@ public class RepoInfo {
 
     firstVersionWithRepoData = -1;
 
-    //Now process the data for each FIX versions.
-    for (int i = 0; i < fixVersionInfos.length; i++) {
+    //Now process the data for each FIX version.
+    //The data for the last (ie latest) FIX version will come from the epRepoDir
+    //if it is specified (not null), otherwise it comes from the repoDir
+    //like all the other versions.    
+    int nRepoVersionsToProcess = fixVersionInfos.length;
+    if (epRepoDir != null) {
+      nRepoVersionsToProcess--;
+    }
+    for (int i = 0; i < nRepoVersionsToProcess; i++) {
       String version = fixVersionInfos[i].version;
-      System.out.println("Processing FIX version " + version);
-
       String fixDirPath = repoDir.getAbsolutePath() + File.separator + version + File.separator + "Base";
       File fixDir = new File(fixDirPath);
 
-      if (fixDir.exists()) {
-
-        if (firstVersionWithRepoData < 0) {
-          firstVersionWithRepoData = i;
-        }
-
-        componentInfosByVersion[i] = parse(fixDir, "Components.xml", "Component", "Name", false);
-        System.out.println("    Processed " + componentInfosByVersion[i].size() + " categories");
-
-        enumInfosByVersion[i] = parse(fixDir, "Enums.xml", "Enum", "Tag", true);
-        System.out.println("    Processed " + enumInfosByVersion[i].size() + " enums");
-
-        fieldInfosByVersion[i] = parse(fixDir, "Fields.xml", "Field", "Tag", false);
-        System.out.println("    Processed " + fieldInfosByVersion[i].size() + " fields");
-
-        messageInfosByVersion[i] = parse(fixDir, "Messages.xml", "Message", "MsgType", false);
-        System.out.println("    Processed " + messageInfosByVersion[i].size() + " message types");
-
-        segmentInfosByVersion[i] = parse(fixDir, "MsgContents.xml", "MsgContent", "ComponentID", true);
-        System.out.println("    Processed " + segmentInfosByVersion[i].size() + " message segments");
-
-        typeInfosByVersion[i] = parse(fixDir, "Datatypes.xml", "Datatype", "Name", false);
-        System.out.println("    Processed " + (typeInfosByVersion[i] == null ? "0" : typeInfosByVersion[i].size()) + " data types");
-      } else {
-        System.out.println("    No repo directory found for version " + version);
-      }
+      processFIXVersion(i, fixDir);
     }
+    
+    if (epRepoDir != null) {
+      String fixDirPath = epRepoDir.getAbsolutePath() + File.separator + "Basic";
+      File fixDir = new File(fixDirPath);
+
+      processFIXVersion(latestFIXVersionIndex, fixDir);
+    }    
 
     String s;
     Map<String, List<Properties>> extraData;
@@ -233,6 +220,42 @@ public class RepoInfo {
     }
     processGlossary(is);
 
+  }
+
+  private void processFIXVersion(int versionIndex, File fixDir) throws IOException, SAXException {
+    String version = fixVersionInfos[versionIndex].version; 
+    System.out.println("Processing FIX version " + version);
+
+    if (fixDir.exists()) {
+
+      if (firstVersionWithRepoData < 0) {
+        firstVersionWithRepoData = versionIndex;
+      }
+
+      componentInfosByVersion[versionIndex] = parse(fixDir, "Components.xml", "Component", "Name", false);
+      System.out.println("    Processed " + componentInfosByVersion[versionIndex].size() + " categories");
+
+      enumInfosByVersion[versionIndex] = parse(fixDir, "Enums.xml", "Enum", "Tag", true);
+      System.out.println("    Processed " + enumInfosByVersion[versionIndex].size() + " enums");
+
+      fieldInfosByVersion[versionIndex] = parse(fixDir, "Fields.xml", "Field", "Tag", false);
+      System.out.println("    Processed " + fieldInfosByVersion[versionIndex].size() + " fields");
+
+      messageInfosByVersion[versionIndex] = parse(fixDir, "Messages.xml", "Message", "MsgType", false);
+      System.out.println("    Processed " + messageInfosByVersion[versionIndex].size() + " message types");
+
+      segmentInfosByVersion[versionIndex] = parse(fixDir, "MsgContents.xml", "MsgContent", "ComponentID", true);
+      System.out.println("    Processed " + segmentInfosByVersion[versionIndex].size() + " message segments");
+
+      typeInfosByVersion[versionIndex] = parse(fixDir, "Datatypes.xml", "Datatype", "Name", false);
+      System.out.println("    Processed " + (typeInfosByVersion[versionIndex] == null ? "0" : typeInfosByVersion[versionIndex].size()) + " data types");
+    } else {
+      System.out.println("    No repo directory found for version " + version);
+    }
+  }
+
+  public RepoInfo(File repoDir) throws Exception {
+    this(repoDir, null);
   }
 
   private void addContainsItem(int fixVersionIndex, String tagText, String containerName) {
@@ -672,7 +695,7 @@ public class RepoInfo {
     int column=0;
     while((ch=reader.read())!=-1) {
       column++;
-      if(ch>255) {
+      if(ch>127) {
         System.out.println("WARNING: non-ASCII character "+ch+" in "+filename+" (near line "+line+", column "+column+")");
       } else if(ch=='\n') {
         line++;
@@ -696,10 +719,10 @@ public class RepoInfo {
     File source = new File(repoDir.getAbsolutePath() + File.separator + filename);
     if (source.exists()) {
       FileInputStream fis = new FileInputStream(source);
-      scanForInvalidCharacters(fis,source.getAbsolutePath());
+      scanForInvalidCharacters(fis, source.getAbsolutePath());
       fis.close();
 
-      fis=new FileInputStream(source);
+      fis = new FileInputStream(source);
       return parse(fis, element, indexElement, multiValued);
     } else {
       return null;

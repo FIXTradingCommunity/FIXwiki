@@ -36,6 +36,8 @@ public class RepoInfo {
   public static final String PROP_ADDED_VERSION = "added";
   public static final String PROP_DESCRIPTION = "Description";
 
+  public static final String PROP_ADDED_EXTENSION_PACK = "addedEP";
+
   public static final String PROP_COMPONENT_DESCRIPTION = PROP_DESCRIPTION;
   public static final String PROP_COMPONENT_NAME = "Name";
 
@@ -124,6 +126,8 @@ public class RepoInfo {
   private Map<String, List<Properties>>[] segmentInfosByVersion = new Map[latestFIXVersionIndex + 1];
   private Map<String, List<Properties>> segmentInfosAllVersions = new HashMap();
 
+  private Set<Integer> extensionPacks = new HashSet<Integer>();
+
   private SAXParser parser;
 
   private boolean ignoreErrors;
@@ -187,6 +191,9 @@ public class RepoInfo {
     //postprocessing of fields, messages and components.
     postProcessSegments();
 
+    //Extract all referenced extension packs
+    extractExtensionPacks();
+    
     //Now enrich the merged data with extra resource files.
 
     s = "MessageDesc.xml";
@@ -331,6 +338,33 @@ public class RepoInfo {
     System.out.println("  </Enums>");
   }
 
+  private void extractExtensionPacks(Map<String, List<Properties>> data) {
+    for (List<Properties> propertiesList : data.values()) {
+      Properties props = propertiesList.get(0);
+      String addedEP = props.getProperty(PROP_ADDED_EXTENSION_PACK);
+      if (addedEP != null) {
+
+        try {
+          extensionPacks.add(Integer.parseInt(addedEP));
+        } catch (NumberFormatException e) {
+          System.out.println("Bad extension pack " + addedEP + 
+                  " found in attributes " + props);
+        }
+      }
+    }
+  }
+  
+  private void extractExtensionPacks() {
+    extensionPacks.clear();
+
+    extractExtensionPacks(componentInfosAllVersions);
+    extractExtensionPacks(enumInfosAllVersions);    
+    extractExtensionPacks(fieldInfosAllVersions);
+    extractExtensionPacks(messageInfosAllVersions);
+    extractExtensionPacks(segmentInfosAllVersions);
+    extractExtensionPacks(typeInfosAllVersions);    
+  }
+
   private static String extractGlossaryFieldName(String fieldName) {
     int start = fieldName.indexOf('[');
     int end = fieldName.indexOf(']');
@@ -378,6 +412,10 @@ public class RepoInfo {
     }
 
     return null;
+  }
+
+  public Set<Integer> getExtensionPacks() {
+    return extensionPacks;
   }
 
   /**

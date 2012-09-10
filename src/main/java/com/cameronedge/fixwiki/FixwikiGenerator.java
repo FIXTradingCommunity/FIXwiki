@@ -891,7 +891,7 @@ public class FixwikiGenerator {
   }
 
   private void writeEPCategory(Properties props, PrintWriter fw) throws Exception {
-    String addedEP = props.getProperty("addedEP");
+    String addedEP = props.getProperty(RepoInfo.PROP_ADDED_EXTENSION_PACK);
     if (addedEP != null) {
       fw.println("[[Category:EP" + addedEP + "]]");
     }

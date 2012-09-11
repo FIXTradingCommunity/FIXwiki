@@ -5,7 +5,14 @@
 $wgEnableUploads = true;
 
 #Enable short urls.
-#The following only works if you have installed into "w" and if your Apache .htaccess file has the following lines in it:
+# See http://www.mediawiki.org/wiki/Manual:Short_URL. 
+# The following assumes that you are using an Apache server.
+#
+#The following only works if...
+# 1. Apache's rewrite module is loaded (it isn't by default). 
+#    See, for example, http://www.ducea.com/2006/05/30/managing-apache2-modules-the-debian-way/ 
+# 2. you have installed into "w" 
+# 3. your Apache .htaccess file has the following lines in it:
 #RewriteEngine On
 #RewriteRule ^fixwiki/(.*)$ /w/index.php?title=$1 [PT,L,QSA]
 #RewriteRule ^fixwiki/*$ /w/index.php [L,QSA]

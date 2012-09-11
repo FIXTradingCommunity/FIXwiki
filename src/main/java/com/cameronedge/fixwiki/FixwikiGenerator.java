@@ -750,9 +750,6 @@ public class FixwikiGenerator {
         writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
       }
     }
-
-
-    //TODO JC FIX SPEC Volume category.
   }
 
   private void generateValuePages(File scriptDir, PrintWriter script) throws Exception {
@@ -1067,7 +1064,6 @@ public class FixwikiGenerator {
     //Create output directory if necessary.
     scriptDir.mkdirs();
 
-    //TODO JC Need to better understand this param - does it replace existing pages.
     createUserPages = false;
     File epDir = null;
 

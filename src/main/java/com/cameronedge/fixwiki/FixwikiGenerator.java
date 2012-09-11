@@ -38,6 +38,7 @@ public class FixwikiGenerator {
 
   private static final String COMPONENT_CONTENT_INFO = "Component Content info";
   private static final String COMPONENT_INFO = "Component info";
+  private static final String EXTENSION_PACK_NAME_PREFIX = "EP";
   private static final String FIELD_INFO = "Field info";
   private static final String FIX_NAMES_FILE_NAME = "FIXNames.txt";
   private static final String IMPORT_DIR_VARIABLE = "importdir";
@@ -116,6 +117,14 @@ public class FixwikiGenerator {
     is.close();
   }
 
+  private static String epToName(String epNum) {
+    return EXTENSION_PACK_NAME_PREFIX + epNum;
+  }
+
+  private static String epToName(Integer epNum) {
+    return epToName(epNum.toString());
+  }
+
   /**
    * Hint text (pop up mouse overs) cannot contain single quote characters or < or >.
    * <p/>
@@ -159,6 +168,8 @@ public class FixwikiGenerator {
     generateComponentPages(scriptDir, script);
 
     generateTypePages(scriptDir, script);
+    
+    generateExtensionPackPages(scriptDir, script);
 
     generateFIXNamesFile(scriptDir);
 
@@ -243,10 +254,7 @@ public class FixwikiGenerator {
     addResourceImportToScript(scriptDir, script, "categories/FIX.5.0.wiki", "Category:FIX.5.0");
     addResourceImportToScript(scriptDir, script, "categories/FIXT.1.1.wiki", "Category:FIXT.1.1");
     addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP1.wiki", "Category:FIX.5.0SP1");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP2.wiki", "Category:FIX.5.0SP2");
-    
-    //TODO JC Need to add EP category pages
-    
+    addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP2.wiki", "Category:FIX.5.0SP2");    
     addResourceImportToScript(scriptDir, script, "categories/message.wiki", "Category:Message");
     addResourceImportToScript(scriptDir, script, "categories/component.wiki", "Category:Component");
     addResourceImportToScript(scriptDir, script, "categories/field.wiki", "Category:Field");
@@ -254,6 +262,7 @@ public class FixwikiGenerator {
     addResourceImportToScript(scriptDir, script, "categories/SpecError.wiki", "Category:SpecError");
     addResourceImportToScript(scriptDir, script, "categories/type.wiki", "Category:Type");
     addResourceImportToScript(scriptDir, script, "categories/value.wiki", "Category:Value");
+    addResourceImportToScript(scriptDir, script, "categories/extensionpack.wiki", "Category:ExtensionPack");
     addResourceImportToScript(scriptDir, script, "help/Editing.wiki", "Help:Editing");
     addResourceImportToScript(scriptDir, script, "help/Searching.wiki", "Help:Searching");
 
@@ -277,6 +286,29 @@ public class FixwikiGenerator {
     addResourceToOutput(scriptDir, "images/UserDefinedSpreadTwoStepProcess.png");
 
     generateFIXVersionPlusTemplates(scriptDir, script);
+  }
+
+  private void generateExtensionPackPages(File scriptDir, PrintWriter script) throws IOException {
+    
+    Set<Integer> epNums = repoInfo.getExtensionPacks();
+
+    for (Integer epNum : epNums) {
+
+      String epName = epToName(epNum);
+      String epTitle = "Category:" + epName;
+      String relName = epName + ".ep";
+      String fname = scriptDir.getAbsolutePath() + File.separator + relName;
+      PrintWriter fw = new PrintWriter(new FileWriter(fname));
+
+      fw.println("See http://www.fixprotocol.org/specifications/" + epName);
+
+      fw.println("[[Category:ExtensionPack]]");
+      fw.close();
+
+      //Write to script file
+      addImportToScript(script, relName, epTitle, true);
+
+    }
   }
 
   private void generateFIXNamesFile(File outputDir) throws FileNotFoundException {
@@ -893,7 +925,7 @@ public class FixwikiGenerator {
   private void writeEPCategory(Properties props, PrintWriter fw) throws Exception {
     String addedEP = props.getProperty(RepoInfo.PROP_ADDED_EXTENSION_PACK);
     if (addedEP != null) {
-      fw.println("[[Category:EP" + addedEP + "]]");
+      fw.println("[[Category:" + epToName(addedEP) + "]]");
     }
   }
   

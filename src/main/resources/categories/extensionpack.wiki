@@ -1,0 +1,17 @@
+==Extension Pack==
+
+An extension pack (EP) is the result of a single Gap Analysis document with 
+proposed extensions being submitted to FPL.
+
+Extension packs are submitted by FPL Working Groups or Committees to the 
+FIX Global Technical Committee for peer review and feedback.
+
+Gap Analysis documents are based on a template provided by FPL and include 
+background information, business requirements and message flows, 
+not just changes to FIX messages, fields, values, etc.
+
+In {{SITENAME}} the page for each FIX object - 
+ie component, message, field, type or value - may display the 
+extension pack in which that object was first added.
+Not all pages display extension pack information because extension packs were
+only introduced in later versions of FIX.

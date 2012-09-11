@@ -1108,6 +1108,7 @@ public class FixwikiGenerator {
     System.out.println("<Script directory> - the directory where the Wiki page creation script and the associated");
     System.out.println("                     text files used to populate the FIX Wiki are stored.");
     System.out.println("createUserPages    - User pages are generated only if this is specified.");
+    System.out.println("                     Note that existing user pages are NEVER overwritten, even if this is specified.");
     System.out.println();
     System.out.println("There is also a system property ignoreErrors which will try to continue processing even if fatal errors are detected.");
     System.out.println("Activate on the command line in the usual way - ie -DignoreErrors");

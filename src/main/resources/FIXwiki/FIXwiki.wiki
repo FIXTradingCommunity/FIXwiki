@@ -23,6 +23,7 @@ or if you just want to browse, click on one of the following links:
 :* [[:Category:Field | FIX Fields]]
 :* [[:Category:Value | FIX Values]]
 :* [[:Category:Type | FIX Types]]
+:* [[:Category:ExtensionPack | FIX Extension Packs]]
 
 Click on the FIX Protocol logo at the top left at any time to return to this main page.
 

@@ -146,7 +146,7 @@ public class RepoInfo {
     //Now process the data for each FIX version.
     //The data for the last (ie latest) FIX version will come from the epRepoDir
     //if it is specified (not null), otherwise it comes from the repoDir
-    //like all the other versions.    
+    //like all the other versions.
     int nRepoVersionsToProcess = fixVersionInfos.length;
     if (epRepoDir != null) {
       nRepoVersionsToProcess--;
@@ -158,13 +158,20 @@ public class RepoInfo {
 
       processFIXVersion(i, fixDir);
     }
-    
+
     if (epRepoDir != null) {
       String fixDirPath = epRepoDir.getAbsolutePath() + File.separator + "Basic";
       File fixDir = new File(fixDirPath);
 
+      // If the Basic/ subdirectory does not exist, we are probably using a
+      // non-published EP. Use the EP's folder instead.
+      if(!fixDir.exists()) {
+        fixDirPath=epRepoDir.getAbsolutePath();
+        fixDir=new File(fixDirPath);
+      }
+
       processFIXVersion(latestFIXVersionIndex, fixDir);
-    }    
+    }
 
     String s;
     Map<String, List<Properties>> extraData;
@@ -193,7 +200,7 @@ public class RepoInfo {
 
     //Extract all referenced extension packs
     extractExtensionPacks();
-    
+
     //Now enrich the merged data with extra resource files.
 
     s = "MessageDesc.xml";
@@ -230,7 +237,7 @@ public class RepoInfo {
   }
 
   private void processFIXVersion(int versionIndex, File fixDir) throws IOException, SAXException {
-    String version = fixVersionInfos[versionIndex].version; 
+    String version = fixVersionInfos[versionIndex].version;
     System.out.println("Processing FIX version " + version);
 
     if (fixDir.exists()) {
@@ -353,16 +360,16 @@ public class RepoInfo {
       }
     }
   }
-  
+
   private void extractExtensionPacks() {
     extensionPacks.clear();
 
     extractExtensionPacks(componentInfosAllVersions);
-    extractExtensionPacks(enumInfosAllVersions);    
+    extractExtensionPacks(enumInfosAllVersions);
     extractExtensionPacks(fieldInfosAllVersions);
     extractExtensionPacks(messageInfosAllVersions);
     extractExtensionPacks(segmentInfosAllVersions);
-    extractExtensionPacks(typeInfosAllVersions);    
+    extractExtensionPacks(typeInfosAllVersions);
   }
 
   private static String extractGlossaryFieldName(String fieldName) {

@@ -15,7 +15,7 @@
 
 <p align="right">
     John Cameron<br>
-    11 January 2011
+    12 September 2012
 </p>
 
 <h2>
@@ -111,7 +111,8 @@
 
 <p>
     Unpack the MediaWiki distribution into a directory called "w" accessible
-    to a web browser.
+    to a web browser. The web root (DocumentRoot in Apache terms) should be the 
+    directory which contains "w".
 </p>
 
 <p>
@@ -121,22 +122,22 @@
     choose the default values. This is how you should fill in other values.
 </p>
 <ul>
-    <li>Wiki name - FIXwiki</li>
-    <li>Contact email - fpl@fixprotocol.org</li>
-    <li>Admin user - Keep the default value "WikiSysop". Be sure to note down 
-        the admin password you choose.
-    </li>
-    <li>MySQL database - Note also that you need to have a MySQL user name set
-        up (using root is fine if you know it).
-    </li>
     <li>
-        Database name - fixwikidb. Not really necessary - the default name of 
-        wikidb is OK but it might be handy to have a special name in case you 
+        Database name - fixwikidb. Not really necessary - the default name of
+        wikidb is OK but it might be handy to have a special name in case you
         ever want to install a different wiki.
     </li>
     <li>
         Database table prefix - fw_. Not really necessary but probably a good
         idea.
+    </li>
+    <li>Wiki name - FIXwiki</li>
+    <li>Administrator account - "WikiSysop". Be sure to note down
+        the admin password you choose.
+    </li>
+    <li>Contact email - fpl@fixprotocol.org</li>
+    <li>MySQL database - Note also that you need to have a MySQL user name set
+        up (using root is fine if you know it).
     </li>
 </ul>
 <p>
@@ -296,7 +297,7 @@
 <p>
     These are generated automatically from the FIX repository and other sources
     by the FIXwiki generation code (described below).
-    There are around 20,000 data files totalling about 90Mb.
+    There are around 20,000 data files totalling about 120Mb.
 </p>
 
 <p>

@@ -340,15 +340,15 @@ public class RepoInfo {
 
   private void extractExtensionPacks(Map<String, List<Properties>> data) {
     for (List<Properties> propertiesList : data.values()) {
-      Properties props = propertiesList.get(0);
-      String addedEP = props.getProperty(PROP_ADDED_EXTENSION_PACK);
-      if (addedEP != null) {
-
-        try {
-          extensionPacks.add(Integer.parseInt(addedEP));
-        } catch (NumberFormatException e) {
-          System.out.println("Bad extension pack " + addedEP + 
-                  " found in attributes " + props);
+      for (Properties props : propertiesList) {
+        String addedEP = props.getProperty(PROP_ADDED_EXTENSION_PACK);
+        if (addedEP != null) {
+          try {
+            extensionPacks.add(Integer.parseInt(addedEP));
+          } catch (NumberFormatException e) {
+            System.out.println("Bad extension pack " + addedEP +
+                    " found in attributes " + props);
+          }
         }
       }
     }

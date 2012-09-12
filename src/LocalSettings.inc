@@ -7,16 +7,17 @@ $wgEnableUploads = true;
 #Enable short urls.
 # See http://www.mediawiki.org/wiki/Manual:Short_URL. 
 # The following assumes that you are using an Apache server.
+# See http://www.mediawiki.org/wiki/Manual:Short_URL/Apache
 #
 #The following only works if...
 # 1. Apache's rewrite module is loaded (it isn't by default). 
 #    See, for example, http://www.ducea.com/2006/05/30/managing-apache2-modules-the-debian-way/ 
-# 2. you have installed into "w" 
+# 2. you have installed MediaWiki into "w" 
 # 3. your Apache .htaccess file has the following lines in it:
 #RewriteEngine On
-#TODO these rules need to be updated.
-#RewriteRule ^fixwiki/(.*)$ /w/index.php?title=$1 [PT,L,QSA]
-#RewriteRule ^fixwiki/*$ /w/index.php [L,QSA]
+#RewriteRule ^/?fixwiki(/.*)?$ %{DOCUMENT_ROOT}/w/index.php [L]
+#RewriteRule ^/*$ %{DOCUMENT_ROOT}/w/index.php [L]
+
 $wgArticlePath = "/fixwiki/$1";
 $wgUsePathInfo = true;
 

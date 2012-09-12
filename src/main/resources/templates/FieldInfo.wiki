@@ -11,8 +11,8 @@
 {{#if: {{{EnumFieldName|}}}
 |
 === Enumerated Values ===
-{{#tag:splist
-|  parent={{{Name}}}
+{{#tag:subpages
+|| page={{{Name}}}
 |  kidsonly=yes
 }}
 |

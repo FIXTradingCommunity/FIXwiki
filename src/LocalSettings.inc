@@ -14,6 +14,7 @@ $wgEnableUploads = true;
 # 2. you have installed into "w" 
 # 3. your Apache .htaccess file has the following lines in it:
 #RewriteEngine On
+#TODO these rules need to be updated.
 #RewriteRule ^fixwiki/(.*)$ /w/index.php?title=$1 [PT,L,QSA]
 #RewriteRule ^fixwiki/*$ /w/index.php [L,QSA]
 $wgArticlePath = "/fixwiki/$1";
@@ -76,7 +77,7 @@ $wgNamespaceProtection[NS_CATEGORY] = array('editinterface');
 $wgExternalLinkTarget = '_blank';
 
 require_once( "$IP/extensions/ParserFunctions/ParserFunctions.php" );
-require_once("$IP/extensions/SubPageList3/SubPageList3.php"); // for SubPageList3 extension
+require_once("$IP/extensions/SubPageList/SubPageList.php"); // for SubPageList extension
 
 #require_once( "$IP/extensions/recaptcha/ReCaptcha.php" );
 #This is global key - generate a CameronEdge specific one.

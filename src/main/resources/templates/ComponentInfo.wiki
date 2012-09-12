@@ -10,8 +10,8 @@
 
 ====Component Contents By FIX Version====
 
-{{#tag:splist
-|  parent={{{Name}}}
+{{#tag:subpages
+|| page={{{Name}}}
 |  kidsonly=yes
 }}
 

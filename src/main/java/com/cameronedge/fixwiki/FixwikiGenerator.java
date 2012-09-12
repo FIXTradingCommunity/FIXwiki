@@ -45,6 +45,7 @@ public class FixwikiGenerator {
   private static final String INVITATION_TO_POST = "Invitation to post";
   private static final String MESSAGE_CONTENT_INFO = "Message Content info";
   private static final String MESSAGE_INFO = "Message info";
+  private static final int MIN_ONLINE_EXTENSION_PACK_NUMBER = 98;
   private static final String REFER_TO_USER_PAGE = "ReferToUserPage";
   private static final String TYPE_INFO = "Type info";
   private static final String UPLOAD_DIR_NAME = "uploads";
@@ -299,8 +300,15 @@ public class FixwikiGenerator {
       String relName = epName + ".ep";
       String fname = scriptDir.getAbsolutePath() + File.separator + relName;
       PrintWriter fw = new PrintWriter(new FileWriter(fname));
-
-      fw.println("See http://www.fixprotocol.org/specifications/" + epName);
+      
+      //Not all EP info is online
+      if (epNum < MIN_ONLINE_EXTENSION_PACK_NUMBER) {
+        fw.println("Details of extension packs prior to " + 
+                epToName(MIN_ONLINE_EXTENSION_PACK_NUMBER) + 
+                " are not available on the FPL website.");
+      } else {
+        fw.println("See http://www.fixprotocol.org/specifications/" + epName);
+      }
 
       fw.println("[[Category:ExtensionPack]]");
       fw.close();

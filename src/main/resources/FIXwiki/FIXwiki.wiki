@@ -4,14 +4,15 @@ There is a {{SITENAME}} page for each FIX message, component, field, value or ty
 
 In addition to definitions taken from the specification, each page also has an area for user comments,
 clarifications, corrections, examples or suggestions.
-Please contribute.
+Please contribute. You will need to [[Special:UserLogin|log in]] if you want to
+contribute.
 
-{{SITENAME}} was created by John Cameron of [http://cameronedge.com/ Cameron Edge] for the benefit of the FIX community.
-It is completely free to members of FPL.
+{{SITENAME}} was created by John Cameron of [http://cameronedge.com/ Cameron Edge] 
+for the benefit of the FIX community.
 
 ==Quick Start==
 
-[[Special:UserLogin|Log in]] then type one of the following into the search box on the left:
+Type one of the following into the search box above on the right:
 :* a FIX message or component name (eg Confirmation or Parties)
 :* a FIX field name (eg Quantity)
 :* a FIX tag number (eg 54)

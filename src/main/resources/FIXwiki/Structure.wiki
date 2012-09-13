@@ -16,7 +16,7 @@ followed by the user contributed part which can be freely edited by any register
 
 [http://www.mediawiki.org/wiki/Help:Categories Categories] are also used to impose structure on {{SITENAME}}.
 
-There are three different types of category.
+There are several different types of category.
 
 ===FIX entity categories===
 
@@ -39,7 +39,16 @@ See the special pages associated with these categories for more information. (Cl
 There is a category for each FIX version.
 For example, [[:Category:FIX.4.0]].
 
-Pages relating to particular FIX versions are in the corresponding FIX version category.
+Pages relating to a particular FIX version are in the corresponding FIX version category.
+
+===FIX extension pack categories===
+
+There is a category for each FIX extension pack.
+For example, [[:Category:EP157]].
+
+Pages relating to particular FIX extension pack are in the corresponding FIX extension pack category.
+
+There is also a master category called ExtensionPack to which all extension packs belong. See [[:Category:ExtensionPack]].
 
 ===FIX message categories===
 

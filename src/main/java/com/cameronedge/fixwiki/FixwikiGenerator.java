@@ -613,6 +613,12 @@ public class FixwikiGenerator {
 
             writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
 
+            //Give up if no longer exists from this version
+            if (fixVersion == null) {
+              fromVersion = -1;
+              break;
+            }
+
             //Set fromVersion to current version and continue scanning.
             fromVersion = i;
           }
@@ -736,6 +742,12 @@ public class FixwikiGenerator {
 
             writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
 
+            //Give up if no longer exists from this version
+            if (fixVersion == null) {
+              fromVersion = -1;
+              break;
+            }
+            
             //Set fromVersion to current version and continue scanning.
             fromVersion = i;
           }

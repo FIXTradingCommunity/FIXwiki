@@ -1119,10 +1119,10 @@ public class FixwikiGenerator {
     System.out.println("com.cameronedge.fixwiki.FixwikiGenerator <FIX repository> <Script directory> [<EP repository>] [createUserPages]");
     System.out.println();
     System.out.println("Generates text files and a script for populating a FIX Wiki from the given FIX repository.");
-    System.out.println("<FIX repository>   - a directory containing a FIX repository");
-    System.out.println("<EP repository>    - a directory containing the latest repository files for the last FIX version");
+    System.out.println("<FIX repository>   - a directory containing a FIX repository. The directory should contain subdirectories named after each FIX version.");
     System.out.println("<Script directory> - the directory where the Wiki page creation script and the associated");
     System.out.println("                     text files used to populate the FIX Wiki are stored.");
+    System.out.println("<EP repository>    - a directory containing the latest repository files for the last FIX version. It should contain a set of the standard repository XML files: Messaages.xml, Fields.xml etc");
     System.out.println("createUserPages    - User pages are generated only if this is specified.");
     System.out.println("                     Note that existing user pages are NEVER overwritten, even if this is specified.");
     System.out.println();
@@ -1130,7 +1130,7 @@ public class FixwikiGenerator {
     System.out.println("Activate on the command line in the usual way - ie -DignoreErrors");
     System.out.println();
     System.out.println("Example:");
-    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator ~/FIX/Repository ~/Temp/fixwiki ~/FIX/FIXRepository_FIX.5.0SP2_EP156 createUserPages");
+    System.out.println("com.cameronedge.fixwiki.FixwikiGenerator ~/FIX/Repository ~/Temp/fixwiki ~/FIX/FIXRepository_FIX.5.0SP2_EP156/Basic createUserPages");
     System.out.println();
   }
 

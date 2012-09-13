@@ -132,6 +132,15 @@ public class RepoInfo {
 
   private boolean ignoreErrors;
 
+  /**
+   * Process the standard repository plus an optional EP repository 
+   * (which has the latest updates).
+   * @param repoDir This should be the root of a standard repository structure.
+   *                That is, there are subdirectories for each FIX version.
+   * @param epRepoDir This directory should hold a set of the standard
+   *                  repository XML files: Messages.xml, Fields.xml etc. May be null.
+   * @throws Exception If there is a fatal problem processing the repository
+   */
   public RepoInfo(File repoDir, File epRepoDir) throws Exception {
 
     ignoreErrors = System.getProperty("ignoreErrors") != null;
@@ -160,18 +169,7 @@ public class RepoInfo {
     }
 
     if (epRepoDir != null) {
-      String fixDirPath = epRepoDir.getAbsolutePath() + File.separator + "Basic";
-      File fixDir = new File(fixDirPath);
-
-      // If the Basic/ subdirectory does not exist, the EP directory does
-      // not have the expected structure.
-      if(!fixDir.exists()) {
-        throw new IOException(epRepoDir.getAbsolutePath() + 
-                " does not appear to be a valid EP repo. " +
-                "It does not contain a subdirectory called Basic");
-      }
-
-      processFIXVersion(latestFIXVersionIndex, fixDir);
+      processFIXVersion(latestFIXVersionIndex, epRepoDir);
     }
 
     String s;

@@ -385,7 +385,7 @@ public class RepoInfo {
   }
 
   public Map<String, List<Properties>> getComponentInfos() {
-    return componentInfosByVersion[latestFIXVersionIndex];
+    return componentInfosAllVersions;
   }
 
   public Properties getComponentPropsFromName(String name, int fixVersion) {

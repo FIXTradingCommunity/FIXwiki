@@ -105,10 +105,9 @@ public class RepoUtil {
         default:
           handled = false;
       }
-      handled=false;
 
       if (ch > 127 && !handled) {
-        //System.out.println("WARNING: Unhandled non ASCII character " + ch + "(" + (int) ch + ")");
+        System.out.println("WARNING: Unhandled non ASCII character " + ch + "(" + (int) ch + ")");
       }
 
       cleanValue.append(convertedCh);

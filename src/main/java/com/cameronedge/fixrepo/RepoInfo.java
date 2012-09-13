@@ -163,11 +163,12 @@ public class RepoInfo {
       String fixDirPath = epRepoDir.getAbsolutePath() + File.separator + "Basic";
       File fixDir = new File(fixDirPath);
 
-      // If the Basic/ subdirectory does not exist, we are probably using a
-      // non-published EP. Use the EP's folder instead.
+      // If the Basic/ subdirectory does not exist, the EP directory does
+      // not have the expected structure.
       if(!fixDir.exists()) {
-        fixDirPath=epRepoDir.getAbsolutePath();
-        fixDir=new File(fixDirPath);
+        throw new IOException(epRepoDir.getAbsolutePath() + 
+                " does not appear to be a valid EP repo. " +
+                "It does not contain a subdirectory called Basic");
       }
 
       processFIXVersion(latestFIXVersionIndex, fixDir);

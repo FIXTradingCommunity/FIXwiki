@@ -393,7 +393,7 @@ The FIXML root element is defined in the fixml-components-base schema file.
 '''Example:'''
 
 <pre>
-<FIXML v=Ó5.0Ó r=Ó20061024Ó s=Ó20061026Ó> </FIXML>
+<FIXML v=ï¿½5.0ï¿½ r=ï¿½20061024ï¿½ s=ï¿½20061026ï¿½> </FIXML>
 </pre>
 
 For FIX 5.0 changes have been made for versioning in order to be compatible with changes to support transport independence.
@@ -504,7 +504,7 @@ An example ofextension would be counterparties that require an additional custom
 
 In order to provide a uniform method in defining customizations that could be readily absorbed by counterparties an extensibility design pattern was developed that defines how the FIXML definition was partitioned and organized within separate schema files.
 
-Each level of schema file (with the exception of datatypes) provides a base definition file that defines the standard (default) FIXML language. Redefining this base file an implementation file (ÒimplÓ) is provided that by default simply references the base definition.
+Each level of schema file (with the exception of datatypes) provides a base definition file that defines the standard (default) FIXML language. Redefining this base file an implementation file (ï¿½implï¿½) is provided that by default simply references the base definition.
 
 [[Image:ExtensibilityPattern.png|border|800px]]
 
@@ -1233,7 +1233,7 @@ Includes Fixml--base-5-0-SP2.xsd. Defines Session messages:
 
 [[TestRequest]]
 
-[[XMLNonFIX]]
+[[XMLnonFIX]]
 
 
 |-
@@ -1277,9 +1277,9 @@ Fixml-order-base-5-0-SP2.xsd
 
 Includes Fixml-components-base-5-0-SP2.xsd. Defines SingleGeneralOrderHandling messages:
 
-[[DontKnowTradeDK]]
+[[DontKnowTrade]]
 
-[[ExecutionAcknowledgement]]
+[[ExecutionAck]]
 
 [[ExecutionReport]]
 
@@ -1465,7 +1465,7 @@ Includes Fixml-components-base-5-0-SP2.xsd. Defines QuotationNegotiation message
 
 [[MassQuote]]
 
-[[MassQuoteAcknowledgement]]
+[[MassQuoteAck]]
 
 [[Quote]]
 

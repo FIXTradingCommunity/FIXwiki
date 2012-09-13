@@ -593,7 +593,7 @@ No response is sent
 [[MassQuote]] is sent from first party to second party. 
 The quote has the [[QuoteResponseLevel]] set to 1. 
 The second party only acknowledges the quote if there is an error. 
-If the second party encounters an error while processing the quote a [[MassQuoteAcknowledgement]] message is sent 
+If the second party encounters an error while processing the quote a [[MassQuoteAck]] message is sent 
 with the [[QuoteRejectReason]] set to the error encountered.
 
 
@@ -614,12 +614,12 @@ Set [[QuoteResponseLevel]] to 1
 |>>>>
 |Interprets quotes applies them to a market
 |-
-|Interprets [[MassQuoteAcknowledgement]]
+|Interprets [[MassQuoteAck]]
 
 If error - then send revised quote
 
 |<<<<
-|[[MassQuoteAcknowledgement]]
+|[[MassQuoteAck]]
 
 If an error is encountered
 
@@ -652,9 +652,9 @@ Set [[QuoteResponseLevel]] to 2
 |>>>>
 |Interprets quotes applies them to a market
 |-
-|Interpret [[MassQuoteAcknowledgement]]
+|Interpret [[MassQuoteAck]]
 |<<<<
-|[[MassQuoteAcknowledgement]]
+|[[MassQuoteAck]]
 |}
 
 
@@ -677,16 +677,16 @@ Quotes with a quote status are sent in response to the cancel all quotes message
 |>>>>
 |Interprets [[QuoteCancel]] message and cancels quotes.
 |-
-|Interpret [[MassQuoteAcknowledgement]]
+|Interpret [[MassQuoteAck]]
 |<<<<
-|[[MassQuoteAcknowledgement]]
+|[[MassQuoteAck]]
 |}
 
 
 ==Use of other Quote Messages in Mass Quoting==
 
 Once the [[MassQuote]] message is submitted to a market and after the initial 
-[[MassQuoteAcknowledgement]] - the Quote Entries are treated as separate quotes. Report of [[QuoteStatus]] 
+[[MassQuoteAck]] - the Quote Entries are treated as separate quotes. Report of [[QuoteStatus]] 
 should be done using the [[QuoteStatusRequest]] and [[Quote]] messages. 
 Fills are reported for each Quote Entry using the [[ExecutionReport]].
 
@@ -715,7 +715,7 @@ Valid tradeable or restricted tradeable quote sent into market - either unsolici
 |-
 |Accepts [[Quote]] and updates trading system based upon status reported by market
 |<<<<
-|Based upon market rules or based upon the [[QuoteResponseLevel]] requested by Quote Issuer the market will send [[MassQuoteAcknowledgement]] message back to the quote issuer to report quote status in the [[QuoteStatus]] field.
+|Based upon market rules or based upon the [[QuoteResponseLevel]] requested by Quote Issuer the market will send [[MassQuoteAck]] message back to the quote issuer to report quote status in the [[QuoteStatus]] field.
 |-
 |Updates trading system with quote status
 |<<<<

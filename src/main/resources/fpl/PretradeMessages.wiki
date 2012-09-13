@@ -54,7 +54,7 @@ Within the "single product quoting" suite of messages three business models have
 ; Restricted Tradeable quoting 
 : as per Tradeable quoting but the  response to a quote may be either an execution or an order depending on various parameters. 
 
-The Negotiation (a.k.a. counter quoting) dialog is also supported.  The Negotiation dialog may begin with either an indicative quote or a tradeable quote.  For specific usage guidance for Fixed Income and Exchange/Marketplace negotiation and counter quotes using the quotation messages, see [[PRODUCT: FIXED INCOME]] and [[USER GROUP: EXCHANGES AND MARKETS]] respectively.
+The Negotiation (a.k.a. counter quoting) dialog is also supported.  The Negotiation dialog may begin with either an indicative quote or a tradeable quote.  For specific usage guidance for Fixed Income and Exchange/Marketplace negotiation and counter quotes using the quotation messages, see PRODUCT: FIXED INCOME and USER GROUP: EXCHANGES AND MARKETS respectively.
 
 The common thread linking the models is the use of the [[Quote]] message.
 
@@ -76,7 +76,7 @@ The common thread linking the models is the use of the [[Quote]] message.
 '''Messages:'''
 
 [[MassQuote]],
-[[MassQuoteAcknowledgement]],
+[[MassQuoteAck]],
 [[Quote]],
 [[QuoteCancel]],
 [[QuoteRequest]],
@@ -165,41 +165,8 @@ See [[FPL:Product Reference and Market Structure Data Model|Product Reference an
 See also [[FPL:Security Definition, Security Status, and Trading Session Message Scenarios|Security Definition, Security Status, and Trading Session Message Scenarios]].
 
 ==Parties Reference Data==
-The Parties Reference Data message set provides support for the dissemination of party and related party reference information and party risk limit reference information from a master file/source to interested parties or systems that need this information.  The primary use of this information is for interested parties or systems to enforce trading and clearing relationships and risk limits.
 
-See [[FPL:Parties Reference Data|Parties Reference Data]] for more details.
-
-'''Parties Reference Data Components:'''
-
-[[AltPtysSubGrp]], 
-[[ContextParties]], 
-[[ContextPtysSubGrp]], 
-[[PartyAltIDs]], 
-[[PartyDetail]], 
-[[PartyListGrp]], 
-[[PartyListResponseTypeGrp]], 
-[[PartyRelationships]], 
-[[RelatedAltPtysSubGrp]], 
-[[RelatedContextParties]], 
-[[RelatedContextPtysSubGrp]], 
-[[RelatedPartyAltIDs]], 
-[[RelatedPartyDetail]], 
-[[RelatedPartyGrp]], 
-[[RelatedPtysSubGrp]], 
-[[RelationshipRiskInstrumentScope]], 
-[[RelationshipRiskLimits]], 
-[[RelationshipRiskSecAltIDGrp]], 
-[[RelationshipRiskWarningLevels]],
-[[RequestedPartyRoleGrp]], 
-[[RiskInstrumentScope]], 
-[[RiskLimits]], 
-[[RiskSecAltIDGrp]], 
-[[RiskWarningLevels]]
-
-'''Messages:'''
- 
-[[PartyDetailsListReport]],
-[[PartyDetailsListRequest]] 
+[[Category:ToDo]]
 
 ==Pre-Trade Message Targeting/Routing==
 

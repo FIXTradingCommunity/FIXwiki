@@ -12,7 +12,7 @@ for the benefit of the FIX community.
 
 ==Quick Start==
 
-Type one of the following into the search box above on the right and click Go
+Type one of the following into the search box on the left and click Go
 or press Enter/Return:
 :* a FIX message or component name (eg Confirmation or Parties)
 :* a FIX field name (eg Quantity)

@@ -140,5 +140,8 @@ $wgConfirmAccountRejectAge = 5 * 24 * 3600; // 5 days
 # Added by nic@angel.net on 24 Feb 2011
 $wgRightsPage = 'FIXwiki:Terms_of_Use';
 
+# Specify standard FIXwiki style
+$wgDefaultSkin = 'monobook';
+
 #Place this on the VERY LAST line of your Localsettings.php file:
 require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

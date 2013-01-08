@@ -254,7 +254,7 @@
 </p>
 
 <h2>
-    Generating FIXwiki
+    <a name="generating">Generating FIXwiki</a>
 </h2>
 
 <p>
@@ -513,6 +513,56 @@
 <p>
     This approach means that the appearance of all FIXwiki pages could be
     changed by simply modifying these formatting templates.
+</p>
+
+<h2>
+    Moving a New Version of FIXwiki into Production
+</h2>
+
+<p>
+    Currently, FIXwiki is hosted by 
+    <a target="_blank" href="http://www.bluehost.com/">Bluehost</a>.
+    FPL has an account with Bluehost. Contact the FPL Operations Director,
+    <a href="mailto:courtney.mcguinn@fixprotocol.org">Courtney Doyle McGuinn</a>
+    or
+    <a href="mailto:john.cameron@cameronedge.com">John Cameron</a> if you need
+    access to this account, or the FIXwiki server.
+</p>
+
+<p>
+    Whenever a new Extension Pack is released, the FIX repository will be
+    updated and a new version of FIXwiki needs to be generated, following the
+    process described <a href="#generating">above</a>.
+</p>
+
+<p>
+    Build to a test FIXwiki which is a copy of the current production
+    FIXwiki (same Mediawiki version). Then when you have completed testing
+    of the new updated test FIXwiki, back up the test FIXwiki MySQL database
+    and then restore it to the production FIXwiki.
+</p>
+
+<p>
+    The most common way to back up a MySQL data base is as follows:
+</p>
+
+<code>
+    mysqldump -uroot -ppassword -r backupfile.sql fixwikio_db
+</code>
+
+<p>
+    Upload that file to the Bluehost server and then restore it to the 
+    production data base. To do this, log on to the Bluehost server, then
+    execute the following from the Bluehost command line:
+</p>
+
+<code>
+    mysql -ufixwikio_user -ppassword fixwikio_db &lt; backupfile.sql    
+</code>
+
+<p>
+    Note that the FIXwiki database name, user name and password can be
+    found in the FIXwiki configuration file LocalSettings.php
 </p>
 
 <h1>Appendix - Sample LocalSettings.inc</h1>

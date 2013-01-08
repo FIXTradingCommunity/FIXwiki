@@ -523,10 +523,10 @@
     Currently, FIXwiki is hosted by 
     <a target="_blank" href="http://www.bluehost.com/">Bluehost</a>.
     FPL has an account with Bluehost. Contact the FPL Operations Director,
-    <a href="mailto:courtney.mcguinn@fixprotocol.org">Courtney Doyle McGuinn</a>
+    <a target="_blank" href="mailto:courtney.mcguinn@fixprotocol.org">Courtney Doyle McGuinn</a>
     or
-    <a href="mailto:john.cameron@cameronedge.com">John Cameron</a> if you need
-    access to this account, or the FIXwiki server.
+    <a target="_blank" href="mailto:john.cameron@cameronedge.com">John Cameron</a> 
+    if you need access to this account, or the FIXwiki server.
 </p>
 
 <p>
@@ -536,11 +536,31 @@
 </p>
 
 <p>
-    Build to a test FIXwiki which is a copy of the current production
-    FIXwiki (same Mediawiki version). Then when you have completed testing
-    of the new updated test FIXwiki, back up the test FIXwiki MySQL database
-    and then restore it to the production FIXwiki.
+    To generate a new FIXwiki...
 </p>
+
+<ol>
+    <li>
+        Make the production FIXwiki "read only" by uncommenting the
+        $wgReadOnly variable assignment at the top of the LocalSettings.inc
+        file
+    </li>
+    <li>
+        Copy the production FIXwiki down to a copy on a test server.
+    </li>
+    <li>
+        Generate the new updated FIXwiki on the test server and test it there.
+    </li>
+    <li>
+        Backup the test FIXwiki's MySQL database and restore it to the
+        production FIXwiki's database.
+    </li>
+    <li>
+        Allow changes to the production FIXwiki again by commenting out the 
+        $wgReadOnly line in LocalSettings.inc
+        
+    </li>
+</ol>
 
 <p>
     The most common way to back up a MySQL data base is as follows:

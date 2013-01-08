@@ -25,7 +25,7 @@ $wgUsePathInfo = true;
 $wgUseAjax = true;
 $wgEnableMWSuggest = true;
 ##$wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
-$wgLogo = "$wgScriptPath/FIX_logo.146px.png" ;
+$wgLogo = "$wgScriptPath/images/FIX_logo.146px.png" ;
 $wgFavicon = "$wgScriptPath/images/favicon.ico";
 $wgRightsIcon = "$wgScriptPath/images/cameronedge_logo_blueSmall.png";
 $wgRightsUrl = "http://cameronedge.com/";
@@ -89,7 +89,7 @@ require_once("$IP/extensions/SubPageList/SubPageList.php"); // for SubPageList e
 ## bn - replacing above with below to replicate original configuration
 ## Thu Feb  3 22:51:25 EST 2011
 ##Confirm account edit stuff
-require_once("$IP/extensions/ConfirmAccount/SpecialConfirmAccount.php");
+require_once("$IP/extensions/ConfirmAccount/ConfirmAccount.php");
 $wgAccountRequestToS = true;
 $wgUseRealNamesOnly = true;
 $wgRequestExtraInfo = false;
@@ -98,10 +98,10 @@ $wgAllowAccountRequestFiles = false;
 $wgConfirmAccountContact = "fpl@fixprotocol.org" ;
 ## Thu Feb  3 22:51:25 EST 2011
 
-require_once("$IP/extensions/ImportUsers/SpecialImportUsers.php");
+#require_once("$IP/extensions/ImportUsers/SpecialImportUsers.php");
 
-$wgGroupPermissions['sysop']['passwordreset']   = true;
-require_once( "$IP/extensions/PasswordReset/PasswordReset.php" );
+#$wgGroupPermissions['sysop']['passwordreset']   = true;
+#require_once( "$IP/extensions/PasswordReset/PasswordReset.php" );
 
 $wgSMTP = array(
  'host'     => "mail.angel.net", //could also be an IP address
@@ -112,7 +112,7 @@ $wgSMTP = array(
 
 #Maintenance shell
 # Sysops will have access to the MaintenanceShell
-$wgGroupPermissions['sysop']['maintenanceshell'] = true;
+#$wgGroupPermissions['sysop']['maintenanceshell'] = true;
 
 # Added by nic@angel.net on 4 Feb 2011
 $wgPasswordSender = "$wgSitename Mail<fixwiki@fixprotocol.org>";
@@ -144,4 +144,4 @@ $wgRightsPage = 'FIXwiki:Terms_of_Use';
 $wgDefaultSkin = 'monobook';
 
 #Place this on the VERY LAST line of your Localsettings.php file:
-require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");
+#require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

@@ -21,10 +21,8 @@ $wgEnableUploads = true;
 $wgArticlePath = "/fixwiki/$1";
 $wgUsePathInfo = true;
 
-
 $wgUseAjax = true;
 $wgEnableMWSuggest = true;
-##$wgLogo = "$wgScriptPath/images/fixlogo.200x52.gif";
 $wgLogo = "$wgScriptPath/images/FIX_logo.146px.png" ;
 $wgFavicon = "$wgScriptPath/images/favicon.ico";
 $wgRightsIcon = "$wgScriptPath/images/cameronedge_logo_blueSmall.png";

@@ -80,14 +80,6 @@ $wgExternalLinkTarget = '_blank';
 require_once( "$IP/extensions/ParserFunctions/ParserFunctions.php" );
 require_once("$IP/extensions/SubPageList/SubPageList.php"); // for SubPageList extension
 
-#require_once( "$IP/extensions/recaptcha/ReCaptcha.php" );
-#This is global key - generate a CameronEdge specific one.
-#$recaptcha_public_key = '6LdtuQcAAAAAAFB8LFXNfmMSkOtOowSNQrP1TbDx';
-#$recaptcha_private_key = '6LdtuQcAAAAAAFlf4sHg8L2QCq-ppRJoaCupFif_';
-
-###require_once("$IP/extensions/ConfirmAccount/SpecialConfirmAccount.php");
-## bn - replacing above with below to replicate original configuration
-## Thu Feb  3 22:51:25 EST 2011
 ##Confirm account edit stuff
 require_once("$IP/extensions/ConfirmAccount/ConfirmAccount.php");
 $wgAccountRequestToS = true;
@@ -96,31 +88,18 @@ $wgRequestExtraInfo = false;
 $wgAccountRequestMinWords = 10;
 $wgAllowAccountRequestFiles = false;
 $wgConfirmAccountContact = "fpl@fixprotocol.org" ;
-## Thu Feb  3 22:51:25 EST 2011
-
-#require_once("$IP/extensions/ImportUsers/SpecialImportUsers.php");
-
-#$wgGroupPermissions['sysop']['passwordreset']   = true;
-#require_once( "$IP/extensions/PasswordReset/PasswordReset.php" );
 
 $wgSMTP = array(
- 'host'     => "mail.angel.net", //could also be an IP address
- 'IDHost'   => "fixwiki.fixprotocol.org",
- 'port'     => 25,
- 'auth'     => false
+ 'host'     => "mail.fixwiki.org",
+ 'IDHost'   => "fixwiki.org",
+ 'port'     => 26,
+ 'auth'     => true,
+ 'username' => "admin@fixwiki.org",
+ 'password' => "qmc]Kps43)TQ"
 );
 
-#Maintenance shell
-# Sysops will have access to the MaintenanceShell
-#$wgGroupPermissions['sysop']['maintenanceshell'] = true;
-
-# Added by nic@angel.net on 4 Feb 2011
-$wgPasswordSender = "$wgSitename Mail<fixwiki@fixprotocol.org>";
-
-# Commented out by nic@angel.net on 6 Feb 2011
-# $wgGroupPermissions['approvers']['confirmaccount'] = true;
-
-# $wgGroupPermissions['user']['createpage'] = false;
+$wgPasswordSender = "admin@fixwiki.org";
+$wgPasswordSenderName = "FIXwiki administrator";
 
 # Added by nic@angel.net on 23 Feb 2011
 function lessSpecialPages (&$list) {
@@ -142,6 +121,3 @@ $wgRightsPage = 'FIXwiki:Terms_of_Use';
 
 # Specify standard FIXwiki style
 $wgDefaultSkin = 'monobook';
-
-#Place this on the VERY LAST line of your Localsettings.php file:
-#require_once("$IP/extensions/MaintenanceShell/MaintenanceShell.php");

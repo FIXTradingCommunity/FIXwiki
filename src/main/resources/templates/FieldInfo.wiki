@@ -1,10 +1,27 @@
 ===FIX Field {{{Tag}}}===
-
-{| border="1"
-! Tag !! Name !! Type !! Enumerated !! First introduced !! Deprecated
-|-
-|| {{{Tag}}} || {{{Name}}} || [[{{{Type}}}DataType | {{{Type}}}]] || {{#if: {{{EnumFieldName|}}} | {{#if: {{{EnumDatatype|}}} | Same values as [[{{{EnumFieldName}}}]]| x}} |}} || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
-|}
+<table border="1"><tr>
+<th>Tag</th>
+<th>Name</th>
+<th>Type</th>
+<th>Enumerated</th>
+<th>First introduced</th>
+{{#if: {{{deprecated|}}} |
+  <th>Deprecated</th>
+| }}
+{{#if: {{{removed|}}} |
+  <th>Removed</th>
+| }}</tr><tr>
+<td>{{{Tag}}}</td>
+<td>{{{Name}}}</td>
+<td>[[{{{Type}}}DataType | {{{Type}}}]]</td>
+<td>{{#if: {{{EnumFieldName|}}} | {{#if: {{{EnumDatatype|}}} | Same values as [[{{{EnumFieldName}}}]]| x}} |}}</td>
+<td>{{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }}</td>
+{{#if: {{{deprecated|}}} |
+  <td>[[:Category:{{{deprecated}}}|{{{deprecated}}}]]</td>
+| }}
+{{#if: {{{removed|}}} |
+  <td>[[:Category:{{{removed}}}|{{{removed}}}]]</td>
+| }}</tr></table>
 
 {{{Description|}}}
 

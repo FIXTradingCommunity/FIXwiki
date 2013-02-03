@@ -1,10 +1,23 @@
 ===FIX Message Component {{{Name}}}===
-
-{| border="1"
-! FIX Specification !! Type !! First introduced !! Deprecated
-|-
-|| {{{CategoryID}}} || {{{ComponentType}}} || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
-|}
+<table border="1"><tr>
+<th>FIX Specification</th>
+<th>Type</th>
+<th>First introduced</th>
+{{#if: {{{deprecated|}}} |
+  <th>Deprecated</th>
+| }}
+{{#if: {{{removed|}}} |
+  <th>Removed</th>
+| }}</tr><tr>
+<td>{{{CategoryID}}}</td>
+<td>{{{ComponentType}}}</td>
+<td>{{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }}</td>
+{{#if: {{{deprecated|}}} |
+  <td>[[:Category:{{{deprecated}}}|{{{deprecated}}}]]</td>
+| }}
+{{#if: {{{removed|}}} |
+  <td>[[:Category:{{{removed}}}|{{{removed}}}]]</td>
+| }}</tr></table>
 
 {{{Description|}}}
 

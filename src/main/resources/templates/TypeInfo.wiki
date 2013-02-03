@@ -1,10 +1,23 @@
 ===FIX Data Type {{{Name}}}===
-
-{| border="1"
-! Name !! BaseType !! First introduced !! Deprecated
-|-
-|| {{{Name}}} || {{#if: {{{BaseType|}}} | [[{{{BaseType}}}DataType]] | }} || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
-|}
+<table border="1"><tr>
+<th>Name</th>
+<th>BaseType</th>
+<th>First introduced</th>
+{{#if: {{{deprecated|}}} |
+  <th>Deprecated</th>
+| }}
+{{#if: {{{removed|}}} |
+  <th>Removed</th>
+| }}</tr><tr>
+<td>{{{Name}}}</td>
+<td>{{#if: {{{BaseType|}}} | [[{{{BaseType}}}DataType]] | }}</td>
+<td>{{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }}</td>
+{{#if: {{{deprecated|}}} |
+  <td>[[:Category:{{{deprecated}}}|{{{deprecated}}}]]</td>
+| }}
+{{#if: {{{removed|}}} |
+  <td>[[:Category:{{{removed}}}|{{{removed}}}]]</td>
+| }}</tr></table>
 
 {{{Description|}}}
 

@@ -1,10 +1,25 @@
 ===[[{{{Name}}}]] Value {{{Value}}}===
-
-{| border="1"
-! Value !! Name !! Field(tag) !! First introduced !! Deprecated
-|-
-|| {{{Value}}} || {{{SymbolicName}}} || [[{{{Name}}} | {{{Name}}}({{{Tag}}})]] || {{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }} || {{#if: {{{deprecated|}}} | [[:Category:{{{deprecated}}}|{{{deprecated}}}]] | }}
-|}
+<table border="1"><tr>
+<th>Value</th>
+<th>Name</th>
+<th>Field(tag)</th>
+<th>First introduced</th>
+{{#if: {{{deprecated|}}} |
+  <th>Deprecated</th>
+| }}
+{{#if: {{{removed|}}} |
+  <th>Removed</th>
+| }}</tr><tr>
+<td>{{{Value}}}</td>
+<td>{{{SymbolicName}}}</td>
+<td>[[{{{Name}}} | {{{Name}}}({{{Tag}}})]]</td>
+<td>{{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }}</td>
+{{#if: {{{deprecated|}}} |
+  <td>[[:Category:{{{deprecated}}}|{{{deprecated}}}]]</td>
+| }}
+{{#if: {{{removed|}}} |
+  <td>[[:Category:{{{removed}}}|{{{removed}}}]]</td>
+| }}</tr></table>
 <!--Special code for MsgType field which adds a link to the corresponding Message page.-->
 {{#ifeq: {{{Name}}} | MsgType
 |

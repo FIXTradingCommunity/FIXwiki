@@ -25,6 +25,8 @@
 
 {{{Description|}}}
 
+{{{Elaboration|}}}
+
 {{#if: {{{EnumFieldName|}}}
 |
 === Enumerated Values ===

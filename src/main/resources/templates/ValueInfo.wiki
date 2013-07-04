@@ -28,4 +28,5 @@ See [[{{{SymbolicName}}}]] for details about this message.
 
 {{{Description}}}
 
+{{{Elaboration|}}}
 <includeonly> [[Category:Value]] </includeonly>

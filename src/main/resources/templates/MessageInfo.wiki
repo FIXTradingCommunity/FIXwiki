@@ -21,6 +21,8 @@
 
 {{{Description|}}}
 
+{{{Elaboration|}}}
+
 {{#ifexist: FPL:{{{Name}}} Notes
 |{{FPL:{{{Name}}} Notes}}
 }}

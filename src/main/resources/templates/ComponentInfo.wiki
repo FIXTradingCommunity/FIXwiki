@@ -21,6 +21,8 @@
 
 {{{Description|}}}
 
+{{{Elaboration|}}}
+
 ====Component Contents By FIX Version====
 
 {{#tag:subpages

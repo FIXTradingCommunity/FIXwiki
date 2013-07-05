@@ -23,10 +23,6 @@
 
 {{{Elaboration|}}}
 
-{{#ifexist: FPL:{{{Name}}} Notes
-|{{FPL:{{{Name}}} Notes}}
-}}
-
 ====Message Contents By FIX Version====
 
 {{#tag:subpages

@@ -56,6 +56,7 @@
     Subversion repository at
     <a target="_blank" href="https://svn.fixprotocol.org/svn/fixwiki">https://svn.fixprotocol.org/svn/fixwiki</a>.
 </p>
+
 <h2>
     Wiki Software
 </h2>
@@ -111,7 +112,7 @@
 
 <p>
     Unpack the MediaWiki distribution into a directory called "w" accessible
-    to a web browser. The web root (DocumentRoot in Apache terms) should be the 
+    to a web browser. The web root (DocumentRoot in Apache terms) should be the
     directory which contains "w".
 </p>
 
@@ -145,15 +146,16 @@
     so that it includes another file LocalSettings.inc.
     This file is where you will put the FIXwiki specific configuration settings.
     It can start off blank.
-    You should add the following as the last line in LocalSettings.php: 
+    You should add the following as the last line in LocalSettings.php:
+</p>
     <pre>
     include('LocalSettings.inc');    
     </pre>
-</p>
 <p>
-    Lastly you should make the images subdirectory of the MediaWiki 
-    installation writable. This is where uploaded files will be written. 
+    Lastly you should make the images subdirectory of the MediaWiki
+    installation writable. This is where uploaded files will be written.
 </p>
+
 <h3>
     Standard Extensions Used by FIXwiki
 </h3>
@@ -162,13 +164,17 @@
     FIXwiki uses the following standard extensions:
 </p>
 <ul>
-    <li><a target="_blank" href="http://www.mediawiki.org/wiki/Extension:ConfirmAccount">ConfirmAccount</a>
+    <li><a target="_blank"
+           href="http://www.mediawiki.org/wiki/Extension:ConfirmAccount">ConfirmAccount</a>
     </li>
-    <li><a target="_blank" href="http://www.mediawiki.org/wiki/Extension:ParserFunctions">ParserFunctions</a>
+    <li><a target="_blank"
+           href="http://www.mediawiki.org/wiki/Extension:ParserFunctions">ParserFunctions</a>
     </li>
-    <li><a target="_blank" href="http://www.mediawiki.org/wiki/Extension:SubPageList">SubPageList</a>
+    <li><a target="_blank"
+           href="http://www.mediawiki.org/wiki/Extension:SubPageList">SubPageList</a>
     </li>
-    <li><a target="_blank" href="http://www.mediawiki.org/wiki/Extension:Validator">Validator</a>
+    <li><a target="_blank"
+           href="http://www.mediawiki.org/wiki/Extension:Validator">Validator</a>
     </li>
 </ul>
 <p>
@@ -196,8 +202,9 @@
     you have to install special PHP email support and you also need to
     specify email configuration details in LocalSettings.inc.
 </p>
+
 <p>
-    The relevant configuration lines will already be in the standard 
+    The relevant configuration lines will already be in the standard
     LocalSettings.inc. Comment them out if they are not needed.
     They are:
 </p>
@@ -210,15 +217,18 @@
     );    
 </pre>
 <p>
-    See <a target="_blank" href="http://www.mediawiki.org/wiki/Manual:$wgSMTP">http://www.mediawiki.org/wiki/Manual:$wgSMTP</a> 
-    for detailed doc on the $wgSMTP config. 
+    See <a target="_blank" href="http://www.mediawiki.org/wiki/Manual:$wgSMTP">http://www.mediawiki.org/wiki/Manual:$wgSMTP</a>
+    for detailed doc on the $wgSMTP config.
 </p>
+
 <p>
     The PHP email support comes from the PEAR project which supplies all
-    sorts of PHP libraries in the form of "packages". Specifically you 
-    need the <a target="_blank" href="http://pear.php.net/package/Mail">Mail</a> package
+    sorts of PHP libraries in the form of "packages". Specifically you
+    need the <a target="_blank" href="http://pear.php.net/package/Mail">Mail</a>
+    package
     plus those packages that it depends on.
 </p>
+
 <h3>
     LocalSettings.inc
 </h3>
@@ -242,12 +252,12 @@
     This file should be in place and working as expected for the wiki before
     running the FIXwiki build script (described below).
     In particular, the url rewriting rules should be working correctly.
-    Links in imported wiki pages will contain urls according to the 
+    Links in imported wiki pages will contain urls according to the
     configured rules. These cannot be changed later.
 </p>
 
 <p>
-    Getting the url rewriting working can be troublesome because it depends on 
+    Getting the url rewriting working can be troublesome because it depends on
     the Apache server being correctly configured.
     See the comments in LocalSettings.inc for guidelines and links to
     external documentation.
@@ -277,8 +287,8 @@
 </p>
 
 <p>
-    To summarize, once the wiki is correctly configured, generating the FIXwiki 
-    content (ie all the FIXwiki pages) is a two stage process:    
+    To summarize, once the wiki is correctly configured, generating the FIXwiki
+    content (ie all the FIXwiki pages) is a two stage process:
 </p>
 <ol>
     <li>Read the FIX repository and generate a number of text files and a PHP
@@ -310,7 +320,7 @@
 </p>
 <ul>
     <li>It needs to be run from the wiki's "maintenance" subdirectory.</li>
-    <li>It needs to be run by a user with full update access to the MySQL 
+    <li>It needs to be run by a user with full update access to the MySQL
         wiki database.
     </li>
     <li>The wiki needs to be fully configured using LocalSettings.inc as
@@ -433,7 +443,8 @@
 
 <p>
     Apart from calling the other modules as needed, the main function of this
-    code is to actually generate the text files which end up being FIXwiki pages,
+    code is to actually generate the text files which end up being FIXwiki
+    pages,
     as well as the PHP script which imports those text files into the wiki.
 </p>
 
@@ -503,11 +514,12 @@
 </blockquote>
 <p>
     As you can see, this calls the standard "Message info" template passing
-    in all the data specific to the TestRequest message. You can look at
-    all the templates, including the "Message info" template, by going to the
-    special <a target="_blank"
-               href="http://fixwiki.org/fixwiki/Special:UncategorizedTemplates">Uncategorized
-    templates page</a>.
+    in all the data specific to the TestRequest message.
+    The data names are those used in the repository files.
+    One exception is "SegmentType" which is a data name created by FIXwiki.
+    A "segment" is the generic term FIXwiki uses for any collection of fields.
+    This can be a FIX message or a FIX component (also known as a group).
+    So SegmentType can only have the values Message or Component.
 </p>
 
 <p>
@@ -515,17 +527,26 @@
     changed by simply modifying these formatting templates.
 </p>
 
+<p>
+    You can look at all the templates, including the "Message info" template,
+    by going to the special <a target="_blank"
+                               href="http://fixwiki.org/fixwiki/Special:UncategorizedTemplates">Uncategorized
+    templates page</a>.
+</p>
+
 <h2>
     Moving a New Version of FIXwiki into Production
 </h2>
 
 <p>
-    Currently, FIXwiki is hosted by 
+    Currently, FIXwiki is hosted by
     <a target="_blank" href="http://www.bluehost.com/">Bluehost</a>.
     FPL has an account with Bluehost. Contact the FPL Operations Director,
-    <a target="_blank" href="mailto:courtney.mcguinn@fixprotocol.org">Courtney Doyle McGuinn</a>
+    <a target="_blank" href="mailto:courtney.mcguinn@fixprotocol.org">Courtney
+        Doyle McGuinn</a>
     or
-    <a target="_blank" href="mailto:john.cameron@cameronedge.com">John Cameron</a> 
+    <a target="_blank" href="mailto:john.cameron@cameronedge.com">John
+        Cameron</a>
     if you need access to this account, or the FIXwiki server.
 </p>
 
@@ -556,9 +577,9 @@
         production FIXwiki's database.
     </li>
     <li>
-        Allow changes to the production FIXwiki again by commenting out the 
+        Allow changes to the production FIXwiki again by commenting out the
         $wgReadOnly line in LocalSettings.inc
-        
+
     </li>
 </ol>
 
@@ -571,13 +592,13 @@
 </code>
 
 <p>
-    Upload that file to the Bluehost server and then restore it to the 
+    Upload that file to the Bluehost server and then restore it to the
     production data base. To do this, log on to the Bluehost server, then
     execute the following from the Bluehost command line:
 </p>
 
 <code>
-    mysql -ufixwikio_user -ppassword fixwikio_db &lt; backupfile.sql    
+    mysql -ufixwikio_user -ppassword fixwikio_db &lt; backupfile.sql
 </code>
 
 <p>

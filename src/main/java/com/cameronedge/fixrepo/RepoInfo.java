@@ -35,25 +35,31 @@ public class RepoInfo {
 
   public static final String PROP_ADDED_VERSION = "added";
   public static final String PROP_DESCRIPTION = "Description";
+  public static final String PROP_ELABORATION = "Elaboration";
 
   public static final String PROP_ADDED_EXTENSION_PACK = "addedEP";
 
   public static final String PROP_COMPONENT_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_COMPONENT_ELABORATION = PROP_ELABORATION;
   public static final String PROP_COMPONENT_NAME = "Name";
 
   public static final String PROP_ENUM_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_ENUM_ELABORATION = PROP_ELABORATION;
   public static final String PROP_ENUM_NAME = "SymbolicName";
   public static final String PROP_ENUM_VALUE = "Value";
 
   public static final String PROP_FIELD_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_FIELD_ELABORATION = PROP_ELABORATION;
   public static final String PROP_FIELD_ENUM_FIELD_NAME = "EnumFieldName";
   public static final String PROP_FIELD_NAME = "Name";
   public static final String PROP_FIELD_USES_ENUMS_FROM_TAG = "EnumDatatype";
 
   public static final String PROP_MESSAGE_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_MESSAGE_ELABORATION = PROP_ELABORATION;
   public static final String PROP_MESSAGE_NAME = "Name";
 
   public static final String PROP_SEGMENT_DESCRIPTION = PROP_DESCRIPTION;
+  public static final String PROP_SEGMENT_ELABORATION = PROP_ELABORATION;
 
   public static final String PROP_TYPE_NAME = "Name";
 

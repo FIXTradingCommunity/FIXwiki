@@ -1064,9 +1064,12 @@ public class FixwikiGenerator {
   }
 
   private void writeWikiTemplateParameter(PrintWriter fw, String key, String value) {
-    //Replace inconsistent description key
+    //Get rid of any bar characters that will confuse the wiki.
     value = value.replace('|', ' ');
-    if (RepoInfo.PROP_DESCRIPTION.equals(key)) {
+    
+    //Create links in descriptions and elaborations.
+    if (RepoInfo.PROP_DESCRIPTION.equals(key) || 
+            RepoInfo.PROP_ELABORATION.equals(key)) {
       value = formatDescription(value, linkDetector);
     }
     fw.println("| " + key + "=" + value);

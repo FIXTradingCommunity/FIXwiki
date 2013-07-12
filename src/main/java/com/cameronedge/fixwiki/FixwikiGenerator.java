@@ -31,7 +31,19 @@ import static com.cameronedge.fixwiki.FixwikiUtil.formatDescription;
  * @author John Cameron
  */
 public class FixwikiGenerator {
+  private static final String BULK_IMPORT_PROGRAM = "bulkImportTextFiles.php";
   private static final String BUILD_SCRIPT = "buildFIXwiki.sh";
+  private static final String BUILD_SCRIPT_ERROR_CHECKING = 
+          "if [ ! -f importImages.php ]; then\n" +
+            "  echo 'importImages.php not found.'\n" +
+            "  echo 'Are you running in the wiki maintenance directory?'\n" +
+            "  exit 1\n" +
+            "fi\n" +
+            "if [ ! -f " + BULK_IMPORT_PROGRAM + " ]; then\n" +
+            "  echo '" + BULK_IMPORT_PROGRAM + " not found.'\n" +
+            "  echo 'You must copy it to the wiki maintenance directory.'\n" +
+            "  exit 1\n" +
+            "fi\n";
   private static boolean createUserPages = false;
   private LinkDetector linkDetector;
   private RepoInfo repoInfo;
@@ -42,6 +54,8 @@ public class FixwikiGenerator {
   private static final String FIELD_INFO = "Field info";
   private static final String FIX_NAMES_FILE_NAME = "FIXNames.txt";
   private static final String IMPORT_DIR_VARIABLE = "importdir";
+  private static final String IMPORTS_FILE = "imports.txt";
+  private static final String IMPORTS_FILE_DELIMITER = "|";
   private static final String INVITATION_TO_POST = "Invitation to post";
   private static final String MESSAGE_CONTENT_INFO = "Message Content info";
   private static final String MESSAGE_INFO = "Message info";
@@ -62,6 +76,13 @@ public class FixwikiGenerator {
     linkDetector = new LinkDetector(repoInfo, 0);
   }
 
+  private void addImportToFile(PrintWriter importFile, String relName,
+                                 String title, boolean overwrite) {
+    String entry = title + IMPORTS_FILE_DELIMITER + relName + 
+            (overwrite ? "" : IMPORTS_FILE_DELIMITER + "nooverwrite");
+    importFile.println(entry);
+  }
+
   private void addImportToScript(PrintWriter script, String relName,
                                  String title, boolean overwrite) {
     String cmd = "php importTextFile.php " +
@@ -71,10 +92,10 @@ public class FixwikiGenerator {
     script.println(cmd);
   }
 
-  private void addResourceImportToScript(File scriptDir, PrintWriter script, String resourceName, String title) throws IOException {
+  private void addResourceImportToFile(File scriptDir, PrintWriter importsFile, String resourceName, String title) throws IOException {
     addResourceToOutput(scriptDir, resourceName);
 
-    addImportToScript(script, resourceName, title, true);
+    addImportToFile(importsFile, resourceName, title, true);
   }
 
   private void addResourceToOutput(File outputDir, String resourceName) throws IOException {
@@ -151,26 +172,41 @@ public class FixwikiGenerator {
   }
 
   private void generate(File scriptDir) throws Exception {
+    //Create bulk import file.
+    String fname = scriptDir.getAbsolutePath() + File.separator + IMPORTS_FILE;
+    PrintWriter importsFile = new PrintWriter(new FileWriter(fname));
 
     //Create script file.
-    String fname = scriptDir.getAbsolutePath() + File.separator + BUILD_SCRIPT;
+    fname = scriptDir.getAbsolutePath() + File.separator + BUILD_SCRIPT;
     PrintWriter script = new PrintWriter(new FileWriter(fname));
     script.println("#!/bin/sh");
+
+    script.print(BUILD_SCRIPT_ERROR_CHECKING);
+        
     script.println(IMPORT_DIR_VARIABLE + "=`dirname $0`");
 
-    generateConstantPages(scriptDir, script);
-
-    generateFieldPages(scriptDir, script);
-
-    generateValuePages(scriptDir, script);
-
-    generateMessagePages(scriptDir, script);
-
-    generateComponentPages(scriptDir, script);
-
-    generateTypePages(scriptDir, script);
+    script.println("php " + BULK_IMPORT_PROGRAM + " $" + 
+            IMPORT_DIR_VARIABLE + File.separator + IMPORTS_FILE);
+    script.println("if [ ! '$?' = '0' ]; then\n" +
+            "  echo 'bulkImportTextFiles.php failed'\n" +
+            "  exit 1\n" +
+            "fi");
     
-    generateExtensionPackPages(scriptDir, script);
+    //Generate the various FIXwiki pages. This will update the build script
+    //and the imports file.
+    generateConstantPages(scriptDir, importsFile);
+
+    generateFieldPages(scriptDir, importsFile);
+
+    generateValuePages(scriptDir, importsFile);
+
+    generateMessagePages(scriptDir, importsFile);
+
+    generateComponentPages(scriptDir, importsFile);
+
+    generateTypePages(scriptDir, importsFile);
+    
+    generateExtensionPackPages(scriptDir, importsFile);
 
     generateFIXNamesFile(scriptDir);
 
@@ -179,6 +215,7 @@ public class FixwikiGenerator {
     script.println("php rebuildall.php");
 
     script.close();
+    importsFile.close();
 
   }
 
@@ -187,85 +224,85 @@ public class FixwikiGenerator {
     addUploadToScript(script, UPLOAD_DIR_NAME);
   }
 
-  private void generateConstantPages(File scriptDir, PrintWriter script) throws IOException {
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Disclaimers.wiki", "MediaWiki:Disclaimers");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixNames-desc.wiki", "MediaWiki:FixNames-desc");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixNames-url.wiki", "MediaWiki:FixNames-url");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixRepoError.wiki", "MediaWiki:FixRepoError");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixRepoError-url.wiki", "MediaWiki:FixRepoError-url");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixSpec.wiki", "MediaWiki:FixSpec");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixSpec-url.wiki", "MediaWiki:FixSpec-url");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixSpecError.wiki", "MediaWiki:FixSpecError");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/FixSpecError-url.wiki", "MediaWiki:FixSpecError-url");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Loginreqpagetext.wiki", "MediaWiki:Loginreqpagetext");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Logouttext.wiki", "MediaWiki:Logouttext");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Mainpage.wiki", "MediaWiki:Mainpage");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Privacy.wiki", "MediaWiki:Privacy");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Loginreqpagetext.wiki", "MediaWiki:Loginreqpagetext");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Searchresulttext.wiki", "MediaWiki:Searchresulttext");
-    addResourceImportToScript(scriptDir, script, "MediaWiki/Sidebar.wiki", "MediaWiki:Sidebar");
-    addResourceImportToScript(scriptDir, script, "FIXwiki/About.wiki", "FIXwiki:About");
-    addResourceImportToScript(scriptDir, script, "FIXwiki/Copyrights.wiki", "FIXwiki:Copyrights");
-    addResourceImportToScript(scriptDir, script, "FIXwiki/FIXNames.wiki", "FIXwiki:FIX Names");
-    addResourceImportToScript(scriptDir, script, "FIXwiki/FIXwiki.wiki", "FIXwiki");
-    addResourceImportToScript(scriptDir, script, "FIXwiki/Structure.wiki", "FIXwiki:Structure");
-    addResourceImportToScript(scriptDir, script, "FIXwiki/Use.wiki", "FIXwiki:Use");
-    addResourceImportToScript(scriptDir, script, "fpl/aboutFPL.wiki", "FPL:About FIX Protocol Limited (FPL)");
-    addResourceImportToScript(scriptDir, script, "fpl/CFICodeUsage.wiki", "FPL:CFICode usage");
-    addResourceImportToScript(scriptDir, script, "fpl/CommonComponents.wiki", "FPL:Common Components");
-    addResourceImportToScript(scriptDir, script, "fpl/CommonMessages.wiki", "FPL:Common Messages");
-    addResourceImportToScript(scriptDir, script, "fpl/CurrencyCodes.wiki", "FPL:Currency Codes");
-    addResourceImportToScript(scriptDir, script, "fpl/disclaimer.wiki", "FPL:General Disclaimer");
-    addResourceImportToScript(scriptDir, script, "fpl/ExchangeCodes.wiki", "FPL:Exchange Codes");
-    addResourceImportToScript(scriptDir, script, "fpl/FIXMLSyntax.wiki", "FPL:FIXML Syntax");
-    addResourceImportToScript(scriptDir, script, "fpl/FIXUsageNotes.wiki", "FPL:FIX Usage Notes");
-    addResourceImportToScript(scriptDir, script, "fpl/history.wiki", "FPL:History of FIX");
-    addResourceImportToScript(scriptDir, script, "fpl/OtherStandards.wiki", "FPL:Other Standards");
-    addResourceImportToScript(scriptDir, script, "fpl/PartiesReferenceData.wiki", "FPL:Parties Reference Data");
-    addResourceImportToScript(scriptDir, script, "fpl/PosttradeMessages.wiki", "FPL:Post-trade messages");
-    addResourceImportToScript(scriptDir, script, "fpl/PretradeMessages.wiki", "FPL:Pre-trade messages");
-    addResourceImportToScript(scriptDir, script, "fpl/ProductMarketDataModel.wiki", "FPL:Product Reference and Market Structure Data Model");
-    addResourceImportToScript(scriptDir, script, "fpl/QuotingModels.wiki", "FPL:Quoting Models");
-    addResourceImportToScript(scriptDir, script, "fpl/reproduction.wiki", "FPL:Reproduction of Specification");
-    addResourceImportToScript(scriptDir, script, "fpl/SecurityReferenceDataScenarios.wiki", "FPL:Security Definition, Security Status, and Trading Session Message Scenarios");
-    addResourceImportToScript(scriptDir, script, "fpl/Specification.wiki", "FPL:FIX Specification");
-    addResourceImportToScript(scriptDir, script, "fpl/TagValueSyntax.wiki", "FPL:Tag Value Syntax");
-    addResourceImportToScript(scriptDir, script, "fpl/TradeMessages.wiki", "FPL:Trade messages");
-    addResourceImportToScript(scriptDir, script, "fpl/TraditionalSessionProtocol.wiki", "FPL:Traditional FIX Session Protocol");
-    addResourceImportToScript(scriptDir, script, "fpl/TransportProtocols.wiki", "FPL:Transport Protocols");
-    addResourceImportToScript(scriptDir, script, "templates/ComponentContentInfo.wiki", "Template:" + COMPONENT_CONTENT_INFO);
-    addResourceImportToScript(scriptDir, script, "templates/ComponentInfo.wiki", "Template:" + COMPONENT_INFO);
-    addResourceImportToScript(scriptDir, script, "templates/FieldInfo.wiki", "Template:" + FIELD_INFO);
-    addResourceImportToScript(scriptDir, script, "templates/InvitationToPost.wiki", "Template:" + INVITATION_TO_POST);
-    addResourceImportToScript(scriptDir, script, "templates/MessageContentInfo.wiki", "Template:" + MESSAGE_CONTENT_INFO);
-    addResourceImportToScript(scriptDir, script, "templates/MessageInfo.wiki", "Template:" + MESSAGE_INFO);
-    addResourceImportToScript(scriptDir, script, "templates/ReferToUserPage.wiki", "Template:" + REFER_TO_USER_PAGE);
-    addResourceImportToScript(scriptDir, script, "templates/RepoError.wiki", "Template:RepoError");
-    addResourceImportToScript(scriptDir, script, "templates/SpecError.wiki", "Template:SpecError");
-    addResourceImportToScript(scriptDir, script, "templates/ToDo.wiki", "Template:Todo");
-    addResourceImportToScript(scriptDir, script, "templates/TypeInfo.wiki", "Template:" + TYPE_INFO);
-    addResourceImportToScript(scriptDir, script, "templates/ValueInfo.wiki", "Template:" + VALUE_INFO);
-    addResourceImportToScript(scriptDir, script, "categories/FIX.2.7.wiki", "Category:FIX.2.7");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.3.0.wiki", "Category:FIX.3.0");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.4.0.wiki", "Category:FIX.4.0");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.4.1.wiki", "Category:FIX.4.1");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.4.2.wiki", "Category:FIX.4.2");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.4.3.wiki", "Category:FIX.4.3");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.4.4.wiki", "Category:FIX.4.4");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.5.0.wiki", "Category:FIX.5.0");
-    addResourceImportToScript(scriptDir, script, "categories/FIXT.1.1.wiki", "Category:FIXT.1.1");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP1.wiki", "Category:FIX.5.0SP1");
-    addResourceImportToScript(scriptDir, script, "categories/FIX.5.0SP2.wiki", "Category:FIX.5.0SP2");    
-    addResourceImportToScript(scriptDir, script, "categories/message.wiki", "Category:Message");
-    addResourceImportToScript(scriptDir, script, "categories/component.wiki", "Category:Component");
-    addResourceImportToScript(scriptDir, script, "categories/field.wiki", "Category:Field");
-    addResourceImportToScript(scriptDir, script, "categories/RepoError.wiki", "Category:RepoError");
-    addResourceImportToScript(scriptDir, script, "categories/SpecError.wiki", "Category:SpecError");
-    addResourceImportToScript(scriptDir, script, "categories/type.wiki", "Category:Type");
-    addResourceImportToScript(scriptDir, script, "categories/value.wiki", "Category:Value");
-    addResourceImportToScript(scriptDir, script, "categories/extensionpack.wiki", "Category:ExtensionPack");
-    addResourceImportToScript(scriptDir, script, "help/Editing.wiki", "Help:Editing");
-    addResourceImportToScript(scriptDir, script, "help/Searching.wiki", "Help:Searching");
+  private void generateConstantPages(File scriptDir, PrintWriter importFile) throws IOException {
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Disclaimers.wiki", "MediaWiki:Disclaimers");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixNames-desc.wiki", "MediaWiki:FixNames-desc");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixNames-url.wiki", "MediaWiki:FixNames-url");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixRepoError.wiki", "MediaWiki:FixRepoError");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixRepoError-url.wiki", "MediaWiki:FixRepoError-url");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixSpec.wiki", "MediaWiki:FixSpec");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixSpec-url.wiki", "MediaWiki:FixSpec-url");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixSpecError.wiki", "MediaWiki:FixSpecError");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/FixSpecError-url.wiki", "MediaWiki:FixSpecError-url");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Loginreqpagetext.wiki", "MediaWiki:Loginreqpagetext");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Logouttext.wiki", "MediaWiki:Logouttext");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Mainpage.wiki", "MediaWiki:Mainpage");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Privacy.wiki", "MediaWiki:Privacy");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Loginreqpagetext.wiki", "MediaWiki:Loginreqpagetext");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Searchresulttext.wiki", "MediaWiki:Searchresulttext");
+    addResourceImportToFile(scriptDir, importFile, "MediaWiki/Sidebar.wiki", "MediaWiki:Sidebar");
+    addResourceImportToFile(scriptDir, importFile, "FIXwiki/About.wiki", "FIXwiki:About");
+    addResourceImportToFile(scriptDir, importFile, "FIXwiki/Copyrights.wiki", "FIXwiki:Copyrights");
+    addResourceImportToFile(scriptDir, importFile, "FIXwiki/FIXNames.wiki", "FIXwiki:FIX Names");
+    addResourceImportToFile(scriptDir, importFile, "FIXwiki/FIXwiki.wiki", "FIXwiki");
+    addResourceImportToFile(scriptDir, importFile, "FIXwiki/Structure.wiki", "FIXwiki:Structure");
+    addResourceImportToFile(scriptDir, importFile, "FIXwiki/Use.wiki", "FIXwiki:Use");
+    addResourceImportToFile(scriptDir, importFile, "fpl/aboutFPL.wiki", "FPL:About FIX Protocol Limited (FPL)");
+    addResourceImportToFile(scriptDir, importFile, "fpl/CFICodeUsage.wiki", "FPL:CFICode usage");
+    addResourceImportToFile(scriptDir, importFile, "fpl/CommonComponents.wiki", "FPL:Common Components");
+    addResourceImportToFile(scriptDir, importFile, "fpl/CommonMessages.wiki", "FPL:Common Messages");
+    addResourceImportToFile(scriptDir, importFile, "fpl/CurrencyCodes.wiki", "FPL:Currency Codes");
+    addResourceImportToFile(scriptDir, importFile, "fpl/disclaimer.wiki", "FPL:General Disclaimer");
+    addResourceImportToFile(scriptDir, importFile, "fpl/ExchangeCodes.wiki", "FPL:Exchange Codes");
+    addResourceImportToFile(scriptDir, importFile, "fpl/FIXMLSyntax.wiki", "FPL:FIXML Syntax");
+    addResourceImportToFile(scriptDir, importFile, "fpl/FIXUsageNotes.wiki", "FPL:FIX Usage Notes");
+    addResourceImportToFile(scriptDir, importFile, "fpl/history.wiki", "FPL:History of FIX");
+    addResourceImportToFile(scriptDir, importFile, "fpl/OtherStandards.wiki", "FPL:Other Standards");
+    addResourceImportToFile(scriptDir, importFile, "fpl/PartiesReferenceData.wiki", "FPL:Parties Reference Data");
+    addResourceImportToFile(scriptDir, importFile, "fpl/PosttradeMessages.wiki", "FPL:Post-trade messages");
+    addResourceImportToFile(scriptDir, importFile, "fpl/PretradeMessages.wiki", "FPL:Pre-trade messages");
+    addResourceImportToFile(scriptDir, importFile, "fpl/ProductMarketDataModel.wiki", "FPL:Product Reference and Market Structure Data Model");
+    addResourceImportToFile(scriptDir, importFile, "fpl/QuotingModels.wiki", "FPL:Quoting Models");
+    addResourceImportToFile(scriptDir, importFile, "fpl/reproduction.wiki", "FPL:Reproduction of Specification");
+    addResourceImportToFile(scriptDir, importFile, "fpl/SecurityReferenceDataScenarios.wiki", "FPL:Security Definition, Security Status, and Trading Session Message Scenarios");
+    addResourceImportToFile(scriptDir, importFile, "fpl/Specification.wiki", "FPL:FIX Specification");
+    addResourceImportToFile(scriptDir, importFile, "fpl/TagValueSyntax.wiki", "FPL:Tag Value Syntax");
+    addResourceImportToFile(scriptDir, importFile, "fpl/TradeMessages.wiki", "FPL:Trade messages");
+    addResourceImportToFile(scriptDir, importFile, "fpl/TraditionalSessionProtocol.wiki", "FPL:Traditional FIX Session Protocol");
+    addResourceImportToFile(scriptDir, importFile, "fpl/TransportProtocols.wiki", "FPL:Transport Protocols");
+    addResourceImportToFile(scriptDir, importFile, "templates/ComponentContentInfo.wiki", "Template:" + COMPONENT_CONTENT_INFO);
+    addResourceImportToFile(scriptDir, importFile, "templates/ComponentInfo.wiki", "Template:" + COMPONENT_INFO);
+    addResourceImportToFile(scriptDir, importFile, "templates/FieldInfo.wiki", "Template:" + FIELD_INFO);
+    addResourceImportToFile(scriptDir, importFile, "templates/InvitationToPost.wiki", "Template:" + INVITATION_TO_POST);
+    addResourceImportToFile(scriptDir, importFile, "templates/MessageContentInfo.wiki", "Template:" + MESSAGE_CONTENT_INFO);
+    addResourceImportToFile(scriptDir, importFile, "templates/MessageInfo.wiki", "Template:" + MESSAGE_INFO);
+    addResourceImportToFile(scriptDir, importFile, "templates/ReferToUserPage.wiki", "Template:" + REFER_TO_USER_PAGE);
+    addResourceImportToFile(scriptDir, importFile, "templates/RepoError.wiki", "Template:RepoError");
+    addResourceImportToFile(scriptDir, importFile, "templates/SpecError.wiki", "Template:SpecError");
+    addResourceImportToFile(scriptDir, importFile, "templates/ToDo.wiki", "Template:Todo");
+    addResourceImportToFile(scriptDir, importFile, "templates/TypeInfo.wiki", "Template:" + TYPE_INFO);
+    addResourceImportToFile(scriptDir, importFile, "templates/ValueInfo.wiki", "Template:" + VALUE_INFO);
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.2.7.wiki", "Category:FIX.2.7");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.3.0.wiki", "Category:FIX.3.0");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.4.0.wiki", "Category:FIX.4.0");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.4.1.wiki", "Category:FIX.4.1");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.4.2.wiki", "Category:FIX.4.2");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.4.3.wiki", "Category:FIX.4.3");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.4.4.wiki", "Category:FIX.4.4");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.5.0.wiki", "Category:FIX.5.0");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIXT.1.1.wiki", "Category:FIXT.1.1");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.5.0SP1.wiki", "Category:FIX.5.0SP1");
+    addResourceImportToFile(scriptDir, importFile, "categories/FIX.5.0SP2.wiki", "Category:FIX.5.0SP2");    
+    addResourceImportToFile(scriptDir, importFile, "categories/message.wiki", "Category:Message");
+    addResourceImportToFile(scriptDir, importFile, "categories/component.wiki", "Category:Component");
+    addResourceImportToFile(scriptDir, importFile, "categories/field.wiki", "Category:Field");
+    addResourceImportToFile(scriptDir, importFile, "categories/RepoError.wiki", "Category:RepoError");
+    addResourceImportToFile(scriptDir, importFile, "categories/SpecError.wiki", "Category:SpecError");
+    addResourceImportToFile(scriptDir, importFile, "categories/type.wiki", "Category:Type");
+    addResourceImportToFile(scriptDir, importFile, "categories/value.wiki", "Category:Value");
+    addResourceImportToFile(scriptDir, importFile, "categories/extensionpack.wiki", "Category:ExtensionPack");
+    addResourceImportToFile(scriptDir, importFile, "help/Editing.wiki", "Help:Editing");
+    addResourceImportToFile(scriptDir, importFile, "help/Searching.wiki", "Help:Searching");
 
     addResourceToOutput(scriptDir, "images/CustomizableSchemaFiles.png");
     addResourceToOutput(scriptDir, "images/ExtensibilityPattern.png");
@@ -286,10 +323,10 @@ public class FixwikiGenerator {
     addResourceToOutput(scriptDir, "images/UserDefinedSpreadOneStepProcess.png");
     addResourceToOutput(scriptDir, "images/UserDefinedSpreadTwoStepProcess.png");
 
-    generateFIXVersionPlusTemplates(scriptDir, script);
+    generateFIXVersionPlusTemplates(scriptDir, importFile);
   }
 
-  private void generateExtensionPackPages(File scriptDir, PrintWriter script) throws IOException {
+  private void generateExtensionPackPages(File scriptDir, PrintWriter importsFile) throws IOException {
     
     Set<Integer> epNums = repoInfo.getExtensionPacks();
 
@@ -313,8 +350,8 @@ public class FixwikiGenerator {
       fw.println("[[Category:ExtensionPack]]");
       fw.close();
 
-      //Write to script file
-      addImportToScript(script, relName, epTitle, true);
+      //Write to imports file
+      addImportToFile(importsFile, relName, epTitle, true);
 
     }
   }
@@ -378,7 +415,7 @@ public class FixwikiGenerator {
     pw.close();
   }
 
-  private void generateFIXVersionPlusTemplates(File scriptDir, PrintWriter script) throws IOException {
+  private void generateFIXVersionPlusTemplates(File scriptDir, PrintWriter importsFile) throws IOException {
     for (int i = 0; i <= RepoInfo.latestFIXVersionIndex; i++) {
       String fixVersion = repoInfo.getFIXVersionString(i);
 
@@ -394,12 +431,12 @@ public class FixwikiGenerator {
       fw.println();
       fw.close();
 
-      //Update script
-      addImportToScript(script, relName, "Template:" + plusName, true);
+      //Update imports
+      addImportToFile(importsFile, relName, "Template:" + plusName, true);
     }
   }
 
-  private void generateFieldPages(File scriptDir, PrintWriter script) throws Exception {
+  private void generateFieldPages(File scriptDir, PrintWriter importsFile) throws Exception {
     Map<String, List<Properties>> fieldInfos = repoInfo.getFieldInfos();
 
     //Iterate through fieldNames generating field pages.
@@ -440,8 +477,8 @@ public class FixwikiGenerator {
             fw.println("#REDIRECT [[" + currentFieldName + "]]");
             fw.close();
 
-            //Write to script file
-            addImportToScript(script, relName, fieldName, true);
+            //Write to imports file
+            addImportToFile(importsFile, relName, fieldName, true);
           }
 
         } else {
@@ -473,10 +510,10 @@ public class FixwikiGenerator {
           fw.println(FPL_PAGE_TERMINATION_STRING);
           fw.close();
 
-          //Write to script file
-          addImportToScript(script, relName, fplTitle, true);
+          //Write to imports file
+          addImportToFile(importsFile, relName, fplTitle, true);
 
-          writeUserVersion(scriptDir, script, userTitle, fplTitle, ".fld");
+          writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".fld");
 
 
           //Field tag redirection page
@@ -487,34 +524,14 @@ public class FixwikiGenerator {
           fw.println("#REDIRECT [[" + fieldName + "]]");
           fw.close();
 
-          //Write to script file
-          addImportToScript(script, relName, Integer.toString(fieldTag), true);
+          //Write to imports file
+          addImportToFile(importsFile, relName, Integer.toString(fieldTag), true);
         }
       }
-
-      //I don't think that AbbrNames are worth the effort. Could add special disambiguation page afterwards
-      //if required.
-      //If AbbrName != FieldName, add another redirect page.
-//      if (abbrName != null && !fieldName.equalsIgnoreCase(abbrName)) {
-//          System.out.println(fieldName + " or " + abbrName);
-//          //Create file from field abbrName.
-//          //Check that we are not overwriting an existing field.
-//          fname = scriptDir.getAbsolutePath() + File.separator + abbrName + ".fld";
-//          File abbrFile = new File(fname);
-//          if (abbrFile.exists()) {
-//            System.out.println("WARNING: AbbrName clashes with existing name - " + abbrName );
-//          }
-//          fw = new PrintWriter(new FileWriter(abbrFile));
-//          fw.println("#REDIRECT [[" + fieldName + "]]");
-//          fw.close();
-//
-//          //Write to script file
-//          addImportToScript(script, fname);
-//      }
     }
   }
 
-  private void generateMessagePages(File scriptDir, PrintWriter script) throws Exception {
+  private void generateMessagePages(File scriptDir, PrintWriter importsFile) throws Exception {
     Map<String, List<Properties>> messageInfos = repoInfo.getMessageInfos();
     Map<String, Integer[]> messageVersionInfos = repoInfo.getMessageVersionInfos();
 
@@ -550,10 +567,10 @@ public class FixwikiGenerator {
       fw.println(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
-      //Write to script file
-      addImportToScript(script, relName, fplTitle, true);
+      //Write to imports file
+      addImportToFile(importsFile, relName, fplTitle, true);
 
-      writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
+      writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".msg");
 
 
       //Message category page
@@ -564,8 +581,8 @@ public class FixwikiGenerator {
       //Just redirect to message page.
       fw.println("#REDIRECT [[" + userTitle + "]]");
       fw.close();
-      //Write to script file
-      addImportToScript(script, relName, "Category:" + messageName, true);
+      //Write to imports file
+      addImportToFile(importsFile, relName, "Category:" + messageName, true);
 
 
       //Write contents subpages based on FIX versions.
@@ -608,10 +625,10 @@ public class FixwikiGenerator {
 
             writeSegmentFile(fname, messageName, msgType, fromVersion, toVersion, toVersion);
 
-            //Write to script file
-            addImportToScript(script, relName, fplTitle, true);
+            //Write to imports file
+            addImportToFile(importsFile, relName, fplTitle, true);
 
-            writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
+            writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".msg");
 
             //Give up if no longer exists from this version
             if (fixVersion == null) {
@@ -635,16 +652,16 @@ public class FixwikiGenerator {
 
         writeSegmentFile(fname, messageName, msgType, fromVersion, -1, RepoInfo.latestFIXVersionIndex);
 
-        //Write to script file
-        addImportToScript(script, relName, fplTitle, true);
+        //Write to imports file
+        addImportToFile(importsFile, relName, fplTitle, true);
 
-        writeUserVersion(scriptDir, script, userTitle, fplTitle, ".msg");
+        writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".msg");
       }
     }
 
   }
 
-  private void generateComponentPages(File scriptDir, PrintWriter script) throws Exception {
+  private void generateComponentPages(File scriptDir, PrintWriter importsFile) throws Exception {
     Map<String, List<Properties>> componentInfos = repoInfo.getComponentInfos();
     Map<String, Integer[]> componentVersionInfos = repoInfo.getComponentVersionInfos();
 
@@ -681,10 +698,10 @@ public class FixwikiGenerator {
       fw.println(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
-      //Write to script file
-      addImportToScript(script, relName, fplTitle, true);
+      //Write to imports file
+      addImportToFile(importsFile, relName, fplTitle, true);
 
-      writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
+      writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".cmp");
 
 
       //Component category page
@@ -695,8 +712,8 @@ public class FixwikiGenerator {
       //Just redirect to component page.
       fw.println("#REDIRECT [[" + userTitle + "]]");
       fw.close();
-      //Write to script file
-      addImportToScript(script, relName, "Category:" + componentName, true);
+      //Write to imports file
+      addImportToFile(importsFile, relName, "Category:" + componentName, true);
 
       //Write contents subpages based on FIX versions.
       //Look up associated message version info.
@@ -737,10 +754,10 @@ public class FixwikiGenerator {
 
             writeSegmentFile(fname, componentName, null, fromVersion, toVersion, toVersion);
 
-            //Write to script file
-            addImportToScript(script, relName, fplTitle, true);
+            //Write to imports file
+            addImportToFile(importsFile, relName, fplTitle, true);
 
-            writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
+            writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".cmp");
 
             //Give up if no longer exists from this version
             if (fixVersion == null) {
@@ -764,15 +781,15 @@ public class FixwikiGenerator {
 
         writeSegmentFile(fname, componentName, null, fromVersion, -1, RepoInfo.latestFIXVersionIndex);
 
-        //Write to script file
-        addImportToScript(script, relName, fplTitle, true);
+        //Write to imports file
+        addImportToFile(importsFile, relName, fplTitle, true);
 
-        writeUserVersion(scriptDir, script, userTitle, fplTitle, ".cmp");
+        writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".cmp");
       }
     }
   }
 
-  private void generateValuePages(File scriptDir, PrintWriter script) throws Exception {
+  private void generateValuePages(File scriptDir, PrintWriter importsFile) throws Exception {
     Map<String, List<Properties>> fieldInfos = repoInfo.getFieldInfos();
     Map<String, List<Properties>> enumInfos = repoInfo.getEnumInfos();
 
@@ -835,17 +852,17 @@ public class FixwikiGenerator {
           fw.println(FPL_PAGE_TERMINATION_STRING);
           fw.close();
 
-          //Write to script file
-          addImportToScript(script, relName, fplTitle, true);
+          //Write to imports file
+          addImportToFile(importsFile, relName, fplTitle, true);
 
-          writeUserVersion(scriptDir, script, userTitle, fplTitle, ".val");
+          writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".val");
 
         }
       }
     }
   }
 
-  private void generateTypePages(File scriptDir, PrintWriter script) throws Exception {
+  private void generateTypePages(File scriptDir, PrintWriter importsFile) throws Exception {
     Map<String, List<Properties>> typeInfos = repoInfo.getTypeInfos();
 
     String fname;//Now iterate through typeInfos generating type pages.
@@ -877,10 +894,10 @@ public class FixwikiGenerator {
       fw.println(FPL_PAGE_TERMINATION_STRING);
       fw.close();
 
-      //Write to script file
-      addImportToScript(script, relName, fplTitle, true);
+      //Write to imports file
+      addImportToFile(importsFile, relName, fplTitle, true);
 
-      writeUserVersion(scriptDir, script, userTitle, fplTitle, ".typ");
+      writeUserVersion(scriptDir, importsFile, userTitle, fplTitle, ".typ");
     }
   }
 
@@ -1048,7 +1065,7 @@ public class FixwikiGenerator {
     fw.println("|}");
   }
 
-  private void writeUserVersion(File scriptDir, PrintWriter script, String userTitle, String fplTitle, String suffix) throws IOException {
+  private void writeUserVersion(File scriptDir, PrintWriter importsFile, String userTitle, String fplTitle, String suffix) throws IOException {
     if (createUserPages) {
       String relName = titleToName(userTitle) + suffix;
       String fname = scriptDir.getAbsolutePath() + File.separator + relName;
@@ -1058,8 +1075,8 @@ public class FixwikiGenerator {
       inviteInput(fw);
       fw.close();
 
-      //Write to script file
-      addImportToScript(script, relName, userTitle, false);
+      //Write to imports file
+      addImportToFile(importsFile, relName, userTitle, false);
     }
   }
 

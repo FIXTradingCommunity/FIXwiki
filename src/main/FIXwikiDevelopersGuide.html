@@ -15,7 +15,7 @@
 
 <p align="right">
     John Cameron<br>
-    8 July 2013
+    12 July 2013
 </p>
 
 <h2>
@@ -263,6 +263,24 @@
     external documentation.
 </p>
 
+<h3>
+    bulkImportTextFiles.php
+</h3>
+
+<p>
+    This file must be copied into the wiki's "maintenance" subdirectory.
+    It is a special PHP utility written for FIXwiki which speeds up the build
+    process. 
+</p>
+
+<p>
+    It is based on the standard <code>importTextFile.php</code> utility which can be
+    found in the "maintenance" subdirectory. The original FIXwiki was built 
+    using <code>importTextFile.php</code>. However that utility only imports one text file 
+    at a time and the FIXwiki build process was becoming rather long.
+    Using <code>bulkImportTextFiles.php</code> makes the build process 3 to 4 times faster. 
+</p>
+
 <h2>
     <a name="generating">Generating FIXwiki</a>
 </h2>
@@ -278,12 +296,12 @@
 </p>
 
 <p>
-    MediaWiki provides a standard PHP function (importTextFile.php) for creating
-    a wiki page from the contents of a text file.
-    So the software which generates FIXwiki copies each
+    <code>bulkImportTextFiles.php</code> creates wiki pages from the contents 
+    of text files. So the software which generates FIXwiki copies each
     FIX repository definition into a text file and creates a PHP script which
-    calls this import function for each text file. Running the resulting
-    PHP script creates FIXwiki. This software is written in Java.
+    imports each text file. 
+    Running the resulting PHP script creates FIXwiki. 
+    This software is written in Java.
 </p>
 
 <p>
@@ -303,7 +321,7 @@
 <p>
     These are generated automatically from the FIX repository and other sources
     by the FIXwiki generation code (described below).
-    There are around 20,000 data files totalling about 120Mb.
+    There are around 40,000 data files totalling about 180Mb.
 </p>
 
 <p>
@@ -444,8 +462,8 @@
 <p>
     Apart from calling the other modules as needed, the main function of this
     code is to actually generate the text files which end up being FIXwiki
-    pages,
-    as well as the PHP script which imports those text files into the wiki.
+    pages, as well as the PHP script which imports those text files into the 
+    wiki.
 </p>
 
 <h2>

@@ -8,15 +8,24 @@ Please contribute. You will need to [[Special:UserLogin|log in]] if you want to
 contribute.
 
 {{SITENAME}} was created by John Cameron of [http://cameronedge.com/ Cameron Edge] 
-for the benefit of the FIX community.
+and donated to FIX Protocol Ltd. for the benefit of the FIX community.
+It is freely accessible by members of FPL.
+
+To edit FIXwiki pages you must request a login account. 
+All login account requests will be reviewed by the FPL Program Office. 
+Account requests will be granted only to those who are employees of a FPL 
+member institution in good standing. 
+You are responsible for protecting and securing your login details. 
+You must keep your login details secret and take all reasonable precautions to 
+prevent unauthorised or fraudulent use of them.  
 
 ==Quick Start==
 
 Type one of the following into the search box on the left and click Go
 or press Enter/Return:
-:* a FIX message or component name (eg Confirmation or Parties)
-:* a FIX field name (eg Quantity)
-:* a FIX tag number (eg 54)
+:* a FIX message or component name (e.g. Confirmation or Parties)
+:* a FIX field name (e.g. Quantity)
+:* a FIX tag number (e.g. 54)
 
 or if you just want to browse, click on one of the following links:
 
@@ -35,3 +44,8 @@ Click on the FIX Protocol logo at the top left at any time to return to this mai
 [[{{SITENAME}}:Structure |Structure of {{SITENAME}}]].
 
 [[{{SITENAME}}:About | About {{SITENAME}}]].
+
+[http://www.fixprotocol.org/etc/fixwiki_video How to use FIXwiki Video Guide]
+
+'''By using this site or requesting a login you agree to abide by the 
+[[:FIXwiki:Terms_of_Use | Terms of Use]].'''

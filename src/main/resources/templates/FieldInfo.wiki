@@ -13,7 +13,7 @@
 | }}</tr><tr>
 <td>{{{Tag}}}</td>
 <td>{{{Name}}}</td>
-<td>[[{{{Type}}}DataType | {{{Type}}}]]</td>
+<td>[[{{{Type}}}DataType | {{{Type}}}]] {{#if: {{{UnionDataType|}}} | [[{{{UnionDataType}}}DataType|{{{UnionDataType}}}]] | }}</td>
 <td>{{#if: {{{EnumFieldName|}}} | {{#if: {{{EnumDatatype|}}} | Same values as [[{{{EnumFieldName}}}]]| x}} |}}</td>
 <td>{{#if: {{{added|}}} | [[:Category:{{{added}}}|{{{added}}}]] | }} {{#if: {{{addedEP|}}} | [[:Category:EP{{{addedEP}}}|EP{{{addedEP}}}]] | }}</td>
 {{#if: {{{deprecated|}}} |

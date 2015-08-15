@@ -114,6 +114,7 @@ $wgSecretKey = "f5a3e6707e1723817456560ae4a4fd6cf77d74a72d3bda866dca9107ddf5dda8
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'vector', 'monobook':
+wfLoadSkin( 'MonoBook' );
 $wgDefaultSkin = 'monobook';
 
 ## For attaching licensing metadata to pages, and displaying an

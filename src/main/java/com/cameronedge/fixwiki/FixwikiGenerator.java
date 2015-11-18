@@ -187,7 +187,7 @@ public class FixwikiGenerator {
 
     script.println("php " + BULK_IMPORT_PROGRAM + " $" + 
             IMPORT_DIR_VARIABLE + File.separator + IMPORTS_FILE);
-    script.println("if [ ! '$?' = '0' ]; then\n" +
+    script.println("if [ ! $? = '0' ]; then\n" +
             "  echo 'bulkImportTextFiles.php failed'\n" +
             "  exit 1\n" +
             "fi");

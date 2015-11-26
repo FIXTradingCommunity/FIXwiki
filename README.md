@@ -4,4 +4,4 @@ This is the code that is used to generate the FIXwiki website, http://fixwiki.or
 
 ##Introduction
 
-FIXwiki was created by John Cameron and donated to FIX Protocol Ltd. for the benefit of the FIX community. 
+FIXwiki was created by John Cameron of [Cameron Edge](http://cameronedge.com/) and donated to FIX Protocol Ltd. for the benefit of the FIX community. 

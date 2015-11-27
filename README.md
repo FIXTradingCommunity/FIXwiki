@@ -11,3 +11,9 @@ FIXwiki was created by John Cameron of [Cameron Edge](http://cameronedge.com/) a
 ##Developers Guide
 
 See the wiki associated with this GitHub repository - http://github.com/camerojo/FIXwiki/wiki
+
+##How to Contribute
+
+See http://guides.github.com/activities/forking/
+
+Basically you just create your own copy (a fork) of this repository, download (clone) it to your local development computer, make changes, upload (push) them back to your copy and then make a "Pull request" to submit your changes for review and merging into the main FIXwiki repository.

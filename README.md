@@ -10,7 +10,7 @@ FIXwiki was created by John Cameron of [Cameron Edge](http://cameronedge.com/) a
 
 ##Developers Guide
 
-See the wiki associated with this GitHub repository - http://github.com/camerojo/FIXwiki/wiki
+See the wiki associated with this GitHub repository - https://github.com/FIXTradingCommunity/FIXwiki/wiki
 
 ##How to Contribute
 
